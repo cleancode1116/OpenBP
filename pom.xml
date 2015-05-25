@@ -95,29 +95,8 @@
 		-->
 	</profiles>
 
-	<scm>
-		<connection>scm:svn:http://openbp.eucodos.de/svn/trunk/openbp</connection>
-		<developerConnection>scm:svn:http://openbp.eucodos.de/svn/trunk/openbp</developerConnection>
-		<url>http://openbp.eucodos.de/svn/trunk/openbp</url>
-	</scm>
-	<organization>
-	</organization>
 	<build>
 		<plugins>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>buildnumber-maven-plugin</artifactId>
-				<version>1.0-beta-4</version>
-				<executions>
-					<execution>
-						<phase>validate</phase>
-						<goals>
-							<goal>create</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>2.0.2</version>
@@ -150,66 +129,10 @@
 		</pluginManagement>
 	</build>
 
-	<reporting>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-project-info-reports-plugin</artifactId>
-				<version>2.0.1</version>
-			</plugin>
-
-			<!--
-				<plugin> <groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-changes-plugin</artifactId> <version>2.3</version>
-				</plugin>
-			-->
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>versions-maven-plugin</artifactId>
-				<version>1.1</version>
-				<reportSets>
-					<reportSet>
-						<reports>
-							<report>dependency-updates-report</report>
-							<report>plugin-updates-report</report>
-							<report>property-updates-report</report>
-						</reports>
-					</reportSet>
-				</reportSets>
-			</plugin>
-			<!--
-				<plugin> <groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-changelog-plugin</artifactId> </plugin>
-			-->
-		</plugins>
-	</reporting>
-
 	<repositories>
 		<repository>
-			<releases>
-				<updatePolicy>never</updatePolicy>
-				<checksumPolicy>fail</checksumPolicy>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-			<id>openbp</id>
-			<name>OpenBP Repository</name>
-			<url>http://openbp.eucodos.de/releases</url>
-		</repository>
-		<repository>
-			<releases>
-				<enabled>false</enabled>
-				<updatePolicy>never</updatePolicy>
-				<checksumPolicy>fail</checksumPolicy>
-			</releases>
-			<snapshots>
-				<updatePolicy>interval:30</updatePolicy>
-				<checksumPolicy>fail</checksumPolicy>
-			</snapshots>
-			<id>openbp-snapshots</id>
-			<name>OpenBP Snapshot Repository</name>
-			<url>http://openbp.eucodos.de/snapshots</url>
+			<id>java.net</id>
+			<url>http://download.java.net/maven/2/</url>
 		</repository>
 	</repositories>
 

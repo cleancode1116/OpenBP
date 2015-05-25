@@ -30,6 +30,7 @@
 					<driver>org.apache.derby.jdbc.EmbeddedDriver</driver>
 					<url>jdbc:derby:${basedir}/target/work/openbptestcase;create=true</url>
 					<autocommit>true</autocommit>
+					<!--suppress MavenModelInspection -->
 					<skip>${maven.test.skip}</skip>
 					<onError>continue</onError>
 				</configuration>
@@ -107,7 +108,7 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate</artifactId>
-			<version>3.2.6.ga</version>
+			<version>3.2.7.ga</version>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
