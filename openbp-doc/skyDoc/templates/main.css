@@ -1,0 +1,83 @@
+body,p,h1,h2,h3,h4,h5,table,th,td,li,ul,ol
+{
+	font-family : sans-serif;
+	fontfamily : sans-serif;
+	font-size : 12pt;
+	fontsize : 12pt;
+}
+
+h1
+{
+	font-size : 16pt;
+	fontsize : 16pt;
+	font-weight : bold;
+	fontweight : bold;
+}
+h2
+{
+	font-size : 14pt;
+	fontsize : 14pt;
+	font-weight : bold;
+	fontweight : bold;
+}
+
+code
+{
+	font-family : "Courier New";
+	fontfamily : "Courier New";
+}
+
+.declaration
+{
+	font-family : "Courier New";
+	fontfamily : "Courier New";
+	font-weight : bold;
+	fontweight : bold;
+}
+.subsection
+{
+	font-weight : bold;
+	fontweight : bold;
+}
+.hierarchy
+{
+}
+.title
+{
+}
+.deprecated
+{
+	color : #FF0000;
+}
+.obsolete
+{
+	color : #FF0000;
+	font-weight : bold;
+	fontweight : bold;
+}
+
+table
+{
+	text-align : left;
+	padding : 3 px
+}
+th
+{
+	text-align : left;
+	background : #808080;
+}
+td
+{
+	text-align : left;
+}
+
+li
+{
+}
+ul
+{
+}
+ol
+{
+	padding-left : 6pt;
+}

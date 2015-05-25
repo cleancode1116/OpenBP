@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+   Copyright 2007 skynamics AG
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ -->
+
+<resource>
+	<item name="title">Debugger</item>
+	<item name="description">Debugs processes</item>
+	<item name="icon" type="image/multi">
+		<path>../../images/plugins/debugger.png</path>
+	</item>
+	<item name="condition">features.debugger</item>
+
+	<import container="cockpit" resource="standardmenus" />
+	<import container="cockpit" resource="standardoptions" />
+
+	<!-- Menus -->
+	<group name="menu.debugger">
+		<item name="menuparent">menuroot</item>
+		<item name="pagenames">ModelerPage</item>
+		<item name="type">menu</item>
+		<item name="displayname">_Debugger</item>
+		<item name="prio">551</item>
+	</group>
+
+	<group name="menu.debugger.run">
+		<item name="menuparent">menu.debugger</item>
+		<item name="pagenames">ModelerPage</item>
+		<item name="type">group</item>
+		<item name="prio">10</item>
+	</group>
+
+	<group name="menu.debugger.breakpoint">
+		<item name="menuparent">menu.debugger</item>
+		<item name="pagenames">ModelerPage</item>
+		<item name="type">group</item>
+		<item name="prio">20</item>
+	</group>
+
+	<group name="menu.debugger.step">
+		<item name="menuparent">menu.debugger</item>
+		<item name="pagenames">ModelerPage</item>
+		<item name="type">group</item>
+		<item name="prio">30</item>
+	</group>
+
+	<!-- Actions -->
+
+	<!-- Debugger-Breakpoints -->
+	<group name="debugger.client.setbreakontoplevel">
+		<item name="menuparent">menu.debugger.breakpoint</item>
+		<item name="pagenames">ModelerPage</item>
+		<item name="displayname">Break on _Top Level</item>
+		<item name="description">Break on all top level initial nodes</item>
+		<item name="prio">21</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/toolbar/debugger/togglebreakpoint.png</path>
+		</item>
+	</group>
+
+	<group name="debugger.client.setbreakonworkflow">
+		<item name="menuparent">menu.debugger.breakpoint</item>
+		<item name="pagenames">ModelerPage</item>
+		<item name="displayname">Break on _Workflow</item>
+		<item name="description">Break after a workflow task has been accepted by a user</item>
+		<item name="prio">22</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/toolbar/debugger/togglebreakpoint.png</path>
+		</item>
+	</group>
+
+	<group name="debugger.client.setbreakonexception">
+		<item name="menuparent">menu.debugger.breakpoint</item>
+		<item name="pagenames">ModelerPage</item>
+		<item name="displayname">Break on E_xception</item>
+		<item name="description">Break on all exceptions</item>
+		<item name="prio">23</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/toolbar/debugger/togglebreakpoint.png</path>
+		</item>
+	</group>
+
+	<group name="debugger.client.togglebreakpoints">
+		<item name="menuparent">menu.debugger.breakpoint</item>
+		<item name="pagenames">ModelerPage</item>
+		<item name="displayname">Toggle _Breakpoints</item>
+		<item name="description">Toggle the breakpoints of the selected objects</item>
+		<item name="prio">24</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/toolbar/debugger/togglebreakpoint.png</path>
+		</item>
+		<item name="sequence">F9</item>
+	</group>
+
+	<group name="debugger.client.clearbreakpoints">
+		<item name="menuparent">menu.debugger.breakpoint</item>
+		<item name="pagenames">ModelerPage</item>
+		<item name="displayname">Clear _all Breakpoints</item>
+		<item name="description">Clear all breakpoints</item>
+		<item name="prio">25</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/toolbar/debugger/clearall.png</path>
+		</item>
+		<item name="sequence">S-F9</item>
+	</group>
+
+	<!-- Debugger-Step -->
+	<group name="debugger.client.stepnext">
+		<item name="menuparent">menu.debugger.step</item>
+		<item name="pagenames">ModelerPage</item>
+		<item name="displayname">Step _Next</item>
+		<item name="description">Step to the next event</item>
+		<item name="prio">30</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/toolbar/debugger/stepnext.png</path>
+		</item>
+		<item name="sequence">F5</item>
+	</group>
+
+	<group name="debugger.client.stepinto">
+		<item name="menuparent">menu.debugger.step</item>
+		<item name="pagenames">ModelerPage</item>
+		<item name="displayname">Step _Into</item>
+		<item name="description">Step into a component</item>
+		<item name="prio">31</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/toolbar/debugger/stepinto.png</path>
+		</item>
+		<item name="sequence">S-F5</item>
+	</group>
+
+	<group name="debugger.client.stepover">
+		<item name="menuparent">menu.debugger.step</item>
+		<item name="pagenames">ModelerPage</item>
+		<item name="displayname">Step _Over</item>
+		<item name="description">Step over a component</item>
+		<item name="prio">32</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/toolbar/debugger/stepover.png</path>
+		</item>
+		<item name="sequence">F6</item>
+	</group>
+
+	<group name="debugger.client.stepout">
+		<item name="menuparent">menu.debugger.step</item>
+		<item name="pagenames">ModelerPage</item>
+		<item name="displayname">Step O_ut</item>
+		<item name="description">Step out of the current process</item>
+		<item name="prio">33</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/toolbar/debugger/stepout.png</path>
+		</item>
+		<item name="sequence">F7</item>
+	</group>
+
+	<group name="debugger.client.resume">
+		<item name="menuparent">menu.debugger.step</item>
+		<item name="pagenames">ModelerPage</item>
+		<item name="displayname">_Resume</item>
+		<item name="description">Resumes a halted process</item>
+		<item name="prio">35</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/toolbar/debugger/resume.png</path>
+		</item>
+		<item name="sequence">F8</item>
+	</group>
+
+	<group name="debugger.client.stop">
+		<item name="menuparent">menu.debugger.step</item>
+		<item name="pagenames">ModelerPage</item>
+		<item name="displayname">_Stop</item>
+		<item name="description">Terminate a halted process</item>
+		<item name="prio">36</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/toolbar/debugger/stop.png</path>
+		</item>
+		<item name="sequence">S-F8</item>
+	</group>
+
+	<!-- Debugger-Context menu -->
+	<group name="debugger.client.togglebreakpoint">
+		<item name="displayname">Toggle _Breakpoint</item>
+		<item name="description">Turn the breakpoint on or off</item>
+		<item name="prio">20</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/toolbar/debugger/togglebreakpoint.png</path>
+		</item>
+	</group>
+
+	<group name="debugger.client.stepuntil">
+		<item name="displayname">Step _Until</item>
+		<item name="description">Step until the selected position</item>
+		<item name="prio">23</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/toolbar/debugger/stepuntil.png</path>
+		</item>
+	</group>
+
+	<!-- Options -->
+	<group name="debugger.autosave">
+		<item name="displayname">Autosave</item>
+		<item name="heading">Autosave enabled</item>
+		<item name="description">Automatically saves all modified objects (processes) when issueing a run or step command in the debugger</item>
+		<item name="optionparent">option.debugger</item>
+		<item name="prio" type="primitive/integer">1</item>
+	</group>
+
+	<group name="debugger.skipsystemmodel">
+		<item name="displayname">Skip System model processes</item>
+		<item name="heading">Skip processes of the System model in single step mode</item>
+		<item name="description">Skips any processes that are located in the System model when performing a single step (step next/step over) in the debugger</item>
+		<item name="optionparent">option.debugger</item>
+		<item name="prio" type="primitive/integer">5</item>
+	</group>
+
+	<group name="debugger.controllinktracemode">
+		<item name="displayname">Control link trace mode</item>
+		<item name="description">Determines how control links should be handled by the 'Step Next' command</item>
+		<item name="optionparent">option.debugger</item>
+		<item name="prio" type="primitive/integer">6</item>
+	</group>
+
+	<group name="debugger.datalinktracemode">
+		<item name="displayname">Data link trace mode</item>
+		<item name="description">Determines how data links should be handled by the 'Step Next' command</item>
+		<item name="optionparent">option.debugger</item>
+		<item name="prio" type="primitive/integer">7</item>
+	</group>
+
+	<group name="debugger.debuggerid">
+		<item name="displayname">Debugger id</item>
+		<item name="description">Id that associates the debugger with a particular session. Must be specified as request parameter '_debuggerid' in the HTTP request URL. If not specified, an id like 'Deb1', 'Deb2', ... will be generated.</item>
+		<item name="optionparent">option.debugger</item>
+		<item name="prio" type="primitive/integer">8</item>
+	</group>
+
+	<!-- Option values for control and data link trace modes -->
+	<item name="debugger.option.linktrace.skip">Skip link</item>
+	<item name="debugger.option.linktrace.target">Stop at link target</item>
+	<item name="debugger.option.linktrace.animationstop">Show link animation and stop at link target</item>
+	<item name="debugger.option.linktrace.animationgo">Show link animation and continue execution</item>
+
+	<!-- Messages -->
+	<group name="messages">
+		<item name="noserverurl">In order to run a process, you need to specify the URL of your application server in the options dialog first.</item>
+		<item name="nodebuggerservice">The debugger service is currently not available.
+
+Make sure that the $(openbp.application.title) engine has been started and that the RMI ports 
+specified in the Server.properties and Cockpit.properties files match.
+
+Start the $(openbp.application.title) engine and press the 'Reload' button (CTRL+r) in the Cockpit in order to connect to it.</item>
+	</group>
+
+</resource>

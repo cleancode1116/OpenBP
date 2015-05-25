@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<!-- OpenBP server Spring framework configuration file -->
+
+<beans>
+
+	<!-- The OpenBP process server - the root of this configuration file. All other objects are dependant objects. -->
+	<bean id="processServerBean" class="org.openbp.server.ProcessServer">
+
+		<property name="modelMgr" ref="modelMgrBean"/>
+		<property name="processFacade" ref="processFacadeBean"/>
+		<property name="engine" ref="engineBean"/>
+		<property name="engineRunner" ref="engineRunnerBean"/>
+		<property name="tokenContextService" ref="tokenContextServiceBean"/>
+		<property name="processScheduler" ref="processSchedulerBean"/>
+		<property name="sessionRegistry" ref="sessionRegistryBean"/>
+
+		<property name="persistenceContextProvider" ref="persistenceContextProviderBean"/>
+		<property name="contextObjectSerializerRegistry" ref="contextObjectSerializerRegistryBean"/>
+
+		<!--
+		<property name="connectionInfo">
+			<bean class="org.openbp.core.remote.ClientConnectionInfo">
+				<property name="rmiServerPort" value="10088"/>
+				<property name="enabled" value="true"/>
+			</bean>
+		</property>
+		-->
+
+		<property name="services">
+			<list>
+				<!-- The services will be placed in the common registry so they will be found by the remoting mechanism -->
+				<ref bean="clientSessionServiceBean"/>
+				<ref bean="debuggerServiceBean"/>
+				<ref bean="modelNotificationServiceBean"/>
+			</list>
+		</property>
+
+		<property name="services2">
+			<list>
+				<!-- Note:
+					 The next few entries are not services in the classical sense, but are currently required due to technical reasons.
+					 These will be removed soon.
+				     Until then, it is important to keep the order of these statements!
+				 -->
+				<ref bean="processSchedulerBean"/>
+				<ref bean="tokenContextServiceBean"/>
+			</list>
+		</property>
+
+	</bean>
+
+	<!-- Quartz-based process scheduler -->
+	<bean id="processSchedulerBean" class="org.openbp.server.scheduler.QuartzProcessScheduler">
+		<property name="processServer" ref="processServerBean"/>
+	</bean>
+
+	<!-- Model manager -->
+	<bean id="modelMgrBean" class="org.openbp.core.model.modelmgr.MultiplexModelMgr">
+		<property name="managers">
+			<list>
+				<bean id="fileSystemModelMgrBean" class="org.openbp.core.model.modelmgr.FileSystemModelMgr"/>
+				<bean id="classPathModelMgrBean" class="org.openbp.core.model.modelmgr.ClassPathModelMgr"/>
+			</list>
+		</property>
+	</bean>
+	<!-- For mere application-server deployments, you should use the class path model manager.
+	<bean id="modelMgrBean" class="org.openbp.core.model.modelmgr.ClassPathModelMgr">
+	</bean>
+	-->
+
+	<!-- Process facade -->
+	<bean id="processFacadeBean" class="org.openbp.server.ProcessFacadeImpl">
+		<property name="engine" ref="engineBean"/>
+		<property name="engineRunner" ref="engineRunnerBean"/>
+	</bean>
+
+	<!-- Token context service -->
+	<bean id="tokenContextServiceBean" class="org.openbp.server.context.PersistentTokenContextService">
+		<property name="modelMgr" ref="modelMgrBean"/>
+		<property name="persistenceContextProvider" ref="persistenceContextProviderBean"/>
+	</bean>
+	<!-- If your require information on running, uncommitted contexts (e. g. progress information), use the session-aware persistant token context service.
+	<bean id="tokenContextServiceBean" class="org.openbp.server.context.SessionAwarePersistentTokenContextService">
+		<property name="modelMgr" ref="modelMgrBean"/>
+		<property name="persistenceContextProvider" ref="persistenceContextProviderBean"/>
+		<property name="sessionRegistry" ref="sessionRegistryBean"/>
+	</bean>
+	-->
+	<!-- For in-memory process evaluation, use the transient token context service.
+	     Note that in this case, you should also configure the DummyPersistenceContextProvider
+	<bean id="tokenContextServiceBean" class="org.openbp.server.context.TransientTokenContextService">
+		<property name="modelMgr" ref="modelMgrBean"/>
+		<property name="persistenceContextProvider" ref="persistenceContextProviderBean"/>
+	</bean>
+	-->
+
+	<!-- Persistence context provider -->
+	<!-- Processes that do not persist data should configure the DummyPersistenceContextProvider
+	<bean id="persistenceContextProviderBean" class="org.openbp.server.persistence.dummy.DummyPersistenceContextProvider">
+	</bean>
+	-->
+	<bean id="persistenceContextProviderBean" class="org.openbp.server.persistence.hibernate.HibernatePersistenceContextProvider">
+		<property name="classMappingRegistry" ref="classMappingRegistryBean"/>
+	</bean>
+
+	<!-- Session registry -->
+	<bean id="sessionRegistryBean" class="org.openbp.server.context.SessionRegistryImpl">
+	</bean>
+
+	<!-- Process engine event observer manager -->
+	<bean id="engineEventObserverMgrBean" class="org.openbp.server.engine.EngineEventObserverMgr">
+	</bean>
+
+	<!-- Process engine -->
+	<bean id="engineBean" class="org.openbp.server.engine.AutoCommittingEngineImpl">
+
+		<property name="sessionMode">
+			<!-- Manual session registry. -->
+			<!-- The application is responsible for registering the session. -->
+			<!-- The process engine will unregister the session only in case of an unrecoverable exception. -->
+			<!--
+			<bean id="org.openbp.server.engine.SessionMode.MANUAL"
+				class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean"/>
+			-->
+
+			<!-- Automatic session registry. -->
+			<!-- A session will be registered when the execution of a process starts. -->
+			<!-- The session will be destroyed when the execution of the process ends (i. e. when the process is suspended). -->
+			<bean id="org.openbp.server.engine.SessionMode.AUTO"
+				class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean"/>
+		</property>
+
+		<property name="modelMgr" ref="modelMgrBean"/>
+		<property name="observerMgr" ref="engineEventObserverMgrBean"/>
+		<property name="sessionRegistry" ref="sessionRegistryBean"/>
+		<property name="scriptEngineFactory" ref="scriptEngineFactoryBean"/>
+		<property name="tokenContextService" ref="tokenContextServiceBean"/>
+		<property name="persistenceContextProvider" ref="persistenceContextProviderBean"/>
+	</bean>
+
+	<!-- Process engine runner thread -->
+	<!--
+	<bean id="engineRunnerBean" class="org.openbp.server.engine.NewThreadEngineRunner">
+		<property name="engine" ref="engineBean"/>
+		<property name="idleTime" value="200"/>
+		<property name="fetchSize" value="5"/>
+	</bean>
+	-->
+	<bean id="engineRunnerBean" class="org.openbp.server.engine.ThreadPoolEngineRunner">
+		<property name="engine" ref="engineBean"/>
+		<property name="executor" ref="executorBean"/>
+		<property name="idleTime" value="200"/>
+		<!-- Must be in sync with maxPoolSize if queueCapacity = 0 -->
+		<property name="fetchSize" value="5"/>
+	</bean>
+
+	<!-- For process execution, create a non-queuing thread pool having 5 threads -->
+	<bean id="executorBean" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+		<property name="corePoolSize" value="5"/>
+		<property name="maxPoolSize" value="5"/>
+		<property name="queueCapacity" value="0"/>
+	</bean>
+
+	<!-- Scripint engine -->
+	<bean id="scriptEngineFactoryBean" class="org.openbp.server.engine.script.ScriptEngineFactoryImpl">
+	</bean>
+
+	<bean id="debuggerBean" class="org.openbp.server.engine.debugger.DebuggerImpl">
+		<property name="observerMgr" ref="engineEventObserverMgrBean"/>
+		<property name="sessionRegistry" ref="sessionRegistryBean"/>
+	</bean>
+
+	<!-- Client session service -->
+	<bean id="clientSessionServiceBean" class="org.openbp.server.remote.ClientSessionServiceImpl">
+	</bean>
+
+	<!-- Debugger service -->
+	<bean id="debuggerServiceBean" class="org.openbp.server.engine.debugger.DebuggerServiceImpl">
+		<property name="debugger" ref="debuggerBean"/>
+	</bean>
+
+	<!-- Model service -->
+	<bean id="modelNotificationServiceBean" class="org.openbp.server.model.ModelNotificationServiceImpl">
+		<property name="notificationObservers">
+			<list>
+				<ref bean="sessionRegistryBean"/>
+			</list>
+		</property>
+	</bean>
+
+	<!-- Context object serialization -->
+	<bean id="contextObjectSerializerRegistryBean" class="org.openbp.server.context.serializer.ContextObjectSerializerRegistry">
+		<property name="serializers">
+			<list>
+				<bean class="org.openbp.server.context.serializer.PersistenceContextObjectSerializer">
+					<property name="persistenceContextProvider" ref="persistenceContextProviderBean"/>
+				</bean>
+				<bean class="org.openbp.server.context.serializer.XStreamContextObjectSerializer"/>
+				<bean class="org.openbp.server.context.serializer.JavaSerializationContextObjectSerializer"/>
+			</list>
+		</property>
+	</bean>
+
+	<!-- Class mapping registry - used by persistence context and token service -->
+	<bean id="classMappingRegistryBean" class="org.openbp.common.registry.ClassMappingRegistry">
+		<property name="shallowMapppings">
+			<map>
+				<!-- You can use the class mapping registry to instruct OpenBP to use your specialized sub classes
+				     of the TokenContext and WorkflowTask classes -->
+				<!--
+				<entry key="org.openbp.server.context.TokenContext" value="com.myproject.MyTokenContext"/>
+				<entry key="org.openbp.server.context.WorkflowTask" value="com.myproject.MyWorkflowTask"/>
+				-->
+				<!-- Map all OpenBP entities to the their standard implementations -->
+				<entry key="org.openbp.server.context.TokenContext" value="org.openbp.server.context.TokenContextImpl"/>
+				<entry key="org.openbp.server.context.WorkflowTask" value="org.openbp.server.context.WorkflowTaskImpl"/>
+			</map>
+		</property>
+	</bean>
+
+</beans>

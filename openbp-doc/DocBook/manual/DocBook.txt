@@ -1,0 +1,160 @@
+
+@@ Editors
+
+http://vex.sourceforge.net/
+http://docbook.sourceforge.net/
+http://www.oxygenxml.com/
+http://hbxt.org/edutech/docbook-in-geisteswissenschaften
+http://sagehill.net/docbookxsl/index.html
+
+
+@@ Styles
+	<emphasis>	     Emphasized text
+	<literal>	     Literal text (e. g. commands, code, prompts etc.)
+	<firstterm>	     A new term, when it first occurs (usually rendered in italics).
+	<acronym>	     An acronym
+	<varname>	     A variable or placeholder name; in HTML, this will be displayed as <i>&lt;text&gt;</i>
+
+	<arg>            A function argument.
+	<classname>      A class name.
+	<cmdsynopsis>    A command syntax summary.
+	<command>        A command or executable program.
+	<computeroutput> Computer generated data, usually text.
+	<constant>       A programming or system constant.
+	<filename>       A file name, including directory path if desired.
+	<function>       A function name.
+	<group>          A group of cmdsynopsis elements (see above).
+	<guibutton>      GUI button text.
+	<guiicon>        A GUI icon graphic or text.
+	<guilabel>       GUI label text.
+	<guimenu>        A GUI menu name.
+	<guimenuitem>    A GUI menu item name.
+	<keycap>         The symbol on a keyboard key.
+	<parameter>      A function or command parameter.
+	<replaceable>    Content to be replaced.
+	<returnvalue>    A function's return value.
+	<screen>         What is seen on a computer screen.
+	<synopsis>       A wrapper for command or function syntax.
+	<systemitem>     An item or term related to a system.
+	<type>           A value's classification or type.
+	<userinput>      Data entered by the user.
+	<varname>        A variable name.
+
+
+@@ Links/Cross-references
+
+<section id="xy">
+	<title id='xy.title'>A Subsection</title>
+	...
+</section>
+
+<para>
+	In this sentence <link linkend='xy'>this</link> word is hot and points to the following section.
+	There is also a link to the section called 
+	<quote>
+		<link linkend='nextsect' endterm="nextsect.title"/>
+	</quote>
+	in this sentence.
+</para>
+
+
+@@ Includes
+
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" ...
+<xi:include href="YourBook.xml" xpointer="xmlIdOfSectionToBeIncluded"/>
+<xi:include href="targetDocName" xpointer="xmlIdOfSectionToBeIncluded"/>
+
+
+@@ Images
+
+<inlinemediaobject>
+	<imageobject role="fo">
+		<imagedata fileref='images/xx.gif' scale="70%"/>
+	</imageobject>
+	<imageobject role="html">
+		<imagedata fileref='images/xx.gif'/>
+	</imageobject>
+</inlinemediaobject>
+
+<figure>
+	<title>DocBook: The Definitive Guide</title>
+	<graphic align="center" fileref="docbookguide.png"/>
+</figure>
+
+<informalfigure>
+	<graphic align="center" fileref="docbookguide.png"/>
+</informalfigure>
+
+SnagIt Resolution for screen shots = 110 dpi
+
+
+@@ Lists
+
+<itemizedlist>|<orderedlist>|<variablelist>
+	<listitem>
+		<para>Text of first list item</para>
+	</listitem>
+	<listitem>
+		<para>Text of second list item</para>
+	</listitem>
+</itemizedlist>|</orderedlist>|</variablelist>
+
+<segmentedlist>
+	<segtitle>Land</segtitle>
+	<segtitle>Stadt</segtitle>
+	<seglistitem>
+		<seg>Deutschland</seg>
+		<seg>Berlin</seg>
+	</seglistitem>
+	<seglistitem>
+		<seg>Österreich</seg>
+		<seg>Wien</seg>
+	</seglistitem>
+</segmentedlist>
+
+
+@@ Notes
+
+	<note>
+		<para>Note text</para>
+	</note>
+	<tip>
+		<para>Tip text</para>
+	</tip>
+	<important>
+		<para>Important text</para>
+	</important>
+	<caution>
+		<para>Warning text</para>
+	</caution>
+	<warning>
+		<para>Warning text</para>
+	</warning>
+
+
+@@ Program listing
+
+<programlisting>
+</programlisting>
+
+<programlisting>
+<![CDATA[
+]]>
+</programlisting>
+
+<programlisting>
+<![CDATA[
+This is a programlisting so white space and line breaks are significant.  
+But it is also a CDATA section so <emphasis>tags</emphasis> and &entities;
+are not recognized.  The only markup that is recognized is the end-of-section marker, 
+which is two "]"'s in a row followed by a >.
+]]>
+</programlisting>
+
+
+@@ Useful info
+
+http://www.linuxjournal.com/article/7737
+http://developers.cogentrts.com/cogent/prepdoc/pd-axfrequentlyuseddocbooktags.html
+
+

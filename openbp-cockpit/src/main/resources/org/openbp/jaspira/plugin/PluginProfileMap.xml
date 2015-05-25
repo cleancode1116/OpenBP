@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<!DOCTYPE mapping PUBLIC "-//EXOLAB/Castor Object Mapping DTD Version 1.0//EN"
+                         "http://castor.exolab.org/mapping.dtd">
+
+<mapping>
+
+	<class name="org.openbp.jaspira.plugin.PluginProfile">
+
+		<map-to xml="plugin"/>
+
+		<field name="ClassName"
+			type="string"
+			get-method="getClassName"
+			set-method="setClassName">
+			<bind-xml name="class-name" node="attribute"/>
+		</field>
+
+		<field name="Name"
+			type="string"
+			get-method="getName"
+			set-method="setName">
+			<bind-xml name="name" node="attribute"/>
+		</field>
+
+		<field name="Title"
+			type="string"
+			get-method="getTitle"
+			set-method="setTitle">
+			<bind-xml name="title" node="attribute"/>
+		</field>
+
+		<field name="Description"
+			type="string"
+			get-method="getDescription"
+			set-method="setDescription">
+			<bind-xml name="description" node="attribute"/>
+		</field>
+
+		<field name="Vendor"
+			type="string"
+			get-method="getVendor"
+			set-method="setVendor">
+			<bind-xml name="vendor" node="attribute"/>
+		</field>
+
+		<field name="Version"
+			type="string"
+			get-method="getVersion"
+			set-method="setVersion">
+			<bind-xml name="version" node="attribute"/>
+		</field>
+
+		<field name="Condition"
+			type="string"
+			get-method="getCondition"
+			set-method="setCondition">
+			<bind-xml name="condition" node="attribute"/>
+		</field>
+
+	</class>
+
+</mapping>

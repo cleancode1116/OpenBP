@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+   Copyright 2007 skynamics AG
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ -->
+
+<resource>
+	<item name="title">Toolbox</item>
+	<item name="description">User-configurable toolbox containing arbitrary components</item>
+	<item name="icon" type="image/multi">
+		<path>../../images/plugins/toolbox.png</path>
+	</item>
+
+	<!-- Actions -->
+	<group name="toolbox.changename">
+		<item name="displayname">Change name</item>
+		<item name="description">Change the name of the toolbox</item>
+	</group>
+
+	<!-- Messages -->
+	<item name="toolbox.dialog.changename.text">Enter the name of the toolbox</item>
+	<item name="toolbox.empty">(empty)</item>
+
+	<!-- Strings for color toolbox items -->
+	<item name="color.title">Color</item>
+	<item name="color.red">Red:</item>
+	<item name="color.green">Green:</item>
+	<item name="color.blue">Blue:</item>
+</resource>

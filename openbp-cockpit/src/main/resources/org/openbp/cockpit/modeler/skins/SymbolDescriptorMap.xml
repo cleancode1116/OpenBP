@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+   Copyright 2007 skynamics AG
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ -->
+
+<!DOCTYPE mapping PUBLIC "-//EXOLAB/Castor Object Mapping DTD Version 1.0//EN"
+                         "http://castor.exolab.org/mapping.dtd">
+
+<mapping>
+
+	<class name="org.openbp.cockpit.modeler.skins.SymbolDescriptor"
+		extends="org.openbp.cockpit.modeler.figures.generic.XFigureDescriptor">
+
+		<map-to xml="symbol-descriptor"/>
+
+		<field name="SymbolType"
+			type="string"
+			get-method="getSymbolType"
+			set-method="setSymbolType">
+			<bind-xml name="symbol-type" node="attribute"/>
+		</field>
+
+		<field name="ImageDisabled"
+			type="boolean"
+			get-method="isImageDisabled"
+			set-method="setImageDisabled">
+			<bind-xml name="image-disabled" node="attribute"/>
+		</field>
+
+		<field name="TextPosition"
+			type="string"
+			get-method="getTextPosition"
+			set-method="setTextPosition">
+			<bind-xml name="text-position" node="attribute"/>
+		</field>
+
+		<field name="OverlayPosition"
+			type="string"
+			get-method="getOverlayPosition"
+			set-method="setOverlayPosition">
+			<bind-xml name="overlay-position" node="attribute"/>
+		</field>
+
+		<field name="OverlayResourceKey"
+			type="string"
+			get-method="getOverlayResourceKey"
+			set-method="setOverlayResourceKey">
+			<bind-xml name="overlay-resource-key" node="attribute"/>
+		</field>
+
+	</class>
+
+</mapping>

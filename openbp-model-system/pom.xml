@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+	<parent>
+		<artifactId>openbp</artifactId>
+		<groupId>org.openbp</groupId>
+		<version>0.9.8-SNAPSHOT</version>
+	</parent>
+
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>openbp-model-system</artifactId>
+	<name>openbp-model-system</name>
+
+	<dependencies>
+	</dependencies>
+</project>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+   Copyright 2007 skynamics AG
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ -->
+
+<resource cache="true">
+	<item name="title">Component Editor</item>
+	<item name="description">Component Editor</item>
+	<item name="icon" type="image/multi">
+		<path>../../images/plugins/workspace.png</path>
+	</item>
+
+	<import resource="cockpit.generator.wizard.GeneratorWizard"/>
+
+	<!-- Wizard -->
+	<group name="wizard">
+
+		<item name="title">Component Editor</item>
+		<item name="property.title">Component properties</item>
+		<item name="property.description">Please define the general properties of the component here and describe the component.</item>
+
+		<group name="model">
+			<item name="title">Model Editor</item>
+			<item name="property.title">Model properties</item>
+			<item name="property.description">Please define the properties of the model such as database settings and imported models here and describe the model.</item>
+		</group>
+
+		<group name="process">
+			<item name="title">Process Editor</item>
+			<item name="property.title">Process properties</item>
+			<item name="property.description">Please define the properties of the process such as the process type here and describe the process.</item>
+		</group>
+
+		<group name="visual">
+			<item name="title">Visual Editor</item>
+			<item name="property.title">Visual properties</item>
+			<item name="property.description">Please define the properties of the visual such as the type of the visual here and describe the visual.</item>
+		</group>
+
+		<group name="activity">
+			<item name="title">Activity Editor</item>
+			<item name="property.title">Activity properties</item>
+			<item name="property.description">Please define the properties of the activity such as implementation class name or the Bean Shell script code here and describe the activity.</item>
+		</group>
+
+		<group name="type">
+			<item name="title">Data Type Editor</item>
+			<item name="property.title">Data type properties</item>
+			<item name="property.description">Please define the type of the data properties such as the associated data base table here and describe the data type.
+You can add data members to the data type by clicking the 'Add member' button below.</item>
+
+			<item name="member.title">Data member properties</item>
+			<item name="member.description">Define the properties of the data member.
+Note that the wizard displays only the most commonly used properties. You can access the more spezialized properties in the property browser after you have created the data type.
+Click 'Add member' to add the next member.
+Click 'Finish' to create the data type.</item>
+		</group>
+
+		<group name="icon">
+			<item name="title">Icon Editor</item>
+			<item name="property.title">Icon properties</item>
+			<item name="property.description">Please add the icon files if the various sizes by right-clicking the icon list below and selecting 'Add' from the context menu.</item>
+		</group>
+
+	</group>
+
+	<!-- Actions -->
+	<group name="removeParam">
+		<item name="displayname">_Remove Parameter</item>
+		<item name="description">Removes the parameter from the socket</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/toolbar/edit/delete.png</path>
+		</item>
+	</group>
+
+	<group name="removeSocket">
+		<item name="displayname">_Remove Socket</item>
+		<item name="description">Removes the socket from the node</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/toolbar/edit/delete.png</path>
+		</item>
+	</group>
+
+	<!-- Special buttons (type wizard) -->
+	<item name="wizard.type.addmemberbutton">_Add member</item>
+	<item name="wizard.type.removememberbutton">_Remove member</item>
+
+</resource>

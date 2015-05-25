@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+   Copyright 2007 skynamics AG
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ -->
+
+
+<object-descriptor
+	name="WorkflowTask"
+	display-name="Workflow task"
+	object-class="org.openbp.core.model.WorkflowTaskDescriptor"
+	validator="org.openbp.guiclient.objectvalidators.WorkflowTaskValidator"
+	>
+	<description>Workflow task properties</description>
+
+	<property name="StepName" display-name="Step system name"
+		editor="StringEditor"
+		required="true">
+		<description>System name of the workflow step that is about to be performed.
+This name can be used to reference the step independent of the locale.
+		</description>
+	</property>
+
+	<property name="StepDisplayName" display-name="Step title"
+		expanded="true"
+		editor="StringEditor">
+		<description>Title of the workflow step that is about to be performed.
+In addition to the workflow title itself (i. e. the display name of the workflow process), the step title may also appear as task title in the worklist.
+The step title should provide a short but functional information on the pending workflow step.
+It might be listed in the workflow task user interface in order to aid the user in selecting a workflow task to process.</description>
+	</property>
+
+	<property name="StepDescription" display-name="Step description"
+		expanded="true"
+		editor="MultiLineStringEditor">
+		<description>Detailled description of the workflow step that is to be performed
+This description might be displayed in a dialog that appears if the user accepts the workflow.</description>
+	</property>
+
+	<property name="RoleId" display-name="Role"
+		expanded="true"
+		editor="StringEditor">
+		<description>Role or list of roles (comma-separated) this workflow task shall be assigned to</description>
+	</property>
+
+	<property name="UserId" display-name="User"
+		expanded="true"
+		editor="StringEditor">
+		<description>Id of the user this workflow task is assigned to</description>
+	</property>
+
+	<property name="Priority" display-name="Priority"
+		editor="IntegerEditor">
+		<description>Priority of this workflow task.
+This can be any number. We recommend using values between 1 (highest) and 5 (lowest).
+By default, the workflow task items will be sorted by creation time and priority.</description>
+	</property>
+
+	<property name="DeleteAfterCompletion" display-name="Delete after completion"
+		editor="BooleanEditor">
+		<description>Instructs the engine to delete the workflow task (and any associated token contexts) after completion or abort of the task.
+Otherwise, the task will remain in the database with the task status set to WorkflowTask.STATUS_COMPLETED.</description>
+	</property>
+
+</object-descriptor>

@@ -1,0 +1,12 @@
+------------------------------------------------------------
+OpenBP @AppVersion@ Installation Finished.
+------------------------------------------------------------
+
+OpenBP has been installed on your system.
+
+By default, new models will be created by the OpenBP Cockpit below the
+    @InstallPath@/model
+directory.
+You may change these setting by editing the 
+    @InstallPath@/OpenB-Cockpit.properties
+file.

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<!DOCTYPE targetset 
+       SYSTEM "file:D:\Projects\DocBook\DocbookUtil\docbook-xsl\common\targetdatabase.dtd" [
+       <!ENTITY OpenBPManual SYSTEM "target/OpenBPManual.db">
+       <!ENTITY OpenBPManual2 SYSTEM "target/OpenBPManual2.docbook.db">
+       ]>
+       -->
+<targetset>
+	<targetsetinfo>
+		Description of this target database document, which is for the
+		examples in olink doc.
+	</targetsetinfo>
+
+	 Site map for generating relative paths between documents -->
+	<sitemap>
+		<dir name="SCT">
+			<document targetdoc="OpenBPManual">
+				&OpenBPManual;
+			</document>
+			<document targetdoc="OpenBPManual2">
+				&OpenBPManual2;
+			</document>
+		</dir>
+	</sitemap>
+</targetset>

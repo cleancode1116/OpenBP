@@ -1,0 +1,105 @@
+<html>
+
+<head>
+<title>Package $name</title>
+<link rel="stylesheet" href="$rootDir(main.css)" type="text/css">
+</head>
+
+<body>
+
+<p><small>$+if (defined (PRODUCT))$PRODUCT$endif$+if (defined (PRODUCTVERSION)) V $PRODUCTVERSION&nbsp;&nbsp;&nbsp;&nbsp;$endif$+if (has(categoryList))<a href="#categories">Objects by category</a>&nbsp;&nbsp;&nbsp;$endif$+if (has(hierarchy))<a href="$hierarchyURL">Class hierarchy</a>&nbsp;&nbsp;&nbsp;$endif$+if (has(interfaceList))<a href="#interfaces">Interfaces</a>&nbsp;&nbsp;&nbsp;$endif$+if (has(classList))<a href="#classes">Classes</a>&nbsp;&nbsp;&nbsp;$endif$+if (has(example))<a href="#example">Example</a>&nbsp;&nbsp;&nbsp;$endif$+if (! defaultOnly)<a href="$contentsFile">Contents</a>$endif</small></p>
+
+<p>$if (defaultOnly)</p>
+
+	<p>$if (defined (PRODUCTLOGO))</p>
+	<p><img src="$rootDir($PRODUCTLOGO)"></p>
+	<p>$endif</p>
+
+	<p>$if (defined (PRODUCT))</p>
+	<h1>$PRODUCT$+if (defined (PRODUCTVERSION)) V $PRODUCTVERSION$endif</h1>
+	<p>$endif</p>
+
+	<p>$if (defined (INTRO))</p>
+
+	<p>&nbsp;</p>
+	<p>$INTRO</p>
+	<p>$endif</p>
+
+<p>$else</p>
+
+	<p>$if (name == "default")</p>
+		<h1>Default package</h1>
+	<p>$else</p>
+		<h1>Package $name</h1>
+	<p>$endif</p>
+
+<p>$endif</p>
+
+$include (deprecated.html)
+
+<p>$summary</p>
+
+<p>$description</p>
+
+<p>$if (has (hierarchy))</p>
+<p><a name="hierarchy"></a></p>
+<h2><img src="$rootDir(images/bullet.gif)" align="middle"> <a href="$hierarchyURL">Class hierarchy</a></h2>
+<p>$endif</p>
+
+<p>$if (has (methodList))</p>
+<h2><img src="$rootDir(images/bullet.gif)" align="middle"> <a href="$methodIndexURL">Method index</a></h2>
+<p>$endif</p>
+
+<p>$if (has (fieldList))</p>
+<h2><img src="$rootDir(images/bullet.gif)" align="middle"> <a href="$fieldIndexURL">Field index</a></h2>
+<p>$endif</p>
+
+<p>$if (categoryList)</p>
+<p><a name="categories"></a></p>
+<h2><img src="$rootDir(images/bullet.gif)" align="middle"> Objects by category</h2>
+<p>$insert</p>
+<p>$endif</p>
+
+<p>$if (interfaceList (noHeader, header0 = Interface, sort))</p>
+<p><a name="interfaces"></a></p>
+<h2><img src="$rootDir(images/bullet.gif)" align="middle"> Interface index</h2>
+<p>$insert</p>
+<p>$endif</p>
+
+<p>$if (classList (noHeader, header0 = Class, sort))</p>
+<p><a name="classes"></a></p>
+<h2><img src="$rootDir(images/bullet.gif)" align="middle"> Class index</h2>
+<p>$insert</p>
+<p>$endif</p>
+
+$include (seeandexample.html)
+
+$include (versionandauthor.html)
+
+<p>$if (defaultOnly)</p>
+
+	<p>$if (defined (COMPANYLOGO) && defined (INDEXCOPYRIGHT))</p>
+
+		<table border="0" cellpadding="0">
+		<tr>
+		<td><img src="$rootDir($COMPANYLOGO)"></td>
+		<td>$INDEXCOPYRIGHT</td>
+		</tr>
+		</table>
+
+	<p>$endif</p>
+
+	<p>$if (defined (COMPANYLOGO) && ! defined (INDEXCOPYRIGHT))</p>
+	<p><img src="$rootDir($COMPANYLOGO)"></p>
+	<p>$endif</p>
+
+	<p>$if (! defined (COMPANYLOGO) && defined (INDEXCOPYRIGHT))</p>
+	<p>$INDEXCOPYRIGHT</p>
+	<p>$endif</p>
+
+<p>$else</p>
+$include (copyright.html)
+<p>$endif</p>
+
+</body>
+</html>

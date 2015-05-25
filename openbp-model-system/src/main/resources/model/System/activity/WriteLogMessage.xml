@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+   Copyright 2007 skynamics AG
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ -->
+
+<item-container>
+  <java-activity name="WriteLogMessage" display-name="Write log message" item-type="Activity" functional-group="I/O" geometry="origin:313:112|size:106:50">
+    <description>Writes a message to the server's log file.\n\nIf no logger name has been specified, the logger name will be constructed from &quot;model.&quot;+(qualified name of the executing model), e. g. &quot;Model.AddressBookDemo&quot;.\n\nIf no log level is given, the log level ERROR will be used.</description>
+    <generator-info><![CDATA[
+<generator-settings generator-name="Activity"/>
+]]></generator-info>
+    <socket name="In" entry="true" default="true" geometry="angle:4.71238898038469">
+      <param name="LogLevel" display-name="Log level" type="String" optional="true">
+        <description>Log level (eg. &quot;FATAL&quot;, &quot;ERROR&quot;, &quot;WARN&quot;, &quot;INFO&quot;, &quot;DEBUG&quot;, ...).</description>
+      </param>
+      <param name="Exception" display-name="Exception" type="Object" optional="true" visible="false">
+        <description>An exception to be logged or null</description>
+      </param>
+      <param name="LogMessage" display-name="Log message" type="String" optional="true" param-value-wizard="string">
+        <description>The message to be written to the logger.\nEither the log message or the exception must be specified.</description>
+      </param>
+      <param name="LoggerName" display-name="Logger name" type="String" optional="true" auto-connector-mode="off" visible="false">
+        <description>The name of the logger to write the message to.\nIf no logger name has been specified, the logger name will be constructed from &quot;Model.&quot;+(qualified name of the executing model), e. g. &quot;Model.ProductionDemoMgmt&quot;.\nOtherwise, we recommend prefixing the logger name as described above and appending the name of your model's Java sub package.</description>
+      </param>
+    </socket>
+    <socket name="Out" default="true" geometry="angle:1.5707963267948966"/>
+    <handler handler-class="org.openbp.model.system.io.WriteLogMessageHandler"/>
+  </java-activity>
+</item-container>

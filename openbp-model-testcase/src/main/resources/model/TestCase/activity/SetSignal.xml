@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<item-container>
+  <java-activity name="SetSignal" display-name="Set signal" item-type="Activity" geometry="origin:313:112|size:160:60">
+    <description>Sets a signal in the test case signal manager.</description>
+    <generator-info><![CDATA[
+<generator-settings generator-name="Activity"/>
+]]></generator-info>
+    <socket name="In" entry="true" default="true" geometry="angle:4.71238898038469">
+      <param name="SignalId" type="String"/>
+      <param name="SignalValue" type="Object"/>
+    </socket>
+    <socket name="Out" default="true" geometry="angle:1.5707963267948966"/>
+    <handler handler-class="org.openbp.server.test.activity.SetSignalActivity"/>
+  </java-activity>
+</item-container>

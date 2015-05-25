@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+   Copyright 2007 skynamics AG
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ -->
+
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+	<class name="org.openbp.server.context.TokenContextImpl"
+		table="OpenBPTokenContext"
+		optimistic-lock="none">
+
+		<!-- *** Fields *** -->
+
+		<id name="id" type="string">
+			<column name="TC_ID" not-null="true" length="40"/>
+		</id>
+
+		<version name="version" column="TC_VERSION"/>
+
+		<property name="lifecycleState" type="integer">
+			<column name="TC_LIFECYCLE_STATE"/>
+		</property>
+
+		<property name="lifecycleRequest" type="integer">
+			<column name="TC_LIFECYCLE_REQUEST"/>
+		</property>
+
+		<property name="executingModelQualifier" type="string">
+			<column name="TC_EXECUTING_MODEL" length="250"/>
+		</property>
+
+		<property name="currentSocketQualifier" type="string">
+			<column name="TC_CURRENT_SOCKET" length="250"/>
+		</property>
+
+		<property name="queueType" type="string">
+			<column name="TC_QUEUE_TYPE" length="50"/>
+		</property>
+
+		<property name="userId" type="string">
+			<column name="TC_USER_ID" length="50"/>
+		</property>
+
+		<property name="debuggerId" type="string">
+			<column name="TC_DEBUGGER_ID" length="20"/>
+		</property>
+
+		<property name="nodeId" type="string">
+			<column name="TC_NODE_ID" length="100"/>
+		</property>
+
+		<property name="priority" type="integer">
+			<column name="TC_PRIORITY"/>
+		</property>
+
+		<property name="progressCount" type="integer">
+			<column name="TC_PROGRESS_COUNT"/>
+		</property>
+
+		<property name="progressTotal" type="integer">
+			<column name="TC_PROGRESS_TOTAL"/>
+		</property>
+
+		<property name="progressText" type="string">
+			<column name="TC_PROGRESS_TEXT" length="250"/>
+		</property>
+
+		<property name="contextData" type="binary">
+			<column name="TC_DATA" length="4000"/>
+		</property>
+
+
+		<!-- *** Associations *** -->
+
+		<!-- Bidirectional one-to-many relation to TokenContext -->
+		<set name="childContextSet"
+			lazy="true"
+			inverse="true"
+			cascade="all">
+			<key column="TC_PARENT_ID"/>
+			<one-to-many
+				class="org.openbp.server.context.TokenContextImpl"/>
+		</set>
+
+		<many-to-one name="parentContext"
+			class="org.openbp.server.context.TokenContextImpl"
+			lazy="proxy"
+			column="TC_PARENT_ID"/>
+
+	</class>
+
+</hibernate-mapping>

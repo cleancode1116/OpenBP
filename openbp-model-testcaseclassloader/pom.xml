@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><project>
+	<parent>
+		<artifactId>openbp</artifactId>
+		<groupId>org.openbp</groupId>
+		<version>0.9.8-SNAPSHOT</version>
+	</parent>
+
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>openbp-model-testcaseclassloader</artifactId>
+	<name>openbp-model-testcaseclassloader</name>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+</project>

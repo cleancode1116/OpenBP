@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+   Copyright 2007 skynamics AG
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ -->
+
+<resource>
+	<import container="cockpit" resource="standardmenus" />
+
+	<item name="title">Modeler Workspace</item>
+	<item name="description">Modeler Workspace</item>
+	<item name="icon" type="image/multi">
+		<path>../../images/plugins/workspace.png</path>
+	</item>
+	<item name="sequence">A-F2,C-w m,C-w C-m</item>
+
+	<!-- Actions -->
+	<group name="standard.file.save">
+		<item name="menuparent">menu.cockpit.file</item>
+		<item name="toolbarparent">toolbar.file</item>
+		<item name="displayname">_Save</item>
+		<item name="description">Save the edited process(es)</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/toolbar/file/save.png</path>
+		</item>
+		<item name="sequence">C-s</item>
+		<item name="prio" type="primitive/integer">2</item>
+	</group>
+
+	<group name="modeler.popup.custom">
+		<item name="displayname">Empty</item>
+		<item name="description">Empty action (used as template)</item>
+		<item name="prio">0</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/toolbar/empty.png</path>
+		</item>
+	</group>
+
+	<group name="modeler.edit.selectall">
+		<item name="menuparent">menu.edit</item>
+		<item name="pagenames">ModelerPage</item>
+		<item name="displayname">_Select All</item>
+		<item name="description">Select all objects</item>
+		<item name="prio">100</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/toolbar/view/normalizediagram.png</path>
+		</item>
+		<item name="sequence">C-a</item>
+	</group>
+
+	<group name="modeler.edit.normalize">
+		<item name="menuparent">menu.edit</item>
+		<item name="pagenames">ModelerPage</item>
+		<item name="displayname">_Normalize Diagram</item>
+		<item name="description">Normalize the origin of the diagram</item>
+		<item name="prio">101</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/toolbar/view/normalizediagram.png</path>
+		</item>
+		<item name="sequence">C-m n,C-m C-n</item>
+	</group>
+
+	<!-- Popup menu items -->
+	<group name="modeler.edit.paramvisibility">
+		<!-- Parameter visibility sub menu -->
+		<item name="displayname">_Parameters</item>
+		<item name="prio">20</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/toolbar/edit/parameter.png</path>
+		</item>
+		<item name="type">menu</item>
+	</group>
+
+	<group name="modeler.edit.paramvisibility.prototype">
+		<!-- Prototype menu item for earch parameter of the parameter visibility sub menu -->
+		<item name="description">Display or hide this parameter</item>
+	</group>
+
+	<group name="modeler.edit.paramvisibility.showall">
+		<item name="displayname">Show _All</item>
+		<item name="description">Display all parameters</item>
+		<item name="prio">0</item>
+	</group>
+
+	<group name="modeler.edit.paramvisibility.hideunused">
+		<item name="displayname">Hide _Unused</item>
+		<item name="description">Hide all parameters that are not connected to a data link and that do not have an expression assigned.</item>
+		<item name="prio">1</item>
+	</group>
+
+	<group name="modeler.edit.paramvaluewizard">
+		<item name="displayname">Parameter Value _Wizard</item>
+		<item name="description">Edit the parameter value in a wizard dialog</item>
+		<item name="prio">21</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/plugins/wizard.png</path>
+		</item>
+	</group>
+
+	<group name="modeler.edit.createentryfromsocket">
+		<item name="displayname">Create Entr_y Node</item>
+		<item name="description">Creates an initial node that corresponds to this socket node</item>
+		<item name="prio">50</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/toolbar/edit/createentryfromsocket.png</path>
+		</item>
+	</group>
+
+	<group name="modeler.edit.createexitfromsocket">
+		<item name="displayname">Create E_xit Node</item>
+		<item name="description">Creates an final node that corresponds to this socket node</item>
+		<item name="prio">51</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/toolbar/edit/createexitfromsocket.png</path>
+		</item>
+	</group>
+
+	<group name="modeler.edit.lockorientation">
+		<item name="displayname">_Lock/unlock orientation</item>
+		<item name="description">Lock the orientation of a data link or recompute the link orientation dynamically based on the position of the socket</item>
+		<item name="prio">80</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/toolbar/edit/lockorientation.png</path>
+		</item>
+	</group>
+
+	<group name="modeler.edit.fliporientation">
+		<item name="menuparent">menu.edit</item>
+		<item name="pagenames">ModelerPage</item>
+		<item name="displayname">_Flip orientation</item>
+		<item name="description">Flip the orientation of a data link. The link will be locked automatically to the new direction.</item>
+		<item name="prio">81</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/toolbar/edit/fliporientation.png</path>
+		</item>
+		<item name="sequence">C-f</item>
+	</group>
+
+	<group name="modeler.edit.mirrororientation">
+		<item name="displayname">_Flip Orientation</item>
+		<item name="description">Mirrors the orientation of the node</item>
+		<item name="prio">105</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/toolbar/empty.png</path>
+		</item>
+	</group>
+
+	<group name="modeler.edit.rotateorientationcw">
+		<item name="displayname">_Rotate Clockwise</item>
+		<item name="description">Rotates the orientation of the node clockwise</item>
+		<item name="prio">106</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/toolbar/empty.png</path>
+		</item>
+	</group>
+
+	<group name="modeler.edit.rotateorientationccw">
+		<item name="displayname">Rotate _CounterCW</item>
+		<item name="description">Rotates the orientation of the node counterclockwise</item>
+		<item name="prio">107</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/toolbar/empty.png</path>
+		</item>
+	</group>
+
+	<group name="modeler.edit.copy">
+		<item name="displayname">Cop_y</item>
+		<item name="description">Copies the selection</item>
+		<item name="prio">110</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/toolbar/edit/copy.png</path>
+		</item>
+	</group>
+
+	<group name="modeler.edit.cut">
+		<item name="displayname">_Cut</item>
+		<item name="description">cuts the selection</item>
+		<item name="prio">111</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/toolbar/edit/cut.png</path>
+		</item>
+	</group>
+
+	<group name="modeler.edit.paste">
+		<item name="displayname">_Paste</item>
+		<item name="description">Pastes the model objects of the clipboard</item>
+		<item name="prio">112</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/toolbar/edit/paste.png</path>
+		</item>
+	</group>
+
+	<group name="modeler.edit.pasteref">
+		<item name="displayname">Paste Re_ference</item>
+		<item name="description">Pastes a model reference to a placeholder node</item>
+		<item name="prio">113</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/toolbar/edit/paste.png</path>
+		</item>
+	</group>
+
+	<group name="modeler.edit.delete">
+		<item name="displayname">_Delete</item>
+		<item name="description">Delete the selection</item>
+		<item name="prio">100</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/toolbar/edit/delete.png</path>
+		</item>
+	</group>
+
+	<group name="modeler.edit.reseticon">
+		<item name="displayname">Reset _Icon</item>
+		<item name="description">Reset the icon of the node to the default icon</item>
+		<item name="prio">120</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/toolbar/empty.png</path>
+		</item>
+	</group>
+
+	<group name="modeler.edit.resetcolor">
+		<item name="displayname">Reset _Color</item>
+		<item name="description">Reset the color of the node to the default color</item>
+		<item name="prio">121</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/toolbar/empty.png</path>
+		</item>
+	</group>
+
+	<!-- Ad hoc dialogs -->
+	<item name="placeholder.createnewprocess"></item>
+
+	<item name="placeholder.referencedialog.title">Create placeholder reference</item>
+	<item name="placeholder.referencedialog.text">A placeholder may reference processes or process elements on a lower level.
+By double-clicking a new placeholder, a reference can be created.
+
+You may either create a new process to be referenced by this placeholder or reference an existing process or process element.
+Please choose.</item>
+	<group name="placeholder.referencedialog.buttons">
+		<group name="yes">
+			<item name="caption">Create _new process</item>
+		</group>
+
+		<group name="no">
+			<item name="caption">C_hoose existing process or process element</item>
+		</group>
+	</group>
+	<item name="placeholder.referencedialog.select">Select referenced process element</item>
+
+	<item name="node.addparam.title">Add socket parameter</item>
+	<item name="node.addparam.text">A new parameter of type $0 will be added to the sockets of this node.
+
+Please choose the sockets that will be affected.</item>
+	<group name="node.addparam.buttons">
+		<group name="yes">
+			<item name="caption">Entry sockets</item>
+		</group>
+		<group name="no">
+			<item name="caption">Exit sockets</item>
+		</group>
+		<group name="yesforall">
+			<item name="caption">Both socket types</item>
+		</group>
+	</group>
+
+	<!-- Messages -->
+	<item name="messages.paste">For pasting into the modeler workspace, follow these procedures:
+In order to paste nodes into the workspace, select the workspace.
+In order to paste a socket, select a node.
+In order to paste a parameter, select a socket.
+In order to paste a reference to a placeholder, select the placeholder first.</item>
+
+</resource>

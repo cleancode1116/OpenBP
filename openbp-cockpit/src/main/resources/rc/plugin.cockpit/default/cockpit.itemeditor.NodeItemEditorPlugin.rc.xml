@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+   Copyright 2007 skynamics AG
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ -->
+
+<resource>
+	<item name="title">Component Editor Plugin</item>
+	<item name="description">Plugin to edit activity, visual and sub process components</item>
+	<item name="icon" type="image/multi">
+		<path>../../images/plugins/workspace.png</path>
+	</item>
+
+	<!-- Actions -->
+	<group name="modeler.edit.fliporientation">
+		<item name="displayname">_Flip Orientation</item>
+		<item name="description">Mirrors the orientation of the node</item>
+		<item name="prio">105</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/toolbar/empty.png</path>
+		</item>
+	</group>
+
+	<group name="modeler.edit.rotateorientationcw">
+		<item name="displayname">_Rotate Orientation Clockwise</item>
+		<item name="description">Rotates the orientation of the node clockwise</item>
+		<item name="prio">106</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/toolbar/empty.png</path>
+		</item>
+	</group>
+
+	<group name="modeler.edit.rotateorientationccw">
+		<item name="displayname">_Rotate Orientation Counterclockwise</item>
+		<item name="description">Rotates the orientation of the node counterclockwise</item>
+		<item name="prio">107</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/toolbar/empty.png</path>
+		</item>
+	</group>
+
+	<group name="modeler.edit.reseticon">
+		<item name="displayname">Reset _Icon</item>
+		<item name="description">Reset the icon of the node to the default icon</item>
+		<item name="prio">110</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/toolbar/empty.png</path>
+		</item>
+	</group>
+
+	<group name="modeler.edit.copy">
+		<item name="displayname">Cop_y</item>
+		<item name="description">Copies the selection</item>
+		<item name="prio">110</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/toolbar/edit/copy.png</path>
+		</item>
+	</group>
+
+	<group name="modeler.edit.cut">
+		<item name="displayname">_Cut</item>
+		<item name="description">cuts the selection</item>
+		<item name="prio">111</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/toolbar/edit/cut.png</path>
+		</item>
+	</group>
+
+	<group name="modeler.edit.paste">
+		<item name="displayname">_Paste</item>
+		<item name="description">Pastes the model objects of the clipboard</item>
+		<item name="prio">112</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/toolbar/edit/paste.png</path>
+		</item>
+	</group>
+
+	<group name="modeler.edit.delete">
+		<item name="displayname">_Delete</item>
+		<item name="description">Delete the selection</item>
+		<item name="prio">100</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/toolbar/edit/delete.png</path>
+		</item>
+	</group>
+
+	<group name="modeler.edit.resetcolor">
+		<item name="displayname">Reset _Color</item>
+		<item name="description">Reset the color of the node to the default color</item>
+		<item name="prio">111</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/toolbar/empty.png</path>
+		</item>
+	</group>
+
+	<item name="node.addparam.title">Add socket parameter</item>
+	<item name="node.addparam.text">A new parameter of type $0 will be added to the sockets of this node.
+
+Please choose the sockets that will be affected.</item>
+	<group name="node.addparam.buttons">
+		<group name="yes">
+			<item name="caption">Entry sockets</item>
+		</group>
+		<group name="no">
+			<item name="caption">Exit sockets</item>
+		</group>
+		<group name="yesforall">
+			<item name="caption">Both socket types</item>
+		</group>
+	</group>
+
+	<!-- Messages -->
+	<item name="messages.paste">For pasting into the modeler workspace, follow these procedures:
+In order to paste nodes into the workspace, select the workspace.
+In order to paste a socket, select a node.
+In order to paste a parameter, select a socket.
+In order to paste a reference to a placeholder, select the placeholder first.</item>
+
+</resource>

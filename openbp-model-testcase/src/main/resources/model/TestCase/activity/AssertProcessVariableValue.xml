@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<item-container><java-activity name="AssertProcessVariableValue" display-name="Assert process variable value" item-type="Activity" geometry="origin:313:112|size:160:60"><generator-info><![CDATA[
+<generator-settings generator-name="Activity"/>
+]]></generator-info><socket name="In" entry="true" default="true" geometry="angle:4.71238898038469"><param name="ExpectedValue" display-name="Expected value" type="Object"><description>Arbitrary value or\n&quot;&lt;null>&quot;\n&quot;&lt;notnull>&quot;\n&quot;&lt;present>&quot;\n&quot;&lt;notpresent>&quot;</description></param><param name="VariableName" display-name="Variable name" type="String"/></socket><socket name="Out" default="true" geometry="angle:1.5707963267948966"/><handler handler-class="org.openbp.server.test.activity.AssertProcessVariableValueActivity"/></java-activity></item-container>

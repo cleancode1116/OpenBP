@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+   Copyright 2007 skynamics AG
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ -->
+
+<item-container>
+  <java-activity name="GetMapElement" display-name="Get element by key" item-type="Activity" functional-group="Map" geometry="origin:313:112|size:138:40">
+    <description>Retrieves a map element by its key.\nReturns null if the map contains no such element.</description>
+    <generator-info><![CDATA[
+<generator-settings generator-name="Activity"/>
+]]></generator-info>
+    <socket name="In" entry="true" default="true" geometry="angle:4.71238898038469">
+      <param name="Map" display-name="Map" type="Map">
+        <description>Map to search a element for</description>
+      </param>
+      <param name="Key" display-name="Key" type="Object">
+        <description>Key of element to search</description>
+      </param>
+    </socket>
+    <socket name="Out" default="true" geometry="angle:1.5707963267948966">
+      <param name="Element" display-name="Element" type="Object">
+        <description>Element searched for</description>
+      </param>
+    </socket>
+    <handler handler-class="org.openbp.model.system.map.GetMapElementHandler"/>
+  </java-activity>
+</item-container>

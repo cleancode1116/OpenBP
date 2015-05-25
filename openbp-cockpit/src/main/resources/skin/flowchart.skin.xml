@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+   Copyright 2007 skynamics AG
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ -->
+
+
+<skin
+	name="flowchart"
+	display-name="Flow chart diagram"
+	radial-tags="true"
+	socket-title-format="[$text]"
+	name-display="false"
+	disable-shadows="true"
+	>
+	<!--
+	data-link-visible="false"
+	param-title-format=":$text"
+	node-title-format=""
+	-->
+	<description>Flow chart diagram</description>
+
+	<!-- Control link: Black line 1 px -->
+	<link-descriptor
+		link-type="Control"
+		stroke-width="10"
+		color="40:40:40"
+		color2="0:255:0"
+		color3="255:0:0"
+		color4="0:128:0"
+	/>
+
+	<!-- Data link: Dark gray line 1 px, dotted -->
+	<link-descriptor
+		link-type="Data"
+		stroke-width="10"
+		color="64:64:64"
+		line-type="dotted"
+	/>
+
+	<!-- Verical swim lane line: Gray line 1 px, dotted -->
+	<link-descriptor
+		link-type="VLine"
+		stroke-width="10"
+		color="128:128:128"
+	/>
+
+	<!-- Horizontal swim lane line: Gray line 1 px, dotted -->
+	<link-descriptor
+		link-type="HLine"
+		stroke-width="10"
+		color="128:128:128"
+	/>
+
+	<!-- Initial node: Green gradient triangle pointing down -->
+	<symbol-descriptor
+		symbol-type="Initial"
+		figure-type="Triangle"
+		orientation="s"
+		text-position="s"
+		frame-stroke-width="10"
+		frame-color="black"
+		fill-color="36:94:72"
+		fill-color2="97:199:139"
+		gradient-pos1="n"
+		gradient-pos2="s"
+		cyclic-gradient="false"
+		image-disabled="true"
+		size-x="35"
+		size-y="35"
+		max-size-x="100"
+		max-size-y="100"
+	/>
+
+	<!-- Final node: Blue triangle pointing up -->
+	<symbol-descriptor
+		symbol-type="Final"
+		figure-type="Triangle"
+		orientation="n"
+		text-position="n"
+		frame-stroke-width="10"
+		frame-color="black"
+		fill-color="60:81:100"
+		fill-color2="160:178:197"
+		gradient-pos1="n"
+		gradient-pos2="s"
+		cyclic-gradient="false"
+		image-disabled="true"
+		size-x="35"
+		size-y="35"
+		max-size-x="100"
+		max-size-y="100"
+	/>
+
+	<!-- Workflow final node: Blue gradient triangle pointing up -->
+	<symbol-descriptor
+		symbol-type="WorkflowEnd"
+		figure-type="Circle"
+		text-position="w"
+		frame-stroke-width="15"
+		frame-color="64:64:64"
+		fill-color="64:64:64"
+		image-disabled="true"
+		size-x="120"
+		size-y="35"
+		min-size-x="35"
+		min-size-y="35"
+	>
+		<tagged-value name="bar-height" value="5"/>
+		<tagged-value name="frame-distance" value="5"/>
+	</symbol-descriptor>
+
+	<!-- Initial node: Black circle -->
+	<symbol-descriptor
+		symbol-type="Merge"
+		figure-type="Circle"
+		orientation="s"
+		text-position="n"
+		frame-stroke-width="15"
+		frame-color="64:64:64"
+		image-disabled="true"
+		size-x="35"
+		size-y="35"
+		max-size-x="100"
+		max-size-y="100"
+	/>
+
+	<!-- Jump node: Green gradient triangle pointing up -->
+	<symbol-descriptor
+		symbol-type="Jump"
+		figure-type="Triangle"
+		orientation="e"
+		text-position="s"
+		frame-stroke-width="10"
+		frame-color="black"
+		fill-color="36:94:72"
+		fill-color2="97:199:139"
+		gradient-pos1="n"
+		gradient-pos2="s"
+		cyclic-gradient="false"
+		image-disabled="true"
+		size-x="35"
+		size-y="35"
+		max-size-x="100"
+		max-size-y="100"
+	/>
+
+	<!-- Decision node: Diamond -->
+	<symbol-descriptor
+		symbol-type="Decision"
+		figure-type="Diamond"
+		orientation="s"
+		text-position="w"
+		frame-stroke-width="15"
+		frame-color="64:64:64"
+		image-disabled="true"
+		size-x="60"
+		size-y="60"
+		max-size-x="200"
+		max-size-y="200"
+		min-size-x="35"
+		min-size-y="35"
+	/>
+
+	<!-- Fork node: Single horizontal bar -->
+	<symbol-descriptor
+		symbol-type="Fork"
+		figure-type="Bar"
+		text-position="w"
+		frame-stroke-width="15"
+		frame-color="64:64:64"
+		image-disabled="true"
+		size-x="120"
+		size-y="5"
+	>
+		<tagged-value name="bar-height" value="5"/>
+	</symbol-descriptor>
+
+	<!-- Join node: Single horizontal bar -->
+	<symbol-descriptor
+		symbol-type="Join"
+		figure-type="Bar"
+		text-position="w"
+		frame-stroke-width="15"
+		frame-color="64:64:64"
+		image-disabled="true"
+		size-x="120"
+		size-y="5"
+	>
+		<tagged-value name="bar-height" value="5"/>
+	</symbol-descriptor>
+
+	<!-- Workflow node: Single-framed rectangle with semi-circles left and right -->
+	<symbol-descriptor
+		symbol-type="WaitState"
+		figure-type="RoundRectangle"
+		frame-stroke-width="15"
+		frame-color="64:64:64"
+		image-disabled="true"
+		size-x="160"
+		size-y="60"
+		max-size-x="800"
+		max-size-y="400"
+		min-size-x="35"
+		min-size-y="35"
+	>
+		<tagged-value name="arc-width" value="100"/>
+		<tagged-value name="arc-height" value="100"/>
+	</symbol-descriptor>
+
+	<!-- Workflow node: Single horizontal bar with centered circle -->
+	<symbol-descriptor
+		symbol-type="Workflow"
+		figure-type="RoundRectangle"
+		text-position="w"
+		frame-stroke-width="15"
+		frame-color="64:64:64"
+		image-disabled="true"
+		size-x="120"
+		size-y="35"
+		min-size-x="35"
+		min-size-y="35"
+	>
+		<tagged-value name="arc-width" value="100"/>
+		<tagged-value name="arc-height" value="100"/>
+		<tagged-value name="bar-number" value="1"/>
+		<tagged-value name="bar-height" value="5"/>
+	</symbol-descriptor>
+
+	<!-- Placeholder node: Yellow rectangle with semi-circles left and right -->
+	<symbol-descriptor
+		symbol-type="Placeholder"
+		figure-type="Rectangle"
+		frame-stroke-width="15"
+		frame-color="64:64:64"
+		fill-color="255:255:196"
+		image-disabled="true"
+		size-x="160"
+		size-y="60"
+		min-size-x="35"
+		min-size-y="35"
+	>
+		<tagged-value name="arc-width" value="100"/>
+		<tagged-value name="arc-height" value="100"/>
+	</symbol-descriptor>
+
+	<!-- Placeholder node: Yellow rectangle with semi-circles left and right -->
+	<symbol-descriptor
+		symbol-type="ReferencingPlaceholder"
+		figure-type="Rectangle"
+		frame-stroke-width="15"
+		frame-color="64:64:64"
+		fill-color="225:225:225"
+		image-disabled="true"
+		size-x="160"
+		size-y="60"
+		max-size-x="800"
+		max-size-y="400"
+	>
+		<tagged-value name="arc-width" value="100"/>
+		<tagged-value name="arc-height" value="100"/>
+	</symbol-descriptor>
+
+	<!-- Visual node: Gray rectangle with semi-circles left and right -->
+	<symbol-descriptor
+		symbol-type="Visual"
+		figure-type="Rectangle"
+		frame-stroke-width="15"
+		frame-color="64:64:64"
+		fill-color="200:166:192"
+		image-disabled="true"
+		size-x="160"
+		size-y="60"
+		max-size-x="800"
+		max-size-y="400"
+		min-size-x="35"
+		min-size-y="35"
+	>
+		<tagged-value name="arc-width" value="100"/>
+		<tagged-value name="arc-height" value="100"/>
+	</symbol-descriptor>
+
+	<symbol-descriptor
+		symbol-type="Activity"
+		figure-type="Rectangle"
+		frame-stroke-width="15"
+		frame-color="64:64:64"
+		fill-color="126:170:201"
+		image-disabled="true"
+		size-x="160"
+		size-y="60"
+		max-size-x="800"
+		max-size-y="400"
+		min-size-x="35"
+		min-size-y="35"
+	>
+		<tagged-value name="arc-width" value="100"/>
+		<tagged-value name="arc-height" value="100"/>
+	</symbol-descriptor>
+
+	<!-- Process node: Rectangle with semi-circles left and right -->
+	<symbol-descriptor
+		symbol-type="Process"
+		figure-type="Rectangle"
+		frame-stroke-width="15"
+		frame-color="64:64:64"
+		fill-color="126:170:201"
+		image-disabled="true"
+		size-x="160"
+		size-y="60"
+		max-size-x="800"
+		max-size-y="400"
+		min-size-x="35"
+		min-size-y="35"
+	>
+		<tagged-value name="arc-width" value="100"/>
+		<tagged-value name="arc-height" value="100"/>
+	</symbol-descriptor>
+
+	<!-- Node tag: Gray rectangle -->
+	<symbol-descriptor
+		symbol-type="Tag"
+		figure-type="RoundRectangle"
+	/>
+
+	<!-- Node/process variable tag: Transparent rectangle -->
+	<symbol-descriptor
+		symbol-type="Param"
+		figure-type="RoundRectangle"
+	/>
+
+	<!-- Begin transaction symbol: Small black circle -->
+	<symbol-descriptor
+		symbol-type="Begin"
+		figure-type="Circle"
+		orientation="s"
+		text-position="n"
+		frame-stroke-width="10"
+		frame-color="64:64:64"
+		fill-color="64:64:64"
+		image-disabled="true"
+		size-x="8"
+		size-y="8"
+	/>
+
+	<!-- Commit symbol Black circle -->
+	<symbol-descriptor
+		symbol-type="Commit"
+		figure-type="Circle"
+		orientation="s"
+		text-position="n"
+		frame-stroke-width="10"
+		frame-color="64:64:64"
+		fill-color="255:255:255"
+		image-disabled="true"
+		size-x="15"
+		size-y="15"
+	/>
+
+	<!-- Rollback symbol: Crossed circle -->
+	<symbol-descriptor
+		symbol-type="Rollback"
+		figure-type="CircleCross"
+		orientation="n"
+		text-position="s"
+		frame-stroke-width="10"
+		frame-color="64:64:64"
+		fill-color="255:255:255"
+		image-disabled="true"
+		size-x="15"
+		size-y="15"
+	>
+		<tagged-value name="frame-distance" value="5"/>
+	</symbol-descriptor>
+
+	<!-- Commit-Begin symbol: Double circle -->
+	<symbol-descriptor
+		symbol-type="CommitBegin"
+		figure-type="Circle"
+		orientation="s"
+		text-position="n"
+		frame-stroke-width="10"
+		frame-color="64:64:64"
+		fill-color="64:64:64"
+		image-disabled="true"
+		size-x="15"
+		size-y="15"
+	>
+		<tagged-value name="frame-distance" value="5"/>
+	</symbol-descriptor>
+
+	<!-- Rollback-Begin symbol: Crossed double circle -->
+	<symbol-descriptor
+		symbol-type="RollbackBegin"
+		figure-type="CircleCross"
+		orientation="s"
+		text-position="n"
+		frame-stroke-width="10"
+		frame-color="64:64:64"
+		fill-color="64:64:64"
+		image-disabled="true"
+		size-x="15"
+		size-y="15"
+	>
+		<tagged-value name="frame-distance" value="5"/>
+	</symbol-descriptor>
+
+</skin>

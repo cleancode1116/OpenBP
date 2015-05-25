@@ -1,0 +1,19 @@
+<html>
+
+<head>
+<title>Class hierarchy</title>
+<link rel="stylesheet" href="$rootDir(main.css)" type="text/css">
+</head>
+
+<body>
+
+<p><small>$+if (defined (PRODUCT))$PRODUCT$endif$+if (defined (PRODUCTVERSION)) V $PRODUCTVERSION&nbsp;&nbsp;&nbsp;&nbsp;$endif$+if (! defaultOnly)<a href="$package.URL">Package</a>&nbsp;&nbsp;&nbsp;$endif<a href="$package.methodIndexURL">Method index</a>&nbsp;&nbsp;&nbsp;<a href="$package.fieldIndexURL">Fields index</a>&nbsp;&nbsp;&nbsp;<a href="$contentsFile">Contents</a></small></p>
+
+<h1>Class hierarchy</h1>
+
+<p>$hierarchy</p>
+
+$include (copyright.html)
+
+</body>
+</html>

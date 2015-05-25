@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+   Copyright 2007 skynamics AG
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ -->
+
+
+<object-descriptor
+	name="DataMember"
+	display-name="Data member"
+	object-class="org.openbp.core.model.item.type.DataMember"
+	validator="org.openbp.guiclient.objectvalidators.DataMemberValidator"
+	>
+	<description>A Data Member Object</description>
+
+	<property name="Name"/>
+	<property name="DisplayName"/>
+	<property name="Description"/>
+
+	<property name="TypeName" display-name="Data type"
+		editor="ComponentSelectionEditor">
+		<editor-param>
+			type="Type"
+			title="Data Type Selection"
+			opensystemmodel="true"
+		</editor-param>
+		<description>Data type of the member</description>
+	</property>
+
+	<property name="CollectionType" display-name="Collection type"
+		editor="SelectionEditor">
+		<editor-param>
+			selection=""
+			selection="Collection | Collection"
+			selection="List | List"
+			selection="Map | Map"
+			selection="Array | Array"
+		</editor-param>
+		<description>Specifies the collection type if the member is a collection
+The collection types will be mapped to the following Java objects:
+
+List: java.util.ArrayList
+Vector: java.util.Vector
+Set: java.util.Set
+Map: java.util.Map
+Hashtable: java.util.Hashtable
+Array: Object []</description>
+	</property>
+
+	<!--
+	<property name="Length" display-name="Field length"
+		editor="IntegerEditor">
+		<description>Maximum length of the field data
+Strings: Max. length of the string (0 = No limitation)
+Numeric types: Max. number of digits including precision and decimal separator
+Other types: 0</description>
+	</property>
+
+	<property name="Precision" display-name="Field precision"
+		editor="IntegerEditor">
+		<description>Precision of the field data for numeric types</description>
+	</property>
+
+	<property name="Required" display-name="Required"
+		editor="BooleanEditor">
+		<description>Required (not null) flag</description>
+	</property>
+	-->
+
+	<property name="PrimaryKey" display-name="Primary key"
+		editor="BooleanEditor">
+		<description>Primary key flag
+Indicates if the field is a part of the primary key of the database table.
+The primary key can span multiple fields. However, the database activities support a single key field only at the moment.</description>
+	</property>
+
+	<!--
+	<property name="Format" display-name="Display format"
+		group="Content"
+		editor="StringEditor">
+		<description>Display format for numeric and date types
+For simple types, the format is made up of single characters that denote how to display or to parse the type.
+
+Type 'Date':
+	d	Show the date portion of the date type
+	t	Show the time portion of the date type
+	f	Display in full length date format
+	l	Display in long date format
+	m	Display in medium length date format
+	s	Display in short date format
+
+Type 'Double':
+	c	Display as currency value (according to locale-specific currency format)
+	g	Display grouping characters
+
+Depending on the implementation of a complex type, there can also be custom format information for complex types.</description>
+	</property>
+
+	<property name="DefaultValue" display-name="Default value"
+		group="Content"
+		editor="StringEditor">
+		<description>Default value
+The default value will be assigned to the data member on construction and after a form reset.
+If not specified, the following default values will be used:
+Objects: null
+Numbers: 0
+Booleans: false</description>
+	</property>
+	-->
+
+	<property name="TaggedValueList"/>
+
+</object-descriptor>

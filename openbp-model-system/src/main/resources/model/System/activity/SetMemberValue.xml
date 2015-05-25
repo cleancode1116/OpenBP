@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+   Copyright 2007 skynamics AG
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ -->
+
+<item-container>
+  <java-activity name="SetMemberValue" display-name="Set member value" item-type="Activity" functional-group="Miscelleanous" geometry="origin:313:112|size:130:44">
+    <description>Sets the value of a member of a bean or arbitrary Java object.\n\nIf the bean does not have the specified members, an error will be generated.\n\nIf you intend to set multiple member values, see the AssignMemberValues activity.</description>
+    <generator-info><![CDATA[
+<generator-settings generator-name="Activity"/>
+]]></generator-info>
+    <socket name="In" entry="true" default="true" geometry="angle:4.71238898038469">
+      <param name="Bean" display-name="Bean" type="Object">
+        <description>The bean to be modified.</description>
+      </param>
+      <param name="Member" display-name="Member" type="String" param-value-wizard="string">
+        <description>Name of the member to set.</description>
+      </param>
+      <param name="Value" display-name="Value" type="Object">
+        <description>New member value.</description>
+      </param>
+    </socket>
+    <socket name="Out" default="true" geometry="angle:1.5707963267948966">
+      <param name="Bean" display-name="Bean" type="Object" visible="false">
+        <description>The resulting bean (identical to the argument bean; provided just for convenience).</description>
+      </param>
+    </socket>
+    <handler handler-class="org.openbp.model.system.misc.SetMemberValueHandler"/>
+  </java-activity>
+</item-container>

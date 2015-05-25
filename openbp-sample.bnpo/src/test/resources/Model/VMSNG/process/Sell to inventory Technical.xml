@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process name="Sell to inventory Technical" item-type="Process"
+    functional-group="Technical process" type="TopLevel" skin-name="uml" node-geometry="size:320:120">
+    <generator-info><![CDATA[
+<generator-settings generator-name="ProcessTopLevel"/>
+]]></generator-info>
+    <visual-node name="Correct sell info">
+        <geometry>origin:473:475|size:160:60</geometry>
+        <socket name="In" entry="true" default="true">
+            <geometry>angle:3.141592653589793</geometry>
+        </socket>
+        <socket name="In2" entry="true">
+            <geometry>angle:1.5707963267948966</geometry>
+        </socket>
+        <socket name="In3" entry="true">
+            <geometry>angle:5.055412920805393</geometry>
+        </socket>
+        <socket name="Out" default="true">
+            <geometry>angle:0.0</geometry>
+        </socket>
+    </visual-node>
+    <decision-node name="Decision" display-name="Type of selling" expression="Ident != null">
+        <geometry>origin:223:257|size:60|nameangle:3.141592653589793</geometry>
+        <socket name="Automatic">
+            <geometry>angle:1.5707963267948966</geometry>
+        </socket>
+        <socket name="In" entry="true" default="true">
+            <param name="Ident" type="String" optional="true"/>
+            <geometry>angle:4.71238898038469</geometry>
+        </socket>
+        <socket name="Yes" display-name="Manual" default="true">
+            <geometry>angle:0.0</geometry>
+        </socket>
+    </decision-node>
+    <final-node name="End">
+        <geometry>origin:1057:264|size:35</geometry>
+        <socket name="In" entry="true" default="true">
+            <geometry>angle:1.5707963267948966</geometry>
+        </socket>
+    </final-node>
+    <visual-node name="Enter sell info">
+        <geometry>origin:561:257|size:152:56</geometry>
+        <socket name="In" entry="true" default="true">
+            <geometry>angle:3.141592653589793</geometry>
+        </socket>
+        <socket name="Out" default="true">
+            <geometry>angle:0.0</geometry>
+        </socket>
+        <socket name="Sell">
+            <geometry>angle:1.6475682180646747</geometry>
+        </socket>
+    </visual-node>
+    <activity-node name="PostSellTransaction">
+        <geometry>origin:1058:477|size:160:60</geometry>
+        <socket name="Fail">
+            <geometry>angle:6.283185307179586</geometry>
+        </socket>
+        <socket name="In" entry="true" default="true">
+            <param name="Ident" type="String"/>
+            <geometry>angle:3.141592653589793</geometry>
+        </socket>
+        <socket name="In2" entry="true">
+            <param name="Ident" type="String"/>
+            <geometry>angle:1.5707963267948966</geometry>
+        </socket>
+        <socket name="Out" default="true">
+            <geometry>angle:4.71238898038469</geometry>
+        </socket>
+        <activity-handler handler-class="com.mycompany.PostSellTransaction"/>
+    </activity-node>
+    <visual-node name="Pre-fill sell info">
+        <geometry>origin:224:475|size:160:60</geometry>
+        <socket name="In" entry="true" default="true">
+            <geometry>angle:4.71238898038469</geometry>
+        </socket>
+        <socket name="Out" default="true">
+            <geometry>angle:0.0</geometry>
+        </socket>
+    </visual-node>
+    <visual-node name="Request approval">
+        <geometry>origin:795:661|size:160:60</geometry>
+        <socket name="Approved" default="true">
+            <geometry>angle:0.0</geometry>
+        </socket>
+        <socket name="Declined">
+            <geometry>angle:3.141592653589793</geometry>
+        </socket>
+        <socket name="In" entry="true" default="true">
+            <geometry>angle:4.71238898038469</geometry>
+        </socket>
+    </visual-node>
+    <initial-node name="Start">
+        <geometry>origin:223:61|size:35</geometry>
+        <socket name="Out" default="true">
+            <param name="Ident" type="String"/>
+            <geometry>angle:1.5707963267948966</geometry>
+        </socket>
+    </initial-node>
+    <decision-node name="Transaction balanced?" display-name="Transaction balanced?">
+        <geometry>origin:796:476|size:60|nameangle:2.4301335278502854</geometry>
+        <socket name="In" entry="true" default="true">
+            <geometry>angle:4.71238898038469</geometry>
+        </socket>
+        <socket name="In2" entry="true">
+            <geometry>angle:3.0860941483440762</geometry>
+        </socket>
+        <socket name="No">
+            <geometry>angle:1.5707963267948966</geometry>
+        </socket>
+        <socket name="Yes" default="true">
+            <geometry>angle:0.0</geometry>
+        </socket>
+    </decision-node>
+    <control-link name="ControlLink" source="Start.Out" target="Decision.In">
+        <geometry>points:1:223:125:223:141:223:163:223:179|label:0:0|factors:0.3:0.3</geometry>
+    </control-link>
+    <control-link name="ControlLink10"
+        source="Request approval.Approved" target="PostSellTransaction.In2">
+        <geometry>points:1:937:661:986:661:1058:601:1058:552|label:0:0|factors:0.3:0.3</geometry>
+    </control-link>
+    <control-link name="ControlLink11" source="Decision.Automatic" target="Pre-fill sell info.In">
+        <geometry>points:1:223:311:223:345:224:390:224:424|label:0:0|factors:0.3:0.3</geometry>
+    </control-link>
+    <control-link name="ControlLink12" source="Enter sell info.Sell" target="Correct sell info.In3">
+        <geometry>points:1:558:306:558:348:485:382:485:424|label:0:0|factors:0.3:0.3</geometry>
+    </control-link>
+    <control-link name="ControlLink2" source="Decision.Yes" target="Enter sell info.In">
+        <geometry>points:1:307:257:351:257:417:257:464:257|label:0:0|factors:0.3:0.3</geometry>
+    </control-link>
+    <control-link name="ControlLink3" source="Enter sell info.Out" target="Transaction balanced?.In">
+        <geometry>points:1:667:257:730:257:796:359:796:422|label:0:0|factors:0.3:0.3</geometry>
+    </control-link>
+    <control-link name="ControlLink4" source="Transaction balanced?.Yes" target="PostSellTransaction.In">
+        <geometry>points:1:861:476:880:476:906:477:925:477|label:0:0|factors:0.3:0.3</geometry>
+    </control-link>
+    <control-link name="ControlLink5" source="Pre-fill sell info.Out" target="Correct sell info.In">
+        <geometry>points:1:334:475:345:475:361:475:372:475|label:0:0|factors:0.3:0.3</geometry>
+    </control-link>
+    <control-link name="ControlLink6" source="Correct sell info.Out" target="Transaction balanced?.In2">
+        <geometry>points:1:583:475:629:475:689:476:735:476|label:0:0|factors:0.3:0.3</geometry>
+    </control-link>
+    <control-link name="ControlLink7" source="PostSellTransaction.Out" target="End.In">
+        <geometry>points:1:1057:426:1057:389:1057:341:1057:304|label:0:0|factors:0.3:0.3</geometry>
+    </control-link>
+    <control-link name="ControlLink8" source="Transaction balanced?.No" target="Request approval.In">
+        <geometry>points:1:796:530:796:554:795:586:795:610|label:0:0|factors:0.3:0.3</geometry>
+    </control-link>
+    <control-link name="ControlLink9" source="Request approval.Declined" target="Correct sell info.In2">
+        <geometry>points:1:655:661:587:661:473:594:473:526|label:0:0|factors:0.3:0.3</geometry>
+    </control-link>
+    <process-variable name="Ident" type="String" scope="subprocess" auto-assign="true"/>
+</process>

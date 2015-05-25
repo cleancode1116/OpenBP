@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+   Copyright 2007 skynamics AG
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ -->
+
+<resource>
+
+	<!-- Workspace cursors -->
+	<item name="cursor.standard" type="image/png">
+		<path>../../images/workspace/cursor/standard.png</path>
+	</item>
+
+	<item name="cursor.standardadd" type="image/png">
+		<path>../../images/workspace/cursor/standardadd.png</path>
+	</item>
+
+	<item name="cursor.handclick" type="image/png">
+		<path>../../images/workspace/cursor/handclick.png</path>
+	</item>
+
+	<item name="cursor.handclickadd" type="image/png">
+		<path>../../images/workspace/cursor/handclickadd.png</path>
+	</item>
+
+	<item name="cursor.handscroll" type="image/png">
+		<path>../../images/workspace/cursor/handscroll.png</path>
+	</item>
+
+	<item name="cursor.zoom" type="image/png">
+		<path>../../images/workspace/cursor/zoom.png</path>
+	</item>
+
+	<item name="cursor.movenode" type="image/png">
+		<path>../../images/workspace/cursor/movenode.png</path>
+	</item>
+
+	<item name="cursor.resizenode" type="image/png">
+		<path>../../images/workspace/cursor/resizenode.png</path>
+	</item>
+
+	<item name="cursor.movesocket" type="image/png">
+		<path>../../images/workspace/cursor/movesocket.png</path>
+	</item>
+
+	<item name="cursor.moveparam" type="image/png">
+		<path>../../images/workspace/cursor/moveparam.png</path>
+	</item>
+
+	<item name="cursor.movetext" type="image/png">
+		<path>../../images/workspace/cursor/movetext.png</path>
+	</item>
+
+	<item name="cursor.movehline" type="image/png">
+		<path>../../images/workspace/cursor/movehline.png</path>
+	</item>
+
+	<item name="cursor.movevline" type="image/png">
+		<path>../../images/workspace/cursor/movevline.png</path>
+	</item>
+
+	<item name="cursor.createcontrollink" type="image/png">
+		<path>../../images/workspace/cursor/createcontrollink.png</path>
+	</item>
+
+	<item name="cursor.createdatalink" type="image/png">
+		<path>../../images/workspace/cursor/createdatalink.png</path>
+	</item>
+
+	<item name="cursor.movesplinepoint" type="image/png">
+		<path>../../images/workspace/cursor/movesplinepoint.png</path>
+	</item>
+
+	<item name="cursor.movesplinehandle" type="image/png">
+		<path>../../images/workspace/cursor/movesplinehandle.png</path>
+	</item>
+
+	<item name="msg.process">ALT+drag to move, SHIT+ALT+drag to zoom; to create proces elements, drag and drop from toolbox or component browser to workspace</item>
+
+	<item name="msg.line">Drag to move the swim lane bounds</item>
+
+	<item name="msg.node">Drag to move, CTRL+drag to size</item>
+
+	<item name="msg.socket">Drag to another socket to create a control link (CTRL+drag to rotate the socket; SHIFT+drag to disable data link autoconnector when creating control link)</item>
+
+	<item name="msg.nodefixed">CTRL+drag to size</item>
+
+	<item name="msg.param">Drag to another parameter to create a data link (SHIFT+drag to prevent type check), CTRL+drag to reorder parameters</item>
+
+	<item name="msg.paramfixed">Drag to reorder parameters</item>
+
+	<item name="msg.textelement">Drag to move</item>
+
+	<item name="msg.spline">Double-click to create or remove control point</item>
+
+	<item name="msg.tag">Drag to rotate</item>
+
+</resource>

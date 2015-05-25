@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+   Copyright 2007 skynamics AG
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ -->
+
+
+<object-descriptor
+	name="Item"
+	display-name="Component"
+	object-class="org.openbp.core.model.item.Item"
+	>
+	<description>A component</description>
+
+	<property name="Name" read-only="true"/>
+
+	<property name="DisplayName"/>
+	<property name="Description"/>
+
+	<property name="OwningModelQualifier" display-name="Owning model"
+		editor="ComponentSelectionEditor" read-only="true">
+		<editor-param>
+			type="Model"
+			title="Model Selection"
+		</editor-param>
+		<description>Model that owns this component</description>
+	</property>
+
+	<property name="FunctionalGroup" display-name="Functional group"
+		editor="SelectionEditor">
+		<editor-param>
+			listener="org.openbp.guiclient.objectvalidators.GroupSelectionEditorListener"
+			editable="true"
+		</editor-param>
+		<description>Functional group specification</description>
+	</property>
+
+	<property name="ImagePath" display-name="Image path"
+		group="Presentation"
+		editor="PathEditor">
+		<editor-param>
+			title="Image File Selection"
+			type="open"
+			filter="Image Files|*.[gjp][ipn][fg]"
+			customizer="org.openbp.guiclient.propertyeditors.ImagePathEditorCustomizer"
+		</editor-param>
+		<description>The image path is either relative to the model directory (recommended) or absolute.</description>
+	</property>
+
+	<property name="ImageOnly" display-name="Image only"
+		group="Presentation"
+		editor="BooleanEditor">
+		<description>Flag if only the image should be displayed instead of node drawing + image</description>
+	</property>
+
+	<property name="ImageResize" display-name="Resize image"
+		group="Presentation"
+		editor="BooleanEditor">
+		<description>Flag if the image size should be resized with the node</description>
+	</property>
+
+	<property name="TaggedValueList"/>
+
+	<!--
+	<property name="ReadOnly" display-name="Read only"
+		group="Status"
+		editor="BooleanEditor">
+		<description>Activate to make the object read only</description>
+	</property>
+	-->
+
+	<property name="CreatedBy" display-name="Creator"
+		group="Status"
+		editor="StringEditor">
+		<!-- TODO Feature 6: UserSelectionEditor -->
+		<description>User who created the object</description>
+	</property>
+
+	<property name="MaintainedBy" display-name="Maintainer"
+		group="Status"
+		editor="StringEditor">
+		<!-- TODO Feature 6: UserSelectionEditor -->
+		<description>User who maintains the object</description>
+	</property>
+
+</object-descriptor>

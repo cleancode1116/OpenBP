@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+   Copyright 2007 skynamics AG
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ -->
+
+
+<object-descriptor
+	name="VisualItem"
+	display-name="Visual"
+	object-class="org.openbp.core.model.item.visual.VisualItem"
+	>
+	<description>A visual is an user interface element.
+The implementation of the visual depends on the user interface engine.
+An implementation might be a Java Server Page (JSP) or a Velocity template for example.</description>
+
+	<property name="Name" read-only="true"/>
+
+	<property name="DisplayName"/>
+	<property name="Description"/>
+
+	<property name="OwningModelQualifier" read-only="true"/>
+	<property name="FunctionalGroup"/>
+
+	<property name="VisualId" display-name="Visual ID"
+		editor="StringEditor"
+		group="Details">
+		<description>Unique id used to identify this visual component.
+If used with a servlet-based UI adapter, the visual id defines the page forward to be applied if the visual executes.
+In case of an external UI adapter, the meaning of the visual id is adapter-specific.</description>
+	</property>
+
+	<property name="ImagePath"/>
+	<property name="ImageOnly"/>
+	<property name="ImageResize"/>
+
+	<property name="TaggedValueList"/>
+
+	<!-- <property name="ReadOnly"/> -->
+	<property name="CreatedBy"/>
+	<property name="MaintainedBy"/>
+
+</object-descriptor>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+   Copyright 2007 skynamics AG
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ -->
+
+<object-descriptor
+	name="WorkflowNodeImpl"
+	display-name="Workflow node"
+	object-class="org.openbp.core.model.item.process.WorkflowNodeImpl"
+	validator="org.openbp.guiclient.objectvalidators.ModelObjectValidator"
+	>
+	<description>A workflow node splits the flow of control into two or more separately running processes.
+The processes may be synchronized at a later time by a join node.
+The current process will be continue at the 'Out' socket.
+The 'Out1', 'Out2', ... sockets will execute the additional process threads.</description>
+
+	<property name="Name"/>
+	<property name="DisplayName"/>
+	<property name="Description"/>
+
+	<property name="WorkflowTaskDescriptor" display-name="Workflow task"
+		complex-property-type="org.openbp.core.model.WorkflowTaskDescriptor"
+		expanded="true">
+		<description>Workflow task that will be created by this node</description>
+	</property>
+
+	<property name="AssignToCurrentUser" display-name="Assign to current user"
+		editor="BooleanEditor">
+		<description>Assign this workflow to the user who accepts it.
+If selected, a workflow will be assigned to the user who accepted the workflow, regardless if it has been specified for this user or a group of users (a role).
+
+This is useful if a user picks a workflow from a public worklist (i. e. from a list displaying workflows that have been assigned to some role). Now the workflow gets assigned to the particular user instead of the role. In case the user cancels the processing, he will find this particular workflow again in his private worklist and will be able to choose it again for processing.</description>
+	</property>
+
+	<property name="EventHandlerDefinition"/>
+
+	<property name="ImagePath"/>
+	<property name="ImageOnly"/>
+	<property name="ImageResize"/>
+
+	<property name="TaggedValueList"/>
+
+</object-descriptor>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model name="TestCaseM1" item-type="Model">
+    <description>Test case model for model overrides and model class
+        loading.\nImports the TestCaseMSub model.</description>
+    <import>TestCaseMSub</import>
+</model>

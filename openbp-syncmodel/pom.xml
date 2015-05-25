@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+	<parent>
+		<artifactId>openbp</artifactId>
+		<groupId>org.openbp</groupId>
+		<version>0.9.8-SNAPSHOT</version>
+	</parent>
+
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>openbp-syncmodel</artifactId>
+	<name>openbp-syncmodel</name>
+
+	<!--
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.4.2</version>
+				<configuration>
+					<includes>
+						<include>**/SyncModelTestSuite.java</include>
+					</includes>
+					<systemProperties>
+						<property>
+							<name>openbp.FileSystemModelMgr.ModelPath</name>
+							<value>..\openbp-model-testcase\src\main\resources\model</value>
+						</property>
+						<property>
+							<name>openbp.springConfigFile</name>
+							<value>OpenBP-Server-Hibernate.spring.xml</value>
+						</property>
+					</systemProperties>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	-->
+
+	<dependencies>
+		<dependency>
+			<groupId>org.openbp</groupId>
+			<artifactId>openbp-server-hib</artifactId>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.openbp</groupId>
+			<artifactId>openbp-server</artifactId>
+			<scope>compile</scope>
+		</dependency>
+	</dependencies>
+</project>

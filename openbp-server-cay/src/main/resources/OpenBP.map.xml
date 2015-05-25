@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data-map project-version="3.0">
+	<property name="defaultPackage" value="org.openbp.server.persistence.cayenne"/>
+	<property name="defaultSuperclass" value="org.openbp.server.persistence.cayenne.CayenneObjectBase"/>
+	<db-entity name="openbptokencontext">
+		<db-attribute name="TC_CURRENT_SOCKET" type="VARCHAR" length="250"/>
+		<db-attribute name="TC_DATA" type="LONGVARBINARY" length="65535"/>
+		<db-attribute name="TC_DEBUGGER_ID" type="VARCHAR" length="20"/>
+		<db-attribute name="TC_EXECUTING_MODEL" type="VARCHAR" length="250"/>
+		<db-attribute name="TC_ID" type="VARCHAR" isPrimaryKey="true" isMandatory="true" length="40"/>
+		<db-attribute name="TC_LIFECYCLE_REQUEST" type="INTEGER" length="10"/>
+		<db-attribute name="TC_LIFECYCLE_STATE" type="INTEGER" length="10"/>
+		<db-attribute name="TC_NODE_ID" type="VARCHAR" length="100"/>
+		<db-attribute name="TC_PARENT_ID" type="VARCHAR" length="40"/>
+		<db-attribute name="TC_PRIORITY" type="INTEGER" length="10"/>
+		<db-attribute name="TC_PROGRESS_COUNT" type="INTEGER" length="10"/>
+		<db-attribute name="TC_PROGRESS_TEXT" type="VARCHAR" length="250"/>
+		<db-attribute name="TC_PROGRESS_TOTAL" type="INTEGER" length="10"/>
+		<db-attribute name="TC_QUEUE_TYPE" type="VARCHAR" length="50"/>
+		<db-attribute name="TC_USER_ID" type="VARCHAR" length="50"/>
+		<db-attribute name="TC_VERSION" type="INTEGER" isMandatory="true" length="10"/>
+	</db-entity>
+	<db-entity name="openbpworkflowtask">
+		<db-attribute name="TASK_ACCEPTING_USER_ID" type="VARCHAR" length="40"/>
+		<db-attribute name="TASK_CONTEXT_ID" type="VARCHAR" isMandatory="true" length="40"/>
+		<db-attribute name="TASK_CREATING_USER_ID" type="VARCHAR" length="40"/>
+		<db-attribute name="TASK_DELETE_AFTER_COMPLETION" type="BIT"/>
+		<db-attribute name="TASK_DESCRIPTION" type="VARCHAR" length="255"/>
+		<db-attribute name="TASK_DISPLAY_NAME" type="VARCHAR" length="200"/>
+		<db-attribute name="TASK_DUE_TIME" type="TIMESTAMP"/>
+		<db-attribute name="TASK_ID" type="VARCHAR" isPrimaryKey="true" isMandatory="true" length="10"/>
+		<db-attribute name="TASK_NAME" type="VARCHAR" length="40"/>
+		<db-attribute name="TASK_PERMISSIONS" type="VARCHAR" length="255"/>
+		<db-attribute name="TASK_PRIORITY" type="INTEGER" length="10"/>
+		<db-attribute name="TASK_ROLE_ID" type="VARCHAR" length="40"/>
+		<db-attribute name="TASK_STATUS" type="INTEGER" length="10"/>
+		<db-attribute name="TASK_STEP_DESCRIPTION" type="VARCHAR" length="255"/>
+		<db-attribute name="TASK_STEP_DISPLAYNAME" type="VARCHAR" length="200"/>
+		<db-attribute name="TASK_STEP_NAME" type="VARCHAR" length="40"/>
+		<db-attribute name="TASK_TIME_ACCEPTED" type="TIMESTAMP"/>
+		<db-attribute name="TASK_TIME_COMPLETED" type="TIMESTAMP"/>
+		<db-attribute name="TASK_TIME_CREATED" type="TIMESTAMP"/>
+		<db-attribute name="TASK_USER_ID" type="VARCHAR" length="40"/>
+		<db-attribute name="TASK_VERSION" type="INTEGER" isMandatory="true" length="10"/>
+	</db-entity>
+	<obj-entity name="CayenneTokenContextImpl" className="org.openbp.server.persistence.cayenne.CayenneTokenContextImpl" dbEntityName="openbptokencontext">
+		<obj-attribute name="currentSocket" type="java.lang.String" db-attribute-path="TC_CURRENT_SOCKET"/>
+		<obj-attribute name="data" type="byte[]" db-attribute-path="TC_DATA"/>
+		<obj-attribute name="debuggerId" type="java.lang.String" db-attribute-path="TC_DEBUGGER_ID"/>
+		<obj-attribute name="executingModel" type="java.lang.String" db-attribute-path="TC_EXECUTING_MODEL"/>
+		<obj-attribute name="id" type="java.lang.String" db-attribute-path="TC_ID"/>
+		<obj-attribute name="lifecycleRequest" type="java.lang.Integer" db-attribute-path="TC_LIFECYCLE_REQUEST"/>
+		<obj-attribute name="lifecycleState" type="java.lang.Integer" db-attribute-path="TC_LIFECYCLE_STATE"/>
+		<obj-attribute name="nodeId" type="java.lang.String" db-attribute-path="TC_NODE_ID"/>
+		<obj-attribute name="priority" type="java.lang.Integer" db-attribute-path="TC_PRIORITY"/>
+		<obj-attribute name="progressCount" type="java.lang.Integer" db-attribute-path="TC_PROGRESS_COUNT"/>
+		<obj-attribute name="progressText" type="java.lang.String" db-attribute-path="TC_PROGRESS_TEXT"/>
+		<obj-attribute name="progressTotal" type="java.lang.Integer" db-attribute-path="TC_PROGRESS_TOTAL"/>
+		<obj-attribute name="queueType" type="java.lang.String" db-attribute-path="TC_QUEUE_TYPE"/>
+		<obj-attribute name="userId" type="java.lang.String" db-attribute-path="TC_USER_ID"/>
+		<obj-attribute name="version" type="java.lang.Integer" db-attribute-path="TC_VERSION"/>
+	</obj-entity>
+	<obj-entity name="CayenneWorkflowTask" className="org.openbp.server.persistence.cayenne.CayenneWorkflowTaskImpl" dbEntityName="openbpworkflowtask">
+		<obj-attribute name="acceptingUserId" type="java.lang.String" db-attribute-path="TASK_ACCEPTING_USER_ID"/>
+		<obj-attribute name="creatingUserId" type="java.lang.String" db-attribute-path="TASK_CREATING_USER_ID"/>
+		<obj-attribute name="deleteAfterCompletion" type="java.lang.Boolean" db-attribute-path="TASK_DELETE_AFTER_COMPLETION"/>
+		<obj-attribute name="description" type="java.lang.String" db-attribute-path="TASK_DESCRIPTION"/>
+		<obj-attribute name="displayName" type="java.lang.String" db-attribute-path="TASK_DISPLAY_NAME"/>
+		<obj-attribute name="dueTime" type="java.sql.Timestamp" db-attribute-path="TASK_DUE_TIME"/>
+		<obj-attribute name="id" type="java.lang.String" db-attribute-path="TASK_ID"/>
+		<obj-attribute name="name" type="java.lang.String" db-attribute-path="TASK_NAME"/>
+		<obj-attribute name="permissions" type="java.lang.String" db-attribute-path="TASK_PERMISSIONS"/>
+		<obj-attribute name="priority" type="java.lang.Integer" db-attribute-path="TASK_PRIORITY"/>
+		<obj-attribute name="roleId" type="java.lang.String" db-attribute-path="TASK_ROLE_ID"/>
+		<obj-attribute name="status" type="java.lang.Integer" db-attribute-path="TASK_STATUS"/>
+		<obj-attribute name="stepDescription" type="java.lang.String" db-attribute-path="TASK_STEP_DESCRIPTION"/>
+		<obj-attribute name="stepDisplayName" type="java.lang.String" db-attribute-path="TASK_STEP_DISPLAYNAME"/>
+		<obj-attribute name="stepName" type="java.lang.String" db-attribute-path="TASK_STEP_NAME"/>
+		<obj-attribute name="timeAccepted" type="java.sql.Timestamp" db-attribute-path="TASK_TIME_ACCEPTED"/>
+		<obj-attribute name="timeCompleted" type="java.sql.Timestamp" db-attribute-path="TASK_TIME_COMPLETED"/>
+		<obj-attribute name="timeCreated" type="java.sql.Timestamp" db-attribute-path="TASK_TIME_CREATED"/>
+		<obj-attribute name="userId" type="java.lang.String" db-attribute-path="TASK_USER_ID"/>
+		<obj-attribute name="version" type="java.lang.Integer" db-attribute-path="TASK_VERSION"/>
+	</obj-entity>
+	<db-relationship name="childContextList" source="openbptokencontext" target="openbptokencontext" toMany="true">
+		<db-attribute-pair source="TC_ID" target="TC_PARENT_ID"/>
+	</db-relationship>
+	<db-relationship name="parentContext" source="openbptokencontext" target="openbptokencontext" toMany="false">
+		<db-attribute-pair source="TC_PARENT_ID" target="TC_ID"/>
+	</db-relationship>
+	<db-relationship name="workflowTasks" source="openbptokencontext" target="openbpworkflowtask" toMany="true">
+		<db-attribute-pair source="TC_ID" target="TASK_CONTEXT_ID"/>
+	</db-relationship>
+	<db-relationship name="tokenContext" source="openbpworkflowtask" target="openbptokencontext" toMany="false">
+		<db-attribute-pair source="TASK_CONTEXT_ID" target="TC_ID"/>
+	</db-relationship>
+	<obj-relationship name="childContextList" source="CayenneTokenContextImpl" target="CayenneTokenContextImpl" db-relationship-path="childContextList"/>
+	<obj-relationship name="parentContext" source="CayenneTokenContextImpl" target="CayenneTokenContextImpl" db-relationship-path="parentContext"/>
+	<obj-relationship name="tokenContext" source="CayenneWorkflowTask" target="CayenneTokenContextImpl" db-relationship-path="tokenContext"/>
+</data-map>

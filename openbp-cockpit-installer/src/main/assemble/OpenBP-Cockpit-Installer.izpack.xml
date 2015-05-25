@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!--
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes"  parse="yes"?>
+-->
+<installation version="1.0">
+
+	<!-- 
+		The info section.
+		The meaning of the tags should be natural ...
+	-->
+	<info>
+		<appname>OpenBP-Cockpit</appname>
+		<appversion>@{app.version}</appversion>
+		<appsubpath>OpenBP-Cockpit-$APP_VER</appsubpath>
+		<url>http://www.openbp.org</url>
+		<javaversion>1.5</javaversion>
+		<uninstaller write="yes" name="OpenBP-Uninstaller.jar"/>
+		<writeinstallationinformation>yes</writeinstallationinformation>
+	</info>
+
+	<variables>
+		<variable name="InstallPath" value="$INSTALL_PATH"/>
+		<variable name="AppVersion" value="@{app.version}"/>
+		<variable name="desktopshortcutcheckboxenabled" value="false"/>
+	</variables>
+	<!-- 
+		The gui preferences indication.
+		Sets the installer window to 800x600.
+	-->
+	<!-- Possible LaFs: kunststoff, liquid, metouia, looks, substance -->
+	<guiprefs width="800" height="600" resizable="yes">
+		<modifier key="layoutAnchor" value="NORTHWEST"/>
+		<modifier key="useHeadingPanel" value="yes"/>
+		<modifier key="useHeadingForSummary" value="yes"/>
+		<modifier key="headingImageOnLeft" value="no"/>
+		<modifier key="headingLineCount" value="1"/>
+		<modifier key="headingFontSize" value="1.5"/>
+		<modifier key="headingBackgroundColor" value="0x00404040"/>
+		<modifier key="headingForegroundColor" value="0x00ffffff"/>
+		<modifier key="headingPanelCounter" value="progressbar"/>
+		<modifier key="headingPanelCounterPos" value="inNavigationPanel"/>
+		<modifier key="allXGap" value="10"/>
+		<modifier key="allYGap" value="10"/>
+		<!--
+		<laf name="metouia">
+			<os family="unix" />
+			<os family="windows" />
+			<param name="variant" value="Business Blue Steel" />
+		</laf>
+		-->
+	</guiprefs>
+
+	<locale>
+		<langpack iso3="eng"/>
+	</locale>
+
+	<!-- 
+		The resources section.
+		The ids must be these ones if you want to use the LicencePanel and/or the InfoPanel.
+	-->
+	<resources>
+		<res id="Heading.image" src="assemble/OpenBP.PoweredBy.150x62.png"/>
+		<res id="InfoPanel.info" src="assemble/ReadMe.txt" parse="yes" type="ant"/>
+		<res id="XInfoPanel.info" src="assemble/InstallationFinished.txt" parse="yes" type="ant"/>
+		<res id="LicencePanel.licence" src="License.txt" parse="yes" type="ant"/>
+		<res src="assemble/Shortcut-Default.izpack-shortcut.xml"
+			id="shortcutSpec.xml" parse="yes" type="ant"/>
+		<res src="assemble/Shortcut-Unix.izpack-shortcut.xml"
+			id="Unix_shortcutSpec.xml" parse="yes" type="ant"/>
+	</resources>
+
+	<native type="izpack" name="ShellLink.dll">
+		<os family="windows"/>
+	</native>
+	<native type="izpack" name="ShellLink_x64.dll">
+		<os family="windows"/>
+	</native>
+
+	<!-- 
+		The panels section.
+		We indicate here which panels we want to use. The order will be respected.
+	-->
+	<panels>
+		<panel classname="CheckedHelloPanel"/>
+		<panel classname="InfoPanel"/>
+		<panel classname="LicencePanel"/>
+		<panel classname="TargetPanel"/>
+		<panel classname="ShortcutPanel"/>
+		<!--
+		<panel classname="SummaryPanel"/>
+		-->
+		<panel classname="InstallPanel"/>
+		<panel classname="XInfoPanel"/>
+		<panel classname="SimpleFinishPanel"/>
+	</panels>
+
+	<!-- 
+		The packs section.
+		We specify here our packs.
+	-->
+	<packs>
+		<pack name="OpenBP Cockpit" id="OpenBP Cockpit" preselected="yes" required="yes">
+			<description>The OpenBP modeling tool</description>
+			<fileset dir="." targetdir="$INSTALL_PATH" excludes="bin/* assemble assemble/** *.izpack.xml"/>
+			<file src="bin/OpenBP-Cockpit.bat" targetdir="$INSTALL_PATH/bin" os="windows"/>
+			<file src="bin/OpenBP-Cockpit.sh" targetdir="$INSTALL_PATH/bin" os="unix"/>
+			<parsable targetfile="$INSTALL_PATH/bin/OpenBP-Cockpit.bat" type="ant" os="windows"/>
+			<parsable targetfile="$INSTALL_PATH/bin/OpenBP-Cockpit.sh" type="ant" os="unix"/>
+			<executable targetfile="$INSTALL_PATH/bin/OpenBP-Cockpit.sh" type="bin" os="unix" stage="never" keep="true"/>
+		</pack>
+	</packs>
+
+</installation>

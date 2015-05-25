@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+   Copyright 2007 skynamics AG
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ -->
+
+<resource>
+	<item name="title">Associations</item>
+	<item name="description">Provides associations of an object as context menu</item>
+	<item name="icon" type="image/multi">
+		<path>../../images/toolbar/file/open.png</path>
+	</item>
+	<item name="condition">features.openassociation</item>
+
+	<import container="cockpit" resource="standardoptions" />
+
+	<!-- Actions -->
+	<group name="submenu.open">
+		<!-- Open context menu -->
+		<item name="displayname">_Open...</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/toolbar/file/open.png</path>
+		</item>
+		<item name="type">menu</item>
+		<item name="prio" type="primitive/integer">0</item>
+	</group>
+
+	<!-- Messages -->
+	<group name="messages">
+		<item name="noobject">Cannot open the object:
+	{0}</item>
+		<item name="noassociation">No artifact present or no internal viewer or external program associated with the MIME type(s)
+	{0}
+You may specify a program for this MIME type(s) in the options dialog.</item>
+		<group name="hints">
+			<item name="noassociation">Object cannot be opened (no MIME type association present).</item>
+			<item name="wrongassociation">No associated program found. Check the MIME type associations in the option dialog.</item>
+		</group>
+	</group>
+</resource>

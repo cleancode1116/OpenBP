@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+   Copyright 2007 skynamics AG
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ -->
+
+<!DOCTYPE mapping PUBLIC "-//EXOLAB/Castor Object Mapping DTD Version 1.0//EN"
+                         "http://castor.exolab.org/mapping.dtd">
+
+<mapping>
+
+	<class name="org.openbp.cockpit.modeler.figures.generic.XFigureDescriptor">
+
+		<map-to xml="figure-descriptor"/>
+
+		<field name="FigureType"
+			type="string"
+			get-method="getFigureType"
+			set-method="setFigureType">
+			<bind-xml name="figure-type" node="attribute"/>
+		</field>
+
+		<field name="FigureClassName"
+			type="string"
+			get-method="getFigureClassName"
+			set-method="setFigureClassName">
+			<bind-xml name="figure-class" node="attribute"/>
+		</field>
+
+		<field name="Orientation"
+			type="string"
+			get-method="getOrientationStr"
+			set-method="setOrientationStr">
+			<bind-xml name="orientation" node="attribute"/>
+		</field>
+
+		<field name="SizeX"
+			type="integer"
+			get-method="getSizeX"
+			set-method="setSizeX">
+			<bind-xml name="size-x" node="attribute"/>
+		</field>
+
+		<field name="SizeY"
+			type="integer"
+			get-method="getSizeY"
+			set-method="setSizeY">
+			<bind-xml name="size-y" node="attribute"/>
+		</field>
+
+		<field name="MinSizeX"
+			type="integer"
+			get-method="getMinSizeX"
+			set-method="setMinSizeX">
+			<bind-xml name="min-size-x" node="attribute"/>
+		</field>
+
+		<field name="MinSizeY"
+			type="integer"
+			get-method="getMinSizeY"
+			set-method="setMinSizeY">
+			<bind-xml name="min-size-y" node="attribute"/>
+		</field>
+
+		<field name="MaxSizeX"
+			type="integer"
+			get-method="getMaxSizeX"
+			set-method="setMaxSizeX">
+			<bind-xml name="max-size-x" node="attribute"/>
+		</field>
+
+		<field name="MaxSizeY"
+			type="integer"
+			get-method="getMaxSizeY"
+			set-method="setMaxSizeY">
+			<bind-xml name="max-size-y" node="attribute"/>
+		</field>
+
+		<field name="FrameStrokeWidth"
+			type="integer"
+			get-method="getFrameStrokeWidth"
+			set-method="setFrameStrokeWidth">
+			<bind-xml name="frame-stroke-width" node="attribute"/>
+		</field>
+
+		<field name="FrameColorStr"
+			type="string"
+			get-method="getFrameColorStr"
+			set-method="setFrameColorStr">
+			<bind-xml name="frame-color" node="attribute"/>
+		</field>
+
+		<field name="FillColorStr"
+			type="string"
+			get-method="getFillColorStr"
+			set-method="setFillColorStr">
+			<bind-xml name="fill-color" node="attribute"/>
+		</field>
+
+		<field name="FillColor2Str"
+			type="string"
+			get-method="getFillColor2Str"
+			set-method="setFillColor2Str">
+			<bind-xml name="fill-color2" node="attribute"/>
+		</field>
+
+		<field name="GradientPos1"
+			type="string"
+			get-method="getGradientPos1Str"
+			set-method="setGradientPos1Str">
+			<bind-xml name="gradient-pos1" node="attribute"/>
+		</field>
+
+		<field name="GradientPos2"
+			type="string"
+			get-method="getGradientPos2Str"
+			set-method="setGradientPos2Str">
+			<bind-xml name="gradient-pos2" node="attribute"/>
+		</field>
+
+		<field name="CyclicGradient"
+			type="boolean"
+			get-method="isCyclicGradient"
+			set-method="setCyclicGradient">
+			<bind-xml name="cyclic-gradient" node="attribute"/>
+		</field>
+
+		<field name="ImageFileName"
+			type="string"
+			get-method="getImageFileName"
+			set-method="setImageFileName">
+			<bind-xml name="image" node="attribute"/>
+		</field>
+
+		<field name="TaggedValueList"
+			type="org.openbp.common.generic.taggedvalue.TaggedValue"
+			collection="collection"
+			get-method="getTaggedValueList"
+			set-method="addTaggedValue">
+			<bind-xml name="tagged-value"/>
+		</field>
+
+	</class>
+
+</mapping>

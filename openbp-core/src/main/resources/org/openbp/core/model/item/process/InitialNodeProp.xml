@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+   Copyright 2007 skynamics AG
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ -->
+
+
+<object-descriptor
+	name="InitialNode"
+	display-name="Initial node"
+	object-class="org.openbp.core.model.item.process.InitialNode"
+	validator="org.openbp.guiclient.objectvalidators.InitialNodeValidator"
+	>
+	<description>An initial node constitutes an entry (a starting point) of a process.
+An initial node has a number of entry parameters (these would be the parameters of the called process, i. e. the request parameters) that map to the exit parameters of the node.
+An initial node has exactly one exit socket, but no entry socket.
+</description>
+
+	<property name="Name"/>
+	<property name="DisplayName"/>
+	<property name="Description"/>
+
+	<property name="Role" display-name="Role"
+		expanded="true"
+		editor="StringEditor">
+		<description>Role or list of roles (comma-separated) that has the permission for this initial node.
+The engine needs to check if the current user has this role.</description>
+	</property>
+
+	<property name="DefaultEntry" display-name="Default entry"
+		editor="BooleanEditor">
+		<description>Default entries will be executed if there is no initial node specified for the execution of a process.
+This is the case when right-clicking a process and selecting 'Run' or when the execution search strategy has determined a process to execute, but cannot determine an entry name to start with.</description>
+	</property>
+
+	<property name="EntryScopeStr" display-name="Entry scope"
+		editor="SelectionEditor">
+		<editor-param>
+			selection="Public|"
+			selection="Protected|protected"
+			selection="Private|private"
+		</editor-param>
+		<description>Scope of the initial node
+This property can be used to prevent outside access to processes.
+&lt;ul&gt;
+&lt;li&gt;Public (default)
+The initial node can be invoked using the process facade of the OpenBP engine.&lt;/li&gt;
+&lt;li&gt;Protected
+The process can be called as a sub process by another process or itself, but not from a visual.&lt;/li&gt;
+&lt;li&gt;Private
+This initial node designates a local sub process, i. e. this entry can be called from within the process itself only.&lt;/li&gt;</description>
+	</property>
+
+	<property name="EventHandlerDefinition"/>
+
+	<!--
+	<property name="WSPublicEntry" display-name="Publishable web service entry" editor="BooleanEditor" group="Web service">
+		<description>If the process containing this initial node gets published as a web service, this entry will become published as an operation.</description>
+	</property>
+
+	<property name="WSCorrespondingFinalNodeName" display-name="Corresponding exit" editor="SelectionEditor" group="Web service">
+		<editor-param>
+			listener="org.openbp.guiclient.objectvalidators.CorrespondingFinalNodeSelectionEditorListener"
+			editable="false"
+		</editor-param>
+		<description>If this initial node is used to invoke the process as a web service, the final node constitutes the set of results that is delivered
+to the web service client. If the process doesn't end in the adjusted final node, an error will be propagated back to the client.</description>
+	</property>
+	-->
+
+	<property name="TaggedValueList"/>
+
+</object-descriptor>

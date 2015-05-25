@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+   Copyright 2007 skynamics AG
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ -->
+
+
+<object-descriptor
+	name="MultiSocketNodeImpl"
+	display-name="Multi socket node"
+	object-class="org.openbp.core.model.item.process.MultiSocketNodeImpl"
+	validator="org.openbp.guiclient.objectvalidators.ModelObjectValidator"
+	>
+	<description>Node that has an arbitrary number of sockets</description>
+
+	<property name="Name"/>
+	<property name="DisplayName"/>
+	<property name="Description"/>
+
+	<property name="EventHandlerDefinition"/>
+
+	<property name="ImagePath" display-name="Image path"
+		group="Presentation"
+		editor="PathEditor">
+		<editor-param>
+			title="Image File Selection"
+			type="open"
+			filter="Image Files|*.[gjp][ipn][fg]"
+			customizer="org.openbp.guiclient.propertyeditors.ImagePathEditorCustomizer"
+		</editor-param>
+		<description>The image path is either relative to the model directory (recommended) or absolute.</description>
+	</property>
+
+	<property name="ImageOnly" display-name="Image only"
+		group="Presentation"
+		editor="BooleanEditor">
+		<description>Flag if only the image should be displayed instead of node drawing + image</description>
+	</property>
+
+	<property name="ImageResize" display-name="Resize image"
+		group="Presentation"
+		editor="BooleanEditor">
+		<description>Flag if the image size should be resized with the node</description>
+	</property>
+
+	<property name="TaggedValueList"/>
+
+</object-descriptor>

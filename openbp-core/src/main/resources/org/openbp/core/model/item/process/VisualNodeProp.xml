@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+   Copyright 2007 skynamics AG
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ -->
+
+
+<object-descriptor
+	name="VisualNode"
+	display-name="Visual node"
+	object-class="org.openbp.core.model.item.process.VisualNode"
+	>
+	<description></description>
+
+	<property name="Name"/>
+	<property name="DisplayName"/>
+	<property name="Description"/>
+
+	<property name="VisualId" display-name="Visual ID"
+		editor="StringEditor">
+		<description>Unique id used to identify this visual component (overrides the visual id of the underlying visual component).
+If used with a servlet-based UI adapter, the visual id defines the page forward to be applied if the visual executes.
+In case of an external UI adapter, the meaning of the visual id is adapter-specific.</description>
+	</property>
+
+	<property name="WaitStateNode" display-name="Wait state node"
+		editor="BooleanEditor">
+		<description>Flag that denotes if the process state should be persisted. If this flag is unchecked, the calling application is responsible for maintaining the process state.</description>
+	</property>
+
+	<property name="EventHandlerDefinition"/>
+
+	<property name="ImagePath"/>
+	<property name="ImageOnly"/>
+	<property name="ImageResize"/>
+
+	<property name="TaggedValueList"/>
+
+</object-descriptor>

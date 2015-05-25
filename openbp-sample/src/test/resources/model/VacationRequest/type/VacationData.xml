@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<item-container>
+    <complex-type name="VacationData" item-type="Type"
+        functional-group="Technical process" class-name="com.mycompany.sample.vacation.VacationData">
+        <member name="submitterName" type="String" length="40"/>
+        <member name="submitterEmail" type="String" length="40"/>
+        <member name="state" type="Integer"/>
+        <member name="reason" type="String" length="40"/>
+        <member name="fromDate" type="Date"/>
+        <member name="toDate" type="Date"/>
+    </complex-type>
+</item-container>

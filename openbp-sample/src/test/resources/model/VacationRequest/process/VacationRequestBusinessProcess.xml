@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process name="VacationRequestBusinessProcess" item-type="Process"
+    functional-group="Business process" type="BusinessProcess"
+    skin-name="uml" node-geometry="size:160:60">
+    <description>Abstract outline of the functionality of the application.</description>
+    <generator-info><![CDATA[
+<generator-settings generator-name="ProcessTopLevel"/>
+]]></generator-info>
+    <placeholder-node name="Approve request" reference-path="HandleVacationRequest">
+        <geometry>origin:223:289|size:160:60</geometry>
+        <socket name="Accepted" default="true">
+            <geometry>angle:d135</geometry>
+        </socket>
+        <socket name="In" entry="true" default="true">
+            <geometry>angle:d270</geometry>
+        </socket>
+        <socket name="Rejected">
+            <geometry>angle:d45</geometry>
+        </socket>
+    </placeholder-node>
+    <final-node name="End">
+        <geometry>origin:262:761|size:35</geometry>
+        <socket name="In" entry="true" default="true">
+            <geometry>angle:d270</geometry>
+        </socket>
+    </final-node>
+    <placeholder-node name="Send notifcation">
+        <geometry>origin:141:588|size:160:60</geometry>
+        <socket name="In" entry="true" default="true">
+            <geometry>angle:d270</geometry>
+        </socket>
+        <socket name="Out" default="true">
+            <geometry>angle:d90</geometry>
+        </socket>
+    </placeholder-node>
+    <initial-node name="Start">
+        <geometry>origin:222:100|size:35</geometry>
+        <socket name="Out" default="true">
+            <geometry>angle:d90</geometry>
+        </socket>
+    </initial-node>
+    <placeholder-node name="Update accounting">
+        <geometry>origin:141:457|size:160:60</geometry>
+        <socket name="In" entry="true" default="true">
+            <geometry>angle:d270</geometry>
+        </socket>
+        <socket name="Out" default="true">
+            <geometry>angle:d90</geometry>
+        </socket>
+    </placeholder-node>
+    <control-link name="ControlLink" source="Start.Out" target="Approve request.In">
+        <geometry>points:1:222:140:222:169:223:209:223:238|label:0:0|factors:0.3:0.3</geometry>
+    </control-link>
+    <control-link name="ControlLink2" source="Approve request.Accepted" target="Update accounting.In">
+        <geometry>points:1:183:340:183:369:141:399:141:428|label:0:0|factors:0.3:0.3</geometry>
+    </control-link>
+    <control-link name="ControlLink3" source="Update accounting.Out" target="Send notifcation.In">
+        <geometry>points:1:141:486:141:508:141:537:141:559|label:0:0|factors:0.3:0.3</geometry>
+    </control-link>
+    <control-link name="ControlLink4" source="Send notifcation.Out" target="End.In">
+        <geometry>points:1:141:617:141:665:262:674:262:722|label:0:0|factors:0.3:0.3</geometry>
+    </control-link>
+    <control-link name="ControlLink5" source="Approve request.Rejected" target="End.In">
+        <geometry>points:1:263:340:263:455:262:607:262:722|label:0:0|factors:0.3:0.3</geometry>
+    </control-link>
+</process>

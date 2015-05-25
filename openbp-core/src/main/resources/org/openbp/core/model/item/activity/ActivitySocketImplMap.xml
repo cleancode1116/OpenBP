@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+   Copyright 2007 skynamics AG
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ -->
+
+<!DOCTYPE mapping PUBLIC "-//EXOLAB/Castor Object Mapping DTD Version 1.0//EN"
+                         "http://castor.exolab.org/mapping.dtd">
+
+<mapping>
+
+	<class name="org.openbp.core.model.item.activity.ActivitySocketImpl"
+		extends="org.openbp.core.model.ModelObjectImpl">
+
+		<map-to xml="socket"/>
+
+		<field name="ParamList"
+			type="org.openbp.core.model.item.activity.ActivityParamImpl"
+			collection="collection"
+			get-method="getParamList"
+			set-method="addParam">
+			<bind-xml name="param"/>
+		</field>
+
+		<field name="EntrySocket"
+			type="boolean"
+			get-method="isEntrySocket"
+			set-method="setEntrySocket">
+			<bind-xml name="entry" node="attribute"/>
+		</field>
+
+		<field name="DefaultSocket"
+			type="boolean"
+			get-method="isDefaultSocket"
+			set-method="setDefaultSocket">
+			<bind-xml name="default" node="attribute"/>
+		</field>
+
+		<field name="Role"
+			type="string"
+			get-method="getRole"
+			set-method="setRole">
+			<bind-xml name="role" node="attribute"/>
+		</field>
+
+		<field name="SequenceId"
+			type="string"
+			get-method="getSequenceId"
+			set-method="setSequenceId">
+			<bind-xml name="sequence-id" node="attribute"/>
+		</field>
+
+		<field name="Geometry"
+			type="string"
+			get-method="getGeometry"
+			set-method="setGeometry">
+			<bind-xml name="geometry" node="attribute"/>
+		</field>
+
+	</class>
+
+</mapping>

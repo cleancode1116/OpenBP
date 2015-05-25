@@ -1,0 +1,123 @@
+<?xml version="1.0"?>
+<!--
+   Copyright 2007 skynamics AG
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ -->
+
+<!DOCTYPE mapping PUBLIC "-//EXOLAB/Castor Object Mapping DTD Version 1.0//EN"
+                         "http://castor.exolab.org/mapping.dtd">
+
+<mapping>
+
+	<class name="org.openbp.cockpit.modeler.skins.Skin"
+		extends="org.openbp.common.generic.description.DisplayObjectImpl">
+
+		<map-to xml="skin"/>
+
+		<field name="ResourceName"
+			type="string"
+			get-method="getResourceName"
+			set-method="setResourceName">
+			<bind-xml name="resource-name" node="attribute"/>
+		</field>
+
+		<field name="ControlAnchorVisible"
+			type="boolean"
+			get-method="isControlAnchorVisible"
+			set-method="setControlAnchorVisible">
+			<bind-xml name="control-anchor-visible" node="attribute"/>
+		</field>
+
+		<field name="ControlLinkVisible"
+			type="boolean"
+			get-method="isControlLinkVisible"
+			set-method="setControlLinkVisible">
+			<bind-xml name="control-link-visible" node="attribute"/>
+		</field>
+
+		<field name="DataLinkVisible"
+			type="boolean"
+			get-method="isDataLinkVisible"
+			set-method="setDataLinkVisible">
+			<bind-xml name="data-link-visible" node="attribute"/>
+		</field>
+
+		<field name="NameDisplay"
+			type="boolean"
+			get-method="isNameDisplay"
+			set-method="setNameDisplay">
+			<bind-xml name="name-display" node="attribute"/>
+		</field>
+
+		<field name="RadialTags"
+			type="boolean"
+			get-method="isRadialTags"
+			set-method="setRadialTags">
+			<bind-xml name="radial-tags" node="attribute"/>
+		</field>
+
+		<field name="DisableShadows"
+			type="boolean"
+			get-method="isDisableShadows"
+			set-method="setDisableShadows">
+			<bind-xml name="disable-shadows" node="attribute"/>
+		</field>
+
+		<field name="DefaultSkin"
+			type="boolean"
+			get-method="isDefaultSkin"
+			set-method="setDefaultSkin">
+			<bind-xml name="default-skin" node="attribute"/>
+		</field>
+
+		<field name="ParamTitleFormat"
+			type="string"
+			get-method="getParamTitleFormat"
+			set-method="setParamTitleFormat">
+			<bind-xml name="param-title-format" node="attribute"/>
+		</field>
+
+		<field name="SocketTitleFormat"
+			type="string"
+			get-method="getSocketTitleFormat"
+			set-method="setSocketTitleFormat">
+			<bind-xml name="socket-title-format" node="attribute"/>
+		</field>
+
+		<field name="NodeTitleFormat"
+			type="string"
+			get-method="getNodeTitleFormat"
+			set-method="setNodeTitleFormat">
+			<bind-xml name="node-title-format" node="attribute"/>
+		</field>
+
+		<field name="SymbolDescriptorList"
+			type="org.openbp.cockpit.modeler.skins.SymbolDescriptor"
+			collection="collection"
+			get-method="getSymbolDescriptorList"
+			set-method="addSymbolDescriptor">
+			<bind-xml name="symbol-descriptor"/>
+		</field>
+
+		<field name="LinkDescriptors"
+			type="org.openbp.cockpit.modeler.skins.LinkDescriptor"
+			collection="collection"
+			get-method="getLinkDescriptorList"
+			set-method="addLinkDescriptor">
+			<bind-xml name="link-descriptor"/>
+		</field>
+
+	</class>
+
+</mapping>

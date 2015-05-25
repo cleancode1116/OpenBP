@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model name="VacationRequest"
+    display-name="Vacation request sample application" item-type="Model" default-package="com.mycompany.sample.vacation">
+    <description>OpenBP tutorial application. This model hosts the main
+        processes of the application.</description>
+</model>

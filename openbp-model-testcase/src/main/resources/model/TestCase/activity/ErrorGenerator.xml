@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<item-container>
+  <java-activity name="ErrorGenerator" display-name="Error generator" item-type="Activity" geometry="origin:313:112|size:160:60">
+    <generator-info><![CDATA[
+<generator-settings generator-name="Activity"/>
+]]></generator-info>
+    <socket name="Error" geometry="angle:6.283185307179586"/>
+    <socket name="In" entry="true" default="true" geometry="angle:4.71238898038469"/>
+    <socket name="Out" default="true" geometry="angle:1.5707963267948966"/>
+    <handler handler-class="org.openbp.server.test.activity.ErrorGeneratorActivity"/>
+  </java-activity>
+</item-container>

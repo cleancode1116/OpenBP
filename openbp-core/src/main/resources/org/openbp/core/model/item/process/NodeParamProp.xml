@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+   Copyright 2007 skynamics AG
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ -->
+
+
+<object-descriptor
+	name="NodeParam"
+	display-name="Node parameter"
+	object-class="org.openbp.core.model.item.process.NodeParam"
+	>
+	<description>Parameter of a node socket</description>
+
+	<property name="Name"/>
+	<property name="DisplayName"/>
+	<property name="Description"/>
+
+	<property name="TypeName" read-only="true"/>
+	<!-- TODO Feature 4: Default value not supported yet
+	<property name="DefaultValue"/>
+	-->
+
+	<property name="Expression" display-name="Expression"
+		editor="MultiLineStringEditor">
+		<description>Expression to evaluate before execution of the node of this parameter
+This expression can be used to provide either a constant value to the parameter, e. g. '"Abc"', '123' or 'true' or to execute a Bean Shell script in order to determine the value of the parameter.
+In the script, you may access other parameters of the socket. The return value of the script will be used as value of the parameter.
+Example: Suppose the socket has two parameters, a String parameter named CompanyId and another String parameter named WhereClause. If a company id is given, the where clause should be adopted to include that company id. The script of the WhereClause parameter would look like this:
+
+if (CompanyId == null)
+    // Return the where clause as it is
+    return WhereClause;
+
+String s = "";
+if (WhereClause != null)
+{
+    // append to existing clause
+    s = WhereClause + " and ";
+}
+return s + "CompanyId = \"" + CompanyId + "\"";
+</description>
+	</property>
+
+	<property name="Optional" display-name="Optional"
+		editor="BooleanEditor">
+		<description>If set, the parameter is optional. Otherwise, it is a required parameter.
+Automatically executing nodes will execute only if all required parameters of the node socket are present.
+Nodes activated by control links will generate an error if a required parameter is not present.
+</description>
+	</property>
+
+	<property name="ParamValueWizard" display-name="Parameter value wizard"
+		editor="SelectionEditor">
+		<editor-param>
+			selection="No parameter value wizard|"
+			selection="String value|string"
+			selection="Integer value|integer"
+			selection="Boolean value|boolean"
+			selection="Data type selection|datatype"
+		</editor-param>
+		<description>Parameter value wizard
+When a node is inserted in a process that contains input parameters having a parameter wizard specification, the modeler will display the parameter value wizard.
+This wizard provides to the user the opportunity to specify constant values for the parameters in question.
+You may choose the type of wizard page to be presented to the user.
+A typical example is the 'TypeName' parameters of the database select activities.</description>
+	</property>
+
+	<property name="AutoConnectorModeString" display-name="Auto connector mode"
+		editor="SelectionEditor">
+		<editor-param>
+			selection="Default|"
+			selection="Disabled|off"
+		</editor-param>
+		<description>Determines the operation mode of the data link autoconnector for this parameter</description>
+	</property>
+
+	<property name="Visible" display-name="Visible"
+		editor="BooleanEditor">
+		<description>Determines if this parameter is being displayed in the modeler workspace</description>
+	</property>
+
+	<property name="TaggedValueList"/>
+
+</object-descriptor>

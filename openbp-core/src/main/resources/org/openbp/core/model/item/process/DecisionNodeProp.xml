@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+   Copyright 2007 skynamics AG
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ -->
+
+
+<object-descriptor
+	name="DecisionNodeImpl"
+	display-name="Decision node"
+	object-class="org.openbp.core.model.item.process.DecisionNodeImpl"
+	validator="org.openbp.guiclient.objectvalidators.ModelObjectValidator"
+	>
+	<description>A decision node is the equivalent of an 'if' statement in a programming language.</description>
+
+	<property name="Name"/>
+	<property name="DisplayName"/>
+	<property name="Description"/>
+
+	<property name="Expression" display-name="Expression"
+		editor="MultiLineStringEditor">
+		<description>The expression determines if the decsion node forwards control to the 'Yes' or 'No' exit socket.
+It is a regular Java expression that is executed by the Bean Shell Java interpreter.
+If the expression evaluates to null or false, the 'No' exit socket will be used.
+Within the expression, you may access parameters of the entry socket of the node or process variables by their parameter name just as a Java variable.</description>
+	</property>
+
+	<property name="EventHandlerDefinition"/>
+
+	<property name="ImagePath"/>
+	<property name="ImageOnly"/>
+	<property name="ImageResize"/>
+
+	<property name="TaggedValueList"/>
+
+</object-descriptor>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+   Copyright 2007 skynamics AG
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ -->
+
+<resource cache="true">
+
+	<!-- Model object types -->
+	<group name="ModelObjectTypeName">
+		<item name="org.openbp.core.model.item.activity.ActivityItemImpl">Activity component</item>
+		<item name="org.openbp.core.model.item.activity.ActivityParamImpl">Activity parameter</item>
+		<item name="org.openbp.core.model.item.activity.ActivitySocketImpl">Activity socket</item>
+		<item name="org.openbp.core.model.item.activity.JavaActivityItemImpl">Java activity component</item>
+		<item name="org.openbp.core.model.item.activity.PlaceholderItemImpl">Placeholder component</item>
+		<item name="org.openbp.core.model.item.actor.ActorItemImpl">Actor component</item>
+		<item name="org.openbp.core.model.item.ItemImpl">Item</item>
+		<item name="org.openbp.core.model.item.process.ActivityNodeImpl">Activity node</item>
+		<item name="org.openbp.core.model.item.process.ControlLinkImpl">Control link</item>
+		<item name="org.openbp.core.model.item.process.DataLinkImpl">Data link</item>
+		<item name="org.openbp.core.model.item.process.DecisionNodeImpl">Decision node</item>
+		<item name="org.openbp.core.model.item.process.FinalNodeImpl">Final node</item>
+		<item name="org.openbp.core.model.item.process.ForkNodeImpl">Fork node</item>
+		<item name="org.openbp.core.model.item.process.InitialNodeImpl">Initial node</item>
+		<item name="org.openbp.core.model.item.process.JoinNodeImpl">Join node</item>
+		<item name="org.openbp.core.model.item.process.MergeNodeImpl">Merge node</item>
+		<item name="org.openbp.core.model.item.process.MultiSocketNodeImpl">Multi socket node</item>
+		<item name="org.openbp.core.model.item.process.NodeGroupImpl">Node group</item>
+		<item name="org.openbp.core.model.item.process.NodeImpl">Node</item>
+		<item name="org.openbp.core.model.item.process.NodeParamImpl">Node parameter</item>
+		<item name="org.openbp.core.model.item.process.NodeSocketImpl">Node socket</item>
+		<item name="org.openbp.core.model.item.process.ParamImpl">Parameter</item>
+		<item name="org.openbp.core.model.item.process.PlaceholderNodeImpl">Placeholder node</item>
+		<item name="org.openbp.core.model.item.process.ProcessItemImpl">Process component</item>
+		<item name="org.openbp.core.model.item.process.ProcessObjectImpl">Process object</item>
+		<item name="org.openbp.core.model.item.process.ProcessVariableImpl">Process variable</item>
+		<item name="org.openbp.core.model.item.process.SingleSocketNodeImpl">Single socket node</item>
+		<item name="org.openbp.core.model.item.process.SubprocessNodeImpl">Sub process node</item>
+		<item name="org.openbp.core.model.item.process.TextElementImpl">Text element</item>
+		<item name="org.openbp.core.model.item.process.VisualNodeImpl">Visual node</item>
+		<item name="org.openbp.core.model.item.process.WaitStateNodeImpl">Wait state node</item>
+		<item name="org.openbp.core.model.item.process.WorkflowNodeImpl">Workflow node</item>
+		<item name="org.openbp.core.model.item.process.WorkflowEndNodeImpl">Workflow end node</item>
+		<item name="org.openbp.core.model.item.type.ComplexTypeItemImpl">Complex type</item>
+		<item name="org.openbp.core.model.item.type.DataMemberImpl">Data member</item>
+		<item name="org.openbp.core.model.item.type.DataTypeItemImpl">Data type component</item>
+		<item name="org.openbp.core.model.item.type.SimpleTypeItemBooleanImpl">Primitive type</item>
+		<item name="org.openbp.core.model.item.type.SimpleTypeItemDateImpl">Primitive type</item>
+		<item name="org.openbp.core.model.item.type.SimpleTypeItemDecimalImpl">Primitive type</item>
+		<item name="org.openbp.core.model.item.type.SimpleTypeItemDoubleImpl">Primitive type</item>
+		<item name="org.openbp.core.model.item.type.SimpleTypeItemFloatImpl">Primitive type</item>
+		<item name="org.openbp.core.model.item.type.SimpleTypeItemImpl">Primitive type</item>
+		<item name="org.openbp.core.model.item.type.SimpleTypeItemIntImpl">Primitive type</item>
+		<item name="org.openbp.core.model.item.type.SimpleTypeItemLongImpl">Primitive type</item>
+		<item name="org.openbp.core.model.item.type.SimpleTypeItemObjectImpl">Primitive type</item>
+		<item name="org.openbp.core.model.item.type.SimpleTypeItemShortImpl">Primitive type</item>
+		<item name="org.openbp.core.model.item.type.SimpleTypeItemStringImpl">Primitive type</item>
+		<item name="org.openbp.core.model.item.type.SimpleTypeItemTimeImpl">Primitive type</item>
+		<item name="org.openbp.core.model.item.type.SimpleTypeItemTimestampImpl">Primitive type</item>
+		<item name="org.openbp.core.model.item.visual.VisualItemImpl">Visual component</item>
+		<item name="org.openbp.core.model.ModelObjectImpl">Model object</item>
+		<item name="org.openbp.core.model.ModelImpl">Model</item>
+	</group>
+
+</resource>

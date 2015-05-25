@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+   Copyright 2007 skynamics AG
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ -->
+
+<!DOCTYPE mapping PUBLIC "-//EXOLAB/Castor Object Mapping DTD Version 1.0//EN"
+                         "http://castor.exolab.org/mapping.dtd">
+
+<mapping>
+
+	<class name="org.openbp.core.model.item.ItemImpl"
+		extends="org.openbp.core.model.ModelObjectImpl">
+
+		<map-to xml="item"/>
+
+		<field name="ItemType"
+			type="string"
+			get-method="getItemType"
+			set-method="setItemType">
+			<bind-xml name="item-type" node="attribute"/>
+		</field>
+
+		<field name="FunctionalGroup"
+			type="string"
+			get-method="getFunctionalGroup"
+			set-method="setFunctionalGroup">
+			<bind-xml name="functional-group" node="attribute"/>
+		</field>
+
+		<field name="ImagePath"
+			type="string"
+			get-method="getImagePath"
+			set-method="setImagePath">
+			<bind-xml name="image-path" node="attribute"/>
+		</field>
+
+		<field name="ImageOnly"
+			type="boolean"
+			get-method="isImageOnly"
+			set-method="setImageOnly">
+			<bind-xml name="image-only" node="attribute"/>
+		</field>
+
+		<field name="ImageResize"
+			type="boolean"
+			get-method="isImageResize"
+			set-method="setImageResize">
+			<bind-xml name="image-resize" node="attribute"/>
+		</field>
+
+		<field name="ReadOnly"
+			type="boolean"
+			get-method="isReadOnly"
+			set-method="setReadOnly">
+			<bind-xml name="read-only" node="attribute"/>
+		</field>
+
+		<field name="ConfigurationClassName"
+			type="string"
+			get-method="getConfigurationClassName"
+			set-method="setConfigurationClassName">
+			<bind-xml name="configuration-class" node="attribute"/>
+		</field>
+
+		<field name="HideSettingsInWizard"
+			type="boolean"
+			get-method="isHideSettingsInWizard"
+			set-method="setHideSettingsInWizard">
+			<bind-xml name="hide-settings-in-wizard" node="attribute"/>
+		</field>
+
+		<field name="CreatedBy"
+			type="string"
+			get-method="getCreatedBy"
+			set-method="setCreatedBy">
+			<bind-xml name="created-by" node="attribute"/>
+		</field>
+
+		<field name="MaintainedBy"
+			type="string"
+			get-method="getMaintainedBy"
+			set-method="setMaintainedBy">
+			<bind-xml name="maintained-by" node="attribute"/>
+		</field>
+
+		<field name="GeneratorInfo"
+			type="string"
+			get-method="getGeneratorInfoFilterHack"
+			set-method="setGeneratorInfo">
+			<bind-xml name="generator-info" node="element"/>
+		</field>
+
+	</class>
+
+</mapping>

@@ -1,0 +1,23 @@
+<html>
+
+<head>
+<title>Interface $packageQualifiedName</title>
+<link rel="stylesheet" href="$rootDir(main.css)" type="text/css">
+</head>
+
+<body>
+
+<p><small>$+if (defined (PRODUCT))$PRODUCT$endif$+if (defined (PRODUCTVERSION)) V $PRODUCTVERSION&nbsp;&nbsp;&nbsp;&nbsp;$endif$+if (has(categoryList))<a href="#categories">Objects by category</a>&nbsp;&nbsp;&nbsp;$endif$+if (has(propertyList))<a href="#properties">Properties</a>&nbsp;&nbsp;&nbsp;$endif$+if (has(attributeList))<a href="#attributes">Attributes</a>&nbsp;&nbsp;&nbsp;$endif$+if (has(relationList))<a href="#relations">Relations</a>&nbsp;&nbsp;&nbsp;$endif$+if (has(eventList))<a href="#events">Events</a>&nbsp;&nbsp;&nbsp;$endif$+if (has(methodList))<a href="#methods">Methods</a>&nbsp;&nbsp;&nbsp;$endif$+if (has(fieldList))<a href="#fields">Fields</a>&nbsp;&nbsp;&nbsp;$endif$+if (has(interfaceList))<a href="#interfaces">Nested interfaces</a>&nbsp;&nbsp;&nbsp;$endif$+if (has(classList))<a href="#classes">Nested classes</a>&nbsp;&nbsp;&nbsp;$endif$+if (has(example))<a href="#example">Example</a>&nbsp;&nbsp;&nbsp;$endif$+if (! defaultOnly)<a href="$package.URL">Package</a>&nbsp;&nbsp;&nbsp;$endif<a href="$contentsFile">Contents</a></small></p>
+
+<h1>Interface $packageQualifiedName</h1>
+
+<p class="declaration">$declaration</p>
+
+$include (deprecated.html)
+
+$include (classorinterface.html)
+
+$include (copyright.html)
+
+</body>
+</html>

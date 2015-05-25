@@ -1,0 +1,46 @@
++verbose
++mode=d
+
++doDocumentedOnly
++doPublic
++doProtected
+-doPrivate
+-doFriendly
+
++warnClass
++warnMethods
++warnFields
+-warnExceptions
++warnParameter
++warnReturnValue
+
+-defaultOnly
+-packageDirs
++memberLocation=commonFile
+
++outputHTMLExtension=html
+
+-lowerCaseFileNames
+-classQualifiedFileNames
+
++external=java.*=http://java.sun.com/j2se/1.4.1/docs/api
++external=javax.servlet.*=http://java.sun.com/j2ee/sdk_1.3/techdocs/api
++external=org.apache.log4j.*=http://jakarta.apache.org/log4j/docs/api
++external=org.xml.*=http://www.xml.org/api/
++external=javax.*=http://java.sun.com/j2se/1.4.1/docs/api
++external=javax.*=http://java.sun.com/j2se/1.4.1/docs/api
++external=com.w4t.*=http://w4toolkit.com/javadoc
++external=CH.ifa.draw.*=file://d:/JavaLib/JHotDraw/javadoc
++external=com.netclue.*=file://d:/JavaLib/Clue4.2/doc/api
+
++defineTag=id=eventobject,arg=text
++defineTag=id=eventparam,arg=text
+
++substitute=true="<big><code>true&nbsp;&nbsp;</code></big>"
++substitute=false="<big><code>false&nbsp;</code></big>"
++substitute=null="<big><code>null</code></big>"
++text=deprecated="(<font color="#FF0000">deprecated</font>)"
++text=obsolete="(<strong><font color="#FF0000">obsolete</font></strong>)"
+
++define=INDEXCOPYRIGHT="<small>&nbsp;© 2005-2008 Skynamics AG<br>&nbsp;<a href='http://www.openbp.org'>www.openbp.org</a><br>&nbsp;<a href='mailto:info@openbp.org'>info@openbp.org</a><br>&nbsp;<a href='http://www.skynamics.com'>www.skynamics.com</a><br>&nbsp;<a href='mailto:info@skynamics.com'>info@skynamics.com</a></small>"
++define=COPYRIGHT="<small>© 2005-2008 Skynamics AG</small>"

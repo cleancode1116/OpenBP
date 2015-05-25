@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+   Copyright 2007 skynamics AG
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ -->
+
+<resource cache="true">
+
+	<!-- Wizard pages -->
+	<group name="wizard.selection">
+
+		<!-- Wizard selection page -->
+		<item name="title">Wizard selection</item>
+
+		<item name="description">The wizards on this page can create a variety of files and other objects based on the component you have selected.
+Please choose the type of wizard you want to use.
+
+Note: Wizards that create Java source code files will try to preserve modifications you have made to the existing source file if you have followed the Java activity or bean source code guidelines described in the user's manual.
+However, we recommend saving the original file before invoking the generation process.</item>
+
+		<item name="header1">Type</item>
+		<item name="header2">Generator template file</item>
+
+	</group>
+
+	<group name="wizard.result">
+
+		<!-- Generator result page -->
+		<item name="templatesetlabel">Template set</item>
+		<item name="outputdirlabel">Output root directory</item>
+		<item name="overwritelabel">Merge mode</item>
+		<item name="overwrite.ask">Ask for each file</item>
+		<item name="overwrite.merge">Merge generated content with existing output file</item>
+		<item name="overwrite.overwrite">Overwrite existing output file with generated content</item>
+		<item name="notemplatesets">No template class files have been found in the following directories or its sub directories:
+$0
+Please compile the template source files and press the 'Back' and then the 'Next' button to rescan the template directories.</item>
+
+		<item name="title.generator">Generator</item>
+		<item name="description.generator">Choose the template set you want to use for the generation and start the generator by pressing the 'Run generator' button.</item>
+
+		<item name="title.generating">Generating...</item>
+		<item name="description.generating">Performing the generation process. Hold on, please.</item>
+
+		<item name="title.finished">Generator finished</item>
+		<item name="description.finished">The generation process was sucessfully performed.
+Press Cancel to exit the assistant or Back to choose another generation on the selected item(s).</item>
+		<item name="progress.finished">Generator finished.</item>
+
+		<item name="title.errors">Generator errors</item>
+		<item name="description.errors">Errors occured during the generation process.
+Please see the text box below for details.</item>
+
+		<item name="runbutton">_Run Generator</item>
+		<item name="opendocument">_Open generated file</item>
+		<item name="warnexit">Component properties that might be relevant for the generator have been modified, but the generator has not been run yet.
+Are you sure you want to close the dialog?</item>
+
+
+		<item name="mergedialog.title">Create placeholder reference</item>
+		<item name="mergedialog.text">The file
+
+	$0
+
+already exists.
+Do you want to overwrite the file or merge the new content with the content of the existing file?
+
+Note: In HTML files, merging will replace the text between the '{{* and }}*' tags only,
+in other files (e. g. Java source), all text outside the tags will be replaced.</item>
+		<group name="mergedialog.buttons">
+			<group name="yes">
+				<item name="caption">_Merge content</item>
+			</group>
+
+			<group name="no">
+				<item name="caption">_Overwrite file</item>
+			</group>
+		</group>
+		<item name="mergedialog.select">Select referenced process element</item>
+
+
+
+
+	</group>
+
+</resource>

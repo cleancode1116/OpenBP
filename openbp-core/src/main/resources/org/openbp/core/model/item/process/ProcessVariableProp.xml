@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+   Copyright 2007 skynamics AG
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ -->
+
+
+<object-descriptor
+	name="ProcessVariable"
+	display-name="Process variable"
+	object-class="org.openbp.core.model.item.process.ProcessVariable"
+	validator="org.openbp.guiclient.objectvalidators.ModelObjectValidator"
+	>
+	<description>Process variable of a process</description>
+
+	<property name="Name"/>
+	<property name="DisplayName"/>
+	<property name="Description"/>
+
+	<property name="TypeName" display-name="Data type" read-only="false"
+		required="true"
+		editor="ComponentSelectionEditor">
+		<editor-param>
+			type="Type"
+			title="Data Type Selection"
+		</editor-param>
+		<description>Data type of the parameter</description>
+	</property>
+
+	<property name="ScopeStr" display-name="Scope"
+		editor="SelectionEditor">
+		<editor-param>
+			selection="Transaction-local|transaction"
+			selection="Process-local|subprocess"
+			selection="Context|context"
+		</editor-param>
+		<description>Scope of the process variable.
+The scope determines the lifetime and the storage location of the process variable.
+&lt;ul&gt;
+&lt;li&gt;Transaction-local
+The process variable will be removed from the token context after committing or rolling back the current transaction.&lt;/li&gt;
+&lt;li&gt;Process-local (default)
+The process variable will be removed from the token context automatically when the process defining them returns using a final node (as long as the process has not been called as a subprocess from within itself).&lt;/li&gt;
+&lt;li&gt;Context
+The process variable is not removed from the token context.&lt;/li&gt;
+&lt;/ul&gt;</description>
+	</property>
+
+	<!-- TODO Feature 4: We should provide a script entry here for default value rather than a fixed default
+	<property name="DefaultValue" display-name="Default value"
+		editor="StringEditor">
+		<description>Default value of the parameter</description>
+	</property>
+	 -->
+
+	<property name="AutoAssign" display-name="Automatic assignment"
+		editor="BooleanEditor">
+		<description>If enabled, the variable is automatically synchronized with node parameters that have the same name.
+
+A node input parameters will receive the value of the variable, and the value of an output parameter will be assigned to the variable - as long as no data link is connected to the variable.
+
+This handy feature avoids having to create global variable assignments for commonly used process variables such as 'WorkflowTask'.</description>
+	</property>
+
+	<property name="RootContextVariable" display-name="Root context variable"
+		editor="BooleanEditor">
+		<description>Flag if the variable value should always be placed in the root context.
+		
+Usually, process variables are allocated in the current context. However, if a process variable shall be altered by a child context or survive the lifespan of the child context, use this setting.</description>
+	</property>
+
+	<property name="PersistentVariable" display-name="Persistent"
+		editor="BooleanEditor">
+		<description>Flag if this variable should be persistent, i\.e\. saved to the workflow database.
+
+The token context is saved to the database when a workflow process is being suspended, i. e. a workflow node is being entered.
+Due to disk space and performance reasons, you should only save those process variables that should be restored when the workflow is being resumed.
+Process variables that are not persistent will be skipped when saving the context.
+
+We strongly advise not to serialize variables of type WorkflowTask itself. With a clean process design, this is not necessary and can lead to huge workflow databases.</description>
+	</property>
+
+	<property name="TaggedValueList"/>
+
+</object-descriptor>

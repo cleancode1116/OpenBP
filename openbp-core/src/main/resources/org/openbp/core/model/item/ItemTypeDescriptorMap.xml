@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+   Copyright 2007 skynamics AG
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ -->
+
+<!DOCTYPE mapping PUBLIC "-//EXOLAB/Castor Object Mapping DTD Version 1.0//EN"
+                         "http://castor.exolab.org/mapping.dtd">
+
+<mapping>
+
+	<class name="org.openbp.core.model.item.ItemTypeDescriptor">
+
+		<map-to xml="item-type-descriptor"/>
+
+		<field name="ItemType"
+			type="string"
+			get-method="getItemType"
+			set-method="setItemType">
+			<bind-xml name="item-type" node="attribute"/>
+		</field>
+
+		<field name="ItemInterfaceName"
+			type="string"
+			get-method="getItemInterfaceName"
+			set-method="setItemInterfaceName">
+			<bind-xml name="item-interface" node="attribute"/>
+		</field>
+
+		<field name="ItemClassName"
+			type="string"
+			get-method="getItemClassName"
+			set-method="setItemClassName">
+			<bind-xml name="item-class" node="attribute"/>
+		</field>
+
+		<field name="ItemFactoryClassName"
+			type="string"
+			get-method="getItemFactoryClassName"
+			set-method="setItemFactoryClassName">
+			<bind-xml name="item-factory" node="attribute"/>
+		</field>
+
+		<field name="Sequence"
+			type="integer"
+			get-method="getSequence"
+			set-method="setSequence">
+			<bind-xml name="sequence" node="attribute"/>
+		</field>
+
+		<field name="Visible"
+			type="boolean"
+			get-method="isVisible"
+			set-method="setVisible">
+			<bind-xml name="visible" node="attribute"/>
+		</field>
+
+		<field name="ContainedItem"
+			type="boolean"
+			get-method="isContainedItem"
+			set-method="setContainedItem">
+			<bind-xml name="contained-item" node="attribute"/>
+		</field>
+
+	</class>
+
+</mapping>

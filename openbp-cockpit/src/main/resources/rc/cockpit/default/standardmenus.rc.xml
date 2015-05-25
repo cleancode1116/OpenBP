@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+   Copyright 2007 skynamics AG
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ -->
+
+<resource>
+
+	<!-- Resource for standard menu and toolbar actions -->
+
+	<!-- Menus -->
+
+	<!-- Cockpit menu -->
+	<group name="menu.cockpit">
+		<item name="menuparent">menuroot</item>
+		<item name="type">menu</item>
+		<item name="displayname">_Cockpit</item>
+		<item name="prio">1</item>
+	</group>
+
+	<group name="menu.cockpit.file">
+		<item name="menuparent">menu.cockpit</item>
+		<item name="type">group</item>
+		<item name="prio">10</item>
+	</group>
+
+	<group name="menu.cockpit.server">
+		<item name="menuparent">menu.cockpit</item>
+		<item name="type">group</item>
+		<item name="prio">20</item>
+	</group>
+
+	<group name="menu.cockpit.option">
+		<item name="menuparent">menu.cockpit</item>
+		<item name="type">group</item>
+		<item name="prio">30</item>
+	</group>
+
+	<group name="menu.cockpit.jpp">
+		<item name="menuparent">menu.cockpit</item>
+		<item name="type">group</item>
+		<item name="prio">40</item>
+	</group>
+
+	<group name="menu.cockpit.exit">
+		<item name="menuparent">menu.cockpit</item>
+		<item name="type">group</item>
+		<item name="prio">50</item>
+	</group>
+
+	<!-- View menu -->
+	<group name="menu.view">
+		<item name="menuparent">menuroot</item>
+		<item name="type">menu</item>
+		<item name="displayname">_View</item>
+		<item name="prio">301</item>
+	</group>
+
+	<group name="menu.view.modelernavigation">
+		<item name="menuparent">menu.view</item>
+		<item name="pagenames">ModelerPage</item>
+		<item name="type">group</item>
+		<item name="prio">10</item>
+	</group>
+
+	<group name="menu.view.modelerdisplay">
+		<item name="menuparent">menu.view</item>
+		<item name="pagenames">ModelerPage</item>
+		<item name="type">group</item>
+		<item name="prio">11</item>
+	</group>
+
+	<!-- Edit menu -->
+	<group name="menu.edit">
+		<item name="menuparent">menuroot</item>
+		<item name="type">menu</item>
+		<item name="displayname">_Edit</item>
+		<item name="prio">401</item>
+	</group>
+
+	<group name="menu.edit.undo">
+		<item name="menuparent">menu.edit</item>
+		<item name="type">group</item>
+		<item name="prio">10</item>
+	</group>
+
+	<group name="menu.edit.clipboard">
+		<item name="menuparent">menu.edit</item>
+		<item name="type">group</item>
+		<item name="prio">20</item>
+	</group>
+
+	<!-- Help menu -->
+	<group name="menu.help">
+		<item name="menuparent">menuroot</item>
+		<item name="type">menu</item>
+		<item name="displayname">_Help</item>
+		<item name="prio">1001</item>
+	</group>
+
+	<group name="menu.help.manual">
+		<item name="menuparent">menu.help</item>
+		<item name="type">group</item>
+		<item name="prio">1</item>
+	</group>
+
+	<group name="menu.help.reference">
+		<item name="menuparent">menu.help</item>
+		<item name="type">group</item>
+		<item name="prio">2</item>
+	</group>
+
+	<group name="menu.help.about">
+		<item name="menuparent">menu.help</item>
+		<item name="type">group</item>
+		<item name="prio">3</item>
+	</group>
+
+	<!-- Toolbars -->
+
+	<group name="toolbar.file">
+		<item name="toolbarparent">toolbarroot</item>
+		<item name="type">group</item>
+		<item name="prio">1</item>
+	</group>
+
+	<group name="toolbar.clipboard">
+		<item name="toolbarparent">toolbarroot</item>
+		<item name="type">group</item>
+		<item name="prio">101</item>
+	</group>
+
+	<group name="toolbar.undo">
+		<item name="toolbarparent">toolbarroot</item>
+		<item name="type">group</item>
+		<item name="prio">150</item>
+	</group>
+
+	<group name="toolbar.server">
+		<item name="toolbarparent">toolbarroot</item>
+		<item name="type">group</item>
+		<item name="prio">201</item>
+	</group>
+
+	<group name="toolbar.navigation">
+		<item name="toolbarparent">toolbarroot</item>
+		<item name="type">group</item>
+		<item name="prio">251</item>
+	</group>
+
+	<group name="toolbar.display">
+		<item name="toolbarparent">toolbarroot</item>
+		<item name="type">group</item>
+		<item name="prio">301</item>
+	</group>
+
+	<group name="toolbar.skin">
+		<item name="toolbarparent">toolbarroot</item>
+		<item name="type">group</item>
+		<item name="prio">351</item>
+	</group>
+
+	<group name="toolbar.zoom">
+		<item name="toolbarparent">toolbarroot</item>
+		<item name="type">group</item>
+		<item name="prio">352</item>
+	</group>
+
+	<group name="toolbar.options">
+		<item name="toolbarparent">toolbarroot</item>
+		<item name="type">group</item>
+		<item name="prio">401</item>
+	</group>
+
+	<group name="toolbar.jpp">
+		<item name="toolbarparent">toolbarroot</item>
+		<item name="type">group</item>
+		<item name="prio">501</item>
+	</group>
+
+</resource>

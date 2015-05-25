@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<process name="CronSchedulerTest" item-type="Process" type="TopLevel" skin-name="uml" node-geometry="origin:313:112|size:320:120">
+  <generator-info><![CDATA[
+<generator-settings generator-name="ProcessTopLevel"/>
+]]></generator-info>
+  <activity-node name="SetSignal">
+    <geometry>origin:295:606|size:160:60</geometry>
+    <socket name="In" entry="true" default="true">
+      <param name="SignalId" display-name="Signal id" type="String">
+        <expression>&quot;Counter&quot;</expression>
+      </param>
+      <param name="SignalValue" type="Object">
+        <expression>SignalValue + 1;</expression>
+      </param>
+      <geometry>angle:4.71238898038469</geometry>
+    </socket>
+    <socket name="Out" default="true">
+      <geometry>angle:1.5707963267948966</geometry>
+    </socket>
+    <activity-handler handler-class="org.openbp.server.test.activity.SetSignalActivity"/>
+  </activity-node>
+  <activity-node name="SetSignal2">
+    <geometry>origin:295:967|size:160:60</geometry>
+    <socket name="In" entry="true" default="true">
+      <param name="SignalId" type="String">
+        <expression>&quot;Signal 2&quot;</expression>
+      </param>
+      <param name="SignalValue" type="Object"/>
+      <geometry>angle:4.71238898038469</geometry>
+    </socket>
+    <socket name="Out" default="true">
+      <geometry>angle:1.5707963267948966</geometry>
+    </socket>
+    <activity-handler handler-class="org.openbp.server.test.activity.SetSignalActivity"/>
+  </activity-node>
+  <initial-node name="Start">
+    <geometry>origin:295:148|size:35</geometry>
+    <socket name="Out" default="true">
+      <geometry>angle:1.5707963267948966</geometry>
+    </socket>
+  </initial-node>
+  <activity-node name="WaitForSignal">
+    <geometry>origin:295:346|size:160:60</geometry>
+    <socket name="In" entry="true" default="true">
+      <param name="SignalId" display-name="Signal id" type="String">
+        <expression>&quot;Counter&quot;</expression>
+      </param>
+      <geometry>angle:4.71238898038469</geometry>
+    </socket>
+    <socket name="Out" default="true">
+      <param name="SignalValue" display-name="Signal value" type="Object" optional="true"/>
+      <geometry>angle:1.5707963267948966</geometry>
+    </socket>
+    <activity-handler handler-class="org.openbp.server.test.activity.WaitForSignalActivity"/>
+  </activity-node>
+  <wait-state-node name="WaitState" display-name="Wait state">
+    <geometry>origin:295:751|size:160:60</geometry>
+    <socket name="Continue" default="true">
+      <geometry>angle:1.5707963267948966</geometry>
+    </socket>
+    <socket name="In" entry="true" default="true">
+      <geometry>angle:4.71238898038469</geometry>
+    </socket>
+  </wait-state-node>
+  <workflow-end-node name="WorkflowEnd" display-name="Workflow end">
+    <geometry>origin:295:1131|size:35|nameangle:1.5707963267948966</geometry>
+    <socket name="In" entry="true" default="true">
+      <param name="WorkflowTask" display-name="Workflow task" type="WorkflowTask" optional="true" visible="false">
+        <description>Workflow task that identifies the current workflow group or null to end all workflows that run in the current workflow group</description>
+      </param>
+      <geometry>angle:4.71238898038469</geometry>
+    </socket>
+  </workflow-end-node>
+  <control-link name="ControlLink" source="Start.Out" target="WaitForSignal.In">
+    <geometry>points:1:295:188:295:220:295:262:295:293|label:0:0|factors:0.3:0.3</geometry>
+  </control-link>
+  <control-link name="ControlLink2" source="SetSignal.Out" target="WaitState.In">
+    <geometry>points:1:295:635:295:661:295:696:295:722|label:0:0|factors:0.3:0.3</geometry>
+  </control-link>
+  <control-link name="ControlLink3" source="WaitState.Continue" target="SetSignal2.In">
+    <geometry>points:1:295:802:295:828:295:864:295:890|label:0:0|factors:0.3:0.3</geometry>
+  </control-link>
+  <control-link name="ControlLink4" source="SetSignal2.Out" target="WorkflowEnd.In">
+    <geometry>points:1:295:996:295:1031:295:1079:295:1114|label:0:0|factors:0.3:0.3</geometry>
+  </control-link>
+  <control-link name="ControlLink5" source="WaitForSignal.Out" target="SetSignal.In">
+    <geometry>points:1:295:399:295:438:295:490:295:529|label:0:0|factors:0.3:0.3</geometry>
+  </control-link>
+  <data-link name="DataLink" source="WaitForSignal.Out.SignalValue" target="SetSignal.In.SignalValue">
+    <geometry>points:1:282:387:236:387:236:541:282:541|label:0:0|factors:0.3:0.3</geometry>
+  </data-link>
+</process>

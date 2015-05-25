@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<item-container><java-activity name="SetProcessVariableValue" display-name="Set process variable value" item-type="Activity" geometry="origin:313:112|size:160:60"><generator-info><![CDATA[
+<generator-settings generator-name="Activity"/>
+]]></generator-info><socket name="In" entry="true" default="true" geometry="angle:4.71238898038469"><param name="NewValue" display-name="New value" type="Object"/><param name="VariableName" display-name="Variable name" type="String"/></socket><socket name="Out" default="true" geometry="angle:1.5707963267948966"/><handler handler-class="org.openbp.server.test.activity.SetProcessVariableValueActivity"/></java-activity></item-container>

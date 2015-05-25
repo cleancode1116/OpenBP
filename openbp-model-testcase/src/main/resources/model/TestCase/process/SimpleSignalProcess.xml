@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<process name="SimpleSignalProcess" item-type="Process" type="TopLevel" skin-name="uml" node-geometry="size:320:120">
+  <generator-info><![CDATA[
+<generator-settings generator-name="ProcessTopLevel"/>
+]]></generator-info>
+  <final-node name="Out" display-name="Out">
+    <geometry>origin:277:479|size:35</geometry>
+    <socket name="In" entry="true" default="true">
+      <geometry>angle:4.71238898038469</geometry>
+    </socket>
+  </final-node>
+  <activity-node name="SetSignal">
+    <geometry>origin:277:308|size:160:60</geometry>
+    <socket name="In" entry="true" default="true">
+      <param name="SignalId" type="String"/>
+      <param name="SignalValue" type="Object"/>
+      <geometry>angle:4.71238898038469</geometry>
+    </socket>
+    <socket name="Out" default="true">
+      <geometry>angle:1.5707963267948966</geometry>
+    </socket>
+    <activity-handler handler-class="org.openbp.server.test.activity.SetSignalActivity"/>
+  </activity-node>
+  <initial-node name="Start">
+    <geometry>origin:277:77|size:35</geometry>
+    <socket name="Out" default="true">
+      <param name="SignalId" display-name="Signal id" type="String"/>
+      <param name="SignalValue" display-name="Signal value" type="Object" optional="true"/>
+      <geometry>angle:1.5707963267948966</geometry>
+    </socket>
+  </initial-node>
+  <control-link name="ControlLink" source="Start.Out" target="SetSignal.In">
+    <geometry>points:1:277:165:277:185:277:211:277:231|label:0:0|factors:0.3:0.3</geometry>
+  </control-link>
+  <control-link name="ControlLink2" source="SetSignal.Out" target="Out.In">
+    <geometry>points:1:277:337:277:375:277:425:277:462|label:0:0|factors:0.3:0.3</geometry>
+  </control-link>
+  <data-link name="DataLink" source="Start.Out.SignalValue" target="SetSignal.In.SignalValue">
+    <geometry>points:1:264:153:237:153:237:243:264:243|label:0:0|factors:0.3:0.3</geometry>
+  </data-link>
+  <data-link name="DataLink2" source="Start.Out.SignalId" target="SetSignal.In.SignalId">
+    <geometry>points:1:264:129:223:129:223:267:264:267|label:0:0|factors:0.3:0.3</geometry>
+  </data-link>
+</process>

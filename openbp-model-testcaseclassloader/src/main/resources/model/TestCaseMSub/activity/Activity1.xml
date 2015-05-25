@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<item-container>
+    <java-activity name="Activity1" item-type="Activity" geometry="size:160:60">
+        <generator-info><![CDATA[
+<generator-settings generator-name="Activity"/>
+]]></generator-info>
+        <socket name="In" entry="true" default="true" geometry="angle:4.71238898038469">
+            <param name="Param" type="String"/>
+        </socket>
+        <socket name="Out" default="true" geometry="angle:1.5707963267948966">
+            <param name="Result" type="Object"/>
+        </socket>
+        <handler handler-class="org.openbp.model.testcase.activity.Activity1"/>
+    </java-activity>
+</item-container>

@@ -1,0 +1,105 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>openbp</artifactId>
+		<groupId>org.openbp</groupId>
+		<version>0.9.8-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>openbp-cockpit-installer</artifactId>
+	<name>Cockpit Installer</name>
+
+	<description>Installer for the OpenBP Cockpit</description>
+
+	<build>
+		<plugins>
+			<!--
+				Copy the project contents relevant for runtime to the staging
+				directory
+			-->
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<configuration>
+					<descriptors>
+						<descriptor>src/main/assemble/OpenBP-Cockpit-Installer.maven-assembly.xml</descriptor>
+					</descriptors>
+					<appendAssemblyId>false</appendAssemblyId>
+					<finalName>staging</finalName>
+					<ignoreDirFormatExtensions>true</ignoreDirFormatExtensions>
+				</configuration>
+				<executions>
+					<execution>
+						<id>make-assembly</id>
+						<phase>package</phase>
+						<goals>
+							<goal>directory-single</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- Generate the installer jar from the staging directory -->
+			<plugin>
+				<groupId>org.codehaus.izpack</groupId>
+				<artifactId>izpack-maven-plugin</artifactId>
+				<version>1.0-alpha-5</version>
+
+				<configuration>
+					<izpackBasedir>${project.build.directory}/staging</izpackBasedir>
+					<kind>installer</kind>
+				</configuration>
+
+				<executions>
+					<execution>
+						<id>installer</id>
+						<phase>package</phase>
+						<goals>
+							<goal>izpack</goal>
+						</goals>
+						<configuration>
+							<descriptor>${basedir}/src/main/assemble/OpenBP-Cockpit-Installer.izpack.xml</descriptor>
+						</configuration>
+					</execution>
+
+					<!--
+						<execution> <id>web-installer</id> <phase>package</phase> <goals>
+						<goal>izpack</goal> </goals> <configuration>
+						<descriptor>${basedir}/izpack/install-web.xml</descriptor>
+						<kind>web</kind> </configuration> </execution>
+					-->
+				</executions>
+
+				<dependencies>
+					<dependency>
+						<groupId>org.codehaus.izpack</groupId>
+						<artifactId>izpack-standalone-compiler</artifactId>
+						<version>${izpack.standalone-compiler.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>xerces</groupId>
+						<artifactId>xercesImpl</artifactId>
+						<version>2.9.1</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+		</plugins>
+	</build>
+
+	<properties>
+		<app.group>${project.groupId}</app.group>
+		<app.title>${project.name}</app.title>
+		<app.subpath>${project.artifactId}-${project.parent.version}</app.subpath>
+		<app.version>${project.parent.version}</app.version>
+		<izpack.standalone-compiler.version>4.3.2</izpack.standalone-compiler.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.openbp</groupId>
+			<artifactId>openbp-cockpit</artifactId>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+	</dependencies>
+</project>

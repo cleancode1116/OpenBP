@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+   Copyright 2007 skynamics AG
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ -->
+
+
+<object-descriptor
+	name="ControlLink"
+	display-name="Control link"
+	object-class="org.openbp.core.model.item.process.ControlLink"
+	>
+	<description>A control link connects an exit socket of a node to an entry socket of (presumably another) node.
+This link resembles the flow of control in a process.</description>
+
+	<property name="Name"/>
+	<property name="DisplayName"/>
+	<property name="Description"/>
+
+	<property name="TransactionControlStr" display-name="Transaction control"
+		editor="SelectionEditor">
+		<editor-param>
+			selection="None|"
+			selection="Begin|begin"
+			selection="Commit|commit"
+			selection="Commit/Begin|commit-begin"
+			selection="Rollback|rollback"
+			selection="Rollback/Begin|rollback-begin"
+		</editor-param>
+		<description>Controls the current transaction.
+This property can be used to prevent outside access to processes.
+&lt;ul&gt;
+&lt;li&gt;None (default)
+No transaction control&lt;/li&gt;
+&lt;li&gt;Begin
+Begins a new transaction.&lt;/li&gt;
+&lt;li&gt;Commit
+The current transaction will be committed. This indicates also an auto-savepoint for the process in case of a 'suspend' request to the engine.&lt;/li&gt;
+&lt;li&gt;Rollback
+The current transaction will be rolled back. This mode applies for error transitions in the first line.&lt;/li&gt;
+&lt;li&gt;Commit/Begin
+The current transaction will be committed and a new transaction will be opened. &lt;/li&gt;
+&lt;li&gt;Rollback/Begin
+The current transaction will be rolled back and a new transaction will be opened. &lt;/li&gt;</description>
+	</property>
+
+	<property name="RollbackDataBehaviorStr" display-name="Rollback data behavior"
+		editor="SelectionEditor">
+		<editor-param>
+			selection="Update process variables|"
+			selection="Add new variables|add-variables"
+			selection="Restore process variables|restore-variables"
+		</editor-param>
+		<description>Determines the effect of a 'rollback' transition on the token context's process variables.
+&lt;ul&gt;
+
+&lt;li&gt;Update process variables
+Updates the process variables of the rolled-back context with the current values.
+&lt;/li&gt;
+
+&lt;li&gt;Add new variables
+Only adds process variables that are new to the process variables of the rolled-back context.
+&lt;/li&gt;
+
+&lt;li&gt;Restore process variables
+Restores all persistent process variables of the rolled-back token context. Non-persistent variables will be deleted from the context.
+&lt;/li&gt;
+
+&lt;/ul&gt;</description>
+	</property>
+
+	<property name="RollbackPositionBehaviorStr" display-name="Rollback position behavior"
+		editor="SelectionEditor">
+		<editor-param>
+			selection="Maintain current position|"
+			selection="Restore previous position|restore-position"
+		</editor-param>
+		<description>Determines the effect of a 'rollback' transition on the current position.
+&lt;ul&gt;
+
+&lt;li&gt;Maintain current position
+The position remains unchanged
+&lt;/li&gt;
+
+&lt;li&gt;Restore previous position
+The position of the token context will be restored to the position after the last commit.
+&lt;/li&gt;
+
+&lt;/ul&gt;</description>
+	</property>
+
+	<property name="TaggedValueList"/>
+
+</object-descriptor>

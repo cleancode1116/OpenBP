@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+   Copyright 2007 skynamics AG
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ -->
+
+<resource>
+	<item name="title">Process Image SVG Export</item>
+	<item name="description">Exports an SVG image of a process</item>
+	<item name="icon" type="image/multi">
+		<path>../images/imagegenerator.png</path>
+	</item>
+
+	<import container="cockpit" resource="standardoptions" />
+
+	<group name="export">
+		<item name="displayname">_Image Export ...</item>
+		<item name="description">Export an image of the process to a file</item>
+		<item name="prio">501</item>
+		<item name="icon" type="image/multi">
+			<path>../images/imagegenerator.png</path>
+		</item>
+	</group>
+
+	<!-- Options -->
+	<group name="imageexporter.imagetype">
+		<item name="displayname">Image file type</item>
+		<item name="heading">Image file extension</item>
+		<item name="description">Choose the type of image file to be generated</item>
+		<item name="optionparent">option.export</item>
+		<item name="prio" type="primitive/integer">12</item>
+
+		<group name="values">
+			<item name="svg">SVG</item>
+			<item name="png">PNG</item>
+			<item name="jpeg">JPEG</item>
+			<item name="tiff">TIFF</item>
+		</group>
+	</group>
+
+	<!-- Messages -->
+	<item name="messages.overwrite">File $0 exists. Overwrite?</item>
+	<item name="messages.exported">Process $0 has been exported to file $1.</item>
+	<item name="messages.error.export">Error exporting process $0 to file $1:
+{2}</item>
+
+</resource>

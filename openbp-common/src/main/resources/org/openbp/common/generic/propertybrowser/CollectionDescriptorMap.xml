@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+   Copyright 2007 skynamics AG
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ -->
+
+<!DOCTYPE mapping PUBLIC "-//EXOLAB/Castor Object Mapping DTD Version 1.0//EN"
+                         "http://castor.exolab.org/mapping.dtd">
+
+<mapping>
+
+	<class name="org.openbp.common.generic.propertybrowser.CollectionDescriptor">
+
+		<map-to xml="collection-descriptor"/>
+
+		<field name="TypeClassName"
+			type="string"
+			get-method="getTypeClassName"
+			set-method="setTypeClassName">
+			<bind-xml name="type-class" node="attribute"/>
+		</field>
+
+		<field name="AddEnabled"
+			type="boolean"
+			get-method="isAddEnabled"
+			set-method="setAddEnabled">
+			<bind-xml name="add-enabled" node="attribute"/>
+		</field>
+
+		<field name="DeleteEnabled"
+			type="boolean"
+			get-method="isDeleteEnabled"
+			set-method="setDeleteEnabled">
+			<bind-xml name="delete-enabled" node="attribute"/>
+		</field>
+
+		<field name="ReorderEnabled"
+			type="boolean"
+			get-method="isReorderEnabled"
+			set-method="setReorderEnabled">
+			<bind-xml name="reorder-enabled" node="attribute"/>
+		</field>
+
+	</class>
+
+</mapping>

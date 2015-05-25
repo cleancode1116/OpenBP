@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+   Copyright 2007 skynamics AG
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ -->
+
+
+<object-descriptor
+	name="Node"
+	display-name="Node"
+	object-class="org.openbp.core.model.item.process.Node"
+	>
+
+	<property name="Name"/>
+	<property name="DisplayName"/>
+	<property name="Description"/>
+
+	<property name="QueueType" display-name="Queue type"
+		editor="StringEditor">
+		<description>The queue type may be used to process different node or activity types by different engine instances (e. g. different servers). The queue type will be saved as attribute of the token context when the process reaches the node.</description>
+	</property>
+
+	<property name="EventHandlerDefinition" display-name="Event handler"
+		complex-property-type="org.openbp.core.handler.HandlerDefinition"
+		expanded="true">
+		<description>The event handler will be called on various occasions during processing of the node.
+For details, see the events defined in the HanderTypes class.</description>
+	</property>
+
+	<property name="TaggedValueList"/>
+
+</object-descriptor>

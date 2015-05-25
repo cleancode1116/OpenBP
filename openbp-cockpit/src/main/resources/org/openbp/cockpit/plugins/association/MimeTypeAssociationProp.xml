@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+   Copyright 2007 skynamics AG
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ -->
+
+
+<object-descriptor
+	name="Association"
+	object-class="org.openbp.cockpit.plugins.association.MimeTypeAssociation"
+	>
+	<description>Mime type program association.</description>
+
+	<property name="Name" display-name="Mime Type"
+		editor="StringEditor"
+		required="true">
+		<description>The mime type</description>
+	</property>
+
+	<property name="Description" display-name="Mime type description"
+		editor="StringEditor"
+		required="true">
+		<description>The description of the mime type.</description>
+	</property>
+
+	<property name="AssociatedProgram" display-name="Associated Program"
+		editor="PathEditor">
+		<editor-param>
+			title="Program Selection"
+			type="open"
+			filter="Executable Programs|*.exe"
+		</editor-param>
+		<description>The associated program to open the file with that mime type.</description>
+	</property>
+
+</object-descriptor>

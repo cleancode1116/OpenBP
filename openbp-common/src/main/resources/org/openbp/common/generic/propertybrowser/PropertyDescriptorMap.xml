@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+   Copyright 2007 skynamics AG
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ -->
+
+<!DOCTYPE mapping PUBLIC "-//EXOLAB/Castor Object Mapping DTD Version 1.0//EN"
+                         "http://castor.exolab.org/mapping.dtd">
+
+<mapping>
+
+	<class name="org.openbp.common.generic.propertybrowser.PropertyDescriptor"
+		extends="org.openbp.common.generic.description.DisplayObjectImpl">
+
+		<map-to xml="property"/>
+
+		<field name="Group"
+			type="string"
+			get-method="getGroup"
+			set-method="setGroup">
+			<bind-xml name="group" node="attribute"/>
+		</field>
+
+		<field name="Required"
+			type="boolean"
+			get-method="isRequired"
+			set-method="setRequired">
+			<bind-xml name="required" node="attribute"/>
+		</field>
+
+		<field name="ReadOnly"
+			type="boolean"
+			get-method="isReadOnly"
+			set-method="setReadOnly">
+			<bind-xml name="read-only" node="attribute"/>
+		</field>
+
+		<field name="Expanded"
+			type="boolean"
+			get-method="isExpanded"
+			set-method="setExpanded">
+			<bind-xml name="expanded" node="attribute"/>
+		</field>
+
+		<field name="ValidatorClassName"
+			type="string"
+			get-method="getValidatorClassName"
+			set-method="setValidatorClassName">
+			<bind-xml name="validator" node="attribute"/>
+		</field>
+
+		<field name="EditorClassName"
+			type="string"
+			get-method="getEditorClassName"
+			set-method="setEditorClassName">
+			<bind-xml name="editor" node="attribute"/>
+		</field>
+
+		<field name="EditorParamString"
+			type="string"
+			get-method="getEditorParamString"
+			set-method="setEditorParamString">
+			<bind-xml name="editor-param" node="element"/>
+		</field>
+
+		<field name="ComplexPropertyType"
+			type="string"
+			get-method="getComplexPropertyType"
+			set-method="setComplexPropertyType">
+			<bind-xml name="complex-property-type" node="attribute"/>
+		</field>
+
+		<field name="CollectionDescriptor"
+			type="org.openbp.common.generic.propertybrowser.CollectionDescriptor"
+			get-method="getCollectionDescriptor"
+			set-method="setCollectionDescriptor">
+			<bind-xml name="collection" node="element"/>
+		</field>
+
+	</class>
+
+</mapping>

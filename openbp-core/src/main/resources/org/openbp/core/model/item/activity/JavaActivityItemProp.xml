@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+   Copyright 2007 skynamics AG
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ -->
+
+
+<object-descriptor
+	name="JavaActivityItem"
+	display-name="Java Activity"
+	object-class="org.openbp.core.model.item.activity.JavaActivityItem"
+	validator="org.openbp.guiclient.objectvalidators.JavaActivityItemValidator"
+	>
+	<description>An activity is a building block of an OpenBP process.
+Activities can be used to invoke Java methods or web services or display user interface templates.
+A Java activity encapsulates a Java activity implementation class.</description>
+
+	<property name="Name" read-only="true"/>
+
+	<property name="DisplayName"/>
+	<property name="Description"/>
+
+	<property name="OwningModelQualifier" read-only="true"/>
+	<property name="FunctionalGroup"/>
+
+	<property name="HandlerDefinition" display-name="Handler"
+		complex-property-type="org.openbp.core.handler.HandlerDefinition"
+		expanded="true">
+		<description>Activity handler definition</description>
+	</property>
+
+	<property name="ImagePath"/>
+	<property name="ImageOnly"/>
+	<property name="ImageResize"/>
+
+	<property name="TaggedValueList"/>
+
+	<!-- <property name="ReadOnly"/> -->
+	<property name="CreatedBy"/>
+	<property name="MaintainedBy"/>
+
+</object-descriptor>

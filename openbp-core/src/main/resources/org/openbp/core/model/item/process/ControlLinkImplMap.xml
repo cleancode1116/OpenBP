@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+   Copyright 2007 skynamics AG
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ -->
+
+<!DOCTYPE mapping PUBLIC "-//EXOLAB/Castor Object Mapping DTD Version 1.0//EN"
+                         "http://castor.exolab.org/mapping.dtd">
+
+<mapping>
+
+	<class name="org.openbp.core.model.item.process.ControlLinkImpl"
+		extends="org.openbp.core.model.item.process.ProcessObjectImpl">
+
+		<map-to xml="control-link"/>
+
+		<field name="SourceSocketName"
+			type="string"
+			get-method="getSourceSocketName"
+			set-method="setSourceSocketName">
+			<bind-xml name="source" node="attribute"/>
+		</field>
+
+		<field name="TargetSocketName"
+			type="string"
+			get-method="getTargetSocketName"
+			set-method="setTargetSocketName">
+			<bind-xml name="target" node="attribute"/>
+		</field>
+
+		<field name="Geometry"
+			type="string"
+			get-method="getGeometry"
+			set-method="setGeometry">
+			<bind-xml name="geometry" node="element"/>
+		</field>
+
+		<field name="TransactionControl"
+			type="string"
+			get-method="getTransactionControlStr"
+			set-method="setTransactionControlStr">
+			<bind-xml name="transaction-control" node="attribute"/>
+		</field>
+
+		<field name="RollbackDataBehavior"
+			type="string"
+			get-method="getRollbackDataBehaviorStr"
+			set-method="setRollbackDataBehaviorStr">
+			<bind-xml name="rollback-data-behavior" node="attribute"/>
+		</field>
+
+		<field name="RollbackPositionBehavior"
+			type="string"
+			get-method="getRollbackPositionBehaviorStr"
+			set-method="setRollbackPositionBehaviorStr">
+			<bind-xml name="rollback-position-behavior" node="attribute"/>
+		</field>
+
+	</class>
+
+</mapping>

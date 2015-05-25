@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process name="SubProcess" item-type="Process" type="Subprocess"
+    skin-name="uml" node-geometry="origin:313:112|size:160:60">
+    <generator-info><![CDATA[
+<generator-settings generator-name="ProcessSubprocess"/>
+]]></generator-info>
+    <activity-node name="Activity1">
+        <geometry>origin:150:344|size:160:60</geometry>
+        <socket name="In" entry="true" default="true">
+            <param name="Param" type="String"/>
+            <geometry>angle:4.71238898038469</geometry>
+        </socket>
+        <socket name="Out" default="true">
+            <param name="Result" type="Object"/>
+            <geometry>angle:1.5707963267948966</geometry>
+        </socket>
+        <activity-handler handler-class="org.openbp.model.testcase.activity.Activity1"/>
+    </activity-node>
+    <initial-node name="In" socket-geometry="angle:4.71238898038469" default="true">
+        <geometry>origin:150:100|size:35</geometry>
+        <socket name="Out">
+            <param name="Param" type="String"/>
+            <geometry>angle:1.5707963267948966</geometry>
+        </socket>
+    </initial-node>
+    <final-node name="Out" socket-geometry="angle:1.5707963267948966">
+        <geometry>origin:150:600|size:35</geometry>
+        <socket name="In" entry="true">
+            <param name="Result" type="Object"/>
+            <geometry>angle:4.71238898038469</geometry>
+        </socket>
+    </final-node>
+    <control-link name="ControlLink" source="In.Out" target="Activity1.In">
+        <geometry>points:1:150:142:150:180:150:246:150:291|label:0:0|factors:0.3:0.3</geometry>
+    </control-link>
+    <control-link name="ControlLink2" source="Activity1.Out" target="Out.In">
+        <geometry>points:1:150:397:150:446:150:510:150:559|label:0:0|factors:0.3:0.3</geometry>
+    </control-link>
+    <data-link name="DataLink" source="In.Out.Param" target="Activity1.In.Param">
+        <geometry>points:1:137:130:92:130:85:303:137:303|label:0:0|factors:0.3:0.3</geometry>
+    </data-link>
+    <data-link name="DataLink2" source="Activity1.Out.Result" target="Out.In.Result">
+        <geometry>points:1:137:385:81:385:81:571:137:571|label:0:0|factors:0.3:0.3</geometry>
+    </data-link>
+</process>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+   Copyright 2007 skynamics AG
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ -->
+
+<item-container>
+  <complex-type name="WorkflowTask" display-name="Workflow task" item-type="Type" functional-group="Workflow" class-name="org.openbp.server.context.WorkflowTask" table-name="WorkflowTask" default-sort-order="#Priority,#DueTime,#TimeCreated,#DisplayName">
+    <description>A workflow task is a portion of work to perform by a particular user or role as part of a workflow process.\n\nA workflow task is created by a workflow node.\n\nThe workflow task refers to a process that will be executed (and usually defines the user interface page flow the user has to run through) when the user selects the workflow task for processing.\n\nA workflow task is assigned either to a particular user (i. e. only this user can process the workflow task) or to a role (indicating that any user fullfilling this role can process the workflow task).\n\nOptionally, the workflow task has a defined due time. If the due time expires (or if the workflow task is assigned to another user or cancelled), a status change will be triggered in the process that created the workflow task.</description>
+    <generator-info><![CDATA[
+<generator-settings generator-name="Type"/>
+]]></generator-info>
+    <member name="Id" display-name="Id" type="Integer" db-type="integer" primary-key="true">
+      <description>Primary key</description>
+    </member>
+    <member name="Name" display-name="Name" type="String" length="20" db-type="varchar">
+      <description>Name of the workflow task.\nThe name is actually the unique id of the task. WorkflowTask implements DisplayObject, so we chose to use the Name attribute instead of the Id attribute for this.</description>
+    </member>
+    <member name="DisplayName" display-name="Display name" type="String" length="200" db-type="varchar">
+      <description>Title of the workflow task.\nThe display name appears as task title in the worklist.\nThe display name should provide a short but functional information what this workflow task is about.\nIt will be listed in the workflow task user interface in order to aid the user in selecting a workflow task to process.</description>
+    </member>
+    <member name="Description" display-name="Description" type="String" db-type="longvarchar" ui-component-type="TextArea">
+      <description>A detailed description of this workflow task.</description>
+    </member>
+    <member name="StepName" display-name="Step name" type="String" length="40" db-type="varchar">
+      <description>System name of the workflow step that is about to be performed.\nThis name can be used to reference the step independent of the locale.\nThe display name should provide a short but functional information on the pending workflow step.\nIt might be listed in the workflow task user interface in order to aid the user in selecting a workflow task to process.</description>
+    </member>
+    <member name="StepDisplayName" display-name="Step display name" type="String" length="200" db-type="varchar">
+      <description>Title of the workflow step that is about to be performed.\nThis display name may also appear as task title in the worklist.\nThe display name should provide a short but functional information on the pending workflow step.\nIt might be listed in the workflow task user interface in order to aid the user in selecting a workflow task to process.</description>
+    </member>
+    <member name="StepDescription" display-name="Step description" type="String" db-type="longvarchar">
+      <description>Detailled description of the workflow step that is to be performed.\nThis description might be displayed in a dialog that appears if the user accepts the workflow.</description>
+    </member>
+    <member name="RoleId" display-name="Role" type="String" length="40" db-type="varchar">
+      <description>Id of the role this workflow task is assigned to (public worklist) or null</description>
+    </member>
+    <member name="UserId" display-name="User" type="String" length="40" db-type="varchar">
+      <description>Id of the user this workflow task is assigned to (private worklist) or null</description>
+    </member>
+    <member name="Permissions" display-name="Permissions" type="String" length="255" db-type="varchar" ui-component-type="TextArea">
+      <description>Permissions that apply for this workflow task.\nThe permissions specify what a user is allowed to do with the task. The permissions are being matched agains the permissions of the user or the role the user has.\n\nThe permissions string consists of arbitrary comma-separated entries. Standard permissions are:\n\n- execute\n- view\n- edit\n- delete\n- disable\n- enable\n- forward\n- reschedule</description>
+    </member>
+    <member name="TimeCreated" display-name="Creation time" type="Timestamp" db-type="timestamp">
+      <description>Time of creation of this workflow task.</description>
+    </member>
+    <member name="TimeAccepted" display-name="Accepting time" type="Timestamp" db-type="timestamp">
+      <description>Time of selection of this workflow task for processing.</description>
+    </member>
+    <member name="TimeCompleted" display-name="Completion time" type="Timestamp" db-type="timestamp">
+      <description>Time of completion of the workflow task.</description>
+    </member>
+    <member name="CreatingUserId" display-name="Creating user" type="String" length="40" db-type="varchar">
+      <description>Id of the user who created this task.</description>
+    </member>
+    <member name="AcceptingUserId" display-name="Accepting user" type="String" length="40" db-type="varchar">
+      <description>Id of the user who accepted this task.</description>
+    </member>
+    <member name="Priority" display-name="Priority" type="Integer" db-type="integer">
+      <description>Priority of this workflow task.\nThis can be any number. We recommend using values between 1 (highest) and 5 (lowest).\nBy default, the workflow task items will be sorted by due time and priority.</description>
+    </member>
+    <member name="DueTime" display-name="Due time" type="Timestamp" db-type="timestamp">
+      <description>Due time of this workflow task or null.</description>
+    </member>
+    <member name="Status" display-name="Status" type="Integer" db-type="integer" ui-component-type="SelectionField">
+      <description>Processing status of the workflow task.\n(see the constants of this class).</description>
+    </member>
+    <member name="TokenContext" display-name="Token context" type="Object" db-type="object">
+      <description>Token this workflow task refers to. Contains all process data that is necessary to resume the workflow.</description>
+    </member>
+  </complex-type>
+</item-container>

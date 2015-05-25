@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+   Copyright 2007 skynamics AG
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ -->
+
+<resource>
+	<item name="title">Option Manager</item>
+	<item name="description">Manages application options</item>
+	<item name="icon" type="image/multi">
+		<path>../../images/toolbar/file/option.png</path>
+	</item>
+
+	<import container="cockpit" resource="standardmenus" />
+
+	<group name="optionmanager.openoptiondialog">
+		<item name="menuparent">menu.cockpit.option</item>
+		<item name="toolbarparent">toolbar.options</item>
+		<item name="displayname">_Options...</item>
+		<item name="description">Open the option dialog</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/toolbar/file/option.png</path>
+		</item>
+		<item name="sequence">C-F2,C-w o,C-w C-o</item>
+	</group>
+
+	<item name="optiondialogtitle">Option Dialog</item>
+</resource>

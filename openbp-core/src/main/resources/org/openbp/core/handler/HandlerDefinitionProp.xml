@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+   Copyright 2007 skynamics AG
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ -->
+
+
+<object-descriptor
+	name="HandlerDefinition"
+	display-name="Handler definition"
+	object-class="org.openbp.core.handler.HandlerDefinition"
+	>
+	<description>Event handler definition</description>
+
+	<property name="HandlerClassName" display-name="Name of the implementation class"
+		expanded="true"
+		editor="SelectionEditor">
+		<editor-param>
+			listener="org.openbp.guiclient.objectvalidators.ClassNameSelectionEditorListener"
+			editable="true"
+			prefix="activity."
+			suffix="Activity"
+		</editor-param>
+		<description>Fully qualified name of the implementation class
+The class must implement the org.openbp.core.handler.Handler interface.</description>
+	</property>
+
+	<property name="Script" display-name="Bean shell script"
+		expanded="true"
+		editor="MultiLineStringEditor">
+		<description>Bean shell script as alternative to a Java handler implementation class
+The script will be executed if no handler class name has been specified.
+Use a script for short code snippets. For more complicated code pieces, define a handler class that you can debug in your IDE.</description>
+	</property>
+
+	<!-- TODO
+	<property name="ConfigurationClassName" display-name="Name of the configuration class"
+		expanded="true"
+		editor="StringEditor">
+		<description>Fully qualified name of the implementation class
+The class must implement the org.openbp.core.model.item.ConfigurationBean interface.</description>
+	</property>
+
+	<property name="HandlerConfiguration" display-name="Configuration"
+		complex-property-type="org.openbp.core.model.item.ConfigurationBean"
+		expanded="true">
+		<description>Handler configuration</description>
+	</property>
+	-->
+
+</object-descriptor>

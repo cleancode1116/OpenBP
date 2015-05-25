@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+   Copyright 2007 skynamics AG
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ -->
+
+<resource>
+
+	<item name="title">Undo/Redo</item>
+	<item name="description">Manages undo and redo actions.</item>
+	<item name="icon" type="image/multi">
+		<path>../../images/toolbar/edit/undo.png</path>
+	</item>
+
+	<import container="cockpit" resource="standardmenus" />
+	<import container="cockpit" resource="standardoptions" />
+
+	<!-- Actions -->
+	<group name="undo.undo">
+		<item name="menuparent">menu.edit.undo</item>
+		<item name="toolbarparent">toolbar.undo</item>
+		<item name="pagenames">ModelerPage</item>
+		<item name="displayname">_Undo</item>
+		<item name="description">Undo the last action</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/toolbar/edit/undo.png</path>
+		</item>
+		<item name="enabled">false</item>
+		<item name="prio" type="primitive/integer">1</item>
+		<item name="sequence">C-z</item>
+	</group>
+
+	<group name="undo.redo">
+		<item name="menuparent">menu.edit.undo</item>
+		<item name="toolbarparent">toolbar.undo</item>
+		<item name="pagenames">ModelerPage</item>
+		<item name="displayname">_Redo</item>
+		<item name="description">Redo the last undo action</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/toolbar/edit/redo.png</path>
+		</item>
+		<item name="enabled">false</item>
+		<item name="prio" type="primitive/integer">2</item>
+		<item name="sequence">C-y</item>
+	</group>
+
+	<!-- Options -->
+	<group name="undo.history">
+		<item name="optionparent">option.modeler</item>
+		<item name="displayname">Undo history</item>
+		<item name="heading">Undo history size</item>
+		<item name="description">Number of operations that can be undone</item>
+		<item name="prio" type="primitive/integer">20</item>
+	</group>
+
+</resource>

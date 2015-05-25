@@ -1,0 +1,59 @@
+<html>
+
+<head>
+<title>Method $packageQualifiedName</title>
+<link rel="stylesheet" href="$rootDir(main.css)" type="text/css">
+</head>
+
+<body>
+
+<h2><a name="$linkId"></a><img src="$rootDir(images/bullet.gif)" align="middle"> $name</h2>
+
+$include (deprecated.html)
+
+<p class="declaration">$declaration</p>
+
+<p>$summary</p>
+
+<p>$description</p>
+
+<p>$if (parameters (noHeader, template=tablemethod))</p>
+<p class="subsection">Parameters</p>
+<p>$insert</p>
+<p>$endif</p>
+
+<p>$if (returnValue)</p>
+<p class="subsection">Return value</p>
+<p>$insert</p>
+<p>$endif</p>
+
+<p>$if (exceptions (noHeader, template=tablemethod))</p>
+<p class="subsection">Exceptions</p>
+<p>$insert</p>
+<p>$endif</p>
+
+<p>$if (precondition)</p>
+<p class="subsection">Preconditions</p>
+<p>$insert</p>
+<p>$endif</p>
+
+<p>$if (postcondition)</p>
+<p class="subsection">Postconditions</p>
+<p>$insert</p>
+<p>$endif</p>
+
+<p>$if (seeList)</p>
+<p class="subsection">See also</p>
+<p>$insert</p>
+<p>$endif</p>
+
+<p>$if (example)</p>
+<p class="subsection">Example</p>
+<p>$insert</p>
+<p>$endif</p>
+
+$include (versionandauthor.html)
+
+<p>&nbsp;</p>
+</body>
+</html>

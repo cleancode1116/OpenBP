@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+   Copyright 2007 skynamics AG
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ -->
+
+<item-container>
+  <java-activity name="AssignMemberValues" display-name="Assign member values" item-type="Activity" functional-group="Miscelleanous" geometry="origin:313:112|size:158:40">
+    <description>Assigns multiple member values to a bean or arbitrary Java object.\n\nUse this activity as follows:\nOn the 'In' socket of the activity node, create a parameter for each member you want to assign.\nThe data type and name of the parameter must match the data type and name of the member you want to modify.\n\nIf the bean does not have the specified members, an error will be generated.\n\nIf you want to modify a single member value, see also the SetMemberValue activity.</description>
+    <generator-info><![CDATA[
+<generator-settings generator-name="Activity"/>
+]]></generator-info>
+    <socket name="In" entry="true" default="true" geometry="angle:4.71238898038469">
+      <param name="Bean" display-name="Bean" type="Object">
+        <description>The bean to be modified.</description>
+      </param>
+    </socket>
+    <socket name="Out" default="true" geometry="angle:1.5707963267948966">
+      <param name="Bean" display-name="Bean" type="Object">
+        <description>The resulting bean (identical to the argument bean; provided just for convenience).</description>
+      </param>
+    </socket>
+    <handler handler-class="org.openbp.model.system.misc.AssignMemberValuesHandler"/>
+  </java-activity>
+</item-container>

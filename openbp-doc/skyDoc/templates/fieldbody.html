@@ -1,0 +1,34 @@
+<html>
+
+<head>
+<title>Field $packageQualifiedName</title>
+<link rel="stylesheet" href="$rootDir(main.css)" type="text/css">
+</head>
+
+<body>
+
+<h1><a name="$linkId"></a><img src="$rootDir(images/bullet.gif)" align="middle"> $name</h1>
+
+$include (deprecated.html)
+
+<p class="declaration">$declaration</p>
+
+<p>$summary</p>
+
+<p>$description</p>
+
+<p>$if (seeList)</p>
+<p class="subsection">See also</p>
+<p>$insert</p>
+<p>$endif</p>
+
+<p>$if (example)</p>
+<p class="subsection">Example</p>
+<p>$insert</p>
+<p>$endif</p>
+
+$include (versionandauthor.html)
+
+<p>&nbsp;</p>
+</body>
+</html>

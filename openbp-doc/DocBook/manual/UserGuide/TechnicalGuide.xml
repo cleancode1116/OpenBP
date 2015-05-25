@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<book xml:id="TechnicalGuide"
+	version="5.0"
+	xmlns="http://docbook.org/ns/docbook"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+	xmlns:ns5="http://www.w3.org/2000/svg"
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:xi="http://www.w3.org/2001/XInclude"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<info>
+		<title>OpenBP Technical Guide</title>
+		<revhistory>
+			<revision>
+				<revnumber>0.1</revnumber>
+				<date>01.10.2009</date>
+				<authorinitials>heiko</authorinitials>
+				<revremark>created</revremark>
+			</revision>
+		</revhistory>
+		<releaseinfo>0.1</releaseinfo>
+		<xi:include href="../Common/InfoInclude.xml" xpointer="Info-ProductName"/>
+		<xi:include href="../Common/InfoInclude.xml" xpointer="Info-ProductNumber"/>
+		<xi:include href="../Common/InfoInclude.xml" xpointer="Info-MediaObject"/>
+		<xi:include href="../Common/InfoInclude.xml" xpointer="Info-Copyright"/>
+		<xi:include href="../Common/InfoInclude.xml" xpointer="Info-LegalNotice"/>
+		<xi:include href="../Common/InfoInclude.xml" xpointer="Info-PubDate"/>
+		<dc:dummy/>
+	</info>
+	<article xml:id="Technical-Main">
+		<chapter>
+			<title>Application Architecture</title>
+			<section>
+				<title>OpenBP Engine Invocation</title>
+				<para/>
+			</section>
+			<section>
+				<title>Providing an Application Spring Context to Activity Handlers</title>
+				<para/>
+			</section>
+		</chapter>
+		<chapter>
+			<title>Persistence Management</title>
+			<section>
+				<title>Hibernate Persistence Support</title>
+				<para/>
+			</section>
+			<section>
+				<title>Custom Implementations of the OpenBP Entities</title>
+				<para/>
+			</section>
+		</chapter>
+		<chapter>
+			<title>The Token Context</title>
+			<section>
+				<title>The Token Lifecycle</title>
+				<para/>
+			</section>
+			<section>
+				<title>Process Priority</title>
+				<para/>
+			</section>
+			<section>
+				<title>Progress Info</title>
+				<para/>
+			</section>
+			<section>
+				<title>Selecting Token Context Objects</title>
+				<para/>
+			</section>
+			<section>
+				<title>Token Context Serialization</title>
+				<para/>
+			</section>
+		</chapter>
+		<chapter>
+			<title>Concurrent Processes</title>
+			<section>
+				<title>Fork Node</title>
+				<para/>
+			</section>
+			<section>
+				<title>Join Node And Process Synchronization Options</title>
+				<para/>
+			</section>
+			<section>
+				<title>Workflow End Node</title>
+				<para/>
+			</section>
+		</chapter>
+		<chapter>
+			<title>Process Variables</title>
+			<section>
+				<title>Process Variable Scope</title>
+				<para/>
+			</section>
+			<section>
+				<title>Auto-Assignment</title>
+				<para/>
+			</section>
+			<section>
+				<title>Token Context Location</title>
+				<para/>
+			</section>
+			<section>
+				<title>Dynamic/Strict Mode</title>
+				<para/>
+			</section>
+		</chapter>
+		<chapter>
+			<title>Process Execution</title>
+			<section>
+				<title>The Process Engine Loop</title>
+				<para/>
+			</section>
+			<section>
+				<title>Execution Thread Handling</title>
+				<para/>
+			</section>
+			<section>
+				<title>The Execution Engine</title>
+				<para/>
+			</section>
+			<section>
+				<title>Engine Events</title>
+				<para/>
+			</section>
+			<section>
+				<title>The Session Registry</title>
+				<para/>
+			</section>
+			<section>
+				<title>Exception Handling</title>
+				<para/>
+			</section>
+		</chapter>
+		<chapter>
+			<title>Scheduler</title>
+			<section>
+				<title>Scheduler Concept and API</title>
+				<para/>
+			</section>
+			<section>
+				<title>Quartz Support</title>
+				<para/>
+			</section>
+		</chapter>
+		<chapter>
+			<title>Transaction Management</title>
+			<section>
+				<title>Transaction Control Types</title>
+				<para/>
+			</section>
+			<section>
+				<title>Configuring the Rollback Behaviour</title>
+				<para/>
+			</section>
+		</chapter>
+		<chapter>
+			<title>Handlers and Hooks</title>
+			<section>
+				<title>Handler Types</title>
+				<para/>
+			</section>
+			<section>
+				<title>Handler Instantiation and Thread-Safe Handlers</title>
+				<para/>
+			</section>
+			<section>
+				<title>Handler Invocation</title>
+				<section>
+					<title>Handler Context</title>
+					<para/>
+				</section>
+			</section>
+		</chapter>
+		<chapter>
+			<title>Supporting Workflows</title>
+			<section>
+				<title>Workflow Node</title>
+				<para/>
+			</section>
+			<section>
+				<title>The Worflow API</title>
+				<para/>
+			</section>
+			<section>
+				<title>User and Role Management</title>
+				<para/>
+			</section>
+		</chapter>
+		<chapter>
+			<title>OpenBP Models</title>
+			<section xml:id="Model-ComponentTypes">
+				<title>Component Types and Model Structure</title>
+				<para> For models that support a folder-oriented storage or components (i. e. class
+					path or file system based models), there is one separate model folder per model.
+					The properties of the model itself are defined by the model.xml file in the
+					model folder. </para>
+				<para> A model contains different types of components. Below the model folder, there
+					is one folder for each component type: </para>
+				<table>
+					<title>Component Types and Model Structure</title>
+					<tgroup cols="2">
+						<thead>
+							<row>
+								<entry>Folder</entry>
+								<entry>Folder</entry>
+							</row>
+						</thead>
+						<tbody>
+							<row>
+								<entry>model</entry>
+								<entry>Model base folder</entry>
+							</row>
+							<row>
+								<entry>----<varname>ModelName</varname></entry>
+								<entry>Model folder</entry>
+							</row>
+							<row>
+								<entry>--------model.xml</entry>
+								<entry>Model definition</entry>
+							</row>
+							<row>
+								<entry>--------process</entry>
+								<entry>Process folder</entry>
+							</row>
+							<row>
+								<entry>------------<varname>ProcessName</varname>.xml</entry>
+								<entry>Process definition</entry>
+							</row>
+							<row>
+								<entry>--------activity</entry>
+								<entry>Activity folder</entry>
+							</row>
+							<row>
+								<entry>------------<varname>ActivityName</varname>.xml</entry>
+								<entry>Activity definition</entry>
+							</row>
+							<row>
+								<entry>--------visual</entry>
+								<entry>Visual folder</entry>
+							</row>
+							<row>
+								<entry>------------<varname>VisualName</varname>.xml</entry>
+								<entry>Visual definition</entry>
+							</row>
+							<row>
+								<entry>--------type</entry>
+								<entry>Data type folder</entry>
+							</row>
+							<row>
+								<entry>------------<varname>TypeName</varname>.xml</entry>
+								<entry>Type definition</entry>
+							</row>
+							<row>
+								<entry>--------lib</entry>
+								<entry>Folder containing model-specific jar files</entry>
+							</row>
+							<row>
+								<entry>--------extlib</entry>
+								<entry>Folder containing model-specific 3rd party jar files</entry>
+							</row>
+							<row>
+								<entry>--------classes</entry>
+								<entry>Folder containing model-specific class files (during
+									development)</entry>
+							</row>
+							<row>
+								<entry>--------target/classes</entry>
+								<entry>Folder containing model-specific class files (during
+									development when using the maven build system)</entry>
+							</row>
+							<row>
+								<entry>--------src</entry>
+								<entry>Folder containing model-specific source files (during
+									development)</entry>
+							</row>
+							<row>
+								<entry>--------doc</entry>
+								<entry>Folder containing generated model documentation</entry>
+							</row>
+						</tbody>
+					</tgroup>
+				</table>
+			</section>
+			<section xml:id="Model-Hierarchy">
+				<title>Model Hierarchy and Component Overrides</title>
+				<para> When running a process, the executing model determines the model is the top
+					of the model hierarchy. The executing model can be specified using the
+					TokenContext.setExecutingModel method. When using the methods of the
+					ProcessFacade, the executing model is the model that owns the started process. </para>
+				<para> Example: </para>
+				<para> The model <literal>SampleApplication</literal> (which is the executing model
+					of the application) imports the <literal>OrderManagement</literal> model, that
+					contains standard functionality for the order processing domain. The
+						<literal>OrderManagement</literal> model includes a process named
+						<literal>ProcessOrder</literal>, which calls a sub process named
+						<literal>NotifyCRMSystem.</literal> This sub process is empty, since there
+					is no standard functionality for CRM support. However, the
+						<literal>SampleApplication</literal> should support a CRM system without
+					having to change the <literal>OrderManagement</literal> model. In order to
+					achieve this, the <literal>ProcessOrder</literal> process can be copied to the
+						<literal>SampleApplication</literal> model and adjusted accordingly. Since
+					the <literal>SampleApplication</literal> model is hierachically higher than the
+						<literal>OrderManagement</literal> model in the model hierarchy, the
+					ProcessOrder process of the <literal>SampleApplication</literal> model will have
+					precedence over the <literal>ProcessOrder</literal> process of the
+						<literal>OrderManagement</literal> model when running the application.
+				</para>
+			</section>
+			<section xml:id="Model-Managers">
+				<title>Model Managers</title>
+				<para> Model managers provide access to OpenBP models and their components. There
+					are different model managers for different types of repositories that can host
+					OpenBP models. </para>
+				<para> The model manager to be used for an application can be configured in the
+						<literal>OpenBP.spring.xml</literal> file by adjusting the
+						<literal>modelMgrBean</literal> bean definition. </para>
+				<para> OpenBP provides the following types of model managers. </para>
+				<section>
+					<title>File System Model Manager</title>
+					<para> The file system model manager loads models from directories in the file
+						system. It can also be used to create and update models. </para>
+					<para> The file system model manager is usually being used for development only.
+						For deployment scenarios, use the class path model manager or the database
+						model manager. </para>
+					<para> This is an excerpt from the OpenBP.spring.xml file that shows how to
+						configure the model manager: </para>
+					<para>
+						<programlisting>
+						<![CDATA[
+<!-- Model manager -->
+<bean id="modelMgrBean"
+	class="org.openbp.core.model.modelmgr.FileSystemModelMgr">
+</bean>
+						]]>
+						</programlisting>
+					</para>
+					<para> The file system model manager provides the following settings: </para>
+				</section>
+				<section>
+					<title>Class Path Model Manager</title>
+					<para/>
+				</section>
+				<section>
+					<title>Database Model Manager</title>
+					<para/>
+				</section>
+				<section>
+					<title>Multiplex Model Manager</title>
+					<para/>
+				</section>
+			</section>
+			<section xml:id="Model-SyncModelUtility">
+				<title>The SyncModel Utility</title>
+				<para/>
+			</section>
+			<section>
+				<title>Model Class Loading</title>
+				<para/>
+			</section>
+			<section>
+				<title>Design Time Attributes</title>
+				<para/>
+			</section>
+			<section>
+				<title>Tagged Values</title>
+				<para/>
+			</section>
+		</chapter>
+		<chapter>
+			<title>Using OpenBP For Pageflow Control</title>
+			<section>
+				<title>Visual Node</title>
+				<para/>
+			</section>
+			<section>
+				<title>Using the Node Socket's Sequence Id For Dynamic GUIs</title>
+				<para/>
+				<para>- Model Inspector</para>
+			</section>
+		</chapter>
+		<chapter>
+			<title>Initial Nodes</title>
+			<section>
+				<title>Entry Scope</title>
+				<para/>
+			</section>
+			<section>
+				<title>Role Specification</title>
+				<para/>
+			</section>
+			<section>
+				<title>Default Entry</title>
+				<para/>
+			</section>
+		</chapter>
+		<chapter>
+			<title>Jump Nodes</title>
+			<para/>
+		</chapter>
+		<chapter>
+			<title>Placeholder Elements</title>
+			<para/>
+		</chapter>
+		<chapter>
+			<title>Miscelleanous</title>
+			<section>
+				<title>Node Parameters</title>
+				<section>
+					<title>Parameter Expressions</title>
+					<para/>
+				</section>
+				<section>
+					<title>Node Parameter Visibility</title>
+					<para/>
+				</section>
+			</section>
+			<section>
+				<title>Bean Shell Interface</title>
+				<para/>
+			</section>
+			<section>
+				<title>Using Design and Runtime Attributes</title>
+				<para/>
+			</section>
+			<section>
+				<title>Data Links</title>
+				<section>
+					<title>Type Compatibility</title>
+					<para/>
+				</section>
+				<section>
+					<title>Auto-Conversion</title>
+					<para/>
+				</section>
+				<section>
+					<title>Accessing Source or Target Member Variables</title>
+					<para/>
+				</section>
+			</section>
+		</chapter>
+	</article>
+</book>

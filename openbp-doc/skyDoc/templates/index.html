@@ -1,0 +1,50 @@
+<html>
+
+<head>
+<title>Contents</title>
+<link rel="stylesheet" href="$rootDir(main.css)" type="text/css">
+</head>
+
+<body>
+
+<p>$if (defined (PRODUCTLOGO))</p>
+<p><img src="$rootDir($PRODUCTLOGO)"></p>
+<p>$endif</p>
+
+<p>$if (defined (PRODUCT))</p>
+<h1>$PRODUCT$+if (defined (PRODUCTVERSION)) V $PRODUCTVERSION$endif $if (defined (BUILDNO)) (build $BUILDNO)$endif</h1>
+<p>$endif</p>
+
+<p>$if (defined (INTRO))</p>
+
+<p>&nbsp;</p>
+<p>$INTRO</p>
+<p>$endif</p>
+
+<p>&nbsp;</p>
+
+<h2>Package index</h2>
+
+<p>$packageList (header0 = Package, sort)</p>
+
+<p>&nbsp;</p>
+
+<p>$if (defined (COMPANYLOGO) && defined (INDEXCOPYRIGHT))</p>
+<table border="0" cellpadding="0">
+  <tr>
+    <td><img src="$rootDir($COMPANYLOGO)"></td>
+    <td>$INDEXCOPYRIGHT</td>
+  </tr>
+</table>
+<p>$endif</p>
+
+<p>$if (defined (COMPANYLOGO) && ! defined (INDEXCOPYRIGHT))</p>
+<p><img src="$rootDir($COMPANYLOGO)"></p>
+<p>$endif</p>
+
+<p>$if (! defined (COMPANYLOGO) && defined (INDEXCOPYRIGHT))</p>
+<p>$INDEXCOPYRIGHT</p>
+<p>$endif</p>
+
+</body>
+</html>

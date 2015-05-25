@@ -1,0 +1,14 @@
+[OPTIONS]
+Compatibility=1.1 or later
+Compiled file=$HHProject ().chm
+Contents file=$HHContents ().hhc
+Default topic=$contentsFile
+Display compile progress=No
+Index file=$HHIndex ().hhk
+Title=$HHTitle
+
+[FILES]
+$HHFileList ()
+
+[INFOTYPES]
+

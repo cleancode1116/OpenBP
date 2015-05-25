@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<book xml:id="Overview"
+	version="5.0"
+	xmlns="http://docbook.org/ns/docbook"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+	xmlns:ns5="http://www.w3.org/2000/svg"
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:xi="http://www.w3.org/2003/XInclude"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<article xml:id="Overview-Main">
+		<title>Overview</title>
+		<section>
+			<title>Field of Application &amp; USPs</title>
+			<section>
+				<title>Business Application Challenges</title>
+				<para>Programming complex business applications in a regular programming language
+					such as Java has a few challenges regarding process execution:</para>
+				<itemizedlist>
+					<listitem>
+						<para><emphasis>State Management</emphasis></para>
+						<para>When your program needs to wait on a particular event (e. g. a user
+							entering some data, some external system responding to a request or some
+							computation to be completed), it will block memory and CPU resources
+							while waiting. Also, when somebody turns off the computer or the program
+							crashes, the state of the program will get lost resulting in an
+							uncompleted process.</para>
+						<para>In order to get this problem resolved, you need to use a persistence
+							mechanism (i. e. a database) to save the state of your program to and
+							you need to implement the logic that suspends and resumes your program
+							upon completion of the pending task. Usually, this complex logic becomes
+							rather application-specific, requiring additional maintenance and
+							extensive testing effort.</para>
+					</listitem>
+					<listitem>
+						<para><emphasis>Business Functionality Definition</emphasis></para>
+						<para>Java being an architecture-orientated language does not provide
+							functionality that is really suitable for business specialists to
+							describe business functionality. The business functionality (i. e. what
+							- from a business point of view - needs to be done with the objects that
+							are managed or processed by the program) often gets lost somewhere
+							between frameworks, architecture patterns and technical configuration.
+							Sometimes even smaller functional changes (e. g. adding an additional
+							workflow step such as a confirmation by a manager) can proof a complex
+							task.</para>
+					</listitem>
+				</itemizedlist>
+			</section>
+			<section xml:id="linktest1">
+				<title>Business Process, Workflow &amp; Co.</title>
+				<para>According to different requirements, processes within software applications
+					can be grouped in three categories:</para>
+				<itemizedlist>
+					<listitem>
+						<para><emphasis>Business Processes</emphasis></para>
+						<para>A business process is a rather high-level process that defines how
+							distributed systems interact in a heterogeneous environment. Business
+							processes can span across companies, systems and programming platforms
+							and languages. The focus of business process management is on enterprise
+							application integration and safety. Business process engines need to
+							integrate with middleware software and need to follow cross-platform
+							standards.</para>
+						<para>An example of a business process may be an order process that involves
+							an ERP system, a CRM system and various external partners providing
+							fulfillment and delivery services in a SOA environment.</para>
+					</listitem>
+					<listitem>
+						<para><emphasis>Workflow Process</emphasis></para>
+						<para>A workflow process defines the interaction of the different roles
+							within an organization in order to perform a business task. Though roles
+							can be fulfilled by persons as well as systems, workflows have an
+							organizational rather than a technical focus.</para>
+						<para>A typical workflow may determine how a vacation application needs to
+							be processed when running through a department.</para>
+					</listitem>
+					<listitem>
+						<para><emphasis>Application Process</emphasis></para>
+						<para>An application process is a process that defines how a particular
+							business functionality within an application is to be performed.</para>
+						<para>An example might be the steps that need to be performed by a
+							production machine in order to manufacture an item.</para>
+						<para>Though also in this type of process interaction with external systems
+							or roles may be required, the focus is on the business functionality
+							within the application, requiring an emphasis on performance and
+							integration with the Java environment.</para>
+					</listitem>
+				</itemizedlist>
+				<para><emphasis>Process engines</emphasis>are frameworks that take a process
+					definition in some formal language (usually XML-based) and execute it step by on
+					a set of data (the process context). The process definition is either written
+					manually or in some cases generated by a graphical process modeling tool.</para>
+			</section>
+			<section>
+				<title>What is OpenBP?</title>
+				<para>OpenBP is an open Java-based process and workflow platform. The platform
+					consists of a sophisticated graphical process modelling tool (the modeler) and a
+					process execution framework (the engine). The engine executes the XML-based
+					business process definitions that are created and edited in the modeller.</para>
+				<para>The OpenBP modeler allows the developer or business process specialist to
+					visually model business processes and workflows as flowchart or UML activity
+					diagrams using simple drag &amp; drop. The OpenBP Modeler is intended to be used
+					by software developers as well as process specialists and consultants.</para>
+			</section>
+			<section>
+				<title>What's Different To Other Process Engines?</title>
+				<para>OpenBP provides the following USPs as compared to other process
+					engines:</para>
+				<itemizedlist>
+					<listitem>
+						<para><emphasis>Lightweight application processes</emphasis></para>
+						<para>OpenBP is focused on application processes. Its goal is to bring
+							pragmatic and performant process support to any type of application, be
+							it administrative, technical or even real-time.</para>
+						<para>Pragmatic, fast and flexible approach for application processes</para>
+					</listitem>
+					<listitem>
+						<para><emphasis>Sophisticated graphical process modeling</emphasis></para>
+						<para>A sophisticated modeling tool enables comfortable process design,
+							supporting all features of the modeling language. There is <emphasis>no
+								need for manual editing of the process XML.</emphasis></para>
+						<para>Excellent tool support for business specialists as well as
+							developers.</para>
+					</listitem>
+					<listitem>
+						<para><emphasis>Extremely fast suspend &amp; resume</emphasis></para>
+						<para>As opposed to some other process engines that have a pretty complex
+							database footprint, OpenBP processes can be suspended to the database or
+							resumed extremely fast. In addition, the interaction of OpenBP with the
+							database is always transparent. There is no indeterminable 'magic'
+							behind the scenes.</para>
+						<para>Support for high-performance process execution</para>
+					</listitem>
+					<listitem>
+						<para><emphasis>Process debugger</emphasis></para>
+						<para>In OpenBP, the execution of a process can be traced in the graphical
+							modeling environment. Process debugging does not require debugging of
+							the process engine on the Java level. Even the process context data can
+							be viewed in the modeling tool, making process development a snap. In
+							some deployment scenarios, process definitions can be updated in the
+							modeling tool without even having to restart the running
+							application.</para>
+						<para>Process-level debugging aids developer productivity
+							considerably</para>
+					</listitem>
+					<listitem>
+						<para><emphasis>Hot Deployment</emphasis></para>
+						<para>OpenBP supports hot deployment, which eliminates the 'Build' and
+							'Deploy' step in your Development - Build - Deploy - Test cycle for the
+							logic realized as OpenBP process. Any change in a process can be
+							reflected instantaneous to the server that runs the OpenBP engine - in
+							most cases even while debugging the process.</para>
+						<para>Hot deployment saves a lot of time by eliminating the 'Build' and
+							'Deploy' steps for process logic</para>
+					</listitem>
+					<listitem>
+						<para><emphasis>Layered Modeling</emphasis></para>
+						<para>OpenBP supports different levels of interconnected models. For complex
+							scenarios, you may start modeling an abstract business process (that may
+							represent software-based elements as well as other activities) and drill
+							down to the level of the technical process that will finally be executed
+							by the process engine. Simply double-click a higher-level process
+							element and the lower-level process will open.</para>
+						<para>Layered modeling may help business and IT specialists communicate
+							better</para>
+					</listitem>
+					<listitem>
+						<para><emphasis>Use case flexibility</emphasis></para>
+						<para>OpenBP provides a flexible API that allows using the framework for
+							different use cases such as regular process execution, dynamic
+							construction of GUI pages, definition of object lifecycles (states and
+							transitions) etc.</para>
+						<para>All-purpose process engine</para>
+					</listitem>
+				</itemizedlist>
+				<para>OpenBP also provides integration and workflow features as far as needed for
+					application processes, but this is not the primary focus of the
+					framework.</para>
+			</section>
+		</section>
+		<section>
+			<title>Basic Concepts</title>
+			<section>
+				<title>Process Modeling and Process Execution</title>
+				<para>Similar to conventional software development, we differ between development
+					and runtime.</para>
+				<para>During development, you create a process model that defines how your business
+					processes should be executed. The visual development environment, the OpenBP
+					Modeler, will aid you in this process. The result is a series of XML
+					descriptions defining your process model. They are stored in a model repository,
+					which might be located in a file system directory, stored in a database or
+					contained within a jar file of the classpath.</para>
+				<para>At runtime, these XML files will be read from the repository by the process
+					engine. On request, the process engine will execute the process model step by
+					step.</para>
+			</section>
+			<section xml:id="ProcessLifecycle">
+				<title>The Process Lifecycle</title>
+				<para>TODO</para>
+			</section>
+			<section>
+				<title>Model Concept</title>
+				<para>OpenBP processes and supporting components are clustered in
+						<firstterm>models</firstterm>. A model can be seen as container that holds
+					objects that are semantically related.</para>
+				<para>For example, an application might contain a model
+						<literal>ErpExchange</literal> that hosts all processes that deal with
+					interfacing with an ERP system.</para>
+				<para>A model may refer other models (<firstterm>model import</firstterm>), defining
+					a hierarchy of models. Similar to Java packages, this allows for structuring an
+					application. It also supports specialization of a model (similar to Java
+					subclassing) by overriding a component of an included model in the including
+					model.</para>
+				<para>Models are stored in <firstterm>model repositories</firstterm>.</para>
+			</section>
+			<section>
+				<title>Model Components</title>
+				<para>
+					<informaltable>
+						<tgroup cols="2">
+							<thead>
+								<row>
+									<entry>Component</entry>
+									<entry>Description</entry>
+								</row>
+							</thead>
+							<tbody>
+								<row>
+									<entry>Process</entry>
+									<entry>An OpenBP process that can be executed by the process
+										engine.</entry>
+								</row>
+								<row>
+									<entry>Activity</entry>
+									<entry>A template representing an activity node (usually
+										refering to or containing a piece of code) that can be used
+										within a process.</entry>
+								</row>
+								<row>
+									<entry>Visual</entry>
+									<entry>A template representing a user interaction node that can
+										be used within a process.</entry>
+								</row>
+								<row>
+									<entry>Data Type</entry>
+									<entry>The (optional) definition of a data type that may be used
+										as process data.</entry>
+								</row>
+							</tbody>
+						</tgroup>
+					</informaltable>
+				</para>
+			</section>
+		</section>
+		<section>
+			<title>Getting Started</title>
+			<section>
+				<title>Setting Up the OpenBP Distribution</title>
+				<para>TODO</para>
+				<para>TODO: Copy OpenBP-user.properties to HOME dir</para>
+			</section>
+			<section>
+				<title>Installing the OpenBP Distribution</title>
+				<para>TODO</para>
+			</section>
+		</section>
+		<section>
+			<title>The OpenBP Modeler</title>
+			<section>
+				<title>Starting The Modeler</title>
+				<para>In order to start the modeler, choose the <literal>OpenBP Modeler</literal>
+					menu item in the <literal>OpenBP</literal> program group.</para>
+			</section>
+			<section>
+				<title>Initial Modeler Configuration</title>
+				<para>Select <guimenuitem>Cockpit|Options|Associations</guimenuitem> from the main
+					menu.</para>
+				<para>This tab page allows for specifying programs that will be used to display
+					certain types of documents. We recommend specifying viewers for the following
+					document types: <itemizedlist>
+						<listitem>
+							<para>text/plain: Generic text documents</para>
+						</listitem>
+						<listitem>
+							<para>text/x-source: Java source code</para>
+						</listitem>
+						<listitem>
+							<para>text/html: HTML documents (e. g. Javadoc)</para>
+						</listitem>
+						<listitem>
+							<para>application/pdf: PDF documents (e. g. manuals)</para>
+						</listitem>
+					</itemizedlist></para>
+			</section>
+			<section>
+				<title>The Modeler Windows</title>
+				<para>The modeler is divided into several windows:</para>
+				<para>
+					<mediaobject>
+						<imageobject role="fo">
+							<imagedata fileref="Screenshots/Modeler_Windows.png" scale="70"/>
+						</imageobject>
+					</mediaobject>
+					<itemizedlist>
+						<listitem>
+							<para>The <emphasis>Workspace</emphasis> shows the process that is
+								currently being editred. The modeler allows to edit multiple
+								processes at once. Each process is displayed in its own tab page.
+								You can switch between the tab pages by clicking on one of the tab
+								titles below the workspace window.</para>
+						</listitem>
+						<listitem>
+							<para>The <emphasis>Editor Toolbar</emphasis> provides the most
+								important editor functions and allows for adjusting the zoom level
+								and selection the presentation skin. Note that you may also change
+								the zoom level by <keycap>CTRL+Mouse Wheel</keycap> or
+									<keycap>CTRL+ALT+Mouse Movement</keycap>. </para>
+						</listitem>
+						<listitem>
+							<para>The <emphasis>Workspace</emphasis> displays a particular portion
+								of the current process.</para>
+						</listitem>
+						<listitem>
+							<para>The <emphasis>Miniview</emphasis> window displays the entire
+								process, providing an overview. The portion displayed by the
+								workspace appears as light-blue rectangle.</para>
+							<para>You may click into the miniview to position the workspace view or
+								you may drag a rectangle in the miniview to redefine the portion to
+								be displayed by the workspace.</para>
+							<para> In the <guimenuitem>Cockpit|Options|Modeler</guimenuitem> dialog,
+								you may choose how many processes are being displayed simultaneously
+								in the miniview window. </para>
+						</listitem>
+						<listitem>
+							<para>The <emphasis>Process Element Toolbox</emphasis> displays the
+								standard components you may add to the process. Drag a component
+								symbol from the component window to the workspace in order to create
+								a new process node.</para>
+						</listitem>
+						<listitem>
+							<para>The <emphasis>Component Browser</emphasis> lists all components
+								add to the process. Drag a component symbol from the component
+								window to the workspace in order to create a new process
+								node.</para>
+						</listitem>
+						<listitem>
+							<para>The <emphasis>Information Panel</emphasis> displays descriptive
+								text about the currently selected element. For example, the
+								information panel displays the display name and description of
+								process elements in the workspace as well as components in the
+								component browsers and also an help text for the currently selected
+								field in the property browser.</para>
+						</listitem>
+						<listitem>
+							<para>The <emphasis>Property Browser</emphasis> displays the properties
+								of the currently selected element (i. e. an element in the workspace
+								or a component in the component browser). The windows allows also
+								for editing the component's properties.</para>
+						</listitem>
+						<listitem>
+							<para>The <emphasis>Process Variable Browser.</emphasis> lists all
+								process variables of the current process.</para>
+							<para>You can create new process variables by dragging a data type of
+								the System unit from the component browser to the process variable
+								browser. Double-click an entry in order to view or edit its
+								properties.</para>
+						</listitem>
+						<listitem>
+							<para>The <emphasis>Debugger Context Inspector</emphasis> shows the
+								current data context of a running process. Double-click an entry of
+								the list to view any subordinate entries. Note that the inspector
+								does not support changing the values of a running process.</para>
+						</listitem>
+						<listitem>
+							<para>The <emphasis>Debugger Stack Trace Window</emphasis> shows the
+								'Stack Trace' of a process that has been called as sub
+								process.</para>
+						</listitem>
+						<listitem>
+							<para>The <emphasis>Color Palette</emphasis> allows assigning custom
+								colors to several process elements such as activity nodes or sub
+								process nodes.</para>
+							<para>Simply choose a color in the color picker and drag the color from
+								the preview field to the left of the dialog onto the
+								component.</para>
+						</listitem>
+					</itemizedlist>
+				</para>
+			</section>
+			<section>
+				<title>Customizing the Workspace</title>
+				<para>You can customize the modeler by changing window sizes or moving windows to
+					different locations.</para>
+				<para>For example, suppose you might want to have the miniview in a separate window
+					next to the workspace instead of having it hidden behind the process element
+					toolbox.</para>
+				<para>First, bring the miniview to the fron by clicking at the tab page labelled
+					'Miniview'. Then move the cursor over the title bar that displays 'Miniview' and
+					start dragging the title bar. You will notice light green rectangle sections and
+					circles popping up. In order to dock the miniview as a separate window next to
+					another window, drop it at the corresponding rectangle section. Drop it at a
+					circle to add the view as a tab page to window beneath the circle. </para>
+				<para>For practice, drop the miniview on the rectangular section to the right of the
+					workspace. </para>
+				<mediaobject>
+					<imageobject role="fo">
+						<imagedata fileref="Screenshots/Modeler_Customization1.png" scale="70"/>
+					</imageobject>
+				</mediaobject>
+				<para>The miniview will be docked to the right of the workspace. You may reduce the
+					width of the new miniview window in order to have more space available for the
+					workspace window by simply dragging the edge of the window. Now, the editor
+					should look like this: </para>
+				<mediaobject>
+					<imageobject role="fo">
+						<imagedata fileref="Screenshots/Modeler_Customization2.png" scale="70"/>
+					</imageobject>
+				</mediaobject>
+				<para>Note that these settings are not permanent. So if you accidentally might have
+					messed up yor workspace configuration, simply restart the OpenBP cockpit.
+				</para>
+			</section>
+			<xi:include href="../Common/ModelerKeyboardShortcuts.xml" xpointer="ModelerKeyboardShortcuts-Main"/>
+		</section>
+	</article>
+</book>

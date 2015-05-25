@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<parent>
+		<artifactId>openbp</artifactId>
+		<groupId>org.openbp</groupId>
+		<version>0.9.8-SNAPSHOT</version>
+	</parent>
+
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>openbp-cockpit</artifactId>
+	<name>openbp-cockpit</name>
+
+	<build>
+		<plugins>
+			<!-- Add all jar file dependencies to the manifest of the openbp-cockpit.jar -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>	
+		</plugins>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.openbp</groupId>
+			<artifactId>openbp-model-system</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.openbp</groupId>
+			<artifactId>openbp-common</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.openbp</groupId>
+			<artifactId>openbp-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.openbp</groupId>
+			<artifactId>openbp-common-template</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.openbp</groupId>
+			<artifactId>openbp-common-swing</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.jhotdraw</groupId>
+			<artifactId>jhotdraw</artifactId>
+			<version>5.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.openbp</groupId>
+			<artifactId>openbp-jaspira</artifactId>
+			<scope>compile</scope>
+		</dependency>
+	</dependencies>
+</project>

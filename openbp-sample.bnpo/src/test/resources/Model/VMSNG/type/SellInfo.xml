@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<item-container>
+    <complex-type name="SellInfo" item-type="Type">
+        <member name="Amount" type="Integer"/>
+        <member name="Comment" type="String" length="40"/>
+        <member name="Id" type="Integer"/>
+    </complex-type>
+</item-container>

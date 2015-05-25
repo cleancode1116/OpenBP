@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+   Copyright 2007 skynamics AG
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ -->
+
+<resource>
+	<item name="title">Modeler Options</item>
+	<item name="description">Manages options of the $(openbp.application.title) Modeler</item>
+	<item name="icon" type="image/multi">
+		<path>../../jaspira/images/plugin.png</path>
+	</item>
+
+	<import container="cockpit" resource="standardoptions" />
+
+	<!-- Options -->
+	<group name="editor.paramvaluewizard">
+		<item name="displayname">Parameter value wizard</item>
+		<item name="heading">Enabled</item>
+		<item name="description">Turn the parameter value wizard on or off</item>
+		<item name="optionparent">option.modeler</item>
+		<item name="prio" type="primitive/integer">10</item>
+	</group>
+
+	<group name="editor.autoconnector.controllink">
+		<item name="displayname">Control link autoconnector</item>
+		<item name="heading">Enabled</item>
+		<item name="description">Turn the control link autoconnector on or off</item>
+		<item name="optionparent">option.modeler</item>
+		<item name="prio" type="primitive/integer">11</item>
+	</group>
+
+	<group name="editor.autoconnector.datalink">
+		<item name="displayname">Data link autoconnector</item>
+		<item name="heading">Connect node parameters</item>
+		<item name="description">Adjust the operation mode of the data link autoconnector</item>
+		<item name="optionparent">option.modeler</item>
+		<item name="prio" type="primitive/integer">12</item>
+
+		<group name="values">
+			<item name="off">Never</item>
+			<item name="identical-names">having identical names and compatible types</item>
+			<item name="identical-types">having identical types</item>
+			<item name="compatible-types">having compatible types</item>
+			<item name="castable-types">having castable types</item>
+			<item name="convertible-types">having castable types, allowing primitive type/bean conversions</item>
+		</group>
+	</group>
+
+	<group name="editor.grid.display">
+		<item name="displayname">Grid display</item>
+		<item name="heading">Grid display enabled</item>
+		<item name="description">Turn the workspace grid on or off</item>
+		<item name="optionparent">option.modeler</item>
+		<item name="prio" type="primitive/integer">50</item>
+	</group>
+
+	<group name="editor.grid.type">
+		<item name="displayname">Grid type</item>
+		<item name="description">Type of the grid that is displayed in the workspace</item>
+		<item name="optionparent">option.modeler</item>
+		<item name="prio" type="primitive/integer">51</item>
+
+		<group name="values">
+			<item name="dots">Dotted grid</item>
+			<item name="lines">Orthogonal grid</item>
+			<item name="hexa">Hexaglon grid</item>
+		</group>
+	</group>
+
+	<group name="editor.shadow">
+		<item name="displayname">Object shadow</item>
+		<item name="description">Type of the shadow that appears under the figures in the modeler</item>
+		<item name="optionparent">option.modeler</item>
+		<item name="prio" type="primitive/integer">52</item>
+
+		<group name="values">
+			<item name="none">No Shadow</item>
+			<item name="parallel">Parallel shadow</item>
+			<item name="point">Point shadow</item>
+		</group>
+	</group>
+
+	<group name="editor.color.workspace">
+		<item name="displayname">Modeler workspace</item>
+		<item name="description">Background color of the modeler workspace</item>
+		<item name="optionparent">option.modeler</item>
+		<item name="prio" type="primitive/integer">62</item>
+	</group>
+
+</resource>

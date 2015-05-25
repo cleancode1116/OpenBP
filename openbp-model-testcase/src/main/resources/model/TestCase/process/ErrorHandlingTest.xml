@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<process name="ErrorHandlingTest" item-type="Process" type="TopLevel" skin-name="uml" node-geometry="size:320:120">
+  <generator-info><![CDATA[
+<generator-settings generator-name="ProcessTopLevel"/>
+]]></generator-info>
+  <final-node name="ErrorEnd">
+    <geometry>origin:552:563|size:35</geometry>
+    <socket name="In" entry="true" default="true">
+      <param name="r" type="Integer"/>
+      <geometry>angle:4.71238898038469</geometry>
+    </socket>
+  </final-node>
+  <activity-node name="ErrorGenerator">
+    <geometry>origin:278:272|size:160:60</geometry>
+    <socket name="Error">
+      <geometry>angle:6.283185307179586</geometry>
+    </socket>
+    <socket name="In" entry="true" default="true">
+      <geometry>angle:4.71238898038469</geometry>
+    </socket>
+    <socket name="Out" default="true">
+      <geometry>angle:1.5707963267948966</geometry>
+    </socket>
+    <activity-handler handler-class="org.openbp.server.test.activity.ErrorGeneratorActivity"/>
+  </activity-node>
+  <final-node name="Out" display-name="Out">
+    <geometry>origin:278:417|size:35</geometry>
+    <socket name="In" entry="true" default="true">
+      <geometry>angle:4.71238898038469</geometry>
+    </socket>
+  </final-node>
+  <activity-node name="SaveObject">
+    <geometry>origin:551:385|size:90:36</geometry>
+    <socket name="In" entry="true" default="true">
+      <param name="Object" type="Object">
+        <description>Object to save</description>
+      </param>
+      <geometry>angle:4.71238898038469</geometry>
+    </socket>
+    <socket name="Out" default="true">
+      <param name="Object" display-name="The saved object (usually the argument itself)" type="Object" visible="false"/>
+      <geometry>angle:1.5707963267948966</geometry>
+    </socket>
+    <activity-handler handler-class="org.openbp.model.system.activity.SaveObjectActivity"/>
+  </activity-node>
+  <initial-node name="Start">
+    <geometry>origin:278:89|size:35</geometry>
+    <socket name="Out" default="true">
+      <param name="ComplexParam" type="Object"/>
+      <geometry>angle:1.5707963267948966</geometry>
+    </socket>
+  </initial-node>
+  <control-link name="ControlLink" source="Start.Out" target="ErrorGenerator.In">
+    <geometry>points:1:278:153:278:173:278:216:278:243|label:0:0|factors:0.3:0.3</geometry>
+  </control-link>
+  <control-link name="ControlLink2" source="ErrorGenerator.Out" target="Out.In">
+    <geometry>points:1:278:301:278:331:278:370:278:400|label:0:0|factors:0.3:0.3</geometry>
+  </control-link>
+  <control-link name="ControlLink3" source="SaveObject.Out" target="ErrorEnd.In" transaction-control="commit">
+    <geometry>points:1:551:402:551:431:551:471:551:500|label:0:0|factors:0.3:0.3</geometry>
+  </control-link>
+  <control-link name="ControlLink4" source="ErrorGenerator.Error" target="SaveObject.In" transaction-control="rollback-begin">
+    <geometry>points:1:396:272:447:272:551:276:551:344|label:0:0|factors:0.3:0.4</geometry>
+  </control-link>
+  <data-link name="DataLink" source="Start.Out.ComplexParam" target="_globalObject"/>
+  <data-link name="DataLink2" source="_globalObject" target="ErrorEnd.In.r"/>
+  <data-link name="DataLink3" source="_globalObject" target="SaveObject.In.Object"/>
+  <process-variable name="globalObject" display-name="globalObject" type="Object" scope="subprocess" persistent="true"/>
+</process>

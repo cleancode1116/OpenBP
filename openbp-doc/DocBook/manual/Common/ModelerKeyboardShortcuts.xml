@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?oxygen RNGSchema="D:/Projects/DocBook/DocbookUtil/docbook-xml-5.0/rng/Customization.rnc" type="compact"?>
+<article version="5.0" xml:id="ModelerKeyboardShortcuts" xmlns="http://docbook.org/ns/docbook"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+	xmlns:ns5="http://www.w3.org/2000/svg" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xlink="http://www.w3.org/1999/xlink"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<info>
+		<title>OpenBP Modeler Keyboard Shortcuts</title>
+		<revhistory>
+			<revision>
+				<revnumber>0.1</revnumber>
+				<date>01.10.2009</date>
+				<authorinitials>heiko</authorinitials>
+				<revremark>created</revremark>
+			</revision>
+		</revhistory>
+		<releaseinfo xml:id="InfoReleaseInfo">0.1</releaseinfo>
+		<xi:include href="../Common/InfoInclude.xml" xpointer="Info-ProductName"/>
+		<xi:include href="../Common/InfoInclude.xml" xpointer="Info-ProductNumber"/>
+		<dc:dummy/>
+	</info>
+	<section xml:id="ModelerKeyboardShortcuts-Main">
+		<title>Modeler Keyboard Shortcuts</title>
+		<para>This section provides information about the keyboard shortcuts within the OpenBP Modeler that can help to make editing a lot quicker and easier.</para>
+		<section>
+			<title>Window Activation Shortcuts</title>
+			<para>Using one of the following shortcuts, you can activate a particualar
+				window, giving the focus to it and make it come to the front if is hidden by
+				another tab page. <informaltable frame="all">
+					<tgroup cols="2">
+						<colspec colname="c1" colnum="1"/>
+						<colspec colname="c2" colnum="2"/>
+						<thead>
+							<row>
+								<entry>Window</entry>
+								<entry>Keyboard Shortcut</entry>
+							</row>
+						</thead>
+						<tbody>
+							<row>
+								<entry>Component Browser</entry>
+								<entry>F2 | CTRL+w b</entry>
+							</row>
+							<row>
+								<entry>Modeler Workspace</entry>
+								<entry>ALT+F2 | CTRL+w m</entry>
+							</row>
+							<row>
+								<entry>Options...</entry>
+								<entry>CTRL+F2 | CTRL+w o</entry>
+							</row>
+							<row>
+								<entry>Miniview</entry>
+								<entry>F3 | CTRL+w v</entry>
+							</row>
+							<row>
+								<entry>Process Elements</entry>
+								<entry>SHIFT+F3 | CTRL+w s</entry>
+							</row>
+							<row>
+								<entry>Toolbox</entry>
+								<entry>CTRL+w t</entry>
+							</row>
+							<row>
+								<entry>Process variables</entry>
+								<entry>CTRL+F3 | CTRL+w g</entry>
+							</row>
+							<row>
+								<entry>Context Inspector</entry>
+								<entry>ALT+F3 | CTRL+w d</entry>
+							</row>
+							<row>
+								<entry>Stack Trace</entry>
+								<entry>CTRL+w k</entry>
+							</row>
+							<row>
+								<entry>Colors</entry>
+								<entry>CTRL+w l</entry>
+							</row>
+							<row>
+								<entry>Property Browser</entry>
+								<entry>CTRL+w e</entry>
+							</row>
+						</tbody>
+					</tgroup>
+				</informaltable></para>
+		</section>
+		<section>
+			<title>List Manipulation Shortcuts</title>
+			<para>You may use the following shortcuts to edit lists in browser windows, e.
+				g. the comonent browser, the property browser or the process variable
+				browser. <informaltable frame="all">
+					<tgroup cols="3">
+						<colspec colname="c1" colnum="1"/>
+						<colspec colname="c2" colnum="2"/>
+						<colspec colname="c3" colnum="3"/>
+						<thead>
+							<row>
+								<entry>Function</entry>
+								<entry>Keyboard Shortcut</entry>
+								<entry>Description</entry>
+							</row>
+						</thead>
+						<tbody>
+							<row>
+								<entry>Add Element</entry>
+								<entry>CTRL+n</entry>
+								<entry>Adds a new element to the end of the list</entry>
+							</row>
+							<row>
+								<entry>Copy Element</entry>
+								<entry>CTRL+c</entry>
+								<entry>Copies the selected element</entry>
+							</row>
+							<row>
+								<entry>Cut Element</entry>
+								<entry>CTRL+x</entry>
+								<entry>Cuts the selected element</entry>
+							</row>
+							<row>
+								<entry>Paste Element</entry>
+								<entry>CTRL+v</entry>
+								<entry>Pastes a copied element</entry>
+							</row>
+							<row>
+								<entry>Remove Element</entry>
+								<entry>DELETE</entry>
+								<entry>Removes the selected element (w/o confirmation!)</entry>
+							</row>
+							<row>
+								<entry>Move Element Up</entry>
+								<entry>CTRL+u</entry>
+								<entry>Moves the element upward in the list</entry>
+							</row>
+							<row>
+								<entry>Move Element Down</entry>
+								<entry>CTRL+d</entry>
+								<entry>Moves the element downward in the list</entry>
+							</row>
+						</tbody>
+					</tgroup>
+				</informaltable></para>
+		</section>
+		<section>
+			<title>Component Browser Shortcuts</title>
+			<para>In the component browser, you may use the folloiwng special shortcuts. </para>
+			<informaltable frame="all">
+				<tgroup cols="3">
+					<colspec colname="c1" colnum="1"/>
+					<colspec colname="c2" colnum="2"/>
+					<colspec colname="c3" colnum="3"/>
+					<thead>
+						<row>
+							<entry>Function</entry>
+							<entry>Keyboard Shortcut</entry>
+							<entry>Description</entry>
+						</row>
+					</thead>
+					<tbody>
+						<row>
+							<entry>Functional Groups</entry>
+							<entry>CTRL+g</entry>
+							<entry>Show or hide the functional groups of the
+								components</entry>
+						</row>
+						<row>
+							<entry>New...</entry>
+							<entry>CTRL+n</entry>
+							<entry>Create a new component or model</entry>
+						</row>
+						<row>
+							<entry>Remove</entry>
+							<entry>DELETE</entry>
+							<entry>Remove the selected component or model after confirmation</entry>
+						</row>
+					</tbody>
+				</tgroup>
+			</informaltable>
+		</section>
+		<section>
+			<title>Workspace Shortcuts</title>
+			<para>These shortcuts are very useful in the modeler workspace. <informaltable
+					frame="all">
+					<tgroup cols="3">
+						<colspec colname="c1" colnum="1"/>
+						<colspec colname="c2" colnum="2"/>
+						<colspec colname="c3" colnum="3"/>
+						<thead>
+							<row>
+								<entry>Function</entry>
+								<entry>Keyboard Shortcut</entry>
+								<entry>Description</entry>
+							</row>
+						</thead>
+						<tbody>
+							<row>
+								<entry>Save</entry>
+								<entry>CTRL+s</entry>
+								<entry>Save the edited process(es)</entry>
+							</row>
+							<row>
+								<entry>Select All</entry>
+								<entry>CTRL+a</entry>
+								<entry>Select all objects</entry>
+							</row>
+							<row>
+								<entry>Normalize Diagram</entry>
+								<entry>CTRL+m n</entry>
+								<entry>Normalize the origin of the diagram</entry>
+							</row>
+							<row>
+								<entry>Flip orientation</entry>
+								<entry>CTRL+f</entry>
+								<entry>Flip the orientation of a data link. The link will be
+									locked automatically to the new direction.</entry>
+							</row>
+							<row>
+								<entry>Control Anchors On/Off</entry>
+								<entry>CTRL+m a</entry>
+								<entry>Toggle the display of control link anchors</entry>
+							</row>
+							<row>
+								<entry>Control Links On/Off</entry>
+								<entry>CTRL+m c</entry>
+								<entry>Toggle the display of control links</entry>
+							</row>
+							<row>
+								<entry>Data Links On/Off</entry>
+								<entry>CTRL+m d</entry>
+								<entry>Toggle the display of data links</entry>
+							</row>
+							<row>
+								<entry>ModelerPage</entry>
+								<entry>CTRL+m g</entry>
+								<entry>Grid On/Off</entry>
+							</row>
+							<row>
+								<entry>Process Back</entry>
+								<entry>ALT+left</entry>
+								<entry>Goes backward in the process history</entry>
+							</row>
+							<row>
+								<entry>Process Forward</entry>
+								<entry>ALT+right</entry>
+								<entry>Goes forward in the process history</entry>
+							</row>
+							<row>
+								<entry>Undo</entry>
+								<entry>CTRL+z</entry>
+								<entry>Undo the last action</entry>
+							</row>
+							<row>
+								<entry>Redo</entry>
+								<entry>CTRL+y</entry>
+								<entry>Redo the last undo action</entry>
+							</row>
+							<row>
+								<entry>Server Reload</entry>
+								<entry>CTRL+r</entry>
+								<entry>Causes the server to reload any component classes and
+									mapping files. Use this function after rebuilding the
+									project in the Java IDE.</entry>
+							</row>
+						</tbody>
+					</tgroup>
+				</informaltable></para>
+		</section>
+		<section>
+			<title>Debugger Shortcuts</title>
+			<para>These shortcuts provide convenient debugger control when stepping through
+				a process. </para>
+			<informaltable frame="all">
+				<tgroup cols="3">
+					<colspec colname="c1" colnum="1"/>
+					<colspec colname="c2" colnum="2"/>
+					<colspec colname="c3" colnum="3"/>
+					<thead>
+						<row>
+							<entry>Function</entry>
+							<entry>Keyboard Shortcut</entry>
+							<entry>Description</entry>
+						</row>
+					</thead>
+					<tbody>
+						<row>
+							<entry>Toggle Breakpoints</entry>
+							<entry>F9</entry>
+							<entry>Toggle the breakpoints of the selected objects</entry>
+						</row>
+						<row>
+							<entry>Clear all Breakpoints</entry>
+							<entry>SHIFT+F9</entry>
+							<entry>Clear all breakpoints</entry>
+						</row>
+						<row>
+							<entry>Step Next</entry>
+							<entry>F5</entry>
+							<entry>Step to the next event</entry>
+						</row>
+						<row>
+							<entry>Step Into</entry>
+							<entry>SHIFT+F5</entry>
+							<entry>Step into a component</entry>
+						</row>
+						<row>
+							<entry>Step Over</entry>
+							<entry>F6</entry>
+							<entry>Step over a component</entry>
+						</row>
+						<row>
+							<entry>Step Out</entry>
+							<entry>F7</entry>
+							<entry>Step out of the current process</entry>
+						</row>
+						<row>
+							<entry>Continue</entry>
+							<entry>F8</entry>
+							<entry>Connects to a running intance of the OpenBP server or
+								resumes a halted process</entry>
+						</row>
+						<row>
+							<entry>Stop</entry>
+							<entry>SHIFT+F8</entry>
+							<entry>Terminate a halted process</entry>
+						</row>
+					</tbody>
+				</tgroup>
+			</informaltable>
+
+			<!-- Process instruction for page counter; must be placed in text on last page -->
+			<?end?>
+		</section>
+	</section>
+</article>

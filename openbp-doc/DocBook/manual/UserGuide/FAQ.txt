@@ -1,0 +1,9 @@
+
+            <section>
+                <title>Configuring the OpenBP Modeler</title>
+                <para>TODO</para>
+            </section>
+
+- Model refactoring:
+  - Move link
+  - Change data link orientation CTRL+f

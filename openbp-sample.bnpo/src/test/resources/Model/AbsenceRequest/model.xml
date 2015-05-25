@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model name="AbsenceRequest"
+    display-name="Absence request sample application" item-type="Model" default-package="com.mycompany.sample.absence">
+    <description>Application that demonstrates the features of
+        OpenBP.\nThis model hosts the main processes of the application.</description>
+</model>

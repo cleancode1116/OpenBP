@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+   Copyright 2007 skynamics AG
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ -->
+
+
+<object-descriptor
+	name="Skin"
+	display-name="Skin"
+	object-class="org.openbp.cockpit.modeler.skins.Skin"
+	validator="org.openbp.guiclient.objectvalidators.DisplayObjectValidator"
+	>
+	<description>A skins defines how elements of the process model should be presented in the workspace.
+It maintains a list of figure descriptors that describe how a particular figure (e. g. an initial node figure) should look like.</description>
+
+	<property name="Name"/>
+	<property name="DisplayName"/>
+	<property name="Description"/>
+
+	<property name="ResourceName" display-name="Resource name"
+		editor="StringEditor">
+		<description>Resource name</description>
+	</property>
+
+	<property name="ControlAnchorVisible" display-name="Control anchor visible"
+		editor="BooleanEditor">
+		<description>Flag if control anchors should be visible</description>
+	</property>
+
+	<property name="ControlLinkVisible" display-name="Control link visible"
+		editor="BooleanEditor">
+		<description>Flag if control links should be visible</description>
+	</property>
+
+	<property name="DataLinkVisible" display-name="Data link visible"
+		editor="BooleanEditor">
+		<description>Flag if data links should be visible</description>
+	</property>
+
+	<property name="NameDisplay" display-name="Name display"
+		editor="BooleanEditor">
+		<description>Flag if technical names should be displayed instead of display names</description>
+	</property>
+
+	<property name="DisableShadows" display-name="Disable shadows"
+		editor="BooleanEditor">
+		<description>Falg if shadows should be disabled</description>
+	</property>
+
+	<property name="DefaultSkin" display-name="Default skin"
+		editor="BooleanEditor">
+		<description>Default skin</description>
+	</property>
+
+	<property name="ParamTitleFormat" display-name="Param title format"
+		editor="StringEditor">
+		<description>Parameter title format</description>
+	</property>
+
+	<property name="SocketTitleFormat" display-name="Socket title format"
+		editor="StringEditor">
+		<description>Socket title format</description>
+	</property>
+
+	<property name="NodeTitleFormat" display-name="Node title format"
+		editor="StringEditor">
+		<description>Node title format</description>
+	</property>
+
+	<property name="FigureDescriptorList" display-name="Figure descriptor list"
+		editor="">
+		<description>List of figure descriptors</description>
+		<collection
+			type-class="org.openbp.cockpit.modeler.skins.XFigureDescriptor"
+			add-enabled="true"
+			delete-enabled="true"
+			reorder-enabled="true"/>
+	</property>
+
+	<property name="LinkDescriptorList" display-name="Link descriptor list"
+		editor="">
+		<description>List of link descriptors</description>
+		<collection
+			type-class="org.openbp.cockpit.modeler.skins.LinkDescriptor"
+			add-enabled="true"
+			delete-enabled="true"
+			reorder-enabled="true"/>
+	</property>
+
+</object-descriptor>

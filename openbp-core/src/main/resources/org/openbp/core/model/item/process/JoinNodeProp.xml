@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+   Copyright 2007 skynamics AG
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ -->
+
+
+<object-descriptor
+	name="JoinNodeImpl"
+	display-name="Join node"
+	object-class="org.openbp.core.model.item.process.JoinNodeImpl"
+	validator="org.openbp.guiclient.objectvalidators.ModelObjectValidator"
+	>
+	<description>A join node joins several incoming control flows.
+According to its type, it can perform different types of flow synchronization.
+If the join condition evaluates to true, the 'Out' exit will be chosen.
+otherwise, execution will continue with the 'Incomplete' exit or (if no such exit can be found) simply stop.</description>
+
+	<property name="Name"/>
+	<property name="DisplayName"/>
+	<property name="Description"/>
+
+	<property name="JoinType" display-name="Join type"
+		editor="SelectionEditor">
+		<editor-param>
+			selection="And|and"
+			selection="Or|or"
+		</editor-param>
+		<description>Type of the join:
+<ul>
+<li>And: Succeeds if all incoming tokens are present.</li>
+<li>Or: Succeeds if at least one incoming tokens is present, purging any other tokens that may be active in the context of this workflow.</li>
+</ul>
+</description>
+	</property>
+
+	<property name="EventHandlerDefinition"/>
+
+	<property name="ImagePath"/>
+	<property name="ImageOnly"/>
+	<property name="ImageResize"/>
+
+	<property name="TaggedValueList"/>
+
+</object-descriptor>

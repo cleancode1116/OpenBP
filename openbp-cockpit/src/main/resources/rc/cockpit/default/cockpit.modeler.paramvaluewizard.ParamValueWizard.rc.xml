@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+   Copyright 2007 skynamics AG
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ -->
+
+<resource cache="true">
+
+	<!-- Wizard pages -->
+	<group name="wizard">
+
+		<!-- Wizard selection page -->
+		<item name="title">Node wizard - Parameter values</item>
+
+		<item name="description">The parameter value wizard allows to specify constant values for the entry parameters of the node you have just created.
+If you do not wish to provide any values now, cancel the dialog by pressing ESC.
+You can supply values to a parameter at a later time using a data link (dynamic parameter value) or by editing the parameter expression in the property browser.</item>
+
+	</group>
+
+	<group name="wizard.page">
+
+		<!-- Generator result page -->
+		<item name="name">Parameter:</item>
+		<item name="required">(required)</item>
+
+		<item name="value.string">Text value</item>
+		<item name="value.integer">Numeric value</item>
+		<item name="value.boolean">Boolean value</item>
+
+	</group>
+
+	<group name="wizard.node-settings">
+		<item name="title">Node wizard - Settings</item>
+
+		<item name="description">The node you just created has various settings associated with it, which can be adjusted on this page.
+
+You can also adjust the settings at a later time by selecting the node and editing the settings in the property browser.</item>
+	</group>
+
+</resource>

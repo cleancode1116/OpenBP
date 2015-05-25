@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<!--
+   Copyright 2007 skynamics AG
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ -->
+<hibernate-configuration>
+  <session-factory>
+    <!-- ***** Database connection settings ***** -->
+    <!-- Settings for Oracle (any version) -->
+    <!-- property name="hibernate.connection.driver_class">oracle.jdbc.OracleDriver</property -->
+    <!-- property name="hibernate.connection.url">jdbc:oracle:thin:@10.3.3.202:1521:sdptest</property -->
+    <!-- property name="hibernate.connection.username">otest</property -->
+    <!-- property name="hibernate.connection.password">otest</property -->
+    <!-- Settings for Oracle (any version) -->
+    <!-- <property name="dialect">org.hibernate.dialect.Oracle9Dialect</property> -->
+    <!-- <property name="connection.username">sa</property> -->
+    <!-- <property name="connection.password"></property> -->
+    <!-- <property name="dialect">org.hibernate.dialect.Oracle9Dialect</property> -->
+    <!-- Settings for MySQL (any version) -->
+    <property name="dialect">org.hibernate.dialect.DerbyDialect</property>
+    <property name="hibernate.connection.driver_class">org.apache.derby.jdbc.EmbeddedDriver</property>
+    <property name="hibernate.connection.url">jdbc:derby:../openbp-derby/target/work/openbptestcase;create=true</property>
+    <!-- <property name="hibernate.connection.username">root</property> -->
+    <!-- ***** JDBC connection pool ***** -->
+    <property name="connection.pool_size">50</property>
+    <!-- ***** Transaction Management ***** -->
+    <property name="hibernate.transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</property>
+    <!-- Setting for stand alone mode -->
+    <!-- Application server transaction management -->
+    <!-- <property name="hibernate.transaction.factory_class">org.hibernate.transaction.JTATransactionFactory</property> -->
+    <!-- Setting for application server mode -->
+    <!-- <property name="hibernate.transaction.factory_class">org.hibernate.transaction.CMTTransactionFactory</property> -->
+    <!-- <property name="hibernate.transaction.manager_lookup_class">org.hibernate.transaction.JBossTransactionManagerLookup</property> -->
+    <!-- <property name="jta.UserTransaction">java:comp/UserTransaction</property> -->
+    <property name="current_session_context_class">thread</property>
+    <!-- Setting for stand alone mode -->
+    <!--property name="current_session_context_class">jta</property-->
+    <!-- Setting for application server mode -->
+    <!-- ***** Miscelleanous ***** -->
+    <!--
+		<property name="hibernate.jdbc.batch_size">40000</property>
+		-->
+    <property name="hibernate.cache.use_second_level_cache">false</property>
+    <!--
+		<property name="hibernate.cglib.use_reflection_optimizer">false</property>
+		-->
+    <property name="use_outer_join">true</property>
+    <!-- Drop and re-create the database schema on startup; Possible values: validate | update | create | create-drop -->
+    <!-- <property name="hbm2ddl.auto">create-drop</property> -->
+    <!-- ***** SQL Trace ***** -->
+    <property name="show_sql">true</property>
+    <property name="format_sql">true</property>
+    <property name="hibernate.use_sql_comments">true</property>
+    <property name="hibernate.generate_statistics">false</property>
+
+    <!-- ***** Application Mapping Files ***** -->
+    <mapping resource="com/mycompany/sample/absence/AbsenceData.hbm.xml"/>
+
+  </session-factory>
+</hibernate-configuration>

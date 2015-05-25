@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process name="BeanShellScriptTest" item-type="Process" type="TopLevel"
+    skin-name="uml" node-geometry="origin:313:112|size:320:120">
+    <generator-info><![CDATA[
+<generator-settings generator-name="ProcessTopLevel"/>
+]]></generator-info>
+    <activity-node name="Activity">
+        <geometry>origin:177:349|size:160:60</geometry>
+        <socket name="In" entry="true" default="true">
+            <param name="InputParam" type="Integer"/>
+            <geometry>angle:4.71238898038469</geometry>
+        </socket>
+        <socket name="Out" default="true">
+            <param name="OutputParam" type="Integer"/>
+            <geometry>angle:1.5707963267948966</geometry>
+        </socket>
+        <activity-handler>
+            <script>OutputParam = InputParam + _ExternalValue;</script>
+        </activity-handler>
+    </activity-node>
+    <final-node name="End">
+        <geometry>origin:177:536|size:35</geometry>
+        <socket name="In" entry="true" default="true">
+            <param name="OutputValue" type="Integer"/>
+            <geometry>angle:4.71238898038469</geometry>
+        </socket>
+    </final-node>
+    <initial-node name="Start">
+        <geometry>origin:177:166|size:35</geometry>
+        <socket name="Out" default="true">
+            <param name="InputValue" type="Integer"/>
+            <geometry>angle:1.5707963267948966</geometry>
+        </socket>
+    </initial-node>
+    <control-link name="ControlLink" source="Start.Out" target="Activity.In">
+        <geometry>points:1:177:230:177:250:177:276:177:296|label:0:0|factors:0.3:0.3</geometry>
+    </control-link>
+    <control-link name="ControlLink2" source="Activity.Out" target="End.In">
+        <geometry>points:1:177:402:177:423:177:452:177:473|label:0:0|factors:0.3:0.3</geometry>
+    </control-link>
+    <data-link name="DataLink" source="Start.Out.InputValue" target="Activity.In.InputParam">
+        <geometry>points:1:164:218:136:218:218:308:190:308|label:0:0|factors:0.3:0.3</geometry>
+    </data-link>
+    <data-link name="DataLink2" source="Activity.Out.OutputParam" target="End.In.OutputValue">
+        <geometry>points:1:164:390:134:390:220:485:190:485|label:0:0|factors:0.3:0.3</geometry>
+    </data-link>
+</process>

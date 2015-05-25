@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+   Copyright 2007 skynamics AG
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ -->
+
+<item-container>
+  <java-activity name="SetMapElement" display-name="Put element" item-type="Activity" functional-group="Map" geometry="origin:313:112|size:116:40">
+    <description>Stores an element in the map using the specified key.\nThe map can be given as input parameter to the activity. If no map is provided, the activity will create a new map object.\nIf the map previously contained a mapping for this key, the old element will be replaced. The return values is the value previously associated with the key or null if there was no such element.</description>
+    <generator-info><![CDATA[
+<generator-settings generator-name="Activity"/>
+]]></generator-info>
+    <socket name="In" entry="true" default="true" geometry="angle:4.71238898038469">
+      <param name="Map" display-name="Map" type="Map">
+        <description>Map to modify</description>
+      </param>
+      <param name="Element" display-name="Element" type="Object">
+        <description>Element to set to the map</description>
+      </param>
+      <param name="Key" display-name="Key" type="Object">
+        <description>Key of element to set to the map</description>
+      </param>
+    </socket>
+    <socket name="Out" default="true" geometry="angle:1.5707963267948966">
+      <param name="Map" display-name="Map" type="Map" visible="false">
+        <description>Map containing the new element</description>
+      </param>
+      <param name="Element" display-name="Element" type="Object" visible="false">
+        <description>If the map previously contained a mapping\nfor this key, the old element is replaced.\nReturn-parameter element contains previous value\nassociated with specified key, or null if there was\nno mapping for key.</description>
+      </param>
+    </socket>
+    <handler handler-class="org.openbp.model.system.map.SetMapElementHandler"/>
+  </java-activity>
+</item-container>

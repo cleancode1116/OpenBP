@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process name="BP" display-name="BP" item-type="Process" skin-name="uml" node-geometry="origin:313:112|size:160:60">
+    <initial-node name="In" display-name="In">
+        <geometry>origin:234:112|size:35</geometry>
+        <socket name="Out" default="true">
+            <geometry>angle:1.5707963267948966</geometry>
+        </socket>
+    </initial-node>
+    <final-node name="Out" display-name="Out">
+        <geometry>origin:236:593|size:35</geometry>
+        <socket name="In" entry="true" default="true">
+            <geometry>angle:4.71238898038469</geometry>
+        </socket>
+    </final-node>
+    <visual-node name="Visual" display-name="Visual">
+        <geometry>origin:233:268|size:160:60</geometry>
+        <socket name="In" entry="true" default="true">
+            <geometry>angle:4.71238898038469</geometry>
+        </socket>
+        <socket name="Out" default="true">
+            <geometry>angle:1.5707963267948966</geometry>
+        </socket>
+    </visual-node>
+    <visual-node name="Visual2" display-name="Visual">
+        <event-handler>
+            <script>InputParam = InputParam + 99;</script>
+        </event-handler>
+        <geometry>origin:234:462|size:160:60</geometry>
+        <socket name="In" entry="true" default="true">
+            <geometry>angle:4.71238898038469</geometry>
+        </socket>
+        <socket name="Out" default="true">
+            <geometry>angle:1.5707963267948966</geometry>
+        </socket>
+    </visual-node>
+    <control-link name="ControlLink" source="In.Out" target="Visual.In">
+        <geometry>points:1:234:130:234:163:233:206:233:239|label:0:0|factors:0.3:0.3</geometry>
+    </control-link>
+    <control-link name="ControlLink2" source="Visual.Out" target="Visual2.In">
+        <geometry>points:1:233:297:233:331:234:377:234:411|label:0:0|factors:0.3:0.3</geometry>
+    </control-link>
+    <control-link name="ControlLink3" source="Visual2.Out" target="Out.In">
+        <geometry>points:1:234:513:234:532:236:557:236:576|label:0:0|factors:0.3:0.3</geometry>
+    </control-link>
+</process>

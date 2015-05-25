@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<process name="ModelInspectorUtilTest" item-type="Process" type="TopLevel" skin-name="uml" node-geometry="size:320:120">
+  <description>Test case for the ModelInspectorUtil class</description>
+  <generator-info><![CDATA[
+<generator-settings generator-name="ProcessTopLevel"/>
+]]></generator-info>
+  <activity-node name="Activity">
+    <geometry>origin:233:257|size:160:60</geometry>
+    <socket name="In" entry="true" default="true">
+      <geometry>angle:4.71238898038469</geometry>
+    </socket>
+    <socket name="Out" default="true">
+      <geometry>angle:1.5707963267948966</geometry>
+    </socket>
+  </activity-node>
+  <activity-node name="Activity2">
+    <geometry>origin:233:410|size:160:60</geometry>
+    <socket name="In" entry="true" default="true">
+      <geometry>angle:4.71238898038469</geometry>
+    </socket>
+    <socket name="Out" default="true">
+      <geometry>angle:1.5707963267948966</geometry>
+    </socket>
+  </activity-node>
+  <initial-node name="Start">
+    <geometry>origin:233:124|size:35</geometry>
+    <socket name="Out" default="true">
+      <geometry>angle:1.5707963267948966</geometry>
+    </socket>
+  </initial-node>
+  <wait-state-node name="WaitState" display-name="Wait state">
+    <geometry>origin:233:550|size:160:60</geometry>
+    <socket name="In" entry="true" default="true">
+      <geometry>angle:4.71238898038469</geometry>
+    </socket>
+    <socket name="Out" default="true" sequence-id="2">
+      <geometry>angle:2.356194490192345</geometry>
+    </socket>
+    <socket name="Out2" sequence-id="1">
+      <geometry>angle:0.7853981633974483</geometry>
+    </socket>
+    <socket name="Out3">
+      <geometry>angle:0.0</geometry>
+    </socket>
+  </wait-state-node>
+  <wait-state-node name="WaitState2" display-name="Wait state">
+    <geometry>origin:130:710|size:160:60</geometry>
+    <socket name="In" entry="true" default="true">
+      <geometry>angle:4.71238898038469</geometry>
+    </socket>
+    <socket name="Out" default="true">
+      <geometry>angle:1.5707963267948966</geometry>
+    </socket>
+  </wait-state-node>
+  <wait-state-node name="WaitState3" display-name="Wait state">
+    <geometry>origin:350:711|size:160:60</geometry>
+    <socket name="In" entry="true" default="true">
+      <geometry>angle:4.71238898038469</geometry>
+    </socket>
+    <socket name="Out" default="true">
+      <geometry>angle:1.5707963267948966</geometry>
+    </socket>
+  </wait-state-node>
+  <control-link name="ControlLink" source="Start.Out" target="Activity.In">
+    <geometry>points:1:233:164:233:177:233:209:233:228|label:0:0|factors:0.3:0.3</geometry>
+  </control-link>
+  <control-link name="ControlLink2" source="Activity.Out" target="Activity2.In">
+    <geometry>points:1:233:286:233:308:233:353:233:381|label:0:0|factors:0.3:0.3</geometry>
+  </control-link>
+  <control-link name="ControlLink3" source="Activity2.Out" target="WaitState.In">
+    <geometry>points:1:233:439:233:457:233:496:233:521|label:0:0|factors:0.3:0.3</geometry>
+  </control-link>
+  <control-link name="ControlLink4" source="WaitState.Out" target="WaitState2.In">
+    <geometry>points:1:203:579:203:611:130:643:130:681|label:0:0|factors:0.3:0.3</geometry>
+  </control-link>
+  <control-link name="ControlLink5" source="WaitState.Out2" target="WaitState3.In">
+    <geometry>points:1:263:579:263:615:350:642:350:682|label:0:0|factors:0.3:0.3</geometry>
+  </control-link>
+</process>

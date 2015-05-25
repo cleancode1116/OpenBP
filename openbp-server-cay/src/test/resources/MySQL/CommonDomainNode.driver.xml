@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<driver project-version="3.0" class="org.gjt.mm.mysql.Driver">
+	<url value="jdbc:mysql://localhost/openbptestcase"/>
+	<connectionPool min="1" max="10"/>
+	<login userName="root" encoderClass="org.apache.cayenne.conf.PlainTextPasswordEncoder" passwordLocation="model" passwordSource="Not Applicable"/>
+</driver>

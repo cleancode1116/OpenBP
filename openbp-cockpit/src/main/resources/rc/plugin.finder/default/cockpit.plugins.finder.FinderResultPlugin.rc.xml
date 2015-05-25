@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+   Copyright 2007 skynamics AG
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ -->
+
+<resource>
+	<item name="title">Finder</item>
+	<item name="description">Search for references to a component</item>
+	<item name="icon" type="image/multi">
+		<path>../images/finder.png</path>
+	</item>
+
+	<item name="icon.finder.result" type="image/png">
+		<path>../../images/workspace/processnode16.png</path>
+	</item>
+
+	<item name="tree.column">References</item>
+	<item name="search.hits">{0} hits for $1</item>
+
+	<!-- Action -->
+	<group name="plugin.finderresult.refresh">
+		<item name="displayname">_Repeat search</item>
+		<item name="description">Repeat the search</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/toolbar/edit/reset.png</path>
+		</item>
+		<item name="prio" type="primitive/integer">40</item>
+	</group>
+
+	<group name="plugin.finderresult.delete">
+		<item name="displayname">_Clear</item>
+		<item name="description">Clear the reference list</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/toolbar/edit/delete.png</path>
+		</item>		
+		<item name="prio" type="primitive/integer">60</item>
+	</group>
+</resource>

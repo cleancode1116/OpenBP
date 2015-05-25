@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process name="ModelClassLoaderTest" item-type="Process" type="TopLevel"
+    skin-name="uml" node-geometry="size:320:120">
+    <generator-info><![CDATA[
+<generator-settings generator-name="ProcessTopLevel"/>
+]]></generator-info>
+    <activity-node name="Activity1">
+        <geometry>origin:238:273|size:160:60</geometry>
+        <socket name="In" entry="true" default="true">
+            <param name="Param" type="String">
+                <expression>&quot;Param M2&quot;</expression>
+            </param>
+            <geometry>angle:4.71238898038469</geometry>
+        </socket>
+        <socket name="Out" default="true">
+            <param name="Result" type="Object"/>
+            <geometry>angle:1.5707963267948966</geometry>
+        </socket>
+        <activity-handler handler-class="org.openbp.model.testcase.activity.Activity1"/>
+    </activity-node>
+    <final-node name="Out">
+        <geometry>origin:238:443|size:35</geometry>
+        <socket name="In" entry="true" default="true">
+            <param name="Result" type="Object"/>
+            <geometry>angle:4.71238898038469</geometry>
+        </socket>
+    </final-node>
+    <final-node name="Out2">
+        <geometry>origin:536:444|size:35</geometry>
+        <socket name="In" entry="true" default="true">
+            <param name="Result" type="Object"/>
+            <geometry>angle:4.71238898038469</geometry>
+        </socket>
+    </final-node>
+    <initial-node name="StartDirect">
+        <geometry>origin:238:122|size:35</geometry>
+        <socket name="Out" default="true">
+            <geometry>angle:1.5707963267948966</geometry>
+        </socket>
+    </initial-node>
+    <initial-node name="StartSubProcess">
+        <geometry>origin:536:118|size:35</geometry>
+        <socket name="Out" default="true">
+            <geometry>angle:1.5707963267948966</geometry>
+        </socket>
+    </initial-node>
+    <subprocess-node name="SubProcess" sub-process-name="SubProcess">
+        <geometry>origin:536:274|size:160:60</geometry>
+        <socket name="In" entry="true" default="true">
+            <param name="Param" type="String">
+                <expression>&quot;Param M2&quot;</expression>
+            </param>
+            <geometry>angle:4.71238898038469</geometry>
+        </socket>
+        <socket name="Out" default="true">
+            <param name="Result" type="Object"/>
+            <geometry>angle:1.5707963267948966</geometry>
+        </socket>
+    </subprocess-node>
+    <control-link name="ControlLink" source="StartDirect.Out" target="Activity1.In">
+        <geometry>points:1:238:162:238:179:238:203:238:220|label:0:0|factors:0.3:0.3</geometry>
+    </control-link>
+    <control-link name="ControlLink2" source="Activity1.Out" target="Out.In">
+        <geometry>points:1:238:326:238:349:238:379:238:402|label:0:0|factors:0.3:0.3</geometry>
+    </control-link>
+    <control-link name="ControlLink3" source="StartSubProcess.Out" target="SubProcess.In">
+        <geometry>points:1:536:158:536:170:536:202:536:221|label:0:0|factors:0.3:0.3</geometry>
+    </control-link>
+    <control-link name="ControlLink4" source="SubProcess.Out" target="Out2.In">
+        <geometry>points:1:536:327:536:350:536:380:536:403|label:0:0|factors:0.3:0.3</geometry>
+    </control-link>
+    <data-link name="DataLink" source="Activity1.Out.Result" target="Out.In.Result">
+        <geometry>points:1:225:314:195:314:195:414:225:414|label:0:0|factors:0.3:0.3|orientation:2:2</geometry>
+    </data-link>
+    <data-link name="DataLink2" source="SubProcess.Out.Result" target="Out2.In.Result">
+        <geometry>points:1:523:315:493:315:493:415:523:415|label:0:0|factors:0.3:0.3|orientation:2:2</geometry>
+    </data-link>
+</process>

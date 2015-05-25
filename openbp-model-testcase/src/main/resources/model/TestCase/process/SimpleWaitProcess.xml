@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process name="SimpleWaitProcess" item-type="Process" type="TopLevel"
+    skin-name="uml" node-geometry="size:320:120">
+    <generator-info><![CDATA[
+<generator-settings generator-name="ProcessTopLevel"/>
+]]></generator-info>
+    <final-node name="Out" display-name="Out">
+        <geometry>origin:278:413|size:35</geometry>
+        <socket name="In" entry="true" default="true">
+            <param name="SignalValue" display-name="Signal value" type="Object"/>
+            <geometry>angle:4.71238898038469</geometry>
+        </socket>
+    </final-node>
+    <initial-node name="Start">
+        <geometry>origin:277:77|size:35</geometry>
+        <socket name="Out" default="true">
+            <param name="SignalId" display-name="Signal id" type="String"/>
+            <geometry>angle:1.5707963267948966</geometry>
+        </socket>
+    </initial-node>
+    <activity-node name="WaitForSignal">
+        <geometry>origin:277:230|size:160:60</geometry>
+        <socket name="In" entry="true" default="true">
+            <param name="SignalId" display-name="Signal id" type="String"/>
+            <geometry>angle:4.71238898038469</geometry>
+        </socket>
+        <socket name="Out" default="true">
+            <param name="SignalValue" display-name="Signal value"
+                type="Object" optional="true"/>
+            <geometry>angle:1.5707963267948966</geometry>
+        </socket>
+        <activity-handler handler-class="org.openbp.server.test.activity.WaitForSignalActivity"/>
+    </activity-node>
+    <control-link name="ControlLink" source="Start.Out" target="WaitForSignal.In">
+        <geometry>points:1:277:141:277:145:277:166:277:177|label:0:0|factors:0.3:0.3</geometry>
+    </control-link>
+    <control-link name="ControlLink2" source="WaitForSignal.Out" target="Out.In">
+        <geometry>points:1:277:283:277:310:278:345:278:372|label:0:0|factors:0.3:0.3</geometry>
+    </control-link>
+    <data-link name="DataLink" source="Start.Out.SignalId" target="WaitForSignal.In.SignalId">
+        <geometry>points:1:264:129:250:129:310:189:290:189|label:0:0|factors:0.3:0.3</geometry>
+    </data-link>
+    <data-link name="DataLink2" source="WaitForSignal.Out.SignalValue" target="Out.In.SignalValue">
+        <geometry>points:1:264:271:229:271:326:384:291:384|label:0:0|factors:0.3:0.3</geometry>
+    </data-link>
+</process>

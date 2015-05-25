@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+
+<shortcuts>
+
+	<programGroup defaultName="OpenBP @AppVersion@" location="applications"/>
+
+	<shortcut
+		name="OpenBP Modeler"
+		programGroup="yes"
+		desktop="yes"
+		applications="no"
+		startMenu="yes"
+		startup="no"
+		target="@InstallPath@/bin/OpenBP-Cockpit.sh"
+		commandLine=""
+		workingDirectory="@InstallPath@" commandLine=""
+		iconFile="TODO"
+		iconIndex="0"
+		type="Application"
+		encoding="UTF-8"
+		terminal="true"
+		KdeSubstUID="false"
+		initialState="normal">   
+		createForAll="true"
+		Categories="Application;Development;"
+		description="Runs the OpenBP graphical modeling tool">
+		<createForPack name="OpenBP Cockpit"/>
+	</shortcut>
+
+	<shortcut
+		name="Uninstall OpenBP"
+		programGroup="yes"
+		desktop="no"
+		applications="no"
+		startMenu="no"
+		startup="no"
+		target="java"
+		commandLine="-jar &quot;@InstallPath@/Uninstaller/OpenBP-Uninstaller.jar&quot;"
+		initialState="noShow"
+		iconFile="trashcan_full"
+		iconIndex="0"
+		workingDirectory=""
+		type="Application"
+		encoding="UTF-8"
+		KdeSubstUID="true"
+		KdeUsername="root"
+		createForAll="false"
+
+		Categories="Application;Development;"
+
+		TryExec="java -jar &quot;@InstallPath@/Uninstaller/OpenBP-Uninstaller.jar&quot;"
+
+		description="Completely uninstalls OpenBP from your system">
+	</shortcut>
+
+</shortcuts>

@@ -1,0 +1,1868 @@
+
+********** OpenBP V 0.9.8-9051 - 05 Mar 2010 **********
+
+- Fixed: Cayenne beforeSave() not called in validateForSave()
+
+
+********** OpenBP V 0.9.8-9050 - 28 Feb 2010 **********
+
+- OpenBP User Guide
+  The file $OPENBP_HOME/OpenBP-UserGuide.pdf contains the OpenBP user guide including tutorial.
+  The last chapters are missing yet, however they will be added soon.
+  The project openbp-sample contains the sample code of the tutorial.
+
+- Maven distribution
+  The openbp-bin.zip distribution now also contains the POM file for each OpenBP jar file.
+  This should make it easy to deploy OpenBP into your local repository and to prevent version conflicts.
+
+- Performance improvement for BeanShell script engine
+  The instantiation of the BeanShell interpreter for evaluation of scripts (activity implementation, decision node script,
+  parameter scripts) has proofed to be expensive in respect to performance, caused by monitor locks within the class loader.
+  The ScriptEngineFactory now tracks a pool of created script engines. This improves the system performance considerably.
+  The engine now also checks for "java.lang.Boolean.FALSE" and "java.lang.Boolean.TRUE" as constant expressions,
+  which does not require a script engine invocation.
+
+- PersistentTokenContextService extension
+  The classes TokenContextCriteria and WorkflowTaskCriteria now support custom search criteria in order to search
+  These classes are used as arguments to the TokenContext.getContexts, and TokenContext.getworkflowTasks methods.
+  for custom fields that have been created in sub classes of the TokenContextImpl and WorkflowTaskImpl class.
+  This allows for search for additional information you provide to these classes without having to go down
+  to the level of the Hibernate session.
+
+- ! TokenContext method changes !
+  The TokenContext.beforeUpdate and TokenContext.beforeInsert methods have been combined to the TokenContext.beforeSave method.
+  Also the TokenContext.afterUpdate and TokenContext.afterInsert methods have been combined to the TokenContext.afterSave method.
+  Please change your custom TokenContext implmentations accordingly.
+
+- Cayenne interface
+  The access to CayenneTokenContext and CayenneWorkflowTask object has been optimized.
+  Accessing member objects does not have a direct effect on the database, preventing
+  bad performance and inconsistent data.
+
+- Entity lifecycle listeners
+  OpenBP's internal persistence service now supports lifecycle listeners for entity objects such as
+  the TokenContext or the WorkflowTask. This provides additional functionality for custom TokenContext
+  and WorkflowTask classes, e. g.
+  - providing environmental references to these classes on construction or after database loading,
+    e. g. a reference to the application's Spring context that can be used by handler implementations
+  - setting custom members of these classes from process variables before the entity is written to the database.
+    These members can be used in database searches e. g. when resuming a token context in a wait state after
+	an event has been received.
+  The OpenBP tutorial contains examples for both use cases.
+
+- Warning on non-existent model path
+  If the directory specified as model path or additional model path in the OpenBP-Cockpit.properties files
+  or as VM arguments does not exist, a warning will be issued.
+
+- Modeler: In place editor
+  When you click a selected node, socket or parameter, a small input field near the selected object will open
+  that allows directly editing the object's system name without having to select the property browser.
+  The in-place-editor can also be activated using ALT+ENTER.
+  After you have typed the new object name, simply press ENTER to close the field or click somewhere on the workspace.
+  If you click another object, the in-place-editor will stay open and will display the name of the clicked object.
+  To abort the editor, press ESC.
+
+- Modeler: Usability improvements
+  When hovering objects on the workspace, the cursor will now frequently change its shape in order to give
+  hints regarding the default mouse action (i. e. left-click) on the object under the cursor.
+  The status line will display a hint message regarding the action and possible modifiers (CTRL, ALT or SHIFT keys).
+
+- Modeler: Quick menu Improvement
+  Pressing SPACE in the workspace when the workspace has the focus will bring up the flywheel menu at the cursor position.
+  The flywheel menu shows all elements of the standard toolbox that can be inserted at the current position.
+  Now you can rotate the flywheel menu by moving the mouse wheel.
+  Simply select using the wheel and click to insert.
+  The flywheel menu will remember the recently inserted element and will suggest this element by default the next time
+  you open the flywheel menu. This allows for quickly inserting similar element types.
+ 
+- Modeler: Auto-suggest for display name
+  The text field for editing the display name of an object now provides a combo box button that reveals a drop down list
+  with a display name that is automatically generated from the system name.
+
+- Modeler: Auto-suggest for class names
+  The text field for editing the class names of activity nodes and data types now provides a combo box button that reveals a drop down list
+  with a class name that is automatically generated from the model's default package name and the system name of the current object.
+
+- Modeler: Copy from read-only cells in property browser
+  The property browser now supports copying text from a read-only cell.
+  This is useful e. g. when copying the name of a component (e. g. a process) that cannot be changed in the Modeler.
+
+- Modeler: Cut/copy/paste now appears in item right-click menu
+
+- Modeler: Degree specifications
+  The modeler will now write all geometry data concerning angles in degree instead of radians.
+  This results in smaller XML file sizes and better readability of the process XML.
+
+- Fixed: Data link occasionally crosses control link when loading a saved process
+  The data link layouting mechism has been improved.
+  You can change the orientation of a data link by selecting the data link and pressing CTRL+f.
+
+- Fixed: Custom TokenContext class does not work with Hibernate
+  Custom TokenContext classed (defined as class mapping in the OpenBP.spring.xml file) caused a Hibernate
+  exception in TokenContext queries of the PersistentTokenContext class.
+  This has been fixed.
+
+- Fixed: CayenneTokenContextImpl is always modified
+  The Cayenne vesion of the TokenContext was always marked as modified after is has been deserialized
+  from the database. The object will be modified only if its attribute values are really changed.
+
+- Fixed: Activity Output Parameter cannot be set from within Bean Shell Script
+  Output variables of an activity that was implemented using Bean Shell script have not been copied to the correspondent
+  activity node output parameters.
+
+- Fixed: When deleting a process that is currently displayed in the workspace, the workspace needs to be
+  closed after a confirmation.
+
+- Fixed: The modeler needs to prevent that the only socket of an initial or final node can be deleted.
+
+- Fixed: SHIFT+SPACE causes multi-line text field to be highlighted
+  Pressing SHIFT+SPACE caused the contents of a multi-line text field (e. g. for editing an object description or BeanShell script)
+  to be highlighted. This was rather disturbing becaused a subsequent key press caused the field to be erased.
+  SHIFT+SPACE is handled like a regular SPACE key.
+
+- Fixed: ClassCastException when using mouse wheel in Component Editor
+  java.lang.ClassCastException: org.openbp.cockpit.itemeditor.NodeItemEditorPlugin cannot be cast to org.openbp.cockpit.modeler.drawing.Trackable
+  when scrolling the mouse wheel when editing an activity in the component editor
+
+- Fixed: #BS2875
+  "Changes in the Component Editor of a workflow don't result un un-graying the save button,
+   as a work around one of the actions in the process has to be moved a bit to be able to save the process"
+  The state of the currently edited process is now displayed correctly as soon as the workspace gets the focus.
+
+- Fixed: Copying an existing process in the component browser deletes all nodes of the process
+
+- Fixed: Order of data members in member list is not maintained when saving a complex type in the component browser
+
+
+********** OpenBP V 0.9.8-9049 - 01 Nov 2009 **********
+
+- Improved installer
+  The installer program of the OpenBP Cockpit has been improved considerably:
+  - The default program location now contains the OpenBP version number (e. g. "C:\Program Files\OpenBP-Cockpit-0.9.8-SNAPSHOT",
+    which might help managing multiple OpenBP versions simultaneously.
+  - The installer now creates an uninstaller that removes the Cockpit from the computer again.
+  - The installer now creates an OpenBP program group containing the OpenBP Cockpit and the Uninstaller.
+  - Several GUI improvements
+
+- Fixed: OpenBP Cockpit plugin management
+  The OpenBP Cockpit now supports plugins that can be installed in the program directory of the OpenBP Cockpit.
+  In order to install a plugin, extract the contents of the plugin zip to the Cockpit installation directory 
+  (e. g. "C:\Program Files\OpenBP-Cockpit-0.9.8-SNAPSHOT"). Thus, the plugin files will be installed in the
+  'plugin' subdirectory.
+  An example for a plugin is the imageexport plugin, which will add a menu item to the right-click menu of
+  a process component in the component viewer that allows to export a PNG or SVG image of a process to a file.
+
+- New token lifecycle state 'Created'
+  When a token context is created, it will have the new LifecycleState.Created instead of LifecycleState.Suspended
+  in order to be able to distinguish new tokens from waiting tokens.
+  This change is compatible with currently persisted tokens.
+
+- XML pretty print
+  Enabling the 
+
+	# Pretty-print for any generated XML
+	openbp.XML.prettyPrint=true
+
+  option in the OpenBP-Cockpit.properties file (default for new installations!) will cause the OpenBP Cockpit to write
+  any XML files in a pretty-printed form, i. e. properly indented.
+  Note that due to the pretty print support, a series of spaces will be saved to the XML file using
+  the meta character '\s' instead of ' ' (except the first space) in order to separate spaces in comments
+  and descriptions from spaces generated by the XML pretty-printer.
+
+- XML encoding
+  The 
+
+	# Encoding for any generated XML (possible values: ISO-8859-1 or UTF-8, default: UTF-8)
+	#openbp.XML.encoding=ISO-8859-1
+
+  option in the OpenBP-Cockpit.properties file allows to specify the type of XML coding for any XML files
+  generated by the OpenBP Cockpit (default: UTF-8).
+
+  This also fixes issue #BS7276.
+
+- Fixed: #BS8479
+  In rare cases, the number of currently executing Token Contexts (EngineRunner.getNumberOfExecutingContexts())
+  could have been incorrect.
+
+- Logging Performance improvement (#BS8465)
+  Logger instances are now cached by OpenBP, which results in much better performance in environments that use
+  JNDI for Log4J repository management.
+
+- Empty properties of ProcessJobDescriptor in SchedulerEngineEvent
+  Some properties of the processJobDescription object of an SchedulerEngineEvent object
+  have not been set correctly.
+
+- Thread pool thread naming
+  If a context is executed by the execution thread pool and the process variable _ThreadName
+  has a value not equal to null, the thread will be renamed to
+	"Context execution (" + threadName + ")"
+  for the time of the context execution.
+  This allows for better tracing of executions in the Java debugger.
+
+- Class loader support
+  OpenBP now supports loading activity classes from jar files placed in the 'model/<modelName>/lib'
+  and 'model/<modelName>/extlib' directories for file system-based models.
+
+- Model redefinition check
+  When using different types of model managers in an OpenBP configuration, OpenBP now checks if a
+  particular model has already been loaded by another model manager. If yes, an error message is written to standard error such as
+	"Error registering model 'TestCaseM1' in model manager 'org.openbp.core.model.modelmgr.ClassPathModelMgr': Model '/TestCaseM1' already loaded by model manager 'org.openbp.core.model.modelmgr.FileSystemModelMgr'."
+
+
+********** OpenBP V 0.9.8-9047 - 02 Mar 2009 **********
+
+- performRollback Method
+  Due to additional rollback options, the semantic of the performRollback mechanism has changed.
+  This feature is not performed by a single method any more, instead a helper class is being used.
+  The StandardRollbackProcessor class provides the performRollback method that will process the
+  actual rollback operation. It operation modes are defined by the attributes
+	rollbackDataBehavior				Rollback data behavior
+	rollbackPositionBehavior			Rollback position behavior
+	commitTokenContextChangesEnabled	Commit after update flag
+  if the commitTokenContextChangesEnabled flag has been set to false, no commit will be performed
+  after the operation. This is matter of the calling method then.
+  The argument of the performRollback method defines the token context and the engine to use
+  for the operation. The HandlerContext as well as sub classes of the EngineEvent class
+  implment this interface.
+  So, in a handler implementation, you might call for example:
+
+	public boolean execute(HandlerContext hc)
+		throws Exception
+	{
+		...
+		StandardRollbackProcessor rollbackProcessor = new StandardRollbackProcessor();
+		rollbackProcessor.setRollbackDataBehavior(rollbackDataBehavior);
+		rollbackProcessor.setRollbackPositionBehavior(rollbackPositionBehavior);
+		rollbackProcessor.performRollback(hc);
+		...
+	}
+
+  In an event handler, you might use:
+
+	public void observeEvent(ObserverEvent e)
+	{
+		EngineExceptionHandlerEvent ee = (EngineExceptionHandlerEvent) e;
+
+		// Perform rollback
+		StandardRollbackProcessor rollbackProcessor = new StandardRollbackProcessor();
+		rollbackProcessor.setRollbackDataBehavior(RollbackDataBehavior.RESTORE_VARIABLES);
+		rollbackProcessor.setRollbackPositionBehavior(RollbackPositionBehavior.MAINTAIN_POSITION);
+		rollbackProcessor.commitTokenContextChangesEnabled(false);
+		rollbackProcessor.performRollback(ee);
+
+		// Continue at the error socket of the current node
+		ee.setHandlingOption(EngineExceptionHandlerEvent.HANDLING_OPTION_ERROR_SOCKET);
+
+		ee.skipSubsequentObservers();
+	}
+
+
+********** OpenBP V 0.9.8-9046 - 02 Mar 2009 **********
+
+- Dynamic creation of process variables
+  A process variable can be created dynamically using the method
+  TokenContext.createProcessVariable
+
+- Stricter behaviour of the process variable access
+  An attempt to a access process variables that has not been defined in the OpenBP Modeler or not been created using the
+  TokenContext.createProcessVariable method by using the methods
+    TokenContext.setProcessVariableValue
+  will result in an exception.
+  If the system property 
+    openbp.processVariableHandling.strict=true
+  has been set in the OpenBP-Server.properties file, using the method
+    TokenContext.getProcessVariableValue
+  on an undefined process variable will also result in an exception.
+
+- New template method boolean isFatalException(Throwable t)
+  This template method can be used to inform the engine that an exception is to be considered fatal.
+  If a fatal exception occurs when executing a process, the engine will not try to perform
+  a rollback or to persist the process state when terminating the process execution.
+  A typical example would be an out of memory error or a lost connection to the database.
+  The default implementation of this method will always return false.
+
+- TokenContext serialization data change
+  There has been a change in the format of the serialized token context data.
+  However, the server will still be able to load old serialization data formats.
+  A test case (SubProcessTest) that ensures the compatibility between the formats has been created.
+
+- TokenContext method consolidation
+  The following methods of the TokenContext are to be considered convenience methods and thus
+  have been moved to the TokenContextUtil class:
+
+	public boolean hasParamValue(Param param);
+	public boolean hasParamValue(NodeSocket socket, String paramName);
+	public Object getParamValue(Param param);
+	public Object getParamValue(NodeSocket socket, String paramName);
+	public void setParamValue(Param param, Object value);
+	public void setParamValue(NodeSocket socket, String paramName, Object value);
+	public void removeParamValue(Param param);
+	public void removeParamValue(NodeSocket socket, String paramName);
+
+  Since the methods are static now, a 'token' argument has been added to each method.
+  The following methods are not used anywhere and have been removed:
+
+	public Iterator getParamNames()
+		(can be expressed using the TokenContext.getParamValues().keySet().iterator() expression)
+	public void setParamValue(Node node, String socketName, String paramName, Object value);
+
+  Please adjust your code accordingly.
+
+- Transaction Guard
+  All persistence layer methods (used for token context access) are surrended with a transaction guard now.
+  This means that a transaction will be opened automatically by the method, but will be closed only if opened by the method.
+  So the method ensures that there will be proper transaction handling, but will remain neutral to existing transactions.
+
+- Hibernate shutdown
+  When calling ProcessServer.shutdown, the Hibernate session factory will be closed now.
+
+- Improved error and info/trace messages
+  All messages that are issued by the OpenBP server now print out information about the current token
+  (whenever accessible) in the form:
+  "...<message>... [<tokeninfo>]"
+  Where <tokeninfo> is the toString output of the token context.
+  Example: 2009-03-05 19:35:04,238 [main] INFO  org.openbp.server.engine.EngineExecutor - Executing ActivityNode '/TestCase/SubProcessTestSub1.AssertProcessVariableValue6'. [CayenneTokenContextImpl: id = fab895e2-9d72-4d2a-ab59-edcd51a2c3e1-04, currentSocket.qualifier = /TestCase/SubProcessTestSub1.AssertProcessVariableValue6.In, lifecycleStateStr = RUNNING, lifecycleRequestStr = NONE, executingModel.qualifier = /TestCase]
+
+- Better error output of toString methods
+  Many OpenBP objects use the ToStringHelper class in order to generate the return value of their toString() method.
+  In case of errors when accessing the attributes of an object, this helper class now produces an error message
+  that contains the class name and the argument name:
+		"Logging error: Error printing log object argument $0 of object of type $1."
+
+
+********** OpenBP V 0.9.8-9045 - 22 Feb 2009 **********
+
+- Fixed: Process variables having null values are not persisted
+  In order to optimize the number of persisted values, process variables having null values
+  have not been persisted. This turned out to be a problem when performing a rollback using the
+  HandlerContext.performRollback or EngineExceptionHandlerEvent.performRollback methods
+  with RollbackDataBehavior.RESTORE_VARIABLES mode.
+
+- Fixed: Wrong descriptions and dropdown list values for 'scope' property of process variables.
+  The supported scopes of process variables are:
+  Process-local
+    The process variable will be removed from the token context automatically when the process returns using a final node (as long as it has not been called as a subprocess from within itself).&lt;/li&gt;
+  Context
+    The process variable is not removed from the token context.
+
+- Fixed: Data link to process variable might have wrong direction
+  When dragging a process variable onto an exit socket, the data link to the automatically generated node parameter had the wrong direction.
+  As a result, the node value was not transferred to the process variable.
+
+- New Option: Automatically generate display name from system name
+  When entering the system name of an object, the OpenBP Cockpit automatically generated a display name for the object.
+  By default, this behavior is deactivated now (no display name generation).
+  You may turn it on or off in the options dialog of the OpenBP Cockpit.
+
+- Test Suites
+  In addition to the basic test suite
+    org.openbp.server.test.ServerBaseSuite
+  test suites have been added for both Hibernate and Cayenne environments:
+    org.openbp.server.test.ServerHibernateTestSuite.java
+    org.openbp.server.test.ServerCayenneTestSuite.java
+  Note that the Maven build does currently not account for running the test cases.
+  You should build the system using the 
+    -Dmaven.test.skip=true
+  Maven2 command line switch and run the test suites from Eclipse.
+
+
+********** OpenBP V 0.9.8-9044 - 13 Feb 2009 **********
+
+- Fixed: BS4096: Parentworkflow geht verloren nach einem suspend und resume
+  Test case: SubProcessTest
+
+- Fixed: Canot set process variable before start of process
+  - Define process varialbe w/ attribute persistent.
+  - Supply a value to the process variabe using 
+        token.setProcessVariableValue("externalValue", new Integer(199));
+  The value will be available now in the process context.
+  Test case: WorkflowTaskTest
+
+
+********** OpenBP V 0.9.8-9043 - 12 Feb 2009 **********
+
+- Error node support
+  In addition to the entry socket of the current node named 'Error', an initial node named 'Error' may also be used again
+  to handle errors on a process scope.
+
+- Configuration of debugger port number through Spring configuration file
+  Optionally, the port number and status of the debugger port can be configured in the OpenBP-Server.spring.xml file
+  as property of the ProcessServer bean:
+
+        <property name="connectionInfo">
+            <bean class="org.openbp.core.remote.ClientConnectionInfo">
+                <property name="rmiServerPort" value="10088"/>
+                <property name="enabled" value="true"/>
+            </bean>
+        </property>
+
+  which will override the settings in the OpenBP-Server.properties file.
+  This provides the option to assign different ports to several instances of the engine.
+
+
+********** OpenBP V 0.9.8-9042 - 10 Feb 2009 **********
+
+- Fixed: Rollback behaviour not as expected when using the EngineUtil.rollbackAndContinue from inside an error handler.
+  Use the
+      EngineExceptionHandlerEvent.performRollback
+  method instead.
+  Note that when using the RollbackDataBehavior.RESTORE_VARIABLES option, only persistent process variables will be rolled back.
+  Non-persistent variables will be deleted.
+  The test case RollbackLocalErrorHandlerTest (using the RollbackLocalErrorHandlerTest process in the test case model)
+  can be used to verify this feature.
+
+- Fixed: Errors related to BeanShell script execution
+  In BeanShell scripts for either an activity node (i. e. an activity handler script) or a parameter,
+  you may access the parameter values of the entry socket and the parameters of the exit socket by simply
+  using the parameter name within expressions or as LHS of an assignment.
+
+  NOTE:
+    In recent version, you were able to access a process variable by using the variable name in the script.
+    In favor of modular programming, you should use this option sparely and use parameters whenever possible.
+    Nevertheless, this option is still supported.
+    However, in order to distinguish between local and process variables, you must now prefix
+    the process variable name with an underscore ('_') in the script.
+    Note that this feature prohibits local variables that begin with an underscore.
+    Please adjust your scripts (decision node expressions, activity handler scripts and parameter scripts) accordingly.
+
+
+********** OpenBP V 0.9.8-9041 - 02 Feb 2009 **********
+
+- Fixed: Serialized token context that contains a persistable object reference cannot be resumed (ClassNotFoundException)
+
+- Fixed: CloneException when calling EngineUtil.rollbackAndContinue that was fixed with build 9040 reappeared again
+
+
+********** OpenBP V 0.9.8-9040 - 27 Jan 2009 **********
+
+- New Method Engine.setRollbackOnError
+  The engine now supports an option that determines if an automatic rollback should be performed on unhandled errors (default: yes).
+
+- Fixed: EngineUtil.rollbackAndContinue values incorrect after rollback
+
+- Simplified exit socket search strategy
+  When searching for the exit socket to continue with by name (e. g. after an activity or workflow node execution
+  or when searching for the 'Error' exit socket), the engine followed the following search strategy:
+    1. Search the current node for the specified exit socket.
+       If the found socket happens to be the current socket, it will be ignored.
+    2. Search the current process for an initial node of the specified name.
+    3. Search each process in the call stack (from top to bottom) for an initial node
+       of the specified name. If found, the method will clear the call stack of the
+       remaining processes.
+    4. Search a process with the specified name in the executing model or its imported models
+       and return the initial node name "Entry" of this process, if found.
+       In this case, the process will become the new top-level process (i. e. the call stack will be cleared).
+    5. Search the process "Main" in the executing model for a node of the specified name.
+       If found, the process will become the new top-level process.
+
+  In order to improve execution transparency and predictability, this strategy has been simplified.
+  The engine will not resolve the exit socket reference using the same algorithm that is used for
+  socket reference for the methods of the ProcessFacade class.
+  The following formats are supported:
+    "[/Model]/Process": Default exit socket of the default initial node of the referenced process
+    "[/Model]/Process.Node": Default exit socket of the referenced initial node
+    "[/Model]/Process.Node.Socket": Fully qualified reference
+    "Node.Socket": Referenced node/socket of the current process
+    ".Socket": Referenced socket of the current node
+    "Socket": Referenced socket of the current node
+    null: Default exit socket of the current node
+
+
+********** OpenBP V 0.9.8-9039 - 22 Jan 2008 **********
+
+- New Method EngineRunner.revokeExecutionLoopEnd
+  The method tries to revoke a requested termination of the main execution loop.
+  Use this method to cancel a pending termination of the main execution loop caused by a call to {@link #requestExecutionLoopEnd}.
+  You may check if the execution loop is still running by calling the method {@link #isExecutionLoopRuning}.
+
+- Fixed: EngineRunner.executePendingContextsInDifferentThread does not account a call to the requestExecutionLoopEnd method
+  This problem might lead to timeout of the EngineRunner.waitForStop method.
+
+
+********** OpenBP V 0.9.8-9038 - 18 Jan 2008 **********
+
+- Fixed: Zoom toolbar disappeard
+  The 'Zoom' toolbar is being displayed again in the OpenBP Cockpit.
+
+- Fixed: Module 'openbp-syncmodel' not present in the OpenBP distribution
+
+
+
+********** OpenBP V 0.9.8-9037 - 12 Jan 2008 **********
+
+- Context output for error logging in InvocationUtil
+  Information concerning the token context has been added to all error log output of the InvocationUtil class.
+
+- Removed synchronized code portions
+  A few unnecessary synchronized code portions have been removed that might have caused simultaneous process execution.
+  Please check your use cases if you have experienced such problems.
+
+- Token-local engine event observers
+  In addition to event observers that have been registered with the engine itself, event observers can now
+  be registered with an instance of a TokenContext. This allows for observers that are specific to a
+  particular token. A typical use case for this feature is the synchronous execution of a token,
+  where events and errors shall not be handled by the global observers (that typically produce a log message only),
+  but rather than local observers that makes the event accessible to the code that invokes the process.
+
+  Same as with the Engine itself, use the methods
+    TokenContext.registerObserver(final EventObserver observer, final String[] eventTypes)
+  and
+    TokenContext.unregisterObserver(final EventObserver observer)
+  to register and unregister your event observers.
+
+  When an event is fired during token execution, at first the token's event observer is called if present.
+  Then, the engine's event observer (which also serves the server-side of the process debugger) is executed.
+  You may suppress subsequent event observers being called by calling
+      EngineEvent.skipSubsequentObservers();
+  from inside your handler.
+
+- Load management functionality
+  In order to be able to control the system load caused by token context execution, the engine event
+  CancelableEngineEvent.SHALL_EXECUTE_TOKEN has been created.
+  This event is triggered before a token is being selected for processing by the EngineRunner.
+  The event is of type CancelableEngineEvent, which allows observers of the event to veto the execution
+  by calling
+      event.setCanceled(true);
+  In this case, the token context will be simply ignored for now.
+  When polling for executable context for the next time, the engine runner will check once more if the
+  token context may now be executed.
+
+- Using Transaction Rollback Options inside an activity handler
+  If you perform a commit inside an activity and you want to perform the rollback error handling within
+  the activity code itself, you might use the method HandlerContext.rollbackAndContinue method.
+
+    /**
+     * Performs a rollback of the token context and continue.
+     * Use this method to perform rollback handling within an activity handler.
+     * The arguments of the method provide the same
+     * rollback options as offered by a control link.
+     *
+     * @param rollbackDataBehavior Rollback data behavior
+     * ({@link RollbackDataBehavior#UPDATE_VARIABLES} | {@link RollbackDataBehavior#ADD_VARIABLES} | {@link RollbackDataBehavior#RESTORE_VARIABLES})
+     * @param rollbackPositionBehavior Rollback position behavior
+     * ({@link RollbackPositionBehavior#MAINTAIN_POSITION} | {@link RollbackPositionBehavior#RESTORE_POSITION})
+     */
+    public void performRollback(int rollbackDataBehavior, int rollbackPositionBehavior)
+
+- Fixed: BS00006158: Rollback-Begin doesn't work
+
+
+********** OpenBP V 0.9.8-9036 - 17 Dec 2008 **********
+
+- Fixed: Unable to load token context from older version
+  A missing SerialVersionUID definition prevented loading persisted token contexts from Versions.
+  In order to maintain compatibility, the serial version UIDs have been set to the values of 0.9.8-9031
+  for the following classes:
+    CallStackImpl:   605837511221074718
+    StackItem:       7738785401795416565
+
+- Transaction Rollback Options
+  When rolling back a transaction using a rollback control link, two options are available now that
+  determine the transaction behavior of the token context:
+
+    Rollback data behavior
+    Determines the effect of a 'rollback' transition on the token context's process variables.
+        Update process variables: Updates the persistent process variables of the rolled-back context with the current values.
+        Add new variables: Only adds process variables that are new to the process variables of the rolled-back context.
+        Restore process variables: Restores all persistent process variables of the rolled-back token context. Non-persistent variables will be deleted from the context.
+
+    Rollback position behavior
+    Determines the effect of a 'rollback' transition on the current position.
+        Maintain current position: The position remains unchanged
+        Restore previous position: The position of the token context will be restored to the position after the last commit.
+
+
+********** OpenBP V 0.9.8-9035 - 24 Nov 2008 **********
+
+- Castor 1.2 support
+  OpenBP now has updated its dependencies from Castor V 1.0 to the recent version Castor V 1.2.
+
+- Trace/Info Log Messages
+  All trace information (i. e. which contexts/nodes/scripts have been processed) can be routed
+  to INFO or DEBUG log messages according to the property
+    openbp.log.traceInfo=true
+  in the OpenBP-Server.properties file.
+
+- TokenContextService Debug Log
+  A number of debug log level messages has been added for the PersistentTokenContextService
+
+- Lazy loading for Hibernate TokenContext query
+  The parent context of a token context is not lazy-loaded, minimizing the number of joined queries.
+  If you have custom versions of the TokenContextImpl.hbm.xml and WorkflowTaskImpl.hbm.xml files,
+  adjust the lazy-loading attributes accordingly.
+
+- ProcessScheduler methods
+  The methods for the scheduler management have been copied from the implementation QuartzProcessScheduler
+  to the interface ProcessScheduler.
+  The test case SchedulerMgmtTest tests this functionality.
+
+- Extended engine error handling
+
+  If an error handler has been defined (using the Engine.registerObserver method with the 
+  EngineExceptionHandlerEvent.HANDLE_EXCEPTION event type), the handler may determine the way
+  that the exception is being handled.
+ 
+  The EngineExceptionHandlerEvent.handlingOption attribute can be used to indicate to the engine how to proceed with the exception.
+  By default, the engine will try to continue execution at the error socket of the current node
+  and throw an exception if there is no error socket (handling option EngineExceptionHandlerEvent.HANDLING_OPTION_ERROR_SOCKET).<br>
+  The handling option EngineExceptionHandlerEvent.HANDLING_OPTION_CONTINUE indicates that the handler has taken action and wants the process
+  to continue at the current socket. The handler might have changed the current socket also.<br>
+  The EngineExceptionHandlerEvent.HANDLING_OPTION_RETHROW option instructs the engine to propagate the error without any corrective action.
+
+- OpenBP.spring.xml: Remove class mapping registry entry
+
+  The reference from the classMappingRegistryBean to the tokenContextServiceBean ist not required any more
+  and must be removed from the file.
+
+    <bean id="tokenContextServiceBean" class="org.openbp.server.context.PersistentTokenContextService">
+        <!-- ***** Simply remove the next line ***** -->
+        <property name="classMappingRegistry" ref="classMappingRegistryBean"/>
+        <!-- ... -->
+    </bean>
+
+
+********** OpenBP V 0.9.8-9034 - 31 Oct 2008 **********
+
+- ProcessJobDescriptor Runtime Attributes
+
+  The ProcessJobDescriptor interface now extends the RuntimeAttribute interface.
+  This provides the ability to store arbitrary objects in a map.
+  The map is passed to the TokenContext when executing the process and can be accessed
+  using the TokenContext.getRuntimeAttribute method.
+  This is also useful in combination with the scheduler engine events (see below).
+
+  The map of runtime attributes is copied to the data map of the corresponding Quartz JobDetail entity.
+  Thus it will be persisted in the database.
+  You can use this feature to store arbitrary data with the job and access it in the scheduler events
+  SchedulerEngineEvent.START_JOB and SchedulerEngineEvent.RESUME_JOB in order to configure the
+  TokenContext accordingly.
+
+- Scheduler engine events
+  Two new types of engine events have been added:
+  SchedulerEngineEvent.START_JOB and SchedulerEngineEvent.RESUME_JOB
+  These events are triggered when a process job is about to be executed and allows for customization of the
+  TokenContext before execution.
+  The event object SchedulerEngineEvent is a subclass of EngineEvent and holds an additional reference to the
+  ProcessJobDescriptor.
+
+- CR 6169: Debugger id adjustment
+  TODO Test
+  After changing the debugger id option in the Modeler, the OpenBP Cockpit had to be restarted.
+  The Cockpit will now automatically re-register with the OpenBP engine after the debugger id has been changed.
+  Any currently debugged process will be aborted.
+
+- EngineEvent.TOKEN_STATE_CHANGE
+  This engine event was not broadcasted correctly in all situations.
+
+- CayenneTokenContextImpl.setParentContext
+  Fixed a bug in CayenneTokenContextImpl.setParentContext method that caused table locking problems.
+
+
+********** OpenBP V 0.9.7-9031 - 28 Aug 2008 **********
+
+- Database Model Manager
+  OpenBP now supports the ability to store models in the database.
+  For details, see the document 'doc\OpenBP-ModelRepositories.pdf'.
+
+- Maven support
+  OpenBP has made the transition from an ant-based build to a Maven2 build system.
+  Instead of the build.xml files, you will find a master pom.xml file in the root directory that
+  builds all dependent OpenBP targets.
+  The Maven group id
+      org.openbp
+  is used for all OpenBP artifacts.
+  There is one artifact for each OpenBP jar file.
+  Here is the list of all artifacts:
+
+  Common and server artifacts:
+        <module>openbp-common</module>
+        <module>openbp-core</module>
+        <module>openbp-server</module>
+        <module>openbp-server-cay</module>
+        <module>openbp-server-hib</module>
+        <module>openbp-model-system</module>
+
+  Utility artifacts:
+        <module>openbp-syncmodel</module>
+
+  Cockpit artifacts:
+        <module>openbp-common-swing</module>
+        <module>openbp-common-template</module>
+        <module>openbp-cockpit</module>
+        <module>openbp-cockpit-plugin-imageexport</module>
+
+  Test case artifacts:
+        <module>openbp-model-testcase</module>
+
+  Note that there is no openbp-all.jar any more.
+
+  In the <dependencies> section of your Maven 2 pom.xml, use the following section to
+  declare the dependency to the OpenBP server:
+
+        <dependency>
+            <groupId>org.openbp</groupId>
+            <artifactId>openbp-server</artifactId>
+            <version>0.9.7-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+
+- Display names for objects
+  When creating new objects (processes, activites, nodes, sockets, ...), the display name for these
+  objects is not generated automatically any more. It defaults to the technical name now.
+  However, when changing the technical name, the change will be reflected in the display name
+  if it is not already present.
+
+- Placeholder support
+  When auto-connecting a new placeholder to the exit sockets of a visual node, the name and display name
+  of the exit socket will be copied to the new placeholder.
+  when associating a placeholder with a new process by double-clicking it and selecting "New process",
+  the name and display name of the placeholder node will be used as default name for the new process.
+
+- Data Link Autoconnector Improvements
+  The Data Link Autoconnector now does not create a data link between two parameters when one of the parameters
+  already has a data link attached or if there is an auto-assign process variable of the same name.
+
+- New engine event
+  The EngineEvent.TOKEN_STATE_CHANGE will be called whenever the lifecycle state of a TokenContext changes
+  during execution by the engine. It will not be called when the lifecycle state is changed outside the
+  execution, e. g. when creating a context, when resetting the context state at server startup etc.
+
+- Engine runner exception handler
+  There is a new class that allows for handling problems that may occur during the execution of processes
+  by the EngineRunner. If an unrecoverable exception arises, the method EngineRunnerExceptionHandler.handleException
+  will be called if an EngineRunnerExceptionHandler is configured for the EngineRunner.
+
+- Role specification support
+  In addition to the workflow task role, roles can now also be specified for various model objects:
+  - Node sockets:
+    Useful for exit sockets of visual nodes.
+    The role specification may give a hint to the implementation of the applications's GUI framework
+    if a menu option or a button should be available for particular roles.
+  - Entry nodes:
+    The role specification may contain an information about the roles that may start a process
+    at this point. The application may check at the point of process invocation if the user role
+    matches the specified roles.
+  The role specification is done in the property browser after the model object has been selected.
+ 
+- Image export plugin
+  An image export plugin has been added to the OpenBP Cockpit.
+  In order to save a PNG image of a process, right-click the process in the component browser and
+  select 'Export image'. Then choose the name and location of the PNG export file.
+
+- Model object configurators
+  This new mechanism allows for the configuration of activity nodes at design time.
+  Is supports displaying a custom configuration dialog for an activity node.
+  You may create your own instances of the
+
+    org.openbp.cockpit.modeler.custommodelobjectconfigurator.CustomModelObjectConfigurator;
+
+  interface and add them to the cockpit by specifying a list of custom model object configurators
+  in the OpenBP-Cockpit.properties file using the entry
+
+    openbp.cockpit.modelObjectConfigurators=You-Configurator-Class
+
+  For details, see the TestActivityConfigurator in the OpenBP source distribution.
+
+
+********** OpenBP V 0.9.6-9031 - 29 Jun 2008 **********
+
+- Scheduler support for recurring triggers
+  The scheduler now supports recurring triggers (e. g. Cron triggers).
+  For initial start of a process by a scheduled job, it is not necessary to create
+  and prepare a TokenContext using ProcessFacade.createToken() and
+  ProcessFacade.prepareTokenForScheduler(TokenContext) any more.
+  For details, see the Javadoc of the ProcessJobDescriptor class.
+  Test Case: SchedulerTest, CronSchedulerTest
+
+- New method: QuartzProcessScheduler.getQuartzInstance
+  allows for access to the native instance of the Quartz scheduler
+
+- Method ProcessFacade.resetExecutingTokenState(String nodeId) can be used for cleanup after system crash
+  Test Case: ResetExecutingTokenStateTest
+
+- Renamed: EngineRunner & ProcessFacade methods
+  Due to better understandability, the following methods have been renamed:
+
+      executePendingContextsInThread()
+    ->
+      executePendingContextsInDifferentThread()
+
+      executePendingContextsDirectly();
+    ->
+      executePendingContextsInThisThread()
+  Test Case: (ResetExecutingTokenStateTest)
+
+- New methods: ProcessFacade.executeContextInThisThread(TokenContext context) / EngineRunner.executeContextInThisThread(TokenContext context)
+  Allows for executing a single context 
+  Test Case: (PriorityTest)
+
+- Priority support & index for priority field
+  Token context priorities are now fully supported to allow for token type precedence control.
+  An index has been added to the database table OPENBPTOKENCONTEXT in order to speed up the access
+  to the priority database column. For details, see the DDL scripts in home/server/DDL.
+  We advise that you recreate your database or add the index manually.
+  Test Case: PriorityTest
+
+
+********** OpenBP V 0.9.6-9030 - 25 Jun 2008 **********
+
+- Fixed: CayenneTokenContext has no attribute values after load in EngineRunnable
+
+
+********** OpenBP V 0.9.6-9029 - 22 Jun 2008 **********
+
+- Server: Shutdown support
+The method ProcesFacade.waitForStop(long timeoutMS) or EngineRunner.waitForStop(long timeOutMS)
+can be used to gracefully shut down the server. See the javadoc of these methods for details.
+
+- Modeler: Drag & Drop of process variable on socket
+  Dropping a process variable on a node socket will now create a parameter of the same name and type as the
+  process variable and will also connect the parameter to the process variable.
+  This is a useful shortcut for defining 
+
+- CHANGED: Activity reference
+  When dragging an activity component to the workspace, the resulting activity node referenced its
+  component so far. However, this was inconsistent with activity nodes that where created by dragging
+  an activity symbol from the standard components palette onto the workspace. In the latter case,
+  the new activity node itself holds the information about the activity handler class, in the first
+  case, the activity component holds this information.
+  This behaviour has been changed: The activity node now always holds the class name information.
+  There is no back reference to the activity component any more.
+  Note that you have to edit your process XML files:
+  - remove the activity-name attribute from the activity-node elements (this attribute has been removed due to XML sanity)
+  - check if the activity-node handler definition contains the class name of the corresponding activity component
+    (this should be the case usually)
+
+  An activity node does not reference its activity component any more if it was created by dragging the
+  component 
+
+- Fixed: org.hibernate.UnresolvableObjectException: No row with the given identifier exists
+  This exception might have occured if a token ended while iterating over the token set.
+  Now the invalid token will be skipped.
+
+- Fixed: ClasspathModelMgr error message for non-existing component types.
+  The classpath model manager used to log the error message "Error during resource search for resource 'xxx'."
+  though this is a normal behaviour.
+  This has been fixed.
+
+- Fixed: Error message in activity node wizard
+  The 'Activity implementation'
+  "The following required properties of the component have not been set: HandlerDefinition.HandlerClassName"
+
+- Removed "Owning model" from "Open with" sub menu of component or process element popup menu
+
+- Fixed: Wizard for activity source code generator does not work in some cases
+
+
+********** OpenBP V 0.9.6-9028 - 16 Jun 2008 **********
+
+- Scheduler
+  The quartz scheduler has been integrated with OpenBP.
+  This allows for starting or resuming processes at a particular point in time.
+  OpenBP supports all options of the Quartz triggers (simple triggers, CRON triggers, ...).
+
+  For an example see the org.openbp.server.test.scheduler.SchedulerTest test case
+  and the API documentation of the org.openbp.server.scheduler package.
+
+  Note that you have to adjust your OpenBP-Server.spring.xml file accordingly.
+  Also, you have to create a OpenBP-Quartz.properties file.
+  The database definitions must match those in the settings file or your O/R mapper (Hibernate or Cayenne).
+  There are samples for both files in the directories
+    server-hib\src\test\resources
+  and
+    server-cay\src\test\resources
+  directories.
+
+  The DDL scripts for the Quartz database tables are located in home\server\DDL\Quartz\
+
+  Note: The scheduler test case does not work with Cayenne currently. There still seems to be a caching problem
+  between several threads.
+
+- Model Inspector
+  The org.openbp.core.model.modelinspection.ModelInspectorUtil class and its helper classes supports
+  retrieving data concerning the sockets of a particular node and the workflow definitions of a process.
+  This allows for dynamic user interface that may configure user interface options according to the
+  process model.
+
+- Fixed: Column length
+  The length of the column OpenBPTokenContext.TC_USER_ID was changed from 50 to 40.
+
+- Fixed: Token Context cannot be associated with multiple WorkflowTasks
+  Removed 'unique' requirement for column OpenBPWorkflowTask.TASK_CONTEXT_ID
+
+- Fixed: BS00004345 Tooltip for Actvity Node doesn't work
+
+
+********** OpenBP V 0.9.5-9027 - 26 May 2008 **********
+
+- Database changes
+  The database scripts have been moved to the home/server/DDL directory
+  and have been updated to reflect the changes below.
+  PLEASE RECREATE YOUR DATABASE!
+  - Table format change: UUID primary keys
+    The type of the primary key of the OpenBP tables (OpenBPTokenContext and OpenBPWorkflowTask)
+    has been changed from INTEGER to VARCHAR(40), which will hold a 39 byte UUID primary key (including checksum).
+    This will save the key generation roundtrip to the database.
+  - TokenContext BLOB format
+    Column TC_DATA of table OpenBPTokenContext was changed from LONG RAW (deprecated) to BLOB.
+  - Constraint names have been added to the SQL script.
+
+- Removed scripts
+  The scripts
+    bin/StartServer.bat
+    bin/StartServer.sh
+  are obsolete and have been removed.
+
+- Cayenne 3 Support
+  OpenBP now supports Cayenne 3.0M3
+
+- Fixed: NPE in CallStackImpl.java:516
+
+
+********** OpenBP V 0.9.5-9025 - 14 May 2008 **********
+
+- home/server/lib/openbp-model-system-0.9.5.jar
+  This jar file contains the System model (activities and basic types) including the class files
+  of the activity handler implementations.
+  It is useful if you use the ClassPathModelMgr to load your models.
+  The contents of this jar file are also included in the home\all\openbp-all-0.9.5.jar file also.
+
+- EngineRunner change
+  The EngineRunner class has been made abstract.
+  There are two subclasses of it:
+  ThreadPoolEngineRunner - Same functionality as the old EngineRunner class
+  NewThreadEngineRunner - Does not use a thread pool, allocates a new thread for each token context execution
+  NOTE that you must change the OpenBP-Server.spring.xml file accordingly:
+  Change
+    <bean id="engineRunnerBean" class="org.openbp.server.engine.EngineRunner">
+  to
+    <bean id="engineRunnerBean" class="org.openbp.server.engine.ThreadPoolEngineRunner">
+
+- Database scripts for Oracle and MySQL
+  Scripts that generate the Oracle and MySQL can be found in home/server-hib/DDL
+  for Oracle and MySQL databases. They can also be used for the Cayenne version.
+  However, the Cayenne primary key generator support tables must be added
+  (see the scripts in the home/server-cay/DDL directory).
+  More scripts for different database dialects can be generated using the Hibernate
+  script generator feature (see server-hib/build.xml, target 'DDL').
+
+- Change of the LifecycleState values
+  Due to a change in the values of the constants of the LifecycleState enumeration class,
+  the TokenContext table should be recreated.
+
+- Commit in EngineImpl/Change in the OpenBP-Server.spring.xml file
+  Due to integration problems, the startToken, resumeToken and commitTokenContextTransaction method
+  of the EngineImpl class do not commit the transaction any more.
+  Call the {@link #commitTokenContextTransaction} after calling one of these methods.
+  A new subclass of EngineImpl has been provided that will do this for you automatically.
+  This AutoCommittingEngineImpl is being used as standard, so there is no change in the behaviour of the system.
+  However, instead of
+    <bean id="engineBean" class="org.openbp.server.engine.EngineImpl">
+  you have to wire this subclass in your existing OpenBP-Server.spring.xml file:
+    <bean id="engineBean" class="org.openbp.server.engine.AutoCommittingEngineImpl">
+
+- CR 4437: Debugger id not persisted.
+  The id of the debugger that is currently tracing a token context is now saved in the context.
+  This prevents loosing the debug feature after resuming a suspended context.
+
+- CR 4492 has been fixed in build 9022
+
+- Added additional criterium to search for executable persistence contexts
+  In order to prevent multiple threads being started for a persistence context that is due for execution,
+  an additional criterium was added to the PersistentTokenContextService.getExecutableContexts() method.
+
+- CR 4300: OpenBP skips missing sub-workflows instead of aborting with an error
+  OpenBP now throws an exception:
+  EngineException("MissingSubProcess", "Missing sub process for sub process node $0.")
+
+- CR 2042: Action skipped on invalid package name
+  OpenBP now throws an exception:
+  OpenBPException("HandlerExecutionFailed", "Error instantiating handler $0.")
+
+- Trace messages for DB transaction handling
+  The following log messages (TRACE mode) have been added.
+            "Beginning transaction."
+            "Rolling back transaction on."
+            "Committing transaction."
+            "Committed transaction."
+
+- Mouse wheel support for Modeler 
+  Moving the mouse wheel will scroll the process drawing in the OpenBP Cockpit.
+  Holding down teh CTRL key while scrolling will adjust the zoom level.
+
+- Cursor key support for Modeler 
+  Pressing the cursor keys will move the current selection or the view if no objects are selected.
+  Pressing the CTRL key with the cursor key will cause a slower movement.
+
+
+********** OpenBP V 0.9.5-9023 - 26 Mar 2008 **********
+
+- Various class and XML renamings
+  In order to adopt the OpenBP terminology to common workflow and process management terminology, a number of model objects have been renamed.
+
+  There are two central renamings:
+
+      Action -> Activity
+      Model -> Process Container
+
+  A variety of supporting classes have been renamed also (e. g. ActionSocket -> ActivitySocket etc.).
+
+  In agreement with the users, the corresponding XML tags have been renamed also.
+  Note that in the XML tags, you must perform the following text substitutions:
+
+  action -> activity
+  Action -> Activity
+  ACTION -> ACTIVITY
+  Model -> Model
+  unit -> model
+  UNIT -> MODEL
+
+  Note that the search and replace operations might affect the namings of your objects as well
+  (e. g. activity implementation package or class names), so you should inspect each occurrence before replacing it.
+
+  You also have to perform the following operations:
+
+  - Rename directory 'unit' to 'model'
+  - Rename file 'unit.xml' to 'model.xml'
+  - In the model.xml file, change the <unit> tag to <model>
+  - The name of the database column 'TC_EXECUTING_UNIT' has changed to 'TC_EXECUTING_MODEL',
+    so you need to recreate the table OpenBPTokenContext using the server-hib/target/DDL/Create-DDL.sql script.
+
+- New lifecycle state LifecycleState.IDLING
+  This state will be applied after a LifecycleRequest.SUSPEND_MEMORY has been issued.
+  The resumeProcess method will check for this state and will not persist the context to the database after changing
+  the lifecycle request to LifecycleRequest.RESUME.
+
+
+********** OpenBP V 0.9.4-9022 - 24 Mar 2008 **********
+
+- Suspension lifecycle requests
+  The suspension modes 
+  The LifecycleRequest.SUSPEND mode has been extended.
+  LifecycleRequest.SUSPEND_IMMEDIATE will suspend a running token context as soon as possible (i. e. after performing the current process step).
+      This will cause the current transactivity to be committed, regardless of the definition of the transaction boundaries in the process.
+  LifecycleRequest.SUSPEND_TRANSACTION will instruct the process engine to suspend a running token context after the current transaction has been committed or rolled back according to the transaction boundaries defined in the process.
+      This suspension mode will consider the defined transaction boundaries. Note that this will not include transactions that are committed or rolled back from within an activity implementation.
+  LifecycleRequest.SUSPEND_MEMORY will cause the thread that executed a process to become inactive until the context will be resumed again.
+      This suspension mode will not perform any transaction control.
+    After the lifecycle request has been processed, the lifecycle state of the context will be set to LifecycleState.SUSPENDED.
+    However, note that the new state will not be saved to the database.
+    Also note that this operation will cause the thread to block. Threads are a limited system resource.
+    The maximum number of concurrent threads is determined by the maximum size of the thread pool.
+    Note: Concurrency issues are somewhat hard to test in test cases. Currently, the SUSPEND_MEMORY mode has not been tested thoroughly.
+
+- OpenBP Cockpit: Transaction control
+  There are new transaction control types for control links in addition to the
+  None/Begin/Commit/Rollback types:
+  Commit-Begin commits a transaction and immediately begins a new one and
+  Rollback-Begin rolls back a transaction and immediately begins a new one and
+  The display scheme of the transaction symbol has been changed to reflect these new types:
+    None - no transaction symbol
+    Begin - Small dot
+    Commit - Circle
+    Commit/Begin - Circle with small dot
+    Rollback - Circle with crossed bars
+    Rollback/Begin - Circle with crossed bars and small dot
+
+- Fixed: NPE and concurrency issue in EngineExecutor(96) due to multi-threading issues
+  An issue that could cause a NPE or a simultaneous execution of the same context by two
+  engine threads has been fixed.
+  The thread pool mechanism OpenBP uses has been changed.
+  The thread pool can be configured in the openBP.spring.xml file:
+
+    <!-- Process engine runner thread -->
+    <bean id="engineRunnerBean" class="org.openbp.server.engine.EngineRunner">
+        <property name="engine" ref="engineBean"/>
+        <property name="executor" ref="executorBean"/>
+    </bean>
+
+    <!-- For process execution, create a non-queuing thread pool having 5 threads -->
+    <bean id="executorBean" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+        <property name="corePoolSize" ref="5"/>
+        <property name="maxPoolSize" ref="5"/>
+        <property name="queueCapacity" ref="0"/>
+    </bean>
+
+  The queue capacity of 0 means that the thread pool will work in synchronous mode, which is highly recommended
+  because the token context service, which is used by the EngineRunner.mainExecutionLoop() and
+  EngineRunner.executePendingContextsUsingThreadPool() methods, already provides a queueing mechanism for
+  token contexts.
+
+- New methods in interface Engine:
+    registerObserver(EventObserver observer, String [] eventTypes)
+  und
+    public void unregisterObserver(EventObserver observer)
+  have been copied from EngineImpl.
+
+- New method ModelMgr.requestUnitReset()
+  (formerly ModelMgr.performReload())
+
+- Error message for class mappings
+  If class mappings for database object classes are missing or reference an interface,
+  a meaningful error message is produced now.
+
+
+********** OpenBP V 0.9.4-9006 - 01 Nov 2007 **********
+
+- Reworked API:
+  - Removed InvocationContext
+  - Added ProcessFacade; for a sample, see 
+  - OpenBPServer was renamed to ProcessServer, singleton style was removed.
+  - TokenContext is an interface now. The standard implementation is the TokenContextImpl class.
+  For a sample on how to use the new API, see CommandLineSample.java
+
+- OpenBP Hibernate support
+
+  OpenBP requires mapping files for the TokenContextImpl and the WorkflowTaskImpl class to be included in the Hibernate configuration file.
+  Also, a special post load event listener must be registered with the Hibernate configuration.
+  If you rely on the HibernatePersistenceContextProvider to create the Hibernate session factory,
+  everything should be fine since the class adds these configuration details automatically to the
+  Hibernate configuration. However, if instruct OpenBP to use a custom session factory by calling
+  the {@link #HibernatePersistenceContextProvider}.setSessionFactory method, you must take care yourself
+  that your Hibernate configuration is OpenBP-compatible. In order to do so, you may either call the
+  static utility method
+
+    HibernatePersistenceContextProvider.prepareHibernateConfigurationForOpenBP(Configuration configuration)
+  
+  or include the following details in your Hibernate configuration file:
+
+    <!-- OpenBP mapping files --> 
+    <mapping resource="org/openbp/server/context/TokenContextImpl.hbm.xml"/> 
+    <mapping resource="org/openbp/server/context/WorkflowTaskImpl.hbm.xml"/> 
+  
+    <!-- OpenBP post load event listener --> 
+    <event type="post-load" > 
+        <listener class="org.openbp.server.persistence.hibernate.HibernateEventListener"/> 
+    </event>
+
+  Using the utility method is the preferred option, since it automatically considers any future customizations
+  to the Hibernate configuration that may become necessary.
+
+- Updated library versions:
+  - 
+    commons-collections-3.1.jar -> commons-collections-3.2.jar
+    Added commons-lang-2.1.jar
+    commons-logging-1.0.4.jar -> commons-logging-1.1.jar
+
+    spring-aop-2.0.1.jar -> spring-aop-2.0.2.jar
+    spring-beans-2.0.1.jar -> spring-beans-2.0.2.jar
+    spring-context-2.0.1.jar -> spring-context-2.0.2.jar
+    spring-core-2.0.1.jar -> spring-core-2.0.2.jar
+    spring-support-2.0.1.jar -> spring-support-2.0.2.jar
+
+
+********** OpenBP V 0.9.3-9006 - 23 Sep 2007 **********
+
+- Session registration and information on uncommitted context information
+
+  If your require information on running, uncommitted contexts (e. g. progress information),
+  use session-aware persistant token context service instead of the regular persistant token context service.
+  in the OpenBP-Server.spring.xml file (see the sample in server/src/test/resources/OpenBP-Server.spring.xml),
+  configure
+
+    <bean id="tokenContextServiceBean" class="org.openbp.server.context.SessionAwarePersistentTokenContextService">
+        <property name="classMappingRegistry" ref="classMappingRegistryBean"/>
+    </bean>
+
+  Note that you must also enable session registration by configuring the sessionMode in the engineBean:
+
+        <property name="sessionMode">
+            <bean id="org.openbp.server.engine.SessionMode.AUTO"
+                class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean"/>
+        </property>
+
+  For more detailled information, see the SessionAwarePersistentTokenContextService.
+
+
+********** OpenBP V 0.9.3-9005 - 14 Sep 2007 **********
+
+- Extended persistence context API
+    PersistenceContext PersistenceContextProvider.obtainExistingPersistenceContext()
+    void HibernatePersistenceContextProvider.setSessionFactory(SessionFactory sessionFactory)
+    static void HibernatePersistenceContextProvider.prepareHibernateConfigurationForOpenBP(Configuration configuration)
+  Can be used to
+  - obtain OpenBP's persistence context fo this thread if there is one
+  - provide a project-specific Hibernate session factory to OpenBP
+  - Configure a project's Hibernate configuration to be compatible for use with OpenBP
+
+- Persistence token context service isolation
+  The method PersistentTokenContextService.setIsolationLevel provides different options for handling the list of context to execute.
+
+- New ant target: all-src-jar
+  This new ant target generates the file
+      home/all/openbp-all-src-0.9.3.jar
+  which includes all Java source and resource files for easier debugging (test sources and resources are not included).
+
+
+********** OpenBP V 0.9.3-9004 - 11 Sep 2007 **********
+
+- HibernateDDLGenerator utility
+  DDL generator for Hibernate persistence-based applications.
+  This utility will generate create and drop DDLs based on the current Hibernate configuration (needs hibernate.cfg.xml in the classpath).
+  The OpenBP proccess and workflow control entities will be added to the configuration automatically.
+
+  Usage:
+  -DDLCreateFile <arg>     Name of the output file that will contain the DDL create statements
+  -DDLDropFile <arg>       Name of the output file that will contain the DDL drop statements
+
+  The utility can be called also from the build script by executing
+      ant ddl
+  in the OpenBP directory.
+  It will create the DDL files for the OpenBP server test scenario.
+
+  The hand-made standard database creation scripts in the home/unit/System/database directory are obsolete and have been removed.
+
+- LifecycleState vs. LifecycleRequest
+  The semantics of these TokenContext attributes has been changes slightly.
+  Instead of the LifecycleState.PENDING attribute, the LifecycleRequest.RESUME attribute indicates contexts that
+  should be processed by the engine.
+
+- Hibernate class mappings
+  OpenBP will add class mappings for the TokenContext and WorkflowTask classes automatically to the Hibernate configuration.
+  However, it will now check if these mappings are already present.
+
+***** Note that due to the two changes above, you must re-create the OPENBP_TOKENCONTEXT and OPENBP_WORKFLOWTASK tables *****
+
+Note: The InvocationContext is a candidate for removal in the next version. This functionality will be integrated into the TokenContext class.
+
+
+********** OpenBP V 0.9.3-9003 - 03 Sep 2007 **********
+
+- Changed property names
+  All OpenBP property settings (in OpenBP-Server.properties and OpenBP-Cockpit.properties) have been prefixed by "openbp.".
+  Some unused properties in these files have been removed.
+  ***** Note that you must update your property files accordingly or (recommended) copy the above files *****
+
+- Spring Framework support
+  The internal components of the OpenBP framework are now wired using a Spring framework configuration file.
+  A sample file can be found in the server/src/test/resources/OpenBP-Server.spring.xml
+  Analog to the OpenBP-Server.properties file, you should copy this file to your classpath and may modify it to suit your needs.
+  There are comments in the file that will help you make your customizations.
+  Note that you have to place this configuration file in your classpath.
+  Successively, more and more OpenBP settings and architectural relations will be reflected in this configuration file,
+  so it is likely to change in the future.
+  You should prepare to redo your changes to updated versions of this file (i. e. mark your changes with comments).
+
+- Hibernate mapping file
+  So far the Hibernate mapping file was related to the unit.
+  The persistence provider pattern (see below) will manage all token contexts independent of their executing unit.
+  As a consequence, the Hibernate mapping file is seen as application-scope object now.
+  It is not not considered to be subject of the unit any more.
+  As originally stated in the Hibernate docs, the Hibernate mapping file must be placed in the application classpath instead of the unit directory.
+
+  OpenBP will cause the Hibernate configuration object to read this file
+  (according to the Hibernate documentation, you may also place a hibernate.properties file in the classpath).
+  The file does not need to contain references to any OpenBP object (TokenContextImpl, WorkflowTask).
+  These will be added by OpenBP automatically.
+  OpenBP will also automatically add a 'Post Load' event listener to the Hibernate configuration that
+  is used by OpenBP to control TokenContext persistence.
+
+  So in fact, you should be fine with a Hibernate configuration file that does not consider OpenBP at all.
+
+- Refactoring
+  Some refactoring has been done in order to clean up the core and server structures.
+  This involved also some cleanup and API changes:
+
+  - TokenContext and WorkflowTask
+
+    Both classes have been moved from the org.openbp.core.* to the org.openbp.server.* package.
+    Note that you can instruct OpenBP to use your own subclasses/implementations of these classes
+    using the class mapping registry definitions in the OpenBP-Server.spring.xml file.
+
+    - TokenContext.userId
+      This new field holds the id of the user that owns the token context.
+      It will be persisted to the database.
+    
+    - WorkflowTask.currentPosition
+      This field is identical to the TokenContext.currentSocket field and has been removed.
+
+    ***** Note that you must re-create the OPENBP_TOKENCONTEXT and OPENBP_WORKFLOWTASK tables *****
+    You can find create table scripts for MySQL the home/unit/System/database/MySQL directory.
+
+  - TokenContextService
+    The token context service provides token context and workflow task management services to the execution engine and the application.
+    The OpenBP engine accesses the TokenContext and WorkflowTask objects through this interface now.
+    There are currently two implementations of the service available:
+    - a persistent form of the service ({@link PersistentTokenContextService})
+      Maps to the configured persistence layer (e. g. Hibernate)
+    - a transient form of the service ({@link TransientTokenContextService})
+      Keeps all TokenContext and WorkflowTask objects in memory for fast (however unsafe) access.
+
+  - PersistenceContext/PersistenceContextProvider
+    The PersistenceContext is now a wrapper for the O/R mapper session object.
+    The PersistenceContextProvider implements actually the pattern of a thread-bound session manager.
+    Note that we do not use Hibernate's Session.getCurrentSession() mechanism. Its session control
+    is too unflexible (a session will be closed automatically after committing the transaction, which might
+    not be what is desired in an OpenBP process (using Session.merge at various places proofed to cause lots of problems)).
+    You can use the 
+
+  - User/role framework
+    The user/role framework of the OpenBP server turned out to be too unflexible.
+    In most projects, there is already an existing user/role framework.
+    Using just user and role ids for workflow operations and not providing own User and Role object implementations
+    turned out to be a mechanism to adopt OpenBP to existing authentication/authorization frameworks.
+    As a consequence, we removed the classes User, Role, RoleAssocation and UserMgr.
+    Also the corresponding database tables can be removed.
+
+  - Several server-related interfaces like TokenContext, InvocationContext, Engine, Hander, HandlerContext etc.
+    have moved from the org.openbp.core package to the org.openbp.server package.
+    You will need to remove and reorganize the according imports in your source code.
+    In addition, the following methods have changed:
+
+- Lifecycle management
+  The TokenContext and HandlerContext objects now provide methods to retrieve the lifecycle state
+  and to set the lifecycle request, which instructs the engine what to do with a process.
+  For details, see the description of these methods.
+
+- Engine event management
+  The engine now supports event observers that may be used to implement additional functionality on certain events during process execution.
+  For example, you may install an event observer that will be called before and after execution of a token context will be started
+  using the following code after the OpenBP ServerModule has been instantiated:
+
+  EventObserver observer = new MyEventObserver();
+  Engine engine = ...;
+  engine.registerObserver(observer, new String [] { EngineEvent.BEGIN_EXECUTION, EngineEvent.END_EXECUTION })
+
+
+- BS2077 - handle a descriptive identifier for workflow instances
+  Operators should be able to view which instances of which workflows are running, or have problems etc.
+  Operators can't work with technical ids, e.g. created through time stamps, they need to know to which functional entity
+  (order, inputfile, SAP order,...) this workflow instance belongs.
+  As this information varies from product to product, it would be best if the Workflow engine provides
+  a variable (and persists it, etc.) that can be filled by the application with a string that let's the operator
+  identify to which functional entity this workflow instance belongs.
+  It should be possible to change the data in this variable while the workflow is already processed,
+  because information best suited to identify the workflow might become known  during the processing
+  of the workflow.
+
+  This is possible by defining your own subclass of the TokenContext class, e. g.
+
+public class DescriptiveTokenContext extends TokenContext
+{
+    /** Descriptive text */
+    private String description;
+
+    /**
+     * Gets the descriptive text.
+     * @nowarn
+     */
+    public String getDescription()
+    {
+        return description;
+    }
+
+    /**
+     * Sets the descriptive text.
+     * @nowarn
+     */
+    public void setDescription(String description)
+    {
+        this.description = description;
+    }
+}
+
+   Create an appropriate Hibernate mapping file that refers to the original TokenContext.hbm.xml.
+   Add the mapping file to the hibernate.cfg.xml file.
+
+   In the OpenBP-Server.spring.xml file at the 'classMappingRegistryBean' definition,
+   replace the mapping to org.openbp.server.context.TokenContextImpl by the class name of your custom context class.
+   In your activity definition, cast the tokenContext to your implementation class and set the description.
+
+- BS00002621 - Provide Methods to get all WorkflowTasks and to get all WorkflowTasks for a particular Model
+  Iterator TokenContextService.getworkflowTasks(WorkflowTaskCriteria criteria);
+  For an example see the TestCaseBase.getWorkflowTasks(Model unit) method.
+
+- BS00002622 - Provide Methods to get all TokenContexts and all TokenContexts for a particular Model
+  Iterator TokenContextService.getContexts(TokenContextCriteria criteria);
+
+- BS00002654 - WorkflowTask.setDeleteAfterCompletion(true); leads to infinite loop upon task compltion
+  Fixed.
+
+- BS00002409 - OPENBP_HOME variable
+  The root directory of the OPENBP installation can be specified now by setting the OPENBP_HOME
+  environment variable again.
+
+- BS00002039 - Complete Lifecycle Implementation
+  The lifecycle management has been redesigned.
+  A token context now has two status attributes that correlate to the lifecycle of the context:
+  lifecycleState - The current lifecycle state of the context. To the application API, this attribute is read-only.
+  lifecycleRequest - Request to the process engine to change the lifecycle state of the context
+  Both attributes are available through the HandlerContext object also.
+
+- BS00002620 - PersistenceContext.evict ()
+  Method was added due to user request.
+
+- BS00002624 - Why does TokenContext.getContextList() return a Set?
+  The method has been removed. Use the method TokenContext.getChildContexts() instead, which will return an iterator and thus is independant from the underlying data structure.
+
+- BS00002079 - StartCockpit.bat / StartServer.bat don't work on English installations
+  P3
+  StartCockpit.bat / StartServer.bat don't work on English installations, because in English installations java is usuallay installed in
+  Program files. As it's %JAVACMD% and not "%JAVACMD%" in the batch file, Windows will complain that it doesn't find "C:\Program".
+  Change the call in the batch files to "%JAVACMD%" to fix this.
+
+- BS00002054 - Process image size
+  Comment:
+  The "Model - Publish" functionality has been disabled.
+  Instead, the "Process - Image Export" functionality provides a way to export a process image to a file.
+  The type of the image to be generated can be adjusted in "Options - Export".
+  Supported image types are PNG, JPG, TIFF and SVG (scalable vector graphics).
+  In order to generate a process image, right-click the process in the component browser and select the "Image Export" menu item.
+  Note that this functionality is a part of the OpenBP publisher and thus needs to be licensed by skynamics AG.
+
+- BS00002056 - Kill command, i.e. remove hanging/non-cooperative workflows
+  Request:
+  Though killing a thread is not recommended in Java 2, it would be desirable if access would be provided to the thread that is executing a workflow.
+  This might be done by saving the thread transient in the token context when the workflow has been selected for execution.
+  The application would be free to 'kill' the thread in case of an emergency or as a back-door mechanism.
+  Comment:
+  See issue "Thread attribute for TokenContext" in OpenBP V 0.9.1
+
+- BS00002623 - Fix toString in TokenContextImpl to remove misleading *ERROR* output due to wrong property names after refactoring
+  This issue has been fixed.
+
+- EngineFacade -> RemoteEngineFacade
+  The EngineFacade interface has been renamed to RemoteEngineFacade in order to point out that this interface is intended to be used
+  for remote access to the engine in the first instance.
+
+- BS00002040 - RMI problem after application server restart
+  Problem resolved, see test case server/src/test/java/org/openbp/server/test/StartStopTest.java
+  In addition, you may disable the RMI registry connection.
+  In the OpenBPServer.properties file, addd the line
+    RMIRegistry.enabled=false
+  to disable RMI support.
+  Note that this will prevent the use the OpenBP debugger and the RemoteEngineFacade.
+
+- BS00002639 - Find a way to make sure a unique Id for the workflow instance (e.G. debuggerId) ist put in LogFrame while the tc is executed
+  Follow these steps:
+
+  1. Register a an EventObserver for the EngineEvent.BEGIN_EXECUTION and EngineEvent.END_EXECUTION events.
+
+        EngineEventObserverMgr observerMgr = (EngineEventObserverMgr) CoreRegistry.lookup(EngineEventObserverMgr.class);
+        observerMgr.registerObserver(new MyObserver(), new String [] { EngineEvent.BEGIN_EXECUTION, EngineEvent.END_EXECUTION });
+
+  2. In the observer's observerEvent method, add/remove the LogFrame.
+
+        public void observeEvent(ObserverEvent e)
+        {
+            EngineTraceEvent event = (EngineTraceEvent) e;
+            TokenContext context = event.getTokenContext();
+
+            if (e.getEventType().equals(EngineEvent.BEGIN_EXECUTION))
+            {
+                LogUtil.push(...);
+            }
+            else if (e.getEventType().equals(EngineEvent.END_EXECUTION))
+            {
+                LogUtil.pop(...);
+            }
+        }
+
+- BS00002050 - Removing deployed workflows after execution of the workflow
+  How can we detect the end of a workflow execution? We would like to cleanup (i. e. remove) the workflow/unit after its execution.
+  Follow these steps:
+
+  1. Register a an EventObserver for the EngineEvent.AFTER_END_TOKEN event.
+
+        EngineEventObserverMgr observerMgr = (EngineEventObserverMgr) CoreRegistry.lookup(EngineEventObserverMgr.class);
+        observerMgr.registerObserver(new MyObserver(), new String [] { EngineEvent.AFTER_END_TOKEN });
+
+  2. In the observer's observerEvent method, add/remove the LogFrame.
+
+        public void observeEvent(ObserverEvent e)
+        {
+            EngineTraceEvent event = (EngineTraceEvent) e;
+            TokenContext context = event.getTokenContext();
+
+            if (e.getEventType().equals(EngineEvent.AFTER_END_TOKEN))
+            {
+                Qualifier q = context.getExecutingUnit().getQualifier();
+
+                // TODO Check if there is any context of this unit that is still executed.
+                // TODO If there isn't, remove the unit.
+            }
+        }
+
+
+
+********** OpenBP V 0.9.1-9001 - 15 May 2007 **********
+
+- Application server deployment
+  The resource management of the OpenBP server now supports a flexible resource locations.
+  By default, all server resources (inluding descriptors, mapping files, property files etc.)
+  are searched in the following order:
+  - OpenBP root directory (system property openbp.home)
+  - The classpath
+
+- Classpath model manager
+  OpenBP now supports loading units from the classpath in addition to or as replacement of the OpenBP home directory.
+  The FileSystemModelMgr class is now accompanied by the ClassPathModelMgr and the MultiplexModelMgr.
+
+  The ClassPathModelMgr reads units from the classpath. It scans the classpath for folders named 'unit'.
+  It expects these folders to contain valid unit substructures as below the $OPENBP_HOME/unit directory.
+  Using this feature, it is possible to entirely load all OpenBP resources and units from the classpath.
+  Finally, for application-server-only deployments, there is not need for an OpenBP home directory.
+
+  The MultiplexModelMgr is used to combine a variety of model managers, allowing simultaneous use of
+  classpath, file system (and later database) based units.
+
+  Implementation notes:
+  1. Default implementations
+     Currently, the MultiplexModelMgr runs a ClassPathModelMgr and a FileSystemModelMgr by default.
+     We intend to make this (and other things) configurable by a Spring framework configuration file.
+     Currently, this behavior can be changed by modifying the CoreModule.initialize method.
+  2. Custom Class Loader Support
+     The ClassPathModelMgr does not support custom class loaders for the 'lib', 'extlib', 'classes' and 'target/classes'
+     folders of a unit as the FileSystemModelMgr does. The workaround is to place the class or jar files of the unit
+     somewhere in the regular classpath.
+  3. The ClassPathModelMgr is read-only, i. e. not units or coponents may be generated in classpath locations.
+     Currently, the Cockpit does not reflect this issue, i. e. modifying actions cans still be selected.
+     However, an error message will be displayed when trying to save the changes.
+  4. For Test Purposes, there is a simple unit-only Eclipse project named 'cpunittest' provided.
+
+- Property files renamed
+  The property files in the OPENBP_HOME directory have been renamed.
+
+    Cockpit.properties
+        -> OpenBP-Cockpit.properties
+    Server.properties
+        -> OpenBP-Server.properties
+           The OpenBP-Server.properties has been placed in the classpath (i. e. the openbp-server.jar file)
+           However, you may extract the file from the jar to the OpenBP home directory in order to customize it.
+    User.properties
+        -> OpenBP-User.properties
+
+  Please rename your property files accordingly if you have modified them.
+
+- Model directory moved
+  The unit directory in
+      $OPENBP_HOME/server/unit
+  has been moved to
+      $OPENBP_HOME/unit
+
+- Transaction control flag
+  The transaction control flag of a control link now should work as expected.
+  In addition to the 'begin' 'commit', 'rollback' and 'default' modes, the 'commit and begin' mode has been added.
+
+- Thread attribute for TokenContext
+  The TokenContext interface now extends the RuntimeAttribute interface.
+  This provides the ability to store arbitrary objects in a map.
+  However, the map won't be serialized to persistent storage.
+  When a context is executed by the engine, the thread executing the context is saved as runtime attribute
+  under the key TokenContext.RUNTIME_ATTRIBUTE_THREAD.
+  This feature may be used to terminate hanging threads by force in emergency situations.
+
+- API changes
+  Some API changes have been made.
+  Among them is:
+
+  The methods
+      Application.setNameAndArguments(String name, String [] args)
+      Application.setAppName(String name)
+      Application.getAppName()
+  has been deprecated and will be removed in the next OpenBP version.
+  For Application initialization, use
+      Application.setArguments(String [] args)
+
+- RMI Binding-Probleme
+  In order to work around problems with the RMI binding/rebinding of the server to the cockpit,
+  the following temporary property has been introduced until the issue has been resolved:
+        openbp.rmiBindingErrorHandling
+            Possible values:
+            ignore        RMI-Binding will be silently ignored
+            output        An error message will be written to stderr, but no exception will be thrown
+            Any other value or absence of the property will cause an exception on binding problems.
+  The property may be set either using the -D flag of the java runtime or in the OpenBP-Server.properties resource.
+
+
+********** OpenBP V 0.9.0-9000 - 10 Apr 2007 **********
+
+- Copyright and License Notice
+  Each file of the project now contains a copyright and license notice.
+
+- Directory structure change
+  The directory structures have been adopted to the standard defined by the maven project
+  (src/main/java, src/main/resources, src/test/java, src/test/resources, target/classes etc.).
+  Note that this is still work in progress...
+  Also note that OpenBP still builds using ant.
+
+- Jar files
+  All OpenBP jar file now end with the OpenBP version, e. g. openbp-server-0.8.5.jar
+  The jar file home/all/openbp-all-{version}.jar contains all class files from the following jar files
+    home/common/lib/openbp-common-${version}.jar
+    home/common/lib/openbp-core-${version}.jar
+    home/common/lib/openbp-scheduler-${version}.jar
+    home/common/lib/openbp-server-buildmodule.version}.jar
+    home/server/lib/openbp-server-${version}.jar
+  It is intended as a short cut for integrating the OpenBP engine functionality into your project.
+
+- XML file encoding
+  The encoding of all XML files of the project has been unified to ISO-8859-1.
+
+- Test cases
+  Added some test cases to OpenBP (see the TestCases.txt file).
+
+- log4j configuration
+  The log4j configuration properties have been removed from the Cockpit.properties and Server.properties
+  files. OpenBP will not change the log4j configuration by itself any more.
+  The openbp-cockpit.jar file contains a default log4j property file.
+  Also, a default log4j property file for the OpenBP test cases is present in common/src/test/resources.
+
+- Token context variable value persistence
+  The persistence mechanism that serializes/deserializes variable values of the token context when executing
+  a wait state or workflow node or explicitely persisting a token context has changed.
+  A numer of serializers (see ServerModule.initPersistence()) is called to serialize each context object.
+  The new persistence context serializer will serialize a persistent object (i. e. an object that is managed
+  by the persistence layer, i. e. Hibernate) using the peristence mechanism and will save its primary key value
+  in the serialized context. This will prevent the value saved int the serialized context from getting out of sync with the
+  value of the object in the database.
+
+- Upgraded to a patched version of Hibernate 3.2.1
+  Note that the openbp-server.jar contains two patched Hibernate class files
+    org.hibernate.engine.Collections
+    org.hibernate.event.def.OnLockVisitor
+  which fix a bug in Hibernate that prevents the OpenBP workflow persistence from working
+  (see http://opensource.atlassian.com/projects/hibernate/browse/HHH-511).
+  We will remove these as soon as the bug has been fixed in an official Hibernate release.
+
+- Reworked workflow processing:
+  - Added Engine.resumeWorkflow method
+  - Added TokenContext.workflowTask property
+  - Changed names of constants of the Workflow class:
+    ACCEPTED -> RESUMED
+    PROCESSED -> COMPLETED
+
+- Workflow node behavior
+  After saving the workflow task, the workflow node will resume execution with the transition
+  connected to the 'TaskPublished' socket. If no such socket is present or no transaction
+  has been attached to the socket, execution will be stopped (same effect as a workflow 
+  commit the current transaction.
+
+- Automatic process state save
+  Wait state nodes and workflow nodes now begin a transaction, save the process state to the database and also
+  commit the current transaction.
+
+- WorkflowTask Hibernate mappings
+  Fixed an error (id field vs. name field) in the Hibernate mappings file
+  that prevented a workflow from being peristed.
+
+- ProgressInfo serialization
+  The ProgressInfo object, that belongs to the TokenContext that is usually serialialized,
+  now implements the Serializable interface. This enables token context serialization.
+
+- Default persistence provider
+  As long as there is no persistence provicer specified in the unit.properties file,
+  a dummy persistence provider (in contrast to the default Hibernate persistenece provider before)
+  will be used, that does not support persistence (for in-memory processes).
+
+
+********** OpenBP V 0.8.4-8007 - 21 Nov 2006 **********
+
+- Feature: Enable/disable RMI registry
+  The entry
+    RMIRegistry.enabled=false
+  allows for deactivating the RMI registry in the OpenBP engine (Server.properties)
+  and the OpenBP Cockpit (Cockpit.properties).
+  In production environments, you should always disable the RMI registry in order to prevent
+  a workflow being started from the outside world.
+
+- CR: Removed the built-in browser plugin from the OpenBP cockpit due to refresh problems
+
+- CR: Heap Space
+  The heap space of the OpenBP Cockpit can be configured by changing the OPENBP_JAVA_OPTS variable
+  in the StartCockpit.bat/StartCockpit.sh file. The default is 256 MB.
+
+- Fixed: NPE in StandardTokenContextProvider.getScheduledContexts() & StandardTokenContextProvider.getExecutingContexts() 
+  NPE when context list is empty.
+
+- Fixed: 'ant clean' fails
+
+- Fixed: Restart of OpenBP not supported
+  Restarting the OpenBP engine by calling
+    ServerModule.obtainInstance();
+    ServerModule.obtainInstance().shutdown();
+    ServerModule.obtainInstance();
+  causes an NPE.
+
+- Fixed: New Activity|Next|Next causes NPE
+
+- Logger configuration via properties file
+  The Server.properties and the Cockpit.properties file now support configuring Log4J again.
+
+
+********** OpenBP V 0.83-8006 - 12 Oct 2006 **********
+
+- Changed standard name of the OpenBP tables:
+  Role -> OpenBPRole
+  RoleAssignment -> OpenBPRoleAssignment
+  User -> OpenBPUser
+  WorkflowTask -> OpenBPWorkflowTask
+  TokenContext -> OpenBPTokenContext
+
+- Changed standard name of the OpenBP HILO table for Hibernate:
+  HILO -> OpenBPHILO
+
+- The HibernatePersistenceContext now references a Hibernate SessionFactory instead of a Hibernate Session and a Hibernate Transaction.
+  Turned out to be more friendly to the Hibernate session best practices.
+
+- Changed setting manager architecture (SettingMgr.getInstance().* -> SettingUtil.*)
+
+- Fixed: App server application restart led to an RMI binding error.
+  Now OpenBP tries to access an existing registry if it cannot create one.
+
+- Fixed: Property 'CurrentSocketPath' caused Hibernate to complain about missing property of TokenContextImpl class.
+
+
+********** OpenBP V 0.82-8005 - 22 Jun 2006 **********
+
+- The openbp.common Eclipse project does not export its dependencies any more.
+
+- API:
+  New method ServerModule.getInstance()
+  Can be used to test if the OpenBP Server is already running.
+
+
+********** OpenBP V 0.82-8004 - 12 Jun 2006 **********
+
+- Note:
+  The Server.properties file contains configuration statements for the Log4J loger.
+  If you are using your own Log4J configuration, you should remove these statements
+  to prevent undesired effects.
+  By default, the INFO log level is set for all OpenBP-related loggers.
+
+- Thread-safe actions
+  Handler classes (and thus activity implementation classes) are instantiated on each execution separately now
+  in order to make programming of complex activity easier by not forcing the developers to make their activity
+  thread-safe.
+  However, in order to prevent re-instantiation on each handler invocation, a handler may implement
+  the marker interface ThreadSafeHandler, which instructs the engine to instantiate the handler
+  only once. Thread-safe handlers must not have member variables that relate to a particular handler execution.
+  Only configuration data that is initialized upon instantiation of the handler is allowed as member data.
+
+- Fork and join nodes and final nodes that return from the top-level process enforce a commit
+  of the current transaction.
+
+- The 'Collection' parameter of a fork node now also accepts a java.util.Map object.
+  It will provide the values of the map as parameters of the outgoing transition ('CollectionElement' parameter).
+
+- Process end
+  Instead of calling HandlerContext.setNextSocket(null), a process is terminated now by calling
+  HandlerContext.setLifecycleState(TokenContext.LC_STOP);
+
+- Updated to current Castor version 1.0
+
+- Since OpenBP has specialized on process and lifecycle control instead of user interface control
+  in the recent projects, servlet support has been removed from OpenBP.
+  The following files have been removed from the OpenBP distribution:
+      servlet/*
+      Jetty.properties
+      common/lib/openbp-servlet-stubs.jar
+      common/lib/openbp-servlet.jar
+
+- The OpenBP now executes process nodes provided by some node provider, i. e. is capable of executing
+  several processes at once instead of executing a single process until it returns.
+  Instead of Engine.executeProcess(String startRef, TokenContext context),
+  the methods
+      Engine.scheduleExecution(TokenContext context) and
+      Engine.executePending() can be used.
+  This add much to the flexibility of the system and is the basis for a sophisticated
+  lifecycle management.
+
+- The TokenContext.setLifecycleState(int lifecycleState) can be used to control the lifecycle
+  processing of the engine. The following states are available:
+    LC_RESUME/LC_RUNNING/LC_SUSPEND/LC_SUSPENDED/LC_STOP/LC_STOPPED
+
+- The class EngineInvoker has been removed.
+  Instead, directly call InvocationContext.invokeProcess() or InvocationContext.invokeProcessWait().
+
+- Scope for process variables has changed.
+  Instead of request, process and session scope, there are merely transaction and process-scope variables.
+  Transaction-scope variables will be cleared after a transaction has been committed or rolled back.
+  Subrocess-scope variables will be cleared when the process returns from a sub process call.
+  Context-scope variables will not be cleared.
+
+- Added 'Transaction Control' property to the control link (transition) element.
+  Control links having a 'Commit' transaction control peroperty also serve as transaction
+  boundaries for automatic process persistence.
+
+- Added TokenContext.getProgressInfo and HandlerContext.getProgressInfo methods.
+  The new ProgressInfo class allows to track the progress of an activity or workflow.
+  Its values will be persisted with the TokenContext.
+
+- Added methods to HandlerContext in order to enable handler context mock objects for unit tests:
+    public String getNodePath()
+    public String getNodeName()
+    public String getNodeDisplayName()
+    public boolean isParamPresent(String name)
+    public String [] getParamNames()
+
+- Fixed: OpenBP Server and OpenBP Cockpit Eclipse Projects should not export their external libraries
+
+- Removed the server directory options from the Cockpit option dialog
+  Adjust the server directory using the OPENBP_HOME environment variable or the -rootDir argument
+
+- The OpenBPServer class has been removed, it contained duplicated code to the BatchSample class.
+  For another example of the OpenBP engine acting as server, see the JMSOpenBPServer class.
+
+- The instantiation of the ServerModule class has changed. In your main class, instead of
+
+        // Perform the initialization
+        ServerModule serverModule = new ServerModule();
+        serverModule.initialize(true);
+
+  simply call
+
+        // Start up the server
+        ServerModule.obtainInstance();
+
+  In order to shut down the OpenBP server, call
+
+        // Start up the server
+        ServerModule.obtainInstance().shutdown();
+
+- The TokenContextProvider interface keeps track of all currently executing processes.
+  It holds the token context objects that correspond to a process that is currently executed
+  or scheduled for execution by the engine.
+
+
+********** OpenBP V 0.81-8002 - 23 Jan 2006 **********
+
+- Switched to current Hibernate version 3.1.1
+
+- Cleanup of some obsolete Jar files in OPENBP_HOME.
+  Please review the project build path settings for your OpenBP project.
+
+- The call to
+    Application.initialize();
+  before calling 
+    ServerModule serverModule = new ServerModule();
+    serverModule.initialize(true);
+  can be removed. The server module initialize calls Application.initialize itself now.
+
+- Separation between activity handler and event handler.
+  In the previous version, the handler concept was introduced as sucessor to the Activity Implementation concept.
+  Users complained about having to check the cause of the invocation of an activity handler at the start of the handler method
+  in order to distinguish the invocation from other events like NodeEnter or NodeExit.
+  Now there are separate handler definitions for activity handlers (which will be called for Java activity nodes only,
+  having the event type of the handler context set to HandlerTypes.ACTIVITY) and event handlers that may handle all other
+  events on a node level.
+
+  INCOMPATIBLE CHANGE TO PREVIOUS VERSIONS:
+  Note that if you have defined handlers for you nodes, you need to change the name of the <handler> element
+  in your process XML File either to <activity-handler> or <event-handler>.
+
+- OPENBP_HOME environment variable
+  Besides the openbp.home system property and the -rootdir command line argument, the Cockpit and
+  the OpenBP engine will now also use the OPENBP_HOME environment variable to determine the OpenBP
+  installation directory.
+
+- When not JAVA_HOME or OPENBP_JAVA_HOME environment variables have been set, the StartCockpit.bat
+  script will not use the standard command java.exe to start the OpenBP Cockpit.
+
+- The StartServer script files are obsolete and have been removed.
+
+- Fixed: Autoconnector connects multiple output params with a single input param
+
+- Fixed: Exception when generating activity handler: java.lang.NoClassDefFoundError: org/openbp/common/classloader/XClassLoaderLog4J
+
+- Fixed: Workflow end node should not have an exit socket

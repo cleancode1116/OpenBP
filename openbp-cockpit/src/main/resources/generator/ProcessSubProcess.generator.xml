@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+   Copyright 2007 skynamics AG
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ -->
+
+
+<generator
+	name="ProcessSubprocess"
+	display-name="Sub process"
+	item-generator="true"
+	sequence-nr="2"
+	xml-sequence="13"
+	item-type="Process"
+	generator-customizer="org.openbp.cockpit.generator.process.ProcessCustomizer"
+	>
+
+	<description>Sub processes are called from within other processes. They encapsulate detail functionality that does not need to be visible within the calling process.
+A sub process contains a single entry and a single final node by default. All entry and final nodes may have parameters.</description>
+
+	<initial-property name="ProcessType">
+		<value>Subprocess</value>
+	</initial-property>
+
+</generator>

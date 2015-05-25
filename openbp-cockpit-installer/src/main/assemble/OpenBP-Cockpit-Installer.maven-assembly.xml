@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assembly xmlns="http://maven.apache.org/POM/4.0.0" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/assembly-1.1.0-SNAPSHOT.xsd">
+
+	<id>izpack</id>
+	<formats>
+		<format>dir</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<dependencySets>
+		<dependencySet>
+			<outputDirectory>/lib</outputDirectory>
+			<unpack>false</unpack>
+			<scope>runtime</scope>
+		</dependencySet>
+	</dependencySets>
+	<fileSets>
+		<fileSet>
+			<directory>src/main/home</directory>
+			<outputDirectory></outputDirectory>
+			<filtered>false</filtered>
+			<excludes>
+				<exclude>logs/*</exclude>
+				<exclude>logs</exclude>
+			</excludes>
+		</fileSet>
+		<fileSet>
+			<directory>src/main/assemble</directory>
+			<outputDirectory>assemble</outputDirectory>
+			<filtered>false</filtered>
+			<excludes>
+				<exclude>*.izpack.xml</exclude>
+				<exclude>*.maven-assembly.xml</exclude>
+			</excludes>
+		</fileSet>
+	</fileSets>
+</assembly>

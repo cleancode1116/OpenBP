@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<model name="TestCase" display-name="Test case" item-type="Model" default-package="org.openbp.server.test">
+  <description>Processes for the standard OpenBP JUnit test cases</description>
+</model>

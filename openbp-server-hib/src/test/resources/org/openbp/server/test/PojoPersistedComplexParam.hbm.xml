@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+   Copyright 2007 skynamics AG
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ -->
+
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+	<class name="org.openbp.server.test.PojoPersistedComplexParam"
+		table="PersistedComplexParam"
+		optimistic-lock="none"
+		lazy="false">
+
+		<id name="Id" type="integer">
+			<column name="PCP_ID" not-null="true"/>
+			<generator class="hilo">
+				<param name="table">OpenBPHILO</param>
+				<param name="column">NEXT_VALUE</param>
+			</generator>
+		</id>
+
+		<property name="Title" type="string">
+			<column name="PCP_TITLE" length="40"/>
+		</property>
+
+		<property name="Result" type="integer">
+			<column name="PCP_RESULT"/>
+		</property>
+
+	</class>
+
+</hibernate-mapping>

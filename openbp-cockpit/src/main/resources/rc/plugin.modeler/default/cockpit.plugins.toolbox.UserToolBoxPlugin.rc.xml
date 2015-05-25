@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+   Copyright 2007 skynamics AG
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ -->
+
+<resource>
+	<import resource="cockpit.plugins.toolbox.ToolBoxPlugin" />
+
+	<item name="title">Toolbox</item>
+	<item name="description">User-configurable toolbox containing arbitrary components</item>
+	<item name="icon" type="image/multi">
+		<path>../../images/plugins/toolbox.png</path>
+	</item>
+	<item name="sequence">C-w t,C-w C-t</item>
+
+	<!-- Actions -->
+	<group name="toolbox.add">
+		<item name="displayname">Add To _Toolbox</item>
+		<item name="description">Add an item to toolbox</item>
+		<item name="prio">1000</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/plugins/toolbox.png</path>
+		</item>
+	</group>
+
+	<group name="toolbox.remove">
+		<item name="displayname">Remove From T_oolbox</item>
+		<item name="description">Remove an item from the toolbox</item>
+		<item name="prio">101</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/plugins/toolbox.png</path>
+		</item>
+	</group>
+</resource>

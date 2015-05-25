@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+   Copyright 2007 skynamics AG
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ -->
+
+<resource>
+
+	<!-- Component icons -->
+
+	<item name="Placeholder" type="image/multi">
+		<path>../images.flowchart/workspace/Placeholder.png</path>
+	</item>
+
+	<item name="Activity" type="image/multi">
+		<path>../images.flowchart/workspace/Activity.png</path>
+	</item>
+
+	<item name="Actor" type="image/multi">
+		<path>../images.flowchart/workspace/Actor.png</path>
+	</item>
+
+	<item name="Process" type="image/multi">
+		<path>../images.flowchart/workspace/Process.png</path>
+	</item>
+
+	<item name="Type" type="image/multi">
+		<path>../images.flowchart/workspace/Type.png</path>
+	</item>
+
+	<item name="Model" type="image/multi">
+		<path>../images.flowchart/workspace/Model.png</path>
+	</item>
+
+	<item name="Visual" type="image/multi">
+		<path>../images.flowchart/workspace/Visual.png</path>
+	</item>
+
+	<item name="Webservice" type="image/multi">
+		<path>../images.flowchart/workspace/Webservice.png</path>
+	</item>
+
+	<!-- Toolbox icons -->
+
+	<item name="SocketIn" type="image/png">
+		<path>../images.flowchart/workspace/SocketIn24.png</path>
+	</item>
+
+	<item name="SocketOut" type="image/png">
+		<path>../images.flowchart/workspace/SocketOut24.png</path>
+	</item>
+
+	<item name="Initial" type="image/multi">
+		<path>../images.flowchart/workspace/Initial.png</path>
+	</item>
+
+	<item name="Final" type="image/multi">
+		<path>../images.flowchart/workspace/FlowFinal.png</path>
+	</item>
+
+	<item name="Decision" type="image/multi">
+		<path>../images.flowchart/workspace/Decision.png</path>
+	</item>
+
+	<item name="Fork" type="image/multi">
+		<path>../images.flowchart/workspace/Fork.png</path>
+	</item>
+
+	<item name="Join" type="image/multi">
+		<path>../images.flowchart/workspace/Join.png</path>
+	</item>
+
+	<item name="Merge" type="image/multi">
+		<path>../images.flowchart/workspace/Merge.png</path>
+	</item>
+
+	<item name="WaitState" type="image/multi">
+		<path>../images.flowchart/workspace/WaitState.png</path>
+	</item>
+
+	<item name="Workflow" type="image/multi">
+		<path>../images.flowchart/workspace/Workflow.png</path>
+	</item>
+
+	<item name="WorkflowEnd" type="image/multi">
+		<path>../images.flowchart/workspace/ActivityFinal.png</path>
+	</item>
+
+	<item name="TextElement" type="image/multi">
+		<path>../images.flowchart/workspace/TextElement.png</path>
+	</item>
+
+	<item name="HLine" type="image/multi">
+		<path>../images.flowchart/workspace/HLine.png</path>
+	</item>
+
+	<item name="VLine" type="image/multi">
+		<path>../images.flowchart/workspace/VLine.png</path>
+	</item>
+
+
+	<!-- Workspace cursors -->
+
+	<item name="cursor.standard" type="image/png">
+		<path>../images.flowchart/cursor/standard.png</path>
+	</item>
+
+	<item name="cursor.standardadd" type="image/png">
+		<path>../images.flowchart/cursor/standardadd.png</path>
+	</item>
+
+	<item name="cursor.handclick" type="image/png">
+		<path>../images.flowchart/cursor/handclick.png</path>
+	</item>
+
+	<item name="cursor.handclickadd" type="image/png">
+		<path>../images.flowchart/cursor/handclickadd.png</path>
+	</item>
+
+	<item name="cursor.handscroll" type="image/png">
+		<path>../images.flowchart/cursor/handscroll.png</path>
+	</item>
+
+	<item name="cursor.zoom" type="image/png">
+		<path>../images.flowchart/cursor/zoom.png</path>
+	</item>
+
+	<item name="cursor.movenode" type="image/png">
+		<path>../images.flowchart/cursor/movenode.png</path>
+	</item>
+
+	<item name="cursor.resizenode" type="image/png">
+		<path>../images.flowchart/cursor/resizenode.png</path>
+	</item>
+
+	<item name="cursor.movesocket" type="image/png">
+		<path>../images.flowchart/cursor/movesocket.png</path>
+	</item>
+
+	<item name="cursor.moveparam" type="image/png">
+		<path>../images.flowchart/cursor/moveparam.png</path>
+	</item>
+
+	<item name="cursor.movetext" type="image/png">
+		<path>../images.flowchart/cursor/movetext.png</path>
+	</item>
+
+	<item name="cursor.createcontrollink" type="image/png">
+		<path>../images.flowchart/cursor/createcontrollink.png</path>
+	</item>
+
+	<item name="cursor.createdatalink" type="image/png">
+		<path>../images.flowchart/cursor/createdatalink.png</path>
+	</item>
+
+	<item name="cursor.movesplinepoint" type="image/png">
+		<path>../images.flowchart/cursor/movesplinepoint.png</path>
+	</item>
+
+	<item name="cursor.movesplinehandle" type="image/png">
+		<path>../images.flowchart/cursor/movesplinehandle.png</path>
+	</item>
+
+
+	<!-- Data types icons -->
+
+	<item name="TypeAny" type="image/png">
+		<path>../images.types/TypeAny24.png</path>
+	</item>
+
+	<item name="TypeBean" type="image/png">
+		<path>../images.types/TypeBean24.png</path>
+	</item>
+
+	<item name="TypeBinary" type="image/png">
+		<path>../images.types/TypeBinary24.png</path>
+	</item>
+
+	<item name="TypeBoolean" type="image/png">
+		<path>../images.types/TypeBoolean24.png</path>
+	</item>
+
+	<item name="TypeCollection" type="image/png">
+		<path>../images.types/TypeCollection24.png</path>
+	</item>
+
+	<item name="TypeDate" type="image/png">
+		<path>../images.types/TypeDate24.png</path>
+	</item>
+
+	<item name="TypeDecimal" type="image/png">
+		<path>../images.types/TypeDecimal24.png</path>
+	</item>
+
+	<item name="TypeDouble" type="image/png">
+		<path>../images.types/TypeDouble24.png</path>
+	</item>
+
+	<item name="TypeFloat" type="image/png">
+		<path>../images.types/TypeFloat24.png</path>
+	</item>
+
+	<item name="TypeInteger" type="image/png">
+		<path>../images.types/TypeInteger24.png</path>
+	</item>
+
+	<item name="TypeLong" type="image/png">
+		<path>../images.types/TypeLong24.png</path>
+	</item>
+
+	<item name="TypeMap" type="image/png">
+		<path>../images.types/TypeMap24.png</path>
+	</item>
+
+	<item name="TypeObject" type="image/png">
+		<path>../images.types/TypeObject24.png</path>
+	</item>
+
+	<item name="TypeShort" type="image/png">
+		<path>../images.types/TypeShort24.png</path>
+	</item>
+
+	<item name="TypeString" type="image/png">
+		<path>../images.types/TypeString24.png</path>
+	</item>
+
+	<item name="TypeTime" type="image/png">
+		<path>../images.types/TypeTime24.png</path>
+	</item>
+
+	<item name="TypeTimestamp" type="image/png">
+		<path>../images.types/TypeTimestamp24.png</path>
+	</item>
+
+</resource>

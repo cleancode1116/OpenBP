@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+   Copyright 2007 skynamics AG
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ -->
+
+<resource>
+	<import container="cockpit" resource="standardmenus" />
+
+	<item name="name">ModelerPage</item>
+	<item name="title">Modeler</item>
+	<item name="description">$(openbp.application.title) Modeler Page</item>
+	<item name="icon" type="image/multi">
+		<path>../../images/plugins/workspace.png</path>
+	</item>
+
+	<!-- Actions -->
+	<group name="modelerpage.view.controlanchor">
+		<item name="menuparent">menu.view.modelerdisplay</item>
+		<item name="toolbarparent">toolbar.display</item>
+		<item name="pagenames">ModelerPage</item>
+		<item name="displayname">_Control Anchors On/Off</item>
+		<item name="description">Toggle the display of control link anchors</item>
+		<item name="prio">10</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/toolbar/view/controlanchor.png</path>
+		</item>
+		<item name="sequence">C-m a,C-m C-a</item>
+		<item name="condition">features.controllinkswitches</item>
+	</group>
+
+	<group name="modelerpage.view.controltoggle">
+		<item name="menuparent">menu.view.modelerdisplay</item>
+		<item name="toolbarparent">toolbar.display</item>
+		<item name="pagenames">ModelerPage</item>
+		<item name="displayname">_Control Links On/Off</item>
+		<item name="description">Toggle the display of control links</item>
+		<item name="prio">11</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/toolbar/view/controllinktoggle.png</path>
+		</item>
+		<item name="sequence">C-m c,C-m C-c</item>
+		<item name="condition">features.controllinkswitches</item>
+	</group>
+
+	<group name="modelerpage.view.datatoggle">
+		<item name="menuparent">menu.view.modelerdisplay</item>
+		<item name="toolbarparent">toolbar.display</item>
+		<item name="pagenames">ModelerPage</item>
+		<item name="displayname">_Data Links On/Off</item>
+		<item name="description">Toggle the display of data links</item>
+		<item name="prio">12</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/toolbar/view/datalinktoggle.png</path>
+		</item>
+		<item name="sequence">C-m d,C-m C-d</item>
+		<item name="condition">features.datalinkswitches</item>
+	</group>
+
+	<group name="modelerpage.view.gridtoggle">
+		<item name="menuparent">menu.view.modelerdisplay</item>
+		<item name="toolbarparent">toolbar.display</item>
+		<item name="pagenames">ModelerPage</item>
+		<item name="displayname">_Grid On/Off</item>
+		<item name="description">Toggle the grid display</item>
+		<item name="prio">13</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/toolbar/view/gridtoggle.png</path>
+		</item>
+		<item name="sequence">C-m g,C-m C-g</item>
+	</group>
+
+	<!--
+	<group name="modelerpage.view.snaptogrid">
+		<item name="menuparent">menu.view.modelerdisplay</item>
+		<item name="toolbarparent">toolbar.display</item>
+		<item name="pagenames">ModelerPage</item>
+		<item name="displayname">_Snap To Grid</item>
+		<item name="description">Snap objects to the grid when moved</item>
+		<item name="prio">14</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/toolbar/view/snaptogrid.png</path>
+		</item>
+		<item name="sequence">C-m S-g,C-m C-S-g</item>
+	</group>
+	-->
+
+	<group name="modelerpage.view.zoomfactor">
+		<item name="type">combo</item>
+		<item name="toolbarparent">toolbar.zoom</item>
+		<item name="pagenames">ModelerPage</item>
+		<item name="displayname">Zoom</item>
+		<item name="description">Adjusts the zoom factor of the Modeler workspace</item>
+		<item name="prio">15</item>
+		<item name="sequence">C-m z,C-m C-z</item>
+
+		<item name="editable">true</item>
+		<item name="selectiontext0">25 %</item>
+		<item name="selectionvalue0">25</item>
+		<item name="selectiontext1">50 %</item>
+		<item name="selectionvalue1">50</item>
+		<item name="selectiontext2">75 %</item>
+		<item name="selectionvalue2">75</item>
+		<item name="selectiontext3">100 %</item>
+		<item name="selectionvalue3">100</item>
+		<item name="selectiontext4">150 %</item>
+		<item name="selectionvalue4">150</item>
+		<item name="selectiontext5">200 %</item>
+		<item name="selectionvalue5">200</item>
+	</group>
+
+	<group name="modelerpage.view.processback">
+		<item name="menuparent">menu.view.modelernavigation</item>
+		<item name="toolbarparent">toolbar.navigation</item>
+		<item name="pagenames">ModelerPage</item>
+		<item name="displayname">_Process Back</item>
+		<item name="description">Goes backward in the process history</item>
+		<item name="prio">10</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/toolbar/navigation/prevprocess.png</path>
+		</item>
+		<item name="sequence">A-left</item>
+	</group>
+
+	<group name="modelerpage.view.processforward">
+		<item name="menuparent">menu.view.modelernavigation</item>
+		<item name="toolbarparent">toolbar.navigation</item>
+		<item name="pagenames">ModelerPage</item>
+		<item name="displayname">_Process Forward</item>
+		<item name="description">Goes forward in the process history</item>
+		<item name="prio">10</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/toolbar/navigation/nextprocess.png</path>
+		</item>
+		<item name="sequence">A-right</item>
+	</group>
+
+	<!-- Messages -->
+	<item name="chooserhelptext">To apply the color, drag it from the preview panel (to the left of the color
+palette) to a component in the workspace or to the user toolbox.</item>
+
+	<!-- Open menu (association) titles -->
+	<item name="title.association.modeler">Modeler</item>
+
+</resource>

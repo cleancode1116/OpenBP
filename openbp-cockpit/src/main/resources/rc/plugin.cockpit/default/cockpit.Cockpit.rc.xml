@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+   Copyright 2007 skynamics AG
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ -->
+
+<resource>
+	<item name="title">$(openbp.cockpit.title)</item>
+	<item name="description">The $(openbp.application.title) Maintenance and Development Enviroment</item>
+	<item name="icon" type="image/multi">
+		<path>../../images/application/$(openbp.application.name)Icon.png</path>
+	</item>
+
+	<import container="cockpit" resource="standardmenus" />
+	<import container="cockpit" resource="standardoptions" />
+
+	<!-- Actions -->
+	<group name="global.interaction.exit">
+		<item name="menuparent">menu.cockpit.exit</item>
+		<item name="displayname">_Exit</item>
+		<item name="description">Exit the application</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/toolbar/empty.png</path>
+		</item>
+	</group>
+
+	<group name="global.interaction.pluginmanageropen">
+		<item name="menuparent">menu.cockpit.option</item>
+		<item name="displayname">Plugin _Manager...</item>
+		<item name="description">Open the plugin manager dialog</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/plugins/objectbrowser.png</path>
+		</item>
+	</group>
+
+	<group name="cockpit.help.manual">
+		<item name="menuparent">menu.help.manual</item>
+		<item name="displayname">OpenBP _Manual</item>
+		<item name="description">Display the OpenBP manual as PDF document</item>
+		<item name="prio" type="primitive/integer">1</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/toolbar/help/guide.png</path>
+		</item>
+	</group>
+
+	<group name="cockpit.help.javaapi">
+		<item name="menuparent">menu.help.reference</item>
+		<item name="displayname">_Java API Reference</item>
+		<item name="description">Display the Java API documentation as HTML</item>
+		<item name="prio" type="primitive/integer">1</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/toolbar/help/guide.png</path>
+		</item>
+	</group>
+
+	<group name="global.interaction.openaboutbox">
+		<item name="menuparent">menu.help.about</item>
+		<item name="displayname">_About...</item>
+		<item name="description">Display the about dialog</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/application/$(openbp.application.name)Icon.png</path>
+		</item>
+	</group>
+
+	<group name="frame">
+
+		<group name="openinframe">
+			<item name="displayname">Open Page In New Frame</item>
+			<item name="description">Open the page in a new frame</item>
+			<item name="icon" type="image/multi">
+				<path>../../images/toolbar/file/new.png</path>
+			</item>
+		</group>
+
+		<group name="closepage">
+			<item name="displayname">Close Page</item>
+			<item name="description">Close the current page</item>
+			<item name="icon" type="image/multi">
+				<path>../../images/toolbar/edit/delete.png</path>
+			</item>
+		</group>
+
+		<group name="plugininframe">
+			<item name="displayname">Open Window in New Frame</item>
+			<item name="description">Drag a window here to open it in a new frame</item>
+			<item name="icon" type="image/multi">
+				<path>../../images/toolbar/file/new.png</path>
+			</item>
+		</group>
+
+	</group>
+
+	<!-- Menus -->
+	<item name="optionsmenu">Options</item>
+	<item name="helpmenu">Help</item>
+
+	<!-- Messages -->
+	<item name="application.loaded">Loading complete.</item>
+	<item name="demo">(DEMO)</item>
+
+	<item name="connectionerror.title">Connection error</item>
+	<item name="connectionerror.description">The cockpit could not connect to the $(openbp.application.title) process engine.
+
+The $(openbp.cockpit.title) will operate in stand alone mode.
+Some functions (run process, process debugger, server reload etc.) will not be available.
+
+If you are using the cockpit for modeling only and to not intend to execute processes, you can ignore this message.
+
+Otherwise, make sure that the $(openbp.application.title) engine has been started and that the RMI ports 
+specified in the Server.properties and Cockpit.properties files match.
+	
+The engine was expected to be available on host {0}, port {1}. Error message:
+{2}
+
+You may start the $(openbp.application.title) engine at any time and then press the 'Reload' button (CTRL+r) in the Cockpit in order to connect to it.</item>
+
+	<item name="error.preload.objectdescriptor">Preloading of the object descriptor failed for class $0:
+
+$1</item>
+
+	<item name="warning.restartoption">An option you have changed requires a restart.
+In order for the new settings to become effective, you need to exit and restart the Cockpit.</item>
+
+	<item name="warning.optionchanged.servermodelpath">The server model qualifier option has been changed.
+In order for the new settings to become effective, you need to restart the Cockpit.</item>
+
+	<item name="guide.noassociation.pdf">The guide cannot be displayed because there is no program associated with PDF files.
+
+In order to specify a PDF reader, follow these steps:
+
+1. Open the option dialog in the Cockpit|Options menu.
+2. Select the 'Associations' section.
+3. Click the 'application/pdf' MIME type.
+4. Scroll down and enter/select the path to your PDF reader program
+(usually the Acrobat reader 'AcroRd32.exe' on a Windows platform).
+in the 'Associated Program' field.
+5. Close the dialog and retry displaying the guide.</item>
+
+	<item name="guide.noassociation.html">The reference cannot be displayed because there is no program associated with HTML files.
+
+In order to specify an HTML browser, follow these steps:
+
+1. Open the option dialog in the Cockpit|Options menu.
+2. Select the 'Associations' section.
+3. Click the 'text/html' MIME type.
+4. Scroll down and enter/select the path to your web browser.
+5. Close the dialog and retry displaying the document.</item>
+
+	<item name="progress.loadingwizards">Loading wizards...</item>
+	<item name="progress.loadingobjectdescriptors">Loading object descriptors...</item>
+
+</resource>

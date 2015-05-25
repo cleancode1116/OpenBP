@@ -1,0 +1,1481 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<book xml:id="Tutorial" version="5.0" xmlns="http://docbook.org/ns/docbook"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+	xmlns:ns5="http://www.w3.org/2000/svg" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:xi="http://www.w3.org/2003/XInclude" xmlns:xlink="http://www.w3.org/1999/xlink"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<article xml:id="Tutorial-Main">
+		<title>Tutorial</title>
+		<section xml:id="Tutorial-TutorialStory">
+			<title>Tutorial Story</title>
+			<para>The concepts of OpenBP are best explained by building a small tutorial
+				application, that makes use of the OpenBP process engine.</para>
+			<para>As an example that should be common to everybody, the tutorial will implement a
+				simple business processes for managing vacation requests. Use cases for this process
+				might be vacation or business travel planning. This type of processing will require
+				some as well as workflow functionality.</para>
+			<para>The business process defines the business logic that the application provides:<itemizedlist>
+					<listitem>
+						<para>Create a task list item for the supervisor of the submitter</para>
+					</listitem>
+					<listitem>
+						<para>Process the decision of the supervisor</para>
+					</listitem>
+					<listitem>
+						<para>If accepted, submit a request to an external system that might adjust
+							the capacity planning accordingly</para>
+					</listitem>
+					<listitem>
+						<para>Create a task list item for the submitter stating the final result of
+							the process.</para>
+					</listitem>
+				</itemizedlist></para>
+		</section>
+		<section>
+			<title>Initial Setup</title>
+			<section xml:id="Tutorial-CreatingANewModel">
+				<title>Creating a New Model</title>
+				<para>All OpenBP components need to be placed in a container named model. For now,
+					consider a model some kind of domain wrapper for process functionality.</para>
+				<para>Follow these steps in order to create your model:</para>
+				<orderedlist>
+					<listitem>
+						<para>Select <guimenuitem>Cockpit|New|Model</guimenuitem> from the main menu
+							or in the component browser right click the System model and select
+								<guimenuitem>New|Model</guimenuitem>.</para>
+						<mediaobject>
+							<imageobject role="fo">
+								<imagedata fileref="Screenshots/Modeler_CreateModel.png" scale="70"
+								/>
+							</imageobject>
+						</mediaobject>
+					</listitem>
+					<listitem>
+						<para>Define the properties of the new model as follows:.</para>
+						<mediaobject>
+							<imageobject role="fo">
+								<imagedata fileref="Screenshots/Modeler_ModelProps.png" scale="70"/>
+							</imageobject>
+						</mediaobject>
+						<informaltable>
+							<tgroup cols="2">
+								<thead>
+									<row>
+										<entry>Property</entry>
+										<entry>Value/Description</entry>
+									</row>
+								</thead>
+								<tbody>
+									<row>
+										<entry>System name</entry>
+										<entry>
+											<para><literal>VacationRequest</literal></para>
+											<para>Technical name of the model (must be unique
+												throughout all models).</para>
+											<para>Though not necessary for models, for consistency
+												with other objects we suggest to use the same syntax
+												as Java class names for system names.</para>
+										</entry>
+									</row>
+									<row>
+										<entry>Display name</entry>
+										<entry>
+											<para><literal>Vacation request sample
+												application</literal></para>
+											<para>Human-readable name of the model.</para>
+											<para>The display name and the description will be
+												displayed in the tool tip when hovering the model in
+												the component browser.</para>
+										</entry>
+									</row>
+									<row>
+										<entry>Descripition</entry>
+										<entry>
+											<para><literal>OpenBP tutorial application. This model
+												hosts the main processes of the
+												application.</literal></para>
+											<para>Short descriptive text about the purpose of the
+												model.</para>
+											<para>You may generate a newline using the
+												<keycap>CTRL+ENTER</keycap> key.</para>
+										</entry>
+									</row>
+									<row>
+										<entry>Defaults-Default package</entry>
+										<entry>
+											<para><literal>com.mycompany.sample.vacation</literal></para>
+											<para>Name of the Java package that shall be associated
+												with this model. Useful when creating source code
+												for Java activity nodes.</para>
+										</entry>
+									</row>
+								</tbody>
+							</tgroup>
+						</informaltable>
+					</listitem>
+					<listitem>
+						<para>Click <guimenuitem>Finish</guimenuitem> to create the unit. The new
+							model will appear in the component browser.</para>
+					</listitem>
+				</orderedlist>
+			</section>
+		</section>
+		<section>
+			<title>Business Process Modeling</title>
+			<para>This sample is a small process that can be modeled on a technical level right
+				away. However, we want to demonstrate OpenBP's layered modeling feature that can
+				help you to develop a process starting from a bird's eye view down to the technical
+				modeling level.</para>
+			<section xml:id="Tutorial-CreatingTheBusinessProcess">
+				<title>Creating the Business Process</title>
+				<para>Our business process will define the principal tasks of the application that
+					we want to develop. A business process process is not to be executed by the
+					process engine, it merely serves as the 'Big Picture' that structures lower
+					level processes and non-IT-based activities.</para>
+				<orderedlist>
+					<listitem>
+						<para>Right click the new model in the component browser and select
+								<guimenuitem>New|Process</guimenuitem>.</para>
+						<para>
+							<tip>
+								<para>If you prefer using the keyboard, you may pop up the menu in
+									the component browser by using the <keycap>SPACE</keycap>
+									bar.</para>
+							</tip>
+						</para>
+					</listitem>
+					<listitem>
+						<para>Choose which type of process you wish to create. If you select a type,
+							a description of the type appears in the headline of the dialog.</para>
+						<informaltable>
+							<tgroup cols="2">
+								<thead>
+									<row>
+										<entry>Type</entry>
+										<entry>/Description</entry>
+									</row>
+								</thead>
+								<tbody>
+									<row>
+										<entry>Business process</entry>
+										<entry>High level business process. Meant for modeling
+											processes that may contain non-executable
+											portions.</entry>
+									</row>
+									<row>
+										<entry>Top level process</entry>
+										<entry>Executable process that can be invoked by the
+											application code. This is the most common type of
+											process you may use within OpenBP models.</entry>
+									</row>
+									<row>
+										<entry>Sub process</entry>
+										<entry>Process that can be called by a top level process or
+											another sub process. A sub process is used in cases
+											where a particular functionality is needed in several
+											top level processes or several locations within one top
+											level process or if you want to enable overriding of a
+											particular portion of a process.</entry>
+									</row>
+								</tbody>
+							</tgroup>
+						</informaltable>
+						<para>For now, choose <literal>Business process</literal> and click
+								<guimenuitem>Next</guimenuitem>.</para>
+					</listitem>
+					<listitem>
+						<para>Define the properties of the new process as follows:.</para>
+						<informaltable>
+							<tgroup cols="2">
+								<thead>
+									<row>
+										<entry>Property</entry>
+										<entry>Value/Description</entry>
+									</row>
+								</thead>
+								<tbody>
+									<row>
+										<entry>System name</entry>
+										<entry>
+											<para><literal>VacationRequestBusinessProcess</literal></para>
+										</entry>
+									</row>
+									<row>
+										<entry>Descripition</entry>
+										<entry>
+											<para><literal>Abstract outline of the functionality of
+												the application.</literal></para>
+										</entry>
+									</row>
+									<row>
+										<entry>Functional group</entry>
+										<entry>
+											<para><literal>Business process</literal></para>
+											<para>You may use arbitrary functional group to
+												sub-structure the components of you model
+												semantically. For example, we have decided to
+												structure our processes into 'Business process' and
+												'Technical process'.</para>
+										</entry>
+									</row>
+								</tbody>
+							</tgroup>
+						</informaltable>
+						<para>A business process does not have parameters so, click
+								<guimenuitem>Finish</guimenuitem> righ away. An empty workspace
+							appears.</para>
+					</listitem>
+				</orderedlist>
+			</section>
+			<section>
+				<title>Initial Node</title>
+				<para>A process always starts with an initial node.</para>
+				<orderedlist>
+					<listitem>
+						<para>In order to create an initial node, simply point at the green triangle
+							in the standards component browser (the top left view) and drag it the
+							onto the workspace by pressing the left mouse button and releasing it
+							over the workspace. While you drag, the cursor changes to reflect the
+							type of item that is being dragged.</para>
+						<mediaobject>
+							<imageobject>
+								<imagedata fileref="Screenshots/Modeler_BP1_InitialNode.png"
+									scale="70"/>
+							</imageobject>
+						</mediaobject>
+						<para>Drop the node somewhere at the top of the workspace.</para>
+					</listitem>
+					<listitem>
+						<para>A small input widget (the 'in-place-editor') is displayed to the right
+							of the new process element. Use it to change the system name of the node
+							to <literal>Start</literal>.</para>
+						<para>The result might look like this:</para>
+						<mediaobject>
+							<imageobject>
+								<imagedata fileref="Screenshots/Modeler_BP2_InitialNode.png"
+									scale="70"/>
+							</imageobject>
+						</mediaobject>
+						<note>
+							<para>To bring up the in-place-editor again, simply click the currently
+								selected node once more. You may also use the property browser
+								window to modify the properties of the currently selected
+								element.</para>
+						</note>
+					</listitem>
+				</orderedlist>
+			</section>
+			<section>
+				<title>Functionality Nodes</title>
+				<para>On this level, our goal is to structure the process we would like to realize.
+					We do not (yet) care about the details. So we use abstract element - placeholder
+					notes - to define particular process steps.</para>
+				<orderedlist>
+					<listitem>
+						<para>Drag and drop the yellow question mark from the standards component
+							browser onto the workspace below the initial node.</para>
+						<mediaobject>
+							<imageobject>
+								<imagedata fileref="Screenshots/Modeler_BP3_Placeholder.png"
+									scale="70"/>
+							</imageobject>
+						</mediaobject>
+					</listitem>
+					<listitem>
+						<para>This process step shall create a task list entry for the supervisor of
+							the submitter, who shall decide about the request. In the property
+							browser change the system name of the placeholder to <literal>Approve
+								request.</literal>
+						</para>
+					</listitem>
+					<listitem>
+						<para>The connectors where control links between nodes can be attached are
+							called sockets. A node has a single entry socket (the socket named
+								<literal>In</literal> by default) and an arbitrary number of exit
+							sockets. By default, a placeholder node has a single exit socket.</para>
+						<para>The vacation request may be either approved or rejected. We will
+							reflect these options by two different sockets.</para>
+						<para>Select the only exit socket of the placeholder node (the lower one)
+							and change its name in the properties browser to
+								<literal>Accepted</literal>.</para>
+						<para>Press the CTRL key to activate the socket movement mode and drag the
+							exit socket a little to the left in the workspace.</para>
+						<para>Drag the exit socket symbol <inlinemediaobject>
+								<imageobject>
+									<imagedata fileref="Screenshots/Modeler_FLOW_ExitSocket.png"
+										scale="50"/>
+								</imageobject>
+							</inlinemediaobject> from the standard components window to the bottom
+							area of the placeholder and rename it to <literal>Rejected</literal>.
+							You may use CTRL+Mouse to rotate the socket around the node. Place it to
+							the right of the <literal>Accepted</literal> socket .</para>
+						<para>Now, your process should look like this:</para>
+						<mediaobject>
+							<imageobject>
+								<imagedata fileref="Screenshots/Modeler_BP4_Placeholder.png"
+									scale="70"/>
+							</imageobject>
+						</mediaobject>
+					</listitem>
+					<listitem>
+						<para>Now let's wire the <literal>Accepted</literal> socket with a new
+							placeholder node in order to model the processing that should be
+							performed if the supervisor of the requester agrees to the request.
+							However, we will use a handy shortcut for inserting nodes.</para>
+						<para>Select the <literal>Accepted</literal> socket and move the mouse
+							somewhat below where you want the new placeholder node to be placed. Now
+							press the <keycap>SPACE</keycap> bar. The flywheel menu will appear. It
+							displays all elements from the standard component window that can be
+							inserted at the present location. You can rotate the flywheel with the
+							mouse wheel until the <emphasis role="italic">placeholder</emphasis>
+							symbol appears under the cursor. Now simply click to insert the
+							element.</para>
+						<para>Select the <literal>Accepted</literal> socket and move the mouse
+							somewhat below where The flywheel menu will remember the recently
+							inserted element and will suggest this element by default the next time
+							you open the flywheel menu. This allows for quickly inserting similar
+							element types.</para>
+						<mediaobject>
+							<imageobject>
+								<imagedata fileref="Screenshots/Modeler_BP5_Placeholder.png"
+									scale="70"/>
+							</imageobject>
+						</mediaobject>
+					</listitem>
+					<listitem>
+						<para>After you have insert the element, change its name to <literal>Update
+								accounting</literal>. The task of the element will be to communicate
+							the vacation request to the accounting system of the company.</para>
+						<mediaobject>
+							<imageobject>
+								<imagedata fileref="Screenshots/Modeler_BP6_UpdateAccounting.png"
+									scale="70"/>
+							</imageobject>
+						</mediaobject>
+					</listitem>
+					<listitem>
+						<para>The next node should be a placeholder node named <literal>Send
+								notification</literal> that resembles sending a notification to the
+							requester to inform him about the outcome.</para>
+						<para>Finally, insert a final node to distinguish the end of the workflow
+							and name it <literal>End</literal>.</para>
+						<mediaobject>
+							<imageobject>
+								<imagedata fileref="Screenshots/Modeler_BP7_End.png" scale="70"/>
+							</imageobject>
+						</mediaobject>
+					</listitem>
+					<listitem>
+						<para>We also need to notify the requester if the request was declined. So
+							select the <literal>Rejected</literal> socket and manually draw a
+							control link to the <literal>In</literal> socket of the <literal>Send
+								notification</literal> node.</para>
+						<para>That's it so far for our simple business process. You might align the
+							nodes a little to beautify the process. Finally press
+								<keycap>CTRL+s</keycap> to save the process.</para>
+						<mediaobject>
+							<imageobject>
+								<imagedata fileref="Screenshots/Modeler_BP9_Final.png" scale="70"/>
+							</imageobject>
+						</mediaobject>
+					</listitem>
+					<listitem>
+						<para>By default, the business process is displayed using a flowchart
+							notation. However, you may switch to UML notation at any time by by
+							selecting the appropriate presentation from the toolbar of the
+							modeler.</para>
+						<mediaobject>
+							<imageobject>
+								<imagedata fileref="Screenshots/Modeler_BP9_Final_UML.png"
+									scale="70"/>
+							</imageobject>
+						</mediaobject>
+					</listitem>
+				</orderedlist>
+			</section>
+		</section>
+		<section>
+			<title>Technical Process Modeling</title>
+			<section>
+				<title>Technical Concept</title>
+				<para>The vacation request application might run as part of a corporate intranet,
+					which contains a page where employees may enter data for a planned business trip
+					or a vacation they want to apply for. </para>
+				<para>The <literal>Submit</literal> button of the web page will transfer the data
+					entered in the page to a request handler servlet. The servlet will construct an
+					object that holds the form data and populate it with the data entered by the
+					user. The object's class may look like this: </para>
+				<programlisting>
+					<xi:include href="VacationData.java" parse="text"/>
+				</programlisting>
+				<para>The servlet will then create a new instance of an OpenBP process, provide the
+					data object as parameter to it and pass the process instance to the OpenBP
+					engine for execution. The engine will asynchronously execute the processing
+					instructions defined by the business process one by one. Since this may take a
+					lot of time, especially if the process contains interruptions such as workflow
+					activities, the servlet will return immediately, notifying the user that his
+					request will be processed. </para>
+			</section>
+			<section>
+				<title>Data Type Definitions</title>
+				<para>It might be useful to define a special data type that we want to use within
+					the process. subordinate functionality. <note>
+						<para>As an alternative to custom type definitions, you might simply use the
+							OpenBP system type 'Object' for parameter definitions in your process,
+							which will work just as well. In this case, you do not need to define
+							custom data types. </para>
+						<para>Though this will probably save a lot of time, OpenBP cannot provide
+							popup menus for data members of the particular type at design time and
+							will also not be able to perform type checking at runtime. It will also
+							require more discipline in terms of parameter naming so that the
+							parameter type get obvious from its name.</para>
+						<para>This is a matter of personal preferences. In favor of clarity, we will
+							use custom type definitions. </para>
+					</note><orderedlist>
+						<listitem>
+							<para>Right click the <literal>VacationRequest</literal> model in the
+								component browser and select
+								<guimenuitem>New|Type</guimenuitem>.</para>
+						</listitem>
+						<listitem>
+							<para>Enter the following data to specify the new type: <informaltable>
+									<tgroup cols="2">
+										<thead>
+											<row>
+												<entry>Property</entry>
+												<entry>Value/Description</entry>
+											</row>
+										</thead>
+										<tbody>
+											<row>
+												<entry>System name</entry>
+												<entry>
+												<para>
+												<literal>VacationData</literal></para>
+												</entry>
+											</row>
+											<row>
+												<entry>Functional group</entry>
+												<entry>
+												<para><literal>Technical process</literal></para>
+												</entry>
+											</row>
+											<row>
+												<entry>Bean class name</entry>
+												<entry>
+												<para><literal>com.mycompany.sample.vacation.VacationData</literal></para>
+												</entry>
+											</row>
+										</tbody>
+									</tgroup>
+								</informaltable> Click <literal>Finish</literal>. </para>
+						</listitem>
+						<listitem>
+							<para>Now we will define the data members of our custom type. For each
+								data member, right click the <literal>Data members</literal> label
+								item in the component browser and select <guimenuitem>Add
+									Element</guimenuitem> or press <keycap>CTRL+n</keycap> to add a
+								new data member to the end of the member list. <mediaobject>
+									<imageobject>
+										<imagedata fileref="Screenshots/Modeler_DT1_AddMember.png"
+											scale="70"/>
+									</imageobject>
+								</mediaobject> For each data member, specify its properties in the
+								property browser. The data type of a member itself must be referred
+								to OpenBP type also. In order to open the popup dialog for type
+								selection, click the arrow button of the <literal>Data
+									type</literal> field or press <keycap>ALT+DOWN</keycap> when the
+								field has the focus. <mediaobject>
+									<imageobject>
+										<imagedata fileref="Screenshots/Modeler_DT2_AddMember.png"
+											scale="70"/>
+									</imageobject>
+								</mediaobject><mediaobject>
+									<imageobject>
+										<imagedata
+											fileref="Screenshots/Modeler_DT3_AddMemberType.png"
+											scale="70"/>
+									</imageobject>
+								</mediaobject> To create the next data member, simply press
+									<keycap>CTRL+n</keycap>. When you are finally done, click
+									<literal>Finish</literal>. </para>
+						</listitem>
+						<listitem>
+							<para>The new type appears in the component browser. You may
+								double-click the type once more to open it in the component editor.
+								Its properties should look like this: <mediaobject>
+									<imageobject>
+										<imagedata fileref="Screenshots/Modeler_DT4_Finish.png"
+											scale="70"/>
+									</imageobject>
+								</mediaobject></para>
+						</listitem>
+					</orderedlist></para>
+			</section>
+			<section>
+				<title>Creating a Technical Process</title>
+				<para>The placeholder elements that we used in the business process are abstract
+					proxies of some subordinate functionality. Originating from the business
+					process, we will create technical processes that implement the functionality
+					indicated by the placeholder(s).</para>
+				<note>
+					<para>If you prefer not have any connection between the business process and the
+						technical process, simply create the technical process as you did in section
+							<link linkend="Tutorial-CreatingTheBusinessProcess">Creating the
+							Business Process</link>. In this example, we will apply the top-down
+						principle, orignating from our business process down to the technical
+						level.</para>
+				</note>
+				<orderedlist>
+					<listitem>
+						<para>Double-click the <literal>Approve request</literal> placeholder node
+							in order to create a technical process. In the dialog <mediaobject>
+								<imageobject>
+									<imagedata fileref="Screenshots/Modeler_TP1_Creation.png"
+										scale="70"/>
+								</imageobject>
+							</mediaobject> choose the option <literal>Create a new
+							process</literal>.</para>
+					</listitem>
+					<listitem>
+						<para>In the subsequent process wizard, select 'Top level process' as
+							process type and enter the following process properties: <informaltable>
+								<tgroup cols="2">
+									<thead>
+										<row>
+											<entry>Property</entry>
+											<entry>Value/Description</entry>
+										</row>
+									</thead>
+									<tbody>
+										<row>
+											<entry>System name</entry>
+											<entry>
+												<para><literal>HandleVacationRequest</literal></para>
+											</entry>
+										</row>
+										<row>
+											<entry>Descripition</entry>
+											<entry>
+												<para><literal>Defines the actual vacation request
+												processing.</literal></para>
+											</entry>
+										</row>
+										<row>
+											<entry>Functional group</entry>
+											<entry>
+												<para><literal>Technical process</literal></para>
+											</entry>
+										</row>
+									</tbody>
+								</tgroup>
+							</informaltable> Click <literal>Finish</literal>. </para>
+					</listitem>
+				</orderedlist>
+			</section>
+			<section>
+				<title>Providing start parameters to the process</title>
+				<para>First, we need a point to begin. A process always starts at an
+						<glossterm>initial node</glossterm>. Create an initial node named
+						<literal>Start</literal>.</para>
+				<para>Now, provide a <literal>RequestData</literal> object as parameter to the node.
+					Just drag the <literal>RequestData</literal> component from the component
+					browser and drop it onto the exit socket of the start node.</para>
+				<para>.<mediaobject>
+						<imageobject>
+							<imagedata fileref="Screenshots/Modeler_TP2_InitialNode.png" scale="70"
+							/>
+						</imageobject>
+					</mediaobject>Change the name of the parameter from
+						<literal>RequestData</literal> to <literal>Data</literal>. </para>
+			</section>
+			<section>
+				<title>Activity Node</title>
+				<para>We will use an activity node to implement a simple verification of the input
+					data. </para>
+				<orderedlist>
+					<listitem>
+						<para>Select the initial node in the workspace and drag the activity node
+							symbol <inlinemediaobject>
+								<imageobject>
+									<imagedata fileref="Screenshots/Modeler_UML_Activity.png"
+										scale="50"/>
+								</imageobject>
+							</inlinemediaobject> from the toolbox to the workspace below the initial
+							node. Name the new activity <literal>VerifyVacationData</literal>.
+						</para>
+					</listitem>
+					<listitem>
+						<para>The activity will expect some data item to verify. We could define
+							this parameter in the same way we have defined it for the initial node.
+							However, since we have changed the default name suggested by the OpenBP
+							modeler, we prefer to copy it. </para>
+						<para>Right-click the parameter of the initial node and choose
+								<guimenuitem>Copy</guimenuitem> or select it and press
+								<keycap>CTRL+c</keycap>. </para>
+						<para>Now right-click the entry socket of the new activity node and choose
+								<guimenuitem>Paste</guimenuitem> or select it and press
+								<keycap>CTRL+v</keycap> to paste the parameter to the socket. </para>
+						<para>Note: Sockets that that have default names (either
+								<literal>In</literal> or <literal>Out)</literal> and are connected
+							to other sockets already are not displayed by default in order to save
+							screen space. In order to make it visible, simply select the node that
+							owns the socket. You might also choose to disable this optimization
+							logic by toggling the <inlinemediaobject>
+								<imageobject>
+									<imagedata
+										fileref="Screenshots/Modeler_Toolbar_ControlLinkAnchors.png"
+										scale="50"/>
+								</imageobject>
+							</inlinemediaobject> button. </para>
+					</listitem>
+					<listitem>
+						<para>Connect the parameter of the initial node to the parameter of the
+							activity by simply dragging a data link between the two. When you start
+							dragging from the parameter, the areas where you can connect will appear
+							in a light green overlay. <mediaobject>
+								<imageobject>
+									<imagedata fileref="Screenshots/Modeler_TP3_VerifyActivity.png"
+										scale="70"/>
+								</imageobject>
+							</mediaobject></para>
+						<para/>
+					</listitem>
+					<listitem>
+						<para>The outcome of the verification might be positive or negative.
+							Depending on the result, we would like to take different paths of
+							execution in the process. The activity already has a default exit socket
+							called <literal>Out</literal>. We choose to use this socket in case of a
+							successful verification.</para>
+						<para>Create a second exit socket by dragging the exit socket symbol <inlinemediaobject>
+								<imageobject>
+									<imagedata fileref="Screenshots/Modeler_UML_ExitSocket.png"
+										scale="50"/>
+								</imageobject>
+							</inlinemediaobject> from the toolbox and drop it onto the activity.
+							Name the new socket <literal>Invalid</literal>. Finally, bring the
+							socket in the position you would like it to have. Move the cursor over
+							the socket and press the <keycap>CTRL</keycap> key. Move the mouse to
+							rotate the socket around the body of the activity. If you press the
+								<keycap>SHIFT</keycap> in addition to the <keycap>CTRL</keycap> key,
+							the socket will lock at 45° angles. Rotate the socket to the right of
+							the activity rectangle.</para>
+						<para>We would like to pass back a validation error message in case of
+							validation errors. Let's define an output parameter that will receive
+							the message text. Drag a <literal>String</literal> data type from the
+								<literal>System</literal> unit in the component browser and drop it
+							on the the socket. Name the parameter <literal>ErrMsg</literal>.</para>
+						<para>The model should look lik this:</para>
+						<para>
+							<mediaobject>
+								<imageobject>
+									<imagedata fileref="Screenshots/Modeler_TP4_VerifyActivity2.png"
+										scale="70"/>
+								</imageobject>
+							</mediaobject>
+						</para>
+					</listitem>
+				</orderedlist>
+			</section>
+			<section>
+				<title>Using Scripts to Implement an Activity</title>
+				<para>For convenience, we will scripting to implement the (rather simple) activity
+					logic. Later you will learn how to create a Java-based activity.</para>
+				<para>OpenBP currently supports the BeanShell language as scripting language.
+					BeanShell was intended as full-features Java scripting language and should
+					become a scripting standard with JSR 274. However, this JSR hasn't been closed
+					but it also does not move forward. We might support different scripting
+					languages in addition to the BeanShell in the future.</para>
+				<para>First, select the activity. In the property browser window below the
+					workspace, you may edit the property <literal>Bean shell script</literal> in
+					order to type the Bean shell script.</para>
+				<para>
+					<tip>
+						<para>Note that the property browser does not support syntax highlighting or
+							code completion. You might want to make life a little easier by editing
+							your code with an external editor and copy/pasting it to the the
+							property browser.</para>
+					</tip>
+				</para>
+				<para>BeanShell supports most features of the Java 1.2 language. For details, see
+						<link xlink:href="http://www.beanshell.org"/>. OpenBP's Bean Shell support
+					adds the following features:</para>
+				<para>
+					<itemizedlist>
+						<listitem>
+							<para>Input parameter support</para>
+							<para>The input parameters of the entry socket of the node are copied to
+								the Bean Shell's data context. You may access the parameter value by
+								using a variable that has the same name as the parameter. Thus, you
+								should name your variables in a way that they adhere to Java
+								identifier syntax.</para>
+						</listitem>
+						<listitem>
+							<para>Output parameter support</para>
+							<para>Variables from the Bean Shell's data context will be copied to
+								output variables of the exit socket that is executed when leaving
+								the activity code (see below). In order to pass a value from the
+								activity code to the process, simply assign the value to a Bean
+								Shell variable and define an output parameter that has the same name
+								on the exit socket that is to be taken.</para>
+						</listitem>
+						<listitem>
+							<para>Exit socket selection</para>
+							<para>When you do not specify an exit socket, execution will continue
+								with the default socket of the activity. However, if you want to
+								specify a different execution path, you can assign the name of the
+								alternative exit socket to a special variable named
+									<literal>exit</literal>.</para>
+						</listitem>
+						<listitem>
+							<para>Entry socket detection</para>
+							<para>Accompanying the exit socket selection mechanism, you may access
+								the name of the entry socket through a special variable named
+									<literal>entry</literal> in cases where an activity has more
+								than one entry socket and you need to distringuish the entry path to
+								the activity within the activity code.</para>
+						</listitem>
+					</itemizedlist>
+				</para>
+				<para>Insert the following Bean Shell code for the activity:</para>
+				<programlisting><![CDATA[if (Data.state != 1)
+{
+    ErrMsg = "Request has already been processed.";
+    exit = "Invalid";
+}]]>
+				</programlisting>
+			</section>
+			<section>
+				<title>Final Node</title>
+				<para>Finally, insert two final nodes in the process and connect them to the
+					activity. Name them <literal>Accepted</literal> and <literal>Failed</literal>.
+					Provide the <literal>Failed</literal> node with the error message string that
+					has been returned by the activity.</para>
+				<para>If you got it right, you process might look like this:</para>
+				<para>
+					<mediaobject>
+						<imageobject>
+							<imagedata fileref="Screenshots/Modeler_TP5_Final.png" scale="70"/>
+						</imageobject>
+					</mediaobject>
+				</para>
+			</section>
+			<section>
+				<title>Text Elements</title>
+				<para>You might use text elements to add some documentation to the process. Just
+					drag the text element symbol <inlinemediaobject>
+						<imageobject>
+							<imagedata fileref="Screenshots/Modeler_UML_TextElement.png" scale="50"
+							/>
+						</imageobject>
+					</inlinemediaobject> from the toolbox and drop it somewhere on the workspace.
+					Edit the multi-line text in the property browser. You may enlarge the font by
+					clicking on the red dot near the text and dragging it to the right. You may also
+					assign the text a different color:</para>
+				<para>Select the <guilabel>Color</guilabel> tab of the window to the lower right.
+					Click somewhere in the color space or move the color slider to the right to
+					choose a color. You will notice that the preview area changes its color. In
+					order to apply the color, drag it from the preview area and drop it onto the
+					text in the workspace.</para>
+				<para>
+					<tip>
+						<para>You can do this also with some node instead of the text element.
+							Simply try it out...</para>
+					</tip>
+				</para>
+				<para>Finally, we have a well-documented process:</para>
+				<para>
+					<mediaobject>
+						<imageobject>
+							<imagedata fileref="Screenshots/Modeler_TP6_TextElement.png" scale="70"
+							/>
+						</imageobject>
+					</mediaobject>
+				</para>
+			</section>
+		</section>
+		<section>
+			<title>Running Your First Process</title>
+			<section>
+				<title>The Sample Project</title>
+				<para>OpenBP is not a stand alone process execution environment by default. It is
+					meant to be integrated into your software as a lightweight process
+					engine.</para>
+				<para>For convenience and a jumpstart, we have provided a sample Eclipse project
+					including maven pom file that implements a simple JUnit test case that runs an
+					the sample process we are about to create. Simply copy the project directory
+						<literal>openbp-sample</literal> to your environment and adopt it to your
+					needs. When transferring it to your application, you should consider the
+					following artifacts:</para>
+				<para>
+					<informaltable frame="all">
+						<tgroup cols="2">
+							<colspec colname="c1" colnum="1" colwidth="1*"/>
+							<colspec colname="c2" colnum="2" colwidth="3*"/>
+							<tbody>
+								<row>
+									<entry>pom.xml</entry>
+									<entry>
+										<para>Maven project file</para>
+										<para>Contains the dependencies to use OpenBP with Hibernate
+											as persistence mechanism and the HSQLDB JDBC
+											driver.</para>
+										<para><emphasis>Copy the dependencies to you project's POM
+												file</emphasis></para>
+									</entry>
+								</row>
+								<row>
+									<entry>.classpath</entry>
+									<entry>
+										<para>Eclipse classpath definition file</para>
+										<para><emphasis>Copy the entries to your .classpath file or
+												(better) regenerate from the pom.xml
+											file</emphasis></para>
+									</entry>
+								</row>
+								<row>
+									<entry>src/main/resources/OpenBP-Server.properties</entry>
+									<entry>
+										<para>Property file that defines several properties for the
+											OpenBP engine. See section TODO for adjusting
+											debugger-relevant values in this file.</para>
+										<para><emphasis>Copy to your application's resource
+												directory.</emphasis></para>
+									</entry>
+								</row>
+								<row>
+									<entry>src/main/resources/OpenBP-Server-Sample.spring.xml</entry>
+									<entry>
+										<para>Spring configuration file that wires and configures
+											the OpenBP components for running with Hibernate. For an
+											explanation of OpenBP's Spring context, see section
+											TODO</para>
+										<para><emphasis>Copy to your application's resource
+												directory.</emphasis></para>
+									</entry>
+								</row>
+								<row>
+									<entry>src/main/resources/OpenBP-Quartz.properties</entry>
+									<entry>
+										<para>Configuration file for the Quartz scheduler for timed
+											execution of OpenBP processes. Note required for the
+											sample.</para>
+										<para><emphasis>Copy to your application's resource
+												directory.</emphasis></para>
+									</entry>
+								</row>
+								<row>
+									<entry>src/main/resources/log4j.properties</entry>
+									<entry>
+										<para>Logger properties file.</para>
+										<para><emphasis>Copy to your application's resource
+												directory or copy the OpenBP portions to your own
+												log4j configuration file.</emphasis></para>
+									</entry>
+								</row>
+								<row>
+									<entry>src/main/resources/hibernate.cfg.xml</entry>
+									<entry>
+										<para>Hibernate configuration file containing the OpenBP
+											entity definitions.</para>
+										<para>You will probably have this yourself. Note that you do
+											not have to add the OpenBP entity definitions to your
+											Hibernate configuration, OpenBP does this itself upon
+											initialization.</para>
+									</entry>
+								</row>
+								<row>
+									<entry>src/main/java/com/mycompany/sample/vacation/VacationSampleTestCase.java</entry>
+									<entry>
+										<para>Sample JUnit test source code.</para>
+										<para>Through this is a test case, it has been place in the
+											main/java folder for this demo. Just copy the code
+											portions you need to your application code.</para>
+									</entry>
+								</row>
+								<row>
+									<entry>src/main/java/com/mycompany/sample/vacation/VacationData.java</entry>
+									<entry>
+										<para>A data object definition that is being used within the
+											process.</para>
+										<para>Just for demo.</para>
+									</entry>
+								</row>
+							</tbody>
+						</tgroup>
+					</informaltable>
+				</para>
+				<para/>
+			</section>
+			<section>
+				<title>Moving the Model to an Executable Environment</title>
+				<para>By default, the OpenBP modeler creates a new model in the
+						<literal>Model</literal> folder in the OpenBP installation directory.</para>
+				<para>For most applications, it makes sense to place the process model as resource
+					in the classpath of the application. So we have to move the model from its
+					default location to our project location.</para>
+				<para>In order to do this, simply copy the <literal>Model</literal> directory from
+					the OpenBP installation directory to the the
+						<literal>src/main/resources</literal> directory.</para>
+				<para>We do not want to perform this action each time we change the model, so we
+					instruct the OpenBP Modeler to look for the model in another location by
+					supplying an environment variable to the Java VM of the OpenBP Cockpit. You
+					might copy and modify the $OPENBP_HOME/bin/StartCockpit script to supply the
+					parameter <literal>-Dopenbp.FileSystemModelMgr.ModelPath=PATH</literal> where
+						<literal>PATH</literal> specifies the path to the model directory that you
+					have copied to your project.</para>
+				<para>Alternatively, you may also modify the property
+						<literal>openbp.FileSystemModelMgr.ModelPath</literal> in the
+					OpenBP-Cockpit.properties file.</para>
+			</section>
+			<section>
+				<title>The OpenBP Process Management API</title>
+				<para>Let's take a look at a simple process invocation:</para>
+				<para>The following code creates an instance of the process server, which is used to
+					execute processes (a.k.a. also known as the process engine). You may supply the
+					name of a Spring configuration resource that contains your particular OpenBP
+					wiring configuration.</para>
+				<programlisting><![CDATA[// Create a process server from the supplied Spring confiugration
+processServer = new ProcessServerFactory().createProcessServer("OpenBP-Server-Hibernate.spring.xml");
+ProcessFacade processFacade = processServer.getProcessFacade();]]>
+				</programlisting>
+				<para>
+					<caution>
+						<para>Creating a process server is an expansive operation. Thus you should
+							do this once at application startup. The process facade is reentrant (i.
+							e. stateless), so you may use a single instance in multiple
+							threads.</para>
+					</caution>
+				</para>
+				<para>A token context is an object that holds the state of an executing process
+					including the position within the process, the data that is processed and
+					various configuration information. Before we can start a process, we need to
+					create a new token.</para>
+				<programlisting><![CDATA[// Create the process context and start the process
+TokenContext token = processFacade.createToken();]]>
+				</programlisting>
+				<para><note>
+						<para>When creating a token, the token will be written to the database if
+							you have configured a persistent token context provider in the Spring
+							configuration file. Note that when performing this operation for the
+							first time, the database needs to be initialized first. The
+							object-relational mapping frameworks such as Hibernate usually require
+							some time for initialization, so this step might take a while if
+							executed for the first time. Subsequent calls will execute pretty
+							fast.</para>
+					</note>Setting the debugger id to a value not equal to null means that we enable
+					the process for debugging. An OpenBP process debugger that provides the same
+					debugger id will be able to attach itself to the process and monitor its
+					execution (see below).</para>
+				<programlisting><![CDATA[token.setDebuggerId("Deb1");]]></programlisting>
+				<para>The process parameters are passed as map of values. The map keys must
+					correspond to the names that have been used as parameter names of the initial
+					node within the OpenBP process. The type of the parameters must correspond to
+					the parameter types expected by the activities of the process. Otherwise,
+					ClassCastExceptions or similar errors may appear.</para>
+				<programlisting><![CDATA[Map<String, Object> inputParam = new HashMap<String, Object>();
+inputParam.put("Data", data);
+processFacade.startToken(token, "/VacationRequest/AcceptVacationRequest.Start", inputParam);]]>
+				</programlisting>
+				<para>The <literal>startToken</literal> method will pass the token to the OpenBP
+					engine for execution.</para>
+				<para>Note that the process will not be executed right away. Since a process engine
+					is meant for background exeuction of business processes, you might see this more
+					like an execution order that your are submitting. If you are using a persistent
+					(i. e. database-oriented) token context service, this method call will cause the
+					new token context to be saved to the database. You may configure the OpenBP
+					Spring context regarding the type of token context service.</para>
+				<programlisting><![CDATA[processFacade.startToken(token, "/VacationRequest/AcceptVacationRequest.Start", inputParam);]]>
+				</programlisting>
+				<programlisting>Usually, some worker thread of the OpenBP engine would scan the token database for pending tokens and execute the ones that are waiting for execution.
+However, in this test case, we want to have control over what's happening and want to check the result of a process execution in the same thread as the process invocation. For test cases and for the cases of synchronous process execution that might arise from time to time, OpenBP provides a method that will scan for pending token context objects and try to execute them before returning.</programlisting>
+				<programlisting><![CDATA[// Note: This should be done by some worker thread; for the test case, we do it right here.
+processFacade.executePendingContextsInThisThread();]]>
+				</programlisting>
+				<programlisting>Finally, after the process has been finished, we would like to have the process' output parameters in a hash table so we can access them.</programlisting>
+				<programlisting><![CDATA[Map<String, Object> outputParam = new HashMap<String, Object>(); 
+processFacade.retrieveOutputParameters(token, outputParam);]]>
+				</programlisting>
+				<para>Finally, we should gracefully shut down the OpenBP server. Typically, you
+					would do this when exiting the application, e. g. when unloading a web
+					application or inside the shutdown hook of the Java VM.</para>
+				<programlisting><![CDATA[processServer.shutdown(true);]]>
+				</programlisting>
+			</section>
+			<section>
+				<title>Debugging a Process</title>
+				<para>OpenBP is able to track the execution of a process inside the OpenBP modeler.
+					Similar to a Java debugger, the OpenBP modeler connects to the OpenBP engine
+					running inside your application and monitors and controls the currently running
+					process. OpenBP uses a RMI connection for the debugger to engine communication.
+					Note that the ports in the OpenBP-Server.properties in your application's
+					resources and the OpenBP-Cockpit.properties in the OpenBP home directory must
+					match regarding the ports. OpenBP uses the following default settiings:</para>
+				<para><![CDATA[openbp.RMIRegistry.port=10088]]></para>
+				<para>
+					<note>
+						<para>Make sure to enable the selected port in your firewall or the
+							components will not be able to communicate.</para>
+					</note>
+				</para>
+				<para>In order to debug a process, follow these steps:</para>
+				<para>
+					<itemizedlist>
+						<listitem>
+							<para>Before you run an OpenBP application for the first time, make sure
+								that all database tables required by OpenBP have been
+								created.</para>
+							<para>In the <literal>openbp-server-VERSION-ddl.zip</literal>
+									(<literal>VERSION</literal> to be replaced by the actual OpenBP
+								version) there are DDL scripts for various database dialects that
+								will create the OpenBP tables. Execute theses scripts in your SQL
+								execution environment. Watch for any errors that might
+								appear.</para>
+						</listitem>
+						<listitem>
+							<para>Start the application that you want to trace. After initializing
+								the OpenBP process server, the application needs to wait until the
+								OpenBP Cockpit has connected to the OpenBP engine.</para>
+							<para>Basically, there are two alternatives:</para>
+							<para>If you are running your application under control of a Java
+								debugger, you may set a breakpoint before calling
+									<literal>processFacade.startToken</literal>.</para>
+							<para>Otherwise, you can supply the argument
+									<literal>-Dopenbp.debuggerControl=waitAtFirstEvent</literal> to
+								the Java VM running your application that instructs the OpenBP
+								engine to stop and wait until the OpenBP debugger has connected.
+								When the engine is about to execute some process, it will print the
+								message <literal>Process waiting for debugger (debugger id
+									'Deb1')...</literal> to the log output.</para>
+							<para>In either case, the execution of the program will halt before the
+								process is being started.</para>
+						</listitem>
+						<listitem>
+							<para>Start the OpenBP Cockpit. The Cockpit will automatically try to
+								connect to the server. </para>
+							<para>On successful connect, the Cockpit will display a red markation
+								around the current position of the debugged process.</para>
+							<para>
+								<mediaobject>
+									<imageobject>
+										<imagedata fileref="Screenshots/Modeler_TP7_Debug.png"
+											scale="70"/>
+									</imageobject>
+								</mediaobject>
+							</para>
+							<para>If the Cockpit is already running, select <guimenuitem>Cockpit |
+									Server Reload</guimenuitem> or press <keycap>CTRL+r</keycap> to
+								reconnect to the OpenBP Server. On success, the Cockpit will print a
+								message that it has connected to the server.</para>
+						</listitem>
+						<listitem>
+							<para>The debugger provides the following commands. When the process has
+								been halted, you may use one of the following The commands are
+								available from the <guimenuitem>Debugger</guimenuitem> menu, through
+								a toolbar inside the title bar (right hand side) of the workspace
+								window and through keyboard shortcuts. The shortcuts have been
+								chosen with Eclipse debugger compatibility in mind. Note that some
+								commands are valid only during the execution of a process.</para>
+							<informaltable frame="all">
+								<tgroup cols="4">
+									<colspec colname="c1" colnum="1" colwidth="1*"/>
+									<colspec colname="c2" colnum="2" colwidth="2*"/>
+									<colspec colname="c3" colnum="3" colwidth="10*"/>
+									<colspec colname="c4" colnum="4" colwidth="2*"/>
+									<thead>
+										<row>
+											<entry>Icon</entry>
+											<entry>Command</entry>
+											<entry>Description</entry>
+											<entry>Shortcut</entry>
+										</row>
+									</thead>
+									<tbody>
+										<row>
+											<entry>
+												<mediaobject>
+												<imageobject>
+												<imagedata
+												fileref="Screenshots/toolbar/debugger/stepnext24.png"
+												scale="100"/>
+												</imageobject>
+												</mediaobject>
+											</entry>
+											<entry>Step Next</entry>
+											<entry>
+												<para>Continues execution to up to the next
+												event.</para>
+												<para>Available during process execution
+												only.</para>
+												<para>This is the most fine-granular debugger
+												command. The debugger will visualize any process
+												executions that are being executed by the engine,
+												i. e. control link executions, data link
+												executions, entry and exit socket positions and
+												exceptions.</para>
+												<para>Use this command when you want to learn how
+												process execution works or when you want to track
+												down a problem that occurs in a data link
+												execution - or when you like to watch the dot
+												flitting... :-)</para>
+											</entry>
+											<entry><keycap>F5</keycap></entry>
+										</row>
+										<row>
+											<entry>
+												<mediaobject>
+												<imageobject>
+												<imagedata
+												fileref="Screenshots/toolbar/debugger/stepinto24.png"
+												scale="100"/>
+												</imageobject>
+												</mediaobject>
+											</entry>
+											<entry>Step Into</entry>
+											<entry>
+												<para>Continues execution to up to the next process
+												node, stepping into sub processes.</para>
+												<para>Available during process execution
+												only.</para>
+												<para>The process will stop at the next node. No
+												data or control link animations will be displayed.
+												When the current node is a sub process node, the
+												execution will stop at the first node of the sub
+												process.</para>
+											</entry>
+											<entry><keycap>SF5</keycap></entry>
+										</row>
+										<row>
+											<entry>
+												<mediaobject>
+												<imageobject>
+												<imagedata
+												fileref="Screenshots/toolbar/debugger/stepover24.png"
+												scale="100"/>
+												</imageobject>
+												</mediaobject>
+											</entry>
+											<entry>Step Over</entry>
+											<entry>
+												<para>Continues execution to up to the next process
+												nod, skipping over sub processese.</para>
+												<para>Available during process execution
+												only.</para>
+												<para>The process will stop at the next node. No
+												data or control link animations will be displayed.
+												When the current node is a sub process node, the
+												execution will stop at the first node after the
+												sub process node (except when a breakpoint inside
+												the subprocess has been hit).</para>
+											</entry>
+											<entry>k<keycap/></entry>
+										</row>
+										<row>
+											<entry>
+												<mediaobject>
+												<imageobject>
+												<imagedata
+												fileref="Screenshots/toolbar/debugger/stepout24.png"
+												scale="100"/>
+												</imageobject>
+												</mediaobject>
+											</entry>
+											<entry>Step Out</entry>
+											<entry>
+												<para>Continues execution of a sub process until it
+												returns.</para>
+												<para>Available during process execution
+												only.</para>
+												<para>The process will stop at the first node of the
+												parent process after the sub process node. When
+												this function is applied in a top-level process,
+												it has the same effect as executing the Resume
+												function.</para>
+											</entry>
+											<entry><keycap>F7</keycap></entry>
+										</row>
+										<row>
+											<entry>
+												<mediaobject>
+												<imageobject>
+												<imagedata
+												fileref="Screenshots/toolbar/debugger/stepuntil24.png"
+												scale="100"/>
+												</imageobject>
+												</mediaobject>
+											</entry>
+											<entry>Step until</entry>
+											<entry>
+												<para>Continues execution of a sub process until the
+												selected node has been hit.</para>
+												<para>Available during process execution
+												only.</para>
+												<para>When the node does not lie within the current
+												execution path of the process, the function has
+												the same effect as executing the Resume
+												function.</para>
+												<para>The function is available from the context
+												menu of an initial or final node or socket
+												only.</para>
+											</entry>
+											<entry/>
+										</row>
+										<row>
+											<entry>
+												<mediaobject>
+												<imageobject>
+												<imagedata
+												fileref="Screenshots/toolbar/debugger/resume24.png"
+												scale="100"/>
+												</imageobject>
+												</mediaobject>
+											</entry>
+											<entry>Resume</entry>
+											<entry>
+												<para>Continues execution of a process.</para>
+												<para>Available during process execution
+												only.</para>
+												<para>Process execution will continue until a
+												breakpoint has been hit, the process has ended (i.
+												e. a final node has been executed) or is suspended
+												(by a wait state or workflow node) or an exception
+												has been thrown.</para>
+											</entry>
+											<entry><keycap>F8</keycap></entry>
+										</row>
+										<row>
+											<entry>
+												<mediaobject>
+												<imageobject>
+												<imagedata
+												fileref="Screenshots/toolbar/debugger/stop24.png"
+												scale="100"/>
+												</imageobject>
+												</mediaobject>
+											</entry>
+											<entry>Stop</entry>
+											<entry>
+												<para>Stops the execution of the process.</para>
+												<para>Available during process execution
+												only.</para>
+												<para>The process is being terminated ungracefully.
+												Usually, a rollback will be performed and the
+												lifecycle state of the process will be set to
+												<literal>LifeCycleState.ERROR</literal>. This
+												means that the process will not be continued by
+												the engine unless its lifecycle state is being
+												changed programmatically.</para>
+											</entry>
+											<entry><keycap>SHIFT+F8</keycap></entry>
+										</row>
+										<row>
+											<entry>
+												<mediaobject>
+												<imageobject>
+												<imagedata
+												fileref="Screenshots/toolbar/debugger/togglebreakpoint24.png"
+												scale="100"/>
+												</imageobject>
+												</mediaobject>
+											</entry>
+											<entry>Toggle breakpoint</entry>
+											<entry>
+												<para>Sets or clears breakpoints at all selected
+												nodes.</para>
+												<para>Select a socket to set a breakpoint at an
+												individual socket or a single node or a group of
+												nodes to set breakpoints at all sockets of the
+												node(s). </para>
+											</entry>
+											<entry><keycap>F9</keycap></entry>
+										</row>
+										<row>
+											<entry>
+												<mediaobject>
+												<imageobject>
+												<imagedata
+												fileref="Screenshots/toolbar/debugger/clearall24.png"
+												scale="100"/>
+												</imageobject>
+												</mediaobject>
+											</entry>
+											<entry>Clear all breakpoints</entry>
+											<entry>
+												<para>Clears all breakpoints that have been
+												set.</para>
+											</entry>
+											<entry><keycap>SHIFT+F9</keycap></entry>
+										</row>
+										<row>
+											<entry/>
+											<entry>Break on top level</entry>
+											<entry>
+												<para>Toggle that automatically halts any process
+												that is being started as top level process.</para>
+											</entry>
+											<entry/>
+										</row>
+										<row>
+											<entry/>
+											<entry>Break on workflow</entry>
+											<entry>
+												<para>Toggle that automatically halts any process
+												that is about to execute a workflow node.</para>
+											</entry>
+											<entry/>
+										</row>
+										<row>
+											<entry/>
+											<entry>Break on exception</entry>
+											<entry>
+												<para>Toggle that automatically halts any process
+												that has thrown an exception.</para>
+											</entry>
+											<entry/>
+										</row>
+									</tbody>
+								</tgroup>
+							</informaltable>
+							<para/>
+						</listitem>
+						<listitem>
+							<para>In the lower right of the Modeler, you will see a tab page named
+									<guilabel>Context Inspector</guilabel>.</para>
+							<para>It displays the current data context of a halted process.</para>
+							<mediaobject>
+								<imageobject>
+									<imagedata fileref="Screenshots/Modeler_TP9_Debug_Inspector.png"
+										scale="70"/>
+								</imageobject>
+							</mediaobject>
+							<para>The <guilabel>Key</guilabel> column of the process data table
+								denotes the name of the data item in the process' data table. If the
+								key contains the dot ('.') character, it identifies a parameter
+								variable having the form <literal>NODE.SOCKET.PARAM</literal>. As
+								you single-step through the process you will see that these
+								variables are of temporary nature and are present while the node is
+								executing only. Process variables (see below) are listed with a
+								leading underscore character.</para>
+							<para>The <guilabel>Type</guilabel> column indicates the data type.
+								Complex data types that have been defined as OpenBP data type appear
+								as qualified component name in the form
+									<literal>/MODEL/TYPE</literal> where <literal>TYPE</literal> is
+								the name of the data type and <literal>MODEL</literal> is the model
+								that contains the data type definition. Other objects are
+								represented by their Java class name. Primitive data types
+									(<literal>java.lang.String</literal>,
+									<literal>java.lang.Integer</literal>, ...) are displayed as
+								simply <literal>String</literal>, <literal>Integer</literal>
+								etc.</para>
+							<para>The <guilabel>Value</guilabel> column finally displays the
+									<literal>toString()</literal> value of the object. Data items
+								that have the <literal>null</literal> value appear empty.</para>
+							<para>Note that the context inspector is read-only. You cannot not
+								change the displayed data.</para>
+						</listitem>
+						<listitem>
+							<para>After our process terminates, the test case will also terminate.
+								The Cockpit will detect this and print a notification message. To
+								repeat the debugging session, simply restart the test case and press
+									<keycap>CTRL+R</keycap> to reconnect to the new engine
+								instance.</para>
+							<para>
+								<mediaobject>
+									<imageobject>
+										<imagedata
+											fileref="Screenshots/Modeler_TP8_Debug_ConnectionLost.png"
+											scale="70"/>
+									</imageobject>
+								</mediaobject>
+							</para>
+							<para/>
+						</listitem>
+					</itemizedlist>
+				</para>
+			</section>
+		</section>
+		<section>
+			<title>Process Data Handling</title>
+			<section>
+				<title>Process Variables</title>
+				<para/>
+				<para>
+					<note>
+						<para>In the context inspector, process variables are listed with a leading
+							underscore character when displaying the data of a halted process in
+							order to determine them from socket parameters.</para>
+					</note>
+				</para>
+			</section>
+			<section>
+				<title>Decision Node</title>
+				<section>
+					<title>The Expression Language</title>
+					<para/>
+				</section>
+			</section>
+			<section>
+				<title>Merge Node</title>
+				<para/>
+			</section>
+		</section>
+		<section>
+			<title>Generating a Skeleton For Your Activity</title>
+			<section>
+				<title>Retrieving and Returning Activity Parameters</title>
+				<para/>
+			</section>
+			<section>
+				<title>Exception Management</title>
+				<para/>
+			</section>
+			<section>
+				<title>Running the Code-Aware Process</title>
+				<para/>
+			</section>
+		</section>
+		<section>
+			<title>Advanced Process Execution</title>
+			<section>
+				<title>Subprocesses</title>
+				<para/>
+			</section>
+			<section>
+				<title>Process Suspension and Resumption</title>
+				<para/>
+			</section>
+			<section>
+				<title>Process Execution Sequence Diagram</title>
+				<para/>
+			</section>
+			<section>
+				<title>Token Context Hierarchies</title>
+				<para/>
+				<para>- Executing Model</para>
+			</section>
+			<section>
+				<title>Long-Running Processes</title>
+				<section>
+					<title>Wait State Node</title>
+					<para/>
+				</section>
+			</section>
+			<section>
+				<title>Process Synchronization</title>
+				<section>
+					<title>Fork Node</title>
+					<para/>
+				</section>
+				<section>
+					<title>Join Node And Joining Options</title>
+					<para/>
+				</section>
+				<section>
+					<title>Workflow End Node</title>
+					<para/>
+				</section>
+			</section>
+		</section>
+	</article>
+</book>

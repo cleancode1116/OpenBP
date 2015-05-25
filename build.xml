@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+   Copyright 2007 skynamics AG
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ -->
+
+<!-- TODO Cleanup 5 This file might be embedded in the pom.xml file -->
+
+<project name="OpenBP" basedir=".">
+
+	<!-- ********************************** -->
+	<!-- * Initialization                 * -->
+	<!-- ********************************** -->
+
+	<!-- Private target -->
+	<target name="init">
+
+		<!-- Read version properties from build.properties -->
+		<property file="build.properties" />
+
+		<!-- Product version number -->
+		<property name="buildmodule.version" value="${buildmodule.version.major}.${buildmodule.version.minor1}.${buildmodule.version.minor2}"/>
+		<property name="buildmodule.info" value="${buildmodule.name}-${buildmodule.version}-${buildmodule.buildnumber}"/>
+
+		<property name="deploy.dir.src" value="../OpenBP.dist/${buildmodule.info}-src" />
+		<property name="deploy.dir.bin" value="../OpenBP.dist/${buildmodule.info}-bin" />
+
+	</target>
+
+	<!-- ********************************** -->
+	<!-- * Distribution                   * -->
+	<!-- ********************************** -->
+
+	<!-- Public target -->
+	<target name="dist" depends="init,doc">
+
+		<antcall target="dist-src"/>
+
+		<antcall target="dist-bin"/>
+
+		<echo message="Distribution written to" />
+		<echo message="    ${deploy.dir.src}" />
+		<echo message="and" />
+		<echo message="    ${deploy.dir.bin}" />
+
+	</target>
+
+	<!-- Private target -->
+	<target name="dist-src" depends="init">
+
+		<mkdir dir="${deploy.dir.src}"/>
+
+		<copy todir="${deploy.dir.src}/openbp-doc">
+			<fileset dir="openbp-doc" excludes="target/"/>
+		</copy>
+		<copy todir="${deploy.dir.src}/openbp-cockpit">
+			<fileset dir="openbp-cockpit" excludes="target/"/>
+		</copy>
+		<!-- Currently not Included in distribution
+		<copy todir="${deploy.dir.src}/openbp-cockpit-plugin-auditor">
+			<fileset dir="openbp-cockpit-plugin-auditor" excludes="target/"/>
+		</copy>
+		<copy todir="${deploy.dir.src}/openbp-cockpit-plugin-imageexport">
+			<fileset dir="openbp-cockpit-plugin-imageexport" excludes="target/"/>
+		</copy>
+		<copy todir="${deploy.dir.src}/openbp-cockpit-plugin-misc">
+			<fileset dir="openbp-cockpit-plugin-misc" excludes="target/"/>
+		</copy>
+		<copy todir="${deploy.dir.src}/openbp-cockpit-plugin-publisher">
+			<fileset dir="openbp-cockpit-plugin-publisher" excludes="target/"/>
+		</copy>
+		<copy todir="${deploy.dir.src}/openbp-cockpit-plugin-webbrowser">
+			<fileset dir="openbp-cockpit-plugin-webbrowser" excludes="target/"/>
+		</copy>
+		-->
+		<copy todir="${deploy.dir.src}/openbp-common">
+			<fileset dir="openbp-common" excludes="target/"/>
+		</copy>
+		<copy todir="${deploy.dir.src}/openbp-common-swing">
+			<fileset dir="openbp-common-swing" excludes="target/"/>
+		</copy>
+		<copy todir="${deploy.dir.src}/openbp-common-template">
+			<fileset dir="openbp-common-template" excludes="target/"/>
+		</copy>
+		<copy todir="${deploy.dir.src}/openbp-core">
+			<fileset dir="openbp-core" excludes="target/"/>
+		</copy>
+		<copy todir="${deploy.dir.src}/openbp-derby">
+			<fileset dir="openbp-derby" excludes="target/"/>
+		</copy>
+		<copy todir="${deploy.dir.src}/openbp-doc">
+			<fileset dir="openbp-doc" excludes="target/"/>
+		</copy>
+		<copy todir="${deploy.dir.src}/openbp-model-system">
+			<fileset dir="openbp-model-system" excludes="target/"/>
+		</copy>
+		<copy todir="${deploy.dir.src}/openbp-model-testcase">
+			<fileset dir="openbp-model-testcase" excludes="target/"/>
+		</copy>
+		<copy todir="${deploy.dir.src}/openbp-model-testm1">
+			<fileset dir="openbp-model-testm1" excludes="target/"/>
+		</copy>
+		<copy todir="${deploy.dir.src}/openbp-model-testm2">
+			<fileset dir="openbp-model-testm2" excludes="target/"/>
+		</copy>
+		<copy todir="${deploy.dir.src}/openbp-model-testmsub">
+			<fileset dir="openbp-model-testmsub" excludes="target/"/>
+		</copy>
+		<copy todir="${deploy.dir.src}/openbp-sample">
+			<fileset dir="openbp-sample" excludes="target/"/>
+		</copy>
+		
+		<copy todir="${deploy.dir.src}/openbp-server">
+			<fileset dir="openbp-server" excludes="target/"/>
+		</copy>
+		<copy todir="${deploy.dir.src}/openbp-server-cay">
+			<fileset dir="openbp-server-cay" excludes="target/"/>
+		</copy>
+		<copy todir="${deploy.dir.src}/openbp-server-hib">
+			<fileset dir="openbp-server-hib" excludes="target/"/>
+		</copy>
+		<!-- Currently not Included in distribution
+		<copy todir="${deploy.dir.src}/openbp-server-jms">
+			<fileset dir="openbp-server-jms" excludes="target/"/>
+		</copy>
+		-->
+		<copy todir="${deploy.dir.src}/openbp-syncmodel">
+			<fileset dir="openbp-syncmodel" excludes="target/"/>
+		</copy>
+		<copy todir="${deploy.dir.src}/src">
+			<fileset dir="src" excludes="target"/>
+		</copy>
+
+		<copy tofile="${deploy.dir.src}/build.properties" file="build.properties"/>
+		<copy tofile="${deploy.dir.src}/build.xml" file="build.xml"/>
+		<copy tofile="${deploy.dir.src}/pom.xml" file="pom.xml"/>
+
+		<copy tofile="${deploy.dir.src}/ChangeHistory.txt" file="dist/ChangeHistory.txt"/>
+		<copy tofile="${deploy.dir.src}/License.txt" file="dist/License.txt"/>
+		<copy tofile="${deploy.dir.src}/ReadMe.txt" file="dist/ReadMe-Src.txt"/>
+
+		<delete includeEmptyDirs="true" verbose="true" failonerror="false" >
+			<fileset dir="${deploy.dir.src}" defaultexcludes="no"> 
+				<include name="**/.cvsignore"/>
+				<include name="**/.placeholder"/>
+				<include name="**/.svn/"/>
+				<include name="**/CVS/"/>
+				<include name="**/*.log/"/>
+				<include name="home/User.properties"/>
+			</fileset>
+		</delete>
+
+	</target>
+
+	<!-- Private target -->
+	<target name="dist-bin" depends="init">
+
+		<mkdir dir="${deploy.dir.bin}"/>
+
+		<copy tofile="${deploy.dir.bin}/org/openbp/openbp-cockpit/${buildmodule.version}${buildmodule.artifactid.suffix}/openbp-cockpit-${buildmodule.version}${buildmodule.artifactid.suffix}-installer.jar" file="openbp-cockpit/target/openbp-cockpit-${buildmodule.version}${buildmodule.artifactid.suffix}-installer.jar"/>
+		<copy tofile="${deploy.dir.bin}/org/openbp/openbp-cockpit/${buildmodule.version}${buildmodule.artifactid.suffix}/openbp-cockpit-${buildmodule.version}${buildmodule.artifactid.suffix}-installer.pom" file="openbp-cockpit/pom.xml"/>
+
+		<copy tofile="${deploy.dir.bin}/org/openbp/openbp-cockpit/${buildmodule.version}${buildmodule.artifactid.suffix}/openbp-cockpit-${buildmodule.version}${buildmodule.artifactid.suffix}.jar" file="openbp-cockpit/target/openbp-cockpit-${buildmodule.version}${buildmodule.artifactid.suffix}.jar"/>
+		<copy tofile="${deploy.dir.bin}/org/openbp/openbp-cockpit/${buildmodule.version}${buildmodule.artifactid.suffix}/openbp-cockpit-${buildmodule.version}${buildmodule.artifactid.suffix}.pom" file="openbp-cockpit/pom.xml"/>
+
+		<copy tofile="${deploy.dir.bin}/org/openbp/openbp-cockpit-plugin-auditor/${buildmodule.version}${buildmodule.artifactid.suffix}/openbp-cockpit-plugin-auditor-${buildmodule.version}${buildmodule.artifactid.suffix}.jar" file="openbp-cockpit-plugin-auditor/target/openbp-cockpit-plugin-auditor-${buildmodule.version}${buildmodule.artifactid.suffix}.jar"/>
+		<copy tofile="${deploy.dir.bin}/org/openbp/openbp-cockpit-plugin-auditor/${buildmodule.version}${buildmodule.artifactid.suffix}/openbp-cockpit-plugin-auditor-${buildmodule.version}${buildmodule.artifactid.suffix}.pom" file="openbp-cockpit-plugin-auditor/pom.xml"/>
+
+		<copy tofile="${deploy.dir.bin}/org/openbp/openbp-cockpit-plugin-imageexport/${buildmodule.version}${buildmodule.artifactid.suffix}/openbp-cockpit-plugin-imageexport-${buildmodule.version}${buildmodule.artifactid.suffix}.jar" file="openbp-cockpit-plugin-imageexport/target/openbp-cockpit-plugin-imageexport-${buildmodule.version}${buildmodule.artifactid.suffix}.jar"/>
+		<copy tofile="${deploy.dir.bin}/org/openbp/openbp-cockpit-plugin-imageexport/${buildmodule.version}${buildmodule.artifactid.suffix}/openbp-cockpit-plugin-imageexport-${buildmodule.version}${buildmodule.artifactid.suffix}.pom" file="openbp-cockpit-plugin-imageexport/pom.xml"/>
+
+		<copy tofile="${deploy.dir.bin}/org/openbp/openbp-cockpit-plugin-misc/${buildmodule.version}${buildmodule.artifactid.suffix}/openbp-cockpit-plugin-misc-${buildmodule.version}${buildmodule.artifactid.suffix}.jar" file="openbp-cockpit-plugin-misc/target/openbp-cockpit-plugin-misc-${buildmodule.version}${buildmodule.artifactid.suffix}.jar"/>
+		<copy tofile="${deploy.dir.bin}/org/openbp/openbp-cockpit-plugin-misc/${buildmodule.version}${buildmodule.artifactid.suffix}/openbp-cockpit-plugin-misc-${buildmodule.version}${buildmodule.artifactid.suffix}.pom" file="openbp-cockpit-plugin-misc/pom.xml"/>
+
+		<copy tofile="${deploy.dir.bin}/org/openbp/openbp-cockpit-plugin-publisher/${buildmodule.version}${buildmodule.artifactid.suffix}/openbp-cockpit-plugin-publisher-${buildmodule.version}${buildmodule.artifactid.suffix}.jar" file="openbp-cockpit-plugin-publisher/target/openbp-cockpit-plugin-publisher-${buildmodule.version}${buildmodule.artifactid.suffix}.jar"/>
+		<copy tofile="${deploy.dir.bin}/org/openbp/openbp-cockpit-plugin-publisher/${buildmodule.version}${buildmodule.artifactid.suffix}/openbp-cockpit-plugin-publisher-${buildmodule.version}${buildmodule.artifactid.suffix}.pom" file="openbp-cockpit-plugin-publisher/pom.xml"/>
+
+		<copy tofile="${deploy.dir.bin}/org/openbp/openbp-cockpit-plugin-webbrowser/${buildmodule.version}${buildmodule.artifactid.suffix}/openbp-cockpit-plugin-webbrowser-${buildmodule.version}${buildmodule.artifactid.suffix}.jar" file="openbp-cockpit-plugin-webbrowser/target/openbp-cockpit-plugin-webbrowser-${buildmodule.version}${buildmodule.artifactid.suffix}.jar"/>
+		<copy tofile="${deploy.dir.bin}/org/openbp/openbp-cockpit-plugin-webbrowser/${buildmodule.version}${buildmodule.artifactid.suffix}/openbp-cockpit-plugin-webbrowser-${buildmodule.version}${buildmodule.artifactid.suffix}.pom" file="openbp-cockpit-plugin-webbrowser/pom.xml"/>
+
+		<copy tofile="${deploy.dir.bin}/org/openbp/openbp-common/${buildmodule.version}${buildmodule.artifactid.suffix}/openbp-common-${buildmodule.version}${buildmodule.artifactid.suffix}.jar" file="openbp-common/target/openbp-common-${buildmodule.version}${buildmodule.artifactid.suffix}.jar"/>
+		<copy tofile="${deploy.dir.bin}/org/openbp/openbp-common/${buildmodule.version}${buildmodule.artifactid.suffix}/openbp-common-${buildmodule.version}${buildmodule.artifactid.suffix}.pom" file="openbp-common/pom.xml"/>
+
+		<copy tofile="${deploy.dir.bin}/org/openbp/openbp-common-swing/${buildmodule.version}${buildmodule.artifactid.suffix}/openbp-common-swing-${buildmodule.version}${buildmodule.artifactid.suffix}.jar" file="openbp-common-swing/target/openbp-common-swing-${buildmodule.version}${buildmodule.artifactid.suffix}.jar"/>
+		<copy tofile="${deploy.dir.bin}/org/openbp/openbp-common-swing/${buildmodule.version}${buildmodule.artifactid.suffix}/openbp-common-swing-${buildmodule.version}${buildmodule.artifactid.suffix}.pom" file="openbp-common-swing/pom.xml"/>
+
+		<copy tofile="${deploy.dir.bin}/org/openbp/openbp-common-template/${buildmodule.version}${buildmodule.artifactid.suffix}/openbp-common-template-${buildmodule.version}${buildmodule.artifactid.suffix}.jar" file="openbp-common-template/target/openbp-common-template-${buildmodule.version}${buildmodule.artifactid.suffix}.jar"/>
+		<copy tofile="${deploy.dir.bin}/org/openbp/openbp-common-template/${buildmodule.version}${buildmodule.artifactid.suffix}/openbp-common-template-${buildmodule.version}${buildmodule.artifactid.suffix}.pom" file="openbp-common-template/pom.xml"/>
+
+		<copy tofile="${deploy.dir.bin}/org/openbp/openbp-core/${buildmodule.version}${buildmodule.artifactid.suffix}/openbp-core-${buildmodule.version}${buildmodule.artifactid.suffix}.jar" file="openbp-core/target/openbp-core-${buildmodule.version}${buildmodule.artifactid.suffix}.jar"/>
+		<copy tofile="${deploy.dir.bin}/org/openbp/openbp-core/${buildmodule.version}${buildmodule.artifactid.suffix}/openbp-core-${buildmodule.version}${buildmodule.artifactid.suffix}.pom" file="openbp-core/pom.xml"/>
+
+		<copy tofile="${deploy.dir.bin}/org/openbp/openbp-model-system/${buildmodule.version}${buildmodule.artifactid.suffix}/openbp-model-system-${buildmodule.version}${buildmodule.artifactid.suffix}.jar" file="openbp-model-system/target/openbp-model-system-${buildmodule.version}${buildmodule.artifactid.suffix}.jar"/>
+		<copy tofile="${deploy.dir.bin}/org/openbp/openbp-model-system/${buildmodule.version}${buildmodule.artifactid.suffix}/openbp-model-system-${buildmodule.version}${buildmodule.artifactid.suffix}.pom" file="openbp-model-system/pom.xml"/>
+
+		<copy tofile="${deploy.dir.bin}/org/openbp/openbp-model-testcase/${buildmodule.version}${buildmodule.artifactid.suffix}/openbp-model-testcase-${buildmodule.version}${buildmodule.artifactid.suffix}.jar" file="openbp-model-testcase/target/openbp-model-testcase-${buildmodule.version}${buildmodule.artifactid.suffix}.jar"/>
+		<copy tofile="${deploy.dir.bin}/org/openbp/openbp-model-testcase/${buildmodule.version}${buildmodule.artifactid.suffix}/openbp-model-testcase-${buildmodule.version}${buildmodule.artifactid.suffix}.pom" file="openbp-model-testcase/pom.xml"/>
+
+		<copy tofile="${deploy.dir.bin}/org/openbp/openbp-model-testm1/${buildmodule.version}${buildmodule.artifactid.suffix}/openbp-model-testm1-${buildmodule.version}${buildmodule.artifactid.suffix}.jar" file="openbp-model-testm1/target/openbp-model-testm1-${buildmodule.version}${buildmodule.artifactid.suffix}.jar"/>
+		<copy tofile="${deploy.dir.bin}/org/openbp/openbp-model-testm1/${buildmodule.version}${buildmodule.artifactid.suffix}/openbp-model-testm1-${buildmodule.version}${buildmodule.artifactid.suffix}.pom" file="openbp-model-testm1/pom.xml"/>
+
+		<copy tofile="${deploy.dir.bin}/org/openbp/openbp-model-testm2/${buildmodule.version}${buildmodule.artifactid.suffix}/openbp-model-testm2-${buildmodule.version}${buildmodule.artifactid.suffix}.jar" file="openbp-model-testm2/target/openbp-model-testm2-${buildmodule.version}${buildmodule.artifactid.suffix}.jar"/>
+		<copy tofile="${deploy.dir.bin}/org/openbp/openbp-model-testm2/${buildmodule.version}${buildmodule.artifactid.suffix}/openbp-model-testm2-${buildmodule.version}${buildmodule.artifactid.suffix}.pom" file="openbp-model-testm2/pom.xml"/>
+
+		<copy tofile="${deploy.dir.bin}/org/openbp/openbp-model-testmsub/${buildmodule.version}${buildmodule.artifactid.suffix}/openbp-model-testmsub-${buildmodule.version}${buildmodule.artifactid.suffix}.jar" file="openbp-model-testmsub/target/openbp-model-testmsub-${buildmodule.version}${buildmodule.artifactid.suffix}.jar"/>
+		<copy tofile="${deploy.dir.bin}/org/openbp/openbp-model-testmsub/${buildmodule.version}${buildmodule.artifactid.suffix}/openbp-model-testmsub-${buildmodule.version}${buildmodule.artifactid.suffix}.pom" file="openbp-model-testmsub/pom.xml"/>
+
+		<!--
+		<copy tofile="${deploy.dir.bin}/org/openbp/openbp-model-sample/${buildmodule.version}${buildmodule.artifactid.suffix}/openbp-model-sample-${buildmodule.version}${buildmodule.artifactid.suffix}.jar" file="openbp-model-sample/target/openbp-model-sample-${buildmodule.version}${buildmodule.artifactid.suffix}.jar"/>
+		<copy tofile="${deploy.dir.bin}/org/openbp/openbp-model-sample/${buildmodule.version}${buildmodule.artifactid.suffix}/openbp-model-sample-${buildmodule.version}${buildmodule.artifactid.suffix}.pom" file="openbp-model-sample/pom.xml"/>
+		-->
+
+		<copy tofile="${deploy.dir.bin}/org/openbp/openbp-server/${buildmodule.version}${buildmodule.artifactid.suffix}/openbp-server-${buildmodule.version}${buildmodule.artifactid.suffix}.jar" file="openbp-server/target/openbp-server-${buildmodule.version}${buildmodule.artifactid.suffix}.jar"/>
+		<copy tofile="${deploy.dir.bin}/org/openbp/openbp-server/${buildmodule.version}${buildmodule.artifactid.suffix}/openbp-server-${buildmodule.version}${buildmodule.artifactid.suffix}.pom" file="openbp-server/pom.xml"/>
+
+		<copy tofile="${deploy.dir.bin}/org/openbp/openbp-server-cay/${buildmodule.version}${buildmodule.artifactid.suffix}/openbp-server-cay-${buildmodule.version}${buildmodule.artifactid.suffix}.jar" file="openbp-server-cay/target/openbp-server-cay-${buildmodule.version}${buildmodule.artifactid.suffix}.jar"/>
+		<copy tofile="${deploy.dir.bin}/org/openbp/openbp-server-cay/${buildmodule.version}${buildmodule.artifactid.suffix}/openbp-server-cay-${buildmodule.version}${buildmodule.artifactid.suffix}.pom" file="openbp-server-cay/pom.xml"/>
+
+		<copy tofile="${deploy.dir.bin}/org/openbp/openbp-server-hib/${buildmodule.version}${buildmodule.artifactid.suffix}/openbp-server-hib-${buildmodule.version}${buildmodule.artifactid.suffix}.jar" file="openbp-server-hib/target/openbp-server-hib-${buildmodule.version}${buildmodule.artifactid.suffix}.jar"/>
+		<copy tofile="${deploy.dir.bin}/org/openbp/openbp-server-hib/${buildmodule.version}${buildmodule.artifactid.suffix}/openbp-server-hib-${buildmodule.version}${buildmodule.artifactid.suffix}.pom" file="openbp-server-hib/pom.xml"/>
+
+		<copy tofile="${deploy.dir.bin}/org/openbp/openbp-server-jms/${buildmodule.version}${buildmodule.artifactid.suffix}/openbp-server-jms-${buildmodule.version}${buildmodule.artifactid.suffix}.jar" file="openbp-server-jms/target/openbp-server-jms-${buildmodule.version}${buildmodule.artifactid.suffix}.jar"/>
+		<copy tofile="${deploy.dir.bin}/org/openbp/openbp-server-jms/${buildmodule.version}${buildmodule.artifactid.suffix}/openbp-server-jms-${buildmodule.version}${buildmodule.artifactid.suffix}.pom" file="openbp-server-jms/pom.xml"/>
+
+		<copy tofile="${deploy.dir.bin}/org/openbp/openbp-syncmodel/${buildmodule.version}${buildmodule.artifactid.suffix}/openbp-syncmodel-${buildmodule.version}${buildmodule.artifactid.suffix}.jar" file="openbp-syncmodel/target/openbp-syncmodel-${buildmodule.version}${buildmodule.artifactid.suffix}.jar"/>
+		<copy tofile="${deploy.dir.bin}/org/openbp/openbp-syncmodel/${buildmodule.version}${buildmodule.artifactid.suffix}/openbp-syncmodel-${buildmodule.version}${buildmodule.artifactid.suffix}.pom" file="openbp-syncmodel/pom.xml"/>
+
+		<copy tofile="${deploy.dir.bin}/ChangeHistory.txt" file="dist/ChangeHistory.txt"/>
+		<copy tofile="${deploy.dir.bin}/License.txt" file="dist/License.txt"/>
+		<copy tofile="${deploy.dir.bin}/ReadMe.txt" file="dist/ReadMe-Binary.txt"/>
+
+		<mkdir dir="${deploy.dir.bin}/org/openbp/openbp-doc/${buildmodule.version}${buildmodule.artifactid.suffix}"/>
+		<jar jarfile="${deploy.dir.bin}/org/openbp/openbp-doc/${buildmodule.version}${buildmodule.artifactid.suffix}/openbp-doc-${buildmodule.version}${buildmodule.artifactid.suffix}.zip">
+			<fileset dir="openbp-doc/target/openbp-api">
+			</fileset>
+		</jar>
+
+	</target>
+
+
+	<!-- ********************************** -->
+	<!-- * Documentation                  * -->
+	<!-- ********************************** -->
+
+	<!-- Public target -->
+	<target name="doc">
+		<echo message="Creating documentation ..."/>
+		<antcall target="skydoc">
+			<param name="doc.mode" value="d"/>
+			<param name="doc.arguments" value="openbp-common/src/main/java openbp-core/src/main/java openbp-server/src/main/java openbp-server-cay/src/main/java openbp-server-hib/src/main/java openbp-server-jms/src/main/java"/>
+		</antcall>
+	</target>
+
+	<!-- Private target -->
+	<!-- Run skydoc -->
+	<target name="skydoc" description="For starting this target several parameters are needed">
+		<!-- skyDoc properties -->
+		<property name="skydoc.dir" value="openbp-doc/skyDoc"/>
+		<property name="skydoc.jar" value="${skydoc.dir}/skydoc.jar"/>
+		<property name="skydoc.template.dir" value="${skydoc.dir}/templates"/>
+		<property name="skydoc.opt.name" value="openbp-doc/skyDoc.opt"/>
+		<property name="skydoc.err.name" value="openbp-doc/skyDoc.err"/>
+
+		<!-- Destination directories skyDoc writes into -->
+		<property name="outputdir" value="openbp-doc/target/openbp-api"/>
+		<property name="outputdir.imagedir" value="${outputdir}/images"/>
+
+		<!-- Source doc directory -->
+		<property name="skydoc.static.content" value="openbp-doc/skyDoc/staticcontent"/>
+
+		<!-- company logo properties -->
+		<property name="logo.company.source" value="${skydoc.static.content}/OpenBP.PoweredBy.150x62.png"/>
+		<property name="logo.company.target" value="OpenBP.PoweredBy.150x62.png"/>
+
+		<!-- product logo properties -->
+		<property name="logo.product.source" value="${skydoc.static.content}/OpenBP.OpenBusinessProcess.270x103.png"/>
+		<property name="logo.product.target" value="OpenBP.OpenBusinessProcess.270x103.png"/>
+
+		<!-- Page elements -->
+		<property name="bullet.source" value="${skydoc.static.content}/blue_arrow.gif"/>
+		<property name="hierarchy.source" value="${skydoc.static.content}/orange_arrow.gif"/>
+		<property name="css.source" value="${skydoc.static.content}/main.css"/>
+
+		<!-- Prepare documentation directory and images -->
+		<delete dir="${outputdir}"/>
+		<mkdir dir="${outputdir.imagedir}"/>
+
+		<copy file="${logo.company.source}" tofile="${outputdir.imagedir}/${logo.company.target}"/>
+		<copy file="${logo.product.source}" tofile="${outputdir.imagedir}/${logo.product.target}"/>
+
+		<!-- Read version properties from build.properties -->
+		<property file="build.properties" />
+
+		<!-- Product version number -->
+		<property name="buildmodule.version" value="${buildmodule.version.major}.${buildmodule.version.minor1}.${buildmodule.version.minor2}"/>
+
+		<!-- Run skyDoc -->
+		<java jar="${skydoc.jar}" classpath="${skydoc.classpath}" failonerror="false" fork="true">
+			<arg line="+define=PRODUCT='${buildmodule.fullname}'"/>
+			<arg line="+define=PRODUCTVERSION=${buildmodule.version}"/>
+			<arg line="+define=BUILDNO=${buildmodule.buildnumber}"/>
+			<arg line="+define=COMPANYLOGO=images/${logo.company.target}"/>
+			<arg line="+define=PRODUCTLOGO=images/${logo.product.target}"/>
+			<arg line="+define=RAPI"/>
+			<arg line="+templateDir=${skydoc.template.dir}"/>
+			<arg line="+outputDir=${outputdir}"/>
+			<arg line="+optionFile=${skydoc.opt.name}"/>
+			<arg line="+errorFile=${skydoc.err.name}"/>
+			<arg line="+mode=${doc.mode}"/>
+			<arg line="${doc.arguments}"/>
+		</java>
+
+		<copy file="${bullet.source}" tofile="${outputdir.imagedir}/bullet.gif" overwrite="yes"/>
+		<copy file="${hierarchy.source}" tofile="${outputdir.imagedir}/hierarchy.gif" overwrite="yes"/>
+		<copy file="${css.source}" tofile="${outputdir}/main.css" overwrite="yes"/>
+	</target>
+
+	<!-- Public target -->
+	<target name="clean-doc">
+		<delete dir="openbp-doc/target"/>
+	</target>
+
+
+	<!-- ********************************** -->
+	<!-- * DDL                            * -->
+	<!-- ********************************** -->
+
+	<!-- Public target -->
+	<target name="ddl" depends="init">
+
+		<echo message="Bulding DDLs for ${buildmodule.info} ... " />
+
+		<antcall target="ddl-single">
+			<param name="dialect" value="MySQL"/>
+		</antcall>
+
+		<antcall target="ddl-single">
+			<param name="dialect" value="Oracle9"/>
+		</antcall>
+
+	</target>
+
+	<!-- Private target -->
+	<target name="ddl-single" depends="init">
+
+		<java classname="org.openbp.server.persistence.hibernate.HibernateDDLGenerator" failonerror="false" fork="true">
+			<classpath refid="test-classpath"/>
+			<classpath refid="classpath"/>
+			<jvmarg line="-Dopenbp.home=../home"/>
+			<arg line="-BaseDir"/>
+			<arg line="../home/server/DDL"/>
+			<arg line="-Dialect"/>
+			<arg line="${dialect}"/>
+			<arg line="-DDLCreateFile"/>
+			<arg line="Create-DDL.sql"/>
+			<arg line="-DDLDropFile"/>
+			<arg line="Drop-DDL.sql"/>
+		</java>
+
+	</target>
+
+</project>

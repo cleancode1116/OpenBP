@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<process name="SchedulerTest" item-type="Process" type="TopLevel" skin-name="uml" node-geometry="size:320:120">
+  <description>Test case for the Quartz-based process scheduler</description>
+  <generator-info><![CDATA[
+<generator-settings generator-name="ProcessTopLevel"/>
+]]></generator-info>
+  <activity-node name="SetSignal">
+    <geometry>origin:295:382|size:160:60</geometry>
+    <socket name="In" entry="true" default="true">
+      <param name="SignalId" type="String">
+        <expression>&quot;Signal 1&quot;</expression>
+      </param>
+      <param name="SignalValue" type="Object"/>
+      <geometry>angle:4.71238898038469</geometry>
+    </socket>
+    <socket name="Out" default="true">
+      <geometry>angle:1.5707963267948966</geometry>
+    </socket>
+    <activity-handler handler-class="org.openbp.server.test.activity.SetSignalActivity"/>
+  </activity-node>
+  <activity-node name="SetSignal2">
+    <geometry>origin:295:743|size:160:60</geometry>
+    <socket name="In" entry="true" default="true">
+      <param name="SignalId" type="String">
+        <expression>&quot;Signal 2&quot;</expression>
+      </param>
+      <param name="SignalValue" type="Object"/>
+      <geometry>angle:4.71238898038469</geometry>
+    </socket>
+    <socket name="Out" default="true">
+      <geometry>angle:1.5707963267948966</geometry>
+    </socket>
+    <activity-handler handler-class="org.openbp.server.test.activity.SetSignalActivity"/>
+  </activity-node>
+  <initial-node name="Start">
+    <geometry>origin:295:148|size:35</geometry>
+    <socket name="Out" default="true">
+      <param name="StringParam" type="String"/>
+      <geometry>angle:1.5707963267948966</geometry>
+    </socket>
+  </initial-node>
+  <wait-state-node name="WaitState" display-name="Wait state">
+    <geometry>origin:295:527|size:160:60</geometry>
+    <socket name="Continue" default="true">
+      <geometry>angle:1.5707963267948966</geometry>
+    </socket>
+    <socket name="In" entry="true" default="true">
+      <geometry>angle:4.71238898038469</geometry>
+    </socket>
+  </wait-state-node>
+  <workflow-end-node name="WorkflowEnd" display-name="Workflow end">
+    <geometry>origin:295:907|size:35|nameangle:1.5707963267948966</geometry>
+    <socket name="In" entry="true" default="true">
+      <param name="WorkflowTask" display-name="Workflow task" type="WorkflowTask" optional="true" visible="false">
+        <description>Workflow task that identifies the current workflow group or null to end all workflows that run in the current workflow group</description>
+      </param>
+      <geometry>angle:4.71238898038469</geometry>
+    </socket>
+  </workflow-end-node>
+  <control-link name="ControlLink" source="Start.Out" target="SetSignal.In">
+    <geometry>points:1:295:212:295:240:295:277:295:305|label:0:0|factors:0.3:0.3</geometry>
+  </control-link>
+  <control-link name="ControlLink2" source="SetSignal.Out" target="WaitState.In">
+    <geometry>points:1:295:411:295:437:295:472:295:498|label:0:0|factors:0.3:0.3</geometry>
+  </control-link>
+  <control-link name="ControlLink3" source="WaitState.Continue" target="SetSignal2.In">
+    <geometry>points:1:295:578:295:604:295:640:295:666|label:0:0|factors:0.3:0.3</geometry>
+  </control-link>
+  <control-link name="ControlLink4" source="SetSignal2.Out" target="WorkflowEnd.In">
+    <geometry>points:1:295:772:295:807:295:855:295:890|label:0:0|factors:0.3:0.3</geometry>
+  </control-link>
+  <data-link name="DataLink" source="Start.Out.StringParam" target="SetSignal.In.SignalValue">
+    <geometry>points:1:282:200:247:200:247:317:282:317|label:0:0|factors:0.3:0.3</geometry>
+  </data-link>
+  <data-link name="DataLink2" source="Start.Out.StringParam" target="_Param"/>
+  <data-link name="DataLink3" source="_Param" target="SetSignal2.In.SignalValue"/>
+  <process-variable name="Param" type="String" scope="subprocess" persistent="true"/>
+</process>

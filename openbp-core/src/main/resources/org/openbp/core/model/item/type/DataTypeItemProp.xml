@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+   Copyright 2007 skynamics AG
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ -->
+
+
+<object-descriptor
+	name="DataTypeItem"
+	display-name="Data type"
+	object-class="org.openbp.core.model.item.type.DataTypeItem"
+	>
+	<description>Data types represent data items that are managed by OpenBP processes.
+OpenBP data types can be mapped to Java classes, database tables or XML representations.</description>
+
+	<property name="Name" read-only="true"/>
+
+	<property name="DisplayName"/>
+	<property name="Description"/>
+
+	<property name="OwningModelQualifier" read-only="true"/>
+	<property name="FunctionalGroup"/>
+
+	<property name="BaseTypeName" display-name="Base type name"
+		editor="ComponentSelectionEditor">
+		<editor-param>
+			type="Type"
+			title="Data Type Selection"
+			propertyname="SimpleType"
+			propertyvalue="false"
+		</editor-param>
+		<description>Name of the base type of this class if this type should extend another type</description>
+	</property>
+
+	<property name="ClassName" display-name="Class name"
+		editor="SelectionEditor">
+		<editor-param>
+			listener="org.openbp.guiclient.objectvalidators.ClassNameSelectionEditorListener"
+			editable="true"
+			prefix="datatype."
+		</editor-param>
+		<description>Name of the Java class of this type</description>
+	</property>
+
+	<property name="TaggedValueList"/>
+
+	<!-- <property name="ReadOnly"/> -->
+	<property name="CreatedBy"/>
+	<property name="MaintainedBy"/>
+
+</object-descriptor>

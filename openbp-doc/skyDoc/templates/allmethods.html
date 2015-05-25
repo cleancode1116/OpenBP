@@ -1,0 +1,19 @@
+<html>
+
+<head>
+<title>$name Methods</title>
+<link rel="stylesheet" href="$rootDir(main.css)" type="text/css">
+</head>
+
+<body>
+
+<p><small>$+if (defined (PRODUCT))$PRODUCT$endif$+if (defined (PRODUCTVERSION)) V $PRODUCTVERSION&nbsp;&nbsp;&nbsp;&nbsp;$endif<a href="$URL">$name overview</a>&nbsp;&nbsp;&nbsp;<a href="$URL#fields">$name fields</a>&nbsp;&nbsp;&nbsp;$+if (superclassURL)<a href="$superclassURL#methods">$superclassName methods</a>&nbsp;&nbsp;&nbsp;$endif<a href="$contentsFile">Contents</a></small></p>
+
+<h1>$name Methods</h1>
+
+<p>$methodBodies</p>
+
+$include (copyright.html)
+
+</body>
+</html>

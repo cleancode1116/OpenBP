@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<domains project-version="3.0">
+<domain name="GDCAMS">
+	<map name="OpenBP" location="OpenBP.map.xml"/>
+	<map name="OpenBP-Test" location="OpenBP-Test.map.xml"/>
+
+	<node name="CommonDomainNode"
+		 datasource="CommonDomainNode.driver.xml"
+		 adapter="org.apache.cayenne.dba.derby.DerbyAdapter"
+		 factory="org.apache.cayenne.conf.DriverDataSourceFactory">
+			<map-ref name="OpenBP"/>
+			<map-ref name="OpenBP-Test"/>
+	 </node>
+</domain>
+</domains>

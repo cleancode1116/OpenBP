@@ -1,0 +1,22 @@
+<html>
+
+<head>
+<title></title>
+<link rel="stylesheet" href="$rootDir(main.css)" type="text/css">
+</head>
+
+<body>
+
+<p>$if (seeList)</p>
+<h2><img src="$rootDir(images/bullet.gif)" align="middle"> See also</h2>
+<p>$insert</p>
+<p>$endif</p>
+
+<p>$if (example)</p>
+<p><a name="example"></a></p>
+<h2><img src="$rootDir(images/bullet.gif)" align="middle"> Example</h2>
+<p>$insert</p>
+
+<p>$endif</p>
+</body>
+</html>

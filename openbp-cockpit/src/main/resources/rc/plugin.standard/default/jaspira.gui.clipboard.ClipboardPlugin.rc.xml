@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+   Copyright 2007 skynamics AG
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ -->
+
+
+<resource>
+
+	<item name="title">Clipboard</item>
+	<item name="description">Clipboard Controller</item>
+	<item name="icon" type="image/multi">
+		<path>../../images/toolbar/edit/cut.png</path>
+	</item>
+
+	<import container="cockpit" resource="standardmenus"/>
+
+	<!-- Actions -->
+	<group name="global.clipboard.cut">
+		<item name="menuparent">menu.edit.clipboard</item>
+		<item name="toolbarparent">toolbar.clipboard</item>
+		<item name="displayname">C_ut</item>
+		<item name="description">Cut the selection to the clipboard</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/toolbar/edit/cut.png</path>
+		</item>
+		<item name="prio">10</item>
+		<item name="sequence">C-x</item>
+	</group>
+
+	<group name="global.clipboard.copy">
+		<item name="menuparent">menu.edit.clipboard</item>
+		<item name="toolbarparent">toolbar.clipboard</item>
+		<item name="displayname">_Copy</item>
+		<item name="description">Copy the selection to the clipboard</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/toolbar/edit/copy.png</path>
+		</item>
+		<item name="sequence">C-c</item>
+		<item name="prio">20</item>
+	</group>
+
+	<group name="global.clipboard.paste">
+		<item name="menuparent">menu.edit.clipboard</item>
+		<item name="toolbarparent">toolbar.clipboard</item>
+		<item name="displayname">_Paste</item>
+		<item name="description">Paste the current clipboard entry</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/toolbar/edit/paste.png</path>
+		</item>
+		<item name="sequence">C-v</item>
+		<item name="prio">30</item>
+	</group>
+
+	<group name="global.clipboard.delete">
+		<item name="menuparent">menu.edit.clipboard</item>
+		<item name="toolbarparent">toolbar.clipboard</item>
+		<item name="displayname">_Delete</item>
+		<item name="description">Delete the selection</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/toolbar/edit/delete.png</path>
+		</item>
+		<item name="prio">40</item>
+		<item name="sequence">DELETE</item>
+	</group>
+
+</resource>

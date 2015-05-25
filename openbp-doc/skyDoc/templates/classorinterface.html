@@ -1,0 +1,105 @@
+<html>
+
+<head>
+<title></title>
+<link rel="stylesheet" href="$rootDir(main.css)" type="text/css">
+</head>
+
+<body>
+
+<p>$summary</p>
+
+<p>$description</p>
+
+<p>$if (propertyList (noHeader, sort))</p>
+<p><a name="properties"></a></p>
+<h2><img src="$rootDir(images/bullet.gif)" align="middle"> Properties</h2>
+<p>$insert</p>
+<p>$endif</p>
+
+<p>$if (attributeList (noHeader, sort))</p>
+<p><a name="attributes"></a></p>
+<h2><img src="$rootDir(images/bullet.gif)" align="middle"> Attributes</h2>
+<p>$insert</p>
+<p>$endif</p>
+
+<p>$if (relationList (noHeader, sort))</p>
+<p><a name="relations"></a></p>
+<h2><img src="$rootDir(images/bullet.gif)" align="middle"> Relations</h2>
+<p>$insert</p>
+<p>$endif</p>
+
+<p>$if (eventList (noHeader, sort))</p>
+<p><a name="events"></a></p>
+<h2><img src="$rootDir(images/bullet.gif)" align="middle"> Events</h2>
+<p>$insert</p>
+<p>$endif</p>
+
+<p>$if (categoryList)</p>
+<p><a name="categories"></a></p>
+<h2><img src="$rootDir(images/bullet.gif)" align="middle"> Objects by category</h2>
+<p>$insert</p>
+<p>$endif</p>
+
+<p><a name="fields"></a></p>
+
+<p>$if (fieldList (noHeader, mod = static, mod = final, mod = negate, sort))</p>
+<h2><img src="$rootDir(images/bullet.gif)" align="middle"> Fields</h2>
+<p>$insert</p>
+<p>$endif</p>
+
+<p>$if (fieldList (noHeader, mod = static, mod = final))</p>
+<h2><img src="$rootDir(images/bullet.gif)" align="middle"> Constants</h2>
+<p>$insert</p>
+<p>$endif</p>
+
+<p><a name="methods"></a></p>
+
+<p>$if (methodList (noHeader, value0 = linkWithParameter, mod = static, sort))</p>
+<h2><img src="$rootDir(images/bullet.gif)" align="middle"> Static methods</h2>
+<p>$insert</p>
+<p>$endif</p>
+
+<p>$if (constructorList (noHeader, value0 = linkWithParameter))</p>
+<h2><img src="$rootDir(images/bullet.gif)" align="middle"> Constructors</h2>
+<p>$insert</p>
+<p>$endif</p>
+
+<p>$if (methodList (noHeader, value0 = linkWithParameter, mod = static, mod = negate,
+sort))</p>
+<h2><img src="$rootDir(images/bullet.gif)" align="middle"> Methods</h2>
+<p>$insert</p>
+<p>$endif</p>
+
+<p>$if (interfaceList (noHeader, header0 = Interface, sort))</p>
+<p><a name="interfaces"></a></p>
+<h2><img src="$rootDir(images/bullet.gif)" align="middle"> Nested interfaces</h2>
+<p>$insert</p>
+<p>$endif</p>
+
+<p>$if (classList (noHeader, header0 = Class, sort))</p>
+<p><a name="classes"></a></p>
+<h2><img src="$rootDir(images/bullet.gif)" align="middle"> Nested classes</h2>
+<p>$insert</p>
+<p>$endif</p>
+
+<p>$include (seeandexample.html) $include (versionandauthor.html) </p>
+
+<p>$if (memberLocation == "membersInClassFile")</p>
+<p>$if (methodBodies ())</p>
+<p>&nbsp;</p>
+<h2>$name Methods</h2>
+<p>&nbsp;</p>
+<p>$insert</p>
+<p>$endif</p>
+
+<p>$if (fieldBodies ())</p>
+<p>&nbsp;</p>
+<h2>$name Fields</h2>
+<p>&nbsp;</p>
+<p>$insert</p>
+<p>$endif</p>
+
+<p>$endif</p>
+</body>
+</html>

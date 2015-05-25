@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+   Copyright 2007 skynamics AG
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ -->
+
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+	<class name="org.openbp.server.context.WorkflowTaskImpl"
+		table="OpenBPWorkflowTask"
+		optimistic-lock="none">
+
+		<id name="id" type="string">
+			<column name="TASK_ID" not-null="true" length="40"/>
+		</id>
+
+		<version name="version" column="TASK_VERSION"/>
+
+		<property name="name" type="string">
+			<column name="TASK_NAME" length="40"/>
+		</property>
+
+		<property name="displayName" type="string">
+			<column name="TASK_DISPLAY_NAME" length="200"/>
+		</property>
+
+		<property name="description" type="string">
+			<column name="TASK_DESCRIPTION"/>
+		</property>
+
+		<property name="stepName" type="string">
+			<column name="TASK_STEP_NAME" length="40"/>
+		</property>
+
+		<property name="stepDisplayName" type="string">
+			<column name="TASK_STEP_DISPLAYNAME" length="200"/>
+		</property>
+
+		<property name="stepDescription" type="string">
+			<column name="TASK_STEP_DESCRIPTION"/>
+		</property>
+
+		<property name="roleId" type="string">
+			<column name="TASK_ROLE_ID" length="40"/>
+		</property>
+
+		<property name="userId" type="string">
+			<column name="TASK_USER_ID" length="40"/>
+		</property>
+
+		<property name="permissions" type="string">
+			<column name="TASK_PERMISSIONS" length="255"/>
+		</property>
+
+		<property name="timeCreated" type="timestamp">
+			<column name="TASK_TIME_CREATED"/>
+		</property>
+
+		<property name="timeAccepted" type="timestamp">
+			<column name="TASK_TIME_ACCEPTED"/>
+		</property>
+
+		<property name="timeCompleted" type="timestamp">
+			<column name="TASK_TIME_COMPLETED"/>
+		</property>
+
+		<property name="creatingUserId" type="string">
+			<column name="TASK_CREATING_USER_ID" length="40"/>
+		</property>
+
+		<property name="acceptingUserId" type="string">
+			<column name="TASK_ACCEPTING_USER_ID" length="40"/>
+		</property>
+
+		<property name="priority" type="integer">
+			<column name="TASK_PRIORITY"/>
+		</property>
+
+		<property name="dueTime" type="timestamp">
+			<column name="TASK_DUE_TIME"/>
+		</property>
+
+		<property name="status" type="integer">
+			<column name="TASK_STATUS"/>
+		</property>
+
+		<property name="deleteAfterCompletion" type="boolean">
+			<column name="TASK_DELETE_AFTER_COMPLETION"/>
+		</property>
+
+		<!-- Unidirectional one-to-one relation to TokenContextImpl -->
+		<many-to-one name="tokenContext"
+			class="org.openbp.server.context.TokenContextImpl"
+			lazy="proxy"
+			column="TASK_CONTEXT_ID"
+			unique="false"
+			not-null="true"/>
+
+	</class>
+
+</hibernate-mapping>

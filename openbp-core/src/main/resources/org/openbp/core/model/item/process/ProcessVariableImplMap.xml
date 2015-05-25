@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+   Copyright 2007 skynamics AG
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ -->
+
+<!DOCTYPE mapping PUBLIC "-//EXOLAB/Castor Object Mapping DTD Version 1.0//EN"
+                         "http://castor.exolab.org/mapping.dtd">
+
+<mapping>
+
+	<class name="org.openbp.core.model.item.process.ProcessVariableImpl"
+		extends="org.openbp.core.model.item.process.ParamImpl">
+
+		<map-to xml="process-variable"/>
+
+		<field name="Scope"
+			type="string"
+			get-method="getScopeStr"
+			set-method="setScopeStr">
+			<bind-xml name="scope" node="attribute"/>
+		</field>
+
+		<field name="AutoAssign"
+			type="boolean"
+			get-method="isAutoAssign"
+			set-method="setAutoAssign">
+			<bind-xml name="auto-assign" node="attribute"/>
+		</field>
+
+		<field name="PersistentVariable"
+			type="boolean"
+			get-method="isPersistentVariable"
+			set-method="setPersistentVariable">
+			<bind-xml name="persistent" node="attribute"/>
+		</field>
+
+		<field name="RootContextVariable"
+			type="boolean"
+			get-method="isRootContextVariable"
+			set-method="setRootContextVariable">
+			<bind-xml name="root-context-variable" node="attribute"/>
+		</field>
+
+	</class>
+
+</mapping>

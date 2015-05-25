@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process name="Sell to inventory High Level" item-type="Process"
+    functional-group="Business Process" type="BusinessProcess"
+    skin-name="flowchart" node-geometry="size:160:60">
+    <generator-info><![CDATA[
+<generator-settings generator-name="ProcessTopLevel"/>
+]]></generator-info>
+    <placeholder-node name="Data entry" reference-path="/VMSNG/Sell to inventory Technical">
+        <geometry>origin:218:242|size:160:60</geometry>
+        <socket name="In" entry="true" default="true">
+            <geometry>angle:4.71238898038469</geometry>
+        </socket>
+        <socket name="Out" default="true">
+            <geometry>angle:1.5707963267948966</geometry>
+        </socket>
+    </placeholder-node>
+    <merge-node name="Merge">
+        <geometry>origin:634:174|size:35|nameangle:1.5707963267948966</geometry>
+        <socket name="In1" entry="true">
+            <geometry>angle:1.5707963267948966</geometry>
+        </socket>
+        <socket name="In2" entry="true">
+            <geometry>angle:6.283185307179586</geometry>
+        </socket>
+        <socket name="Out" default="true">
+            <geometry>angle:3.141592653589793</geometry>
+        </socket>
+    </merge-node>
+    <final-node name="Out">
+        <geometry>origin:217:786|size:35</geometry>
+        <socket name="In" entry="true" default="true">
+            <geometry>angle:4.71238898038469</geometry>
+        </socket>
+    </final-node>
+    <placeholder-node name="Process transaction">
+        <geometry>origin:217:627|size:160:60</geometry>
+        <socket name="In" entry="true" default="true">
+            <geometry>angle:4.71238898038469</geometry>
+        </socket>
+        <socket name="Out" default="true">
+            <geometry>angle:1.5707963267948966</geometry>
+        </socket>
+    </placeholder-node>
+    <initial-node name="Start">
+        <geometry>origin:215:90|size:35</geometry>
+        <socket name="Out" default="true">
+            <geometry>angle:1.5707963267948966</geometry>
+        </socket>
+    </initial-node>
+    <placeholder-node name="Supervisor check" reference-path="/VMSNG/Sell to inventory Technical.Request approval">
+        <geometry>origin:452:395|size:160:60</geometry>
+        <socket name="Accepted" default="true">
+            <geometry>angle:1.5707963267948966</geometry>
+        </socket>
+        <socket name="Declined">
+            <geometry>angle:6.269101731356726</geometry>
+        </socket>
+        <socket name="In" entry="true" default="true">
+            <geometry>angle:3.141592653589793</geometry>
+        </socket>
+    </placeholder-node>
+    <decision-node name="Transaction balanced?" display-name="Transaction balanced?">
+        <geometry>origin:218:394|size:60|nameangle:3.141592653589793</geometry>
+        <socket name="In" entry="true" default="true">
+            <geometry>angle:4.71238898038469</geometry>
+        </socket>
+        <socket name="No">
+            <geometry>angle:0.0</geometry>
+        </socket>
+        <socket name="Yes" default="true">
+            <geometry>angle:1.5707963267948966</geometry>
+        </socket>
+    </decision-node>
+    <control-link name="ControlLink" source="Start.Out" target="Data entry.In">
+        <geometry>points:1:216:134:216:151:218:174:218:191|label:0:0|factors:0.3:0.3</geometry>
+    </control-link>
+    <control-link name="ControlLink2" source="Data entry.Out" target="Transaction balanced?.In">
+        <geometry>points:1:218:293:218:307:218:326:218:340|label:0:0|factors:0.3:0.3</geometry>
+    </control-link>
+    <control-link name="ControlLink3" source="Transaction balanced?.No" target="Supervisor check.In">
+        <geometry>points:1:278:394:300:394:329:395:351:395|label:0:0|factors:0.3:0.3</geometry>
+    </control-link>
+    <control-link name="ControlLink4" source="Supervisor check.Declined" target="Merge.In1">
+        <geometry>points:1:592:393:647:393:634:269:634:214|label:0:0|factors:0.3:0.3</geometry>
+    </control-link>
+    <control-link name="ControlLink5" source="Merge.Out" target="Data entry.In">
+        <geometry>points:1:586:174:475:174:218:139:218:191|label:0:0|factors:0.3:0.14206128133704735</geometry>
+    </control-link>
+    <control-link name="ControlLink6" source="Transaction balanced?.Yes" target="Process transaction.In">
+        <geometry>points:1:218:448:218:486:217:538:217:576|label:0:0|factors:0.3:0.3</geometry>
+    </control-link>
+    <control-link name="ControlLink7" source="Supervisor check.Accepted" target="Process transaction.In">
+        <geometry>points:1:452:446:452:527:217:495:217:576|label:0:0|factors:0.3:0.3</geometry>
+    </control-link>
+    <control-link name="ControlLink8" source="Process transaction.Out" target="Out.In">
+        <geometry>points:1:217:678:217:699:217:726:217:747|label:0:0|factors:0.3:0.3</geometry>
+    </control-link>
+</process>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+   Copyright 2007 skynamics AG
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ -->
+
+<resource>
+	<item name="title">Server Connection</item>
+	<item name="description">Maintains access to the server</item>
+	<item name="icon" type="image/multi">
+		<path>../../jaspira/images/plugin.png</path>
+	</item>
+
+	<import container="cockpit" resource="standardmenus" />
+	<import container="cockpit" resource="standardoptions" />
+
+	<!-- Actions -->
+	<group name="plugin.serverconnection.reload">
+		<item name="menuparent">menu.cockpit.server</item>
+		<item name="toolbarparent">toolbar.server</item>
+		<item name="displayname">Server _Reload</item>
+		<item name="description">Causes the server to reload any component classes and mapping files. Use this function after rebuilding the project in the Java IDE.</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/toolbar/file/refresh.png</path>
+		</item>
+		<item name="sequence">C-r</item>
+		<item name="prio" type="primitive/integer">3</item>
+	</group>
+
+	<!-- Messages -->
+	<item name="okmessage">The server has been notified of changes in classes, mapping files, included visuals or model databases.
+These objects will be reloaded when they are accessed the next time.</item>
+	<item name="failedmessage">Errors occured during the server reload. See the server's error log for details.</item>
+
+	<item name="reconnect.okmessage">The cockpit has successfully connected to the $(openbp.application.title) engine.</item>
+	<item name="reconnect.failedmessage">The cockpit could not connect to the $(openbp.application.title) engine. Cause:
+{0}</item>
+
+<!--
+Note that this causes a change of the class loaders of the system.
+Objects that have been created by a running process and stored in the token context of the session, may not be compatible with classes loaded by the new class loader.
+This applies for example to compiled beans of the running models that have been stored as process variables.
+This incompatibility may result in class cast exceptions being thrown when accessing the old objects for example in an activity implementation.
+In this case, you should re-run the process from the debugger, which will remove the contexts of processes that have been started by the debugger before, thus removing any old objects.
+ -->
+
+</resource>

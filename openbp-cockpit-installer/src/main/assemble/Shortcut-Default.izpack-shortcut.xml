@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+
+<shortcuts>
+
+	<skipIfNotSupported/>
+
+	<programGroup defaultName="OpenBP @AppVersion@" location="applications"/>
+
+	<shortcut
+		name="OpenBP Modeler"
+		programGroup="yes"
+		desktop="yes"
+		applications="no"
+		startMenu="no"
+		startup="no"
+		target="@InstallPath@\bin\OpenBP-Cockpit.bat"
+		commandLine=""
+		description="Runs the OpenBP graphical modeling tool"
+		iconFile="assemble\OpenBP.ico"
+		iconIndex="0"
+		initialState="noShow">
+		<createForPack name="OpenBP Cockpit"/>
+	</shortcut>
+
+	<shortcut
+		name="OpenBP User Manual"
+		programGroup="yes"
+		desktop="yes"
+		applications="no"
+		startMenu="no"
+		startup="no"
+		target="@InstallPath@\OpenBP-UserGuide.pdf"
+		commandLine=""
+		description="Shows the OpenBP user guide">
+		<createForPack name="OpenBP Cockpit"/>
+	</shortcut>
+
+	<shortcut
+		name="Uninstall OpenBP"
+		programGroup="yes"
+		desktop="no"
+		applications="no"
+		startMenu="no"
+		startup="no"
+		target="@InstallPath@\Uninstaller\OpenBP-Uninstaller.jar"
+		commandLine=""
+		description="Completely uninstalls OpenBP from your system"
+		iconFile="assemble\OpenBP-Uninstall.ico"
+		iconIndex="0">
+	</shortcut>
+
+</shortcuts>

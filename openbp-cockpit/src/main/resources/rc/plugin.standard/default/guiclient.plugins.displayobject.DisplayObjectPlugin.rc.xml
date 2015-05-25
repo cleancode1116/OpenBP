@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+   Copyright 2007 skynamics AG
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ -->
+
+<resource>
+	<item name="title">Role Manager</item>
+	<item name="description">Provides options and settings according to the role of the current user</item>
+	<item name="icon" type="image/multi">
+		<path>../../jaspira/images/plugin.png</path>
+	</item>
+
+	<import container="cockpit" resource="standardmenus" />
+	<import container="cockpit" resource="standardoptions" />
+
+	<!-- Actions -->
+	<group name="plugin.displayobject.titlemode">
+		<item name="menuparent">menu.view</item>
+		<item name="toolbarparent">toolbar.display</item>
+		<item name="displayname">_Title Display Mode</item>
+		<item name="description">Toggle the display mode of object titles between the display text and the name of the object</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/toolbar/view/titlemode.png</path>
+		</item>
+		<item name="prio">1</item>
+		<item name="condition">features.textmode</item>
+	</group>
+
+	<!-- Options -->
+	<group name="displayobject.options.titlemode">
+		<item name="displayname">Object title display mode</item>
+		<item name="description">Sets the display mode of object titles</item>
+		<item name="optionparent">option.cockpit</item>
+		<item name="prio" type="primitive/integer">1</item>
+		<item name="value.text">Display name of the object</item>
+		<item name="value.name">Object name</item>
+		<item name="condition">features.textmode</item>
+	</group>
+
+	<group name="displayobject.options.autodisplayname">
+		<item name="displayname">Display name</item>
+		<item name="heading">Automatically generate display name from system name</item>
+		<item name="description">Determines if a display name for an object should be generated automatically from the system name if not present yet</item>
+		<item name="optionparent">option.cockpit</item>
+		<item name="prio" type="primitive/integer">2</item>
+		<item name="condition">features.textmode</item>
+	</group>
+
+</resource>

@@ -1,0 +1,181 @@
+
+Structure of This Manual
+
+	Notation
+
+Field of Application & uSPs
+
+	Business Process, Workflow & Co.
+	Java State Management
+	What's Different To other Process or Workflow Engines?
+
+Tutorial
+
+	Getting Started
+		Setting Up the OpenBP Distribution
+		Creating the Tutorial Project
+
+	The Big Picture
+		Process Modeling and Process Execution
+		The Process Lifecycle
+		Model Concept
+		Model Components
+
+	Basic Process Definition
+
+		The OpenBP Modeler
+			Starting The Modeler
+			Initial Modeler Configuration
+			The Modeler Windows
+			Drag And Drop
+			Customizing the Workspace
+			Using Keyboard Shortcuts
+
+		Creating Your First Process
+			Creating a New Process
+				- Process Types
+			Initial Node
+			Activity Node
+				- Default Socket
+			Using the Bean Shell to Implement an Activity
+			Flow Control
+			Final Node
+				- The Hot Menu
+			Text Elements
+
+		Running Your First Process
+			The Token Context
+			The Process Facade
+			Initializing the Process Server
+			Starting a Process
+			Debugging a Process
+
+		Process Data Handling
+			Node Parameters
+			Process Parameters
+				Parameter Expressions
+				Optional vs. Mandatory Parameters
+			Process Variables
+			Data Flow
+			Decision Node
+				The Expression Language
+			Merge Node
+			Running the Data-Aware Process
+			Debugging Process Data
+
+	Generating a Skeleton For Your Activity 
+			Retrieving and Returning Activity Parameters
+			Exception Management
+			Running the Code-Aware Process
+
+	Advanced Process Execution
+		Subprocesses
+		Process Suspension and Resumption
+		Process Execution Sequence Diagram
+
+		Token Context Hierarchies
+			- Executing Model
+
+		Long-Running Processes
+			Wait State Node
+
+		Process Synchronization
+			Fork Node
+			Join Node And Joining Options
+			Workflow End Node
+
+Advanced Concepts
+
+	Persistence Management
+
+	The Token Context
+		The Lifecycle
+		Process Priority
+		Progress Info
+		Selecting Token Context Objects
+		Token Context Serialization
+
+	Process Variables
+		Process Variable Scope
+		Auto-Assignment
+		Token Context Location
+		Dynamic/Strict Mode
+
+	Process Execution
+		The Process Engine Loop
+		Execution Thread Handling
+		The Execution Engine
+		Engine Events
+		The Session Registry
+		Exception Handling
+
+	Persistence Layer
+		Hibernate Persistence Support
+
+	Scheduler
+		Scheduler Concept and API
+		Quartz Support
+
+	Transaction Management
+		Transaction Control Types
+		Configuring the Rollback Behaviour
+
+	Handlers and Hooks
+		Handler Types
+		Handler Instantiation and Thread-Safe Handlers
+		Handler Invocation
+			Handler Context
+
+	Supporting Workflows
+		Workflow Node
+		The Worflow API
+		User and Role Management
+
+	OpenBP Models
+		Model Hierarchy and Component Overrides
+
+		Model Managers
+			File System Model Manager
+			Class Path Model Manager
+			Database Model Manager
+			Multiplex Model Manager
+
+		The SyncModel Utility
+		Model Class Loading
+		Design Time Attributes
+		Tagged Values
+
+	Using OpenBP For Pageflow Control
+		Visual Node
+		Using the Node Socket's Sequence Id For Dynamic GUIs
+			- Model Inspector
+
+	Initial Nodes
+		Entry Scope
+		Role Specification
+		Default Entry
+
+	Jump Nodes
+
+	Placeholder Elements
+
+	Miscelleanous
+		Node Parameters
+			Parameter Expressions
+			Node Parameter Visibility
+		Bean Shell Interface
+		Using Design and Runtime Attributes
+		Data Links
+			Type Compatibility
+			Auto-Conversion
+			Accessing Source or Target Member Variables
+
+OpenBP Modeler Keyboard Shortcuts
+
+
+
+TODO:
+- Node image management in DB and classpath models
+
+
+

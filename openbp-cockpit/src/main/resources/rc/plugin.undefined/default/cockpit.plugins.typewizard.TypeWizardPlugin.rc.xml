@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+   Copyright 2007 skynamics AG
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ -->
+
+<resource>
+	<item name="title">Data Type Wizard</item>
+	<item name="description">Data type wizard</item>
+	<item name="icon" type="image/multi">
+		<path>../../images/plugins/typewizard.png</path>
+	</item>
+
+	<import container="cockpit" resource="standardoptions" />
+
+	<!-- Actions -->
+	<group name="action.typewizard">
+		<item name="displayname">_Data Type Wizard</item>
+		<item name="description">Invoke the data type wizard</item>
+		<item name="icon" type="image/multi">
+			<path>../../images/plugins/typewizard.png</path>
+		</item>
+		<item name="prio" type="primitive/integer">2</item>
+	</group>
+
+	<!-- Wizard -->
+	<group name="wizard">
+
+		<item name="title">Data Type Wizard</item>
+
+		<group name="type">
+			<item name="title">Data type properties</item>
+			<item name="description">Define the properties of the data type to create.
+Note that the wizard displays only the most commonly used properties. You can access the more spezialized properties in the property browser after you have created the data type.
+Click 'Next' to edit the first data type member.</item>
+		</group>
+
+		<group name="member">
+			<item name="title">Data member properties</item>
+			<item name="description">Define the properties of the data member.
+Note that the wizard displays only the most commonly used properties. You can access the more spezialized properties in the property browser after you have created the data type.
+Click 'Next' to edit the next member or to add a new member.
+Click 'Finish' to create the data type.</item>
+			<item name="addbutton">_Add member</item>
+			<item name="removebutton">_Remove member</item>
+		</group>
+
+	</group>
+
+</resource>

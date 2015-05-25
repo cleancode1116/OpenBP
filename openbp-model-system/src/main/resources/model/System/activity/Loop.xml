@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+   Copyright 2007 skynamics AG
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ -->
+
+<item-container>
+  <java-activity name="Loop" display-name="Loop" item-type="Activity" functional-group="Flow control" geometry="origin:313:112|size:64:62">
+    <description>Implements a program loop. This activity takes a set\nof objects containing arbitrary data as input parameter of\nthe 'in' socket. The activity will iterate each\nelement of the set and provide it as output parameter of the\n'loop' socket. The actions connected to the\n'loop' socket form the body of the loop, i. e.\nperform the loop operation on each element. In order to\naccess the next element, control needs to be transferred to\nthe 'Out' socket after execution of the loop\nbody. After all elements have been processed, the activity\nwill end with the 'out' socket.</description>
+    <generator-info><![CDATA[
+<generator-settings generator-name="Activity"/>
+]]></generator-info>
+    <socket name="In" entry="true" default="true" geometry="angle:4.71238898038469">
+      <description>Start of loop</description>
+      <param name="Collection" display-name="Object set to operate on" type="Object" optional="true">
+        <description>Object set containing the items to process.\nThe following data types are supported:\n- Iterator (java.util.Iterator; note that an iterator can be iterated only once!)\n- Collection (java.util.Collection)\n- Map (java.util.Map)\n- Array (Object [])\nThe parameter may also be null.</description>
+      </param>
+    </socket>
+    <socket name="Loop" default="true" geometry="angle:0.5475622359399975">
+      <description>Body of the loop</description>
+      <param name="Element" display-name="Element to process" type="Object">
+        <description>Element to process in the loop body</description>
+      </param>
+    </socket>
+    <socket name="Out" entry="true" geometry="angle:5.701280189039701">
+      <description>End of the loop body. The next element will be\nselected for processing.</description>
+    </socket>
+    <socket name="Out" geometry="angle:1.5707963267948966">
+      <description>End of the loop. All elements have been processed.</description>
+    </socket>
+    <handler handler-class="org.openbp.model.system.flow.LoopHandler"/>
+  </java-activity>
+</item-container>
