@@ -48,13 +48,9 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<!--
-			Database type. Determines the sub directory below the DDL directory
-			that contains SQL scripts. Possible values:
-			<database.type>DB2</database.typ> <database.type>Derby</database.typ>
-			<database.type>MySQL</database.typ>
-			<database.type>Oracle9</database.typ>
-		-->
+		<!-- Database type. Determines the sub directory below the DDL directory 
+			that contains SQL scripts. Possible values: <database.type>DB2</database.typ> 
+			<database.type>Derby</database.typ> <database.type>MySQL</database.typ> <database.type>Oracle9</database.typ> -->
 		<database.type>Derby</database.type>
 
 		<version.spring>2.5.6</version.spring>
@@ -67,18 +63,14 @@
 		<module>openbp-server</module>
 		<module>openbp-server-hib</module>
 		<module>openbp-server-cay</module>
-		<!--
-		<module>openbp-server-jms</module>
-		-->
+		<!-- <module>openbp-server-jms</module> -->
 		<module>openbp-syncmodel</module>
 		<module>openbp-model-system</module>
 		<module>openbp-model-testm1</module>
 		<module>openbp-model-testm2</module>
 		<module>openbp-model-testmsub</module>
 		<module>openbp-model-testcase</module>
-		<!--
-		<module>openbp-sample</module>
-		-->
+		<!-- <module>openbp-sample</module> -->
 		<module>openbp-common-swing</module>
 		<module>openbp-common-template</module>
 		<module>openbp-cockpit</module>
@@ -87,12 +79,9 @@
 	</modules>
 
 	<profiles>
-		<!--
-			<profile> <id>server-jms</id> <activation>
-			<activeByDefault>false</activeByDefault> <file>
-			<exists>openbp-server-jms/pom.xml</exists> </file> </activation>
-			<modules> <module>openbp-server-jms</module> </modules> </profile>
-		-->
+		<!-- <profile> <id>server-jms</id> <activation> <activeByDefault>false</activeByDefault> 
+			<file> <exists>openbp-server-jms/pom.xml</exists> </file> </activation> <modules> 
+			<module>openbp-server-jms</module> </modules> </profile> -->
 	</profiles>
 
 	<build>
@@ -125,7 +114,8 @@
 					<artifactId>sql-maven-plugin</artifactId>
 					<version>1.4</version>
 				</plugin>
-				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+				<!--This plugin's configuration is used to store Eclipse m2e settings 
+					only. It has no influence on the Maven build itself. -->
 				<plugin>
 					<groupId>org.eclipse.m2e</groupId>
 					<artifactId>lifecycle-mapping</artifactId>
@@ -275,6 +265,11 @@
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-beans</artifactId>
 				<version>${version.spring}</version>
+			</dependency>
+			<dependency>
+				<groupId>javax.transaction</groupId>
+				<artifactId>jta</artifactId>
+				<version>1.1</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
